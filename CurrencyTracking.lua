@@ -12,6 +12,7 @@ CurrencyTracking_Server = GetRealmName();
 
 local CurrencyTracking_Version = GetAddOnMetadata("CurrencyTracking", "Version");
 local CurrencyTracking_Category = GetAddOnMetadata("CurrencyTracking", "X-Category");
+local isInLockdown;
 
 local CT_DefaultOptions = {
 	offsetx = 150,
@@ -66,6 +67,8 @@ function CurrencyTracking_OnLoad(self)
 	-- Register the CurrencyTracking frame for the following events
 	self:RegisterEvent("PLAYER_LOGIN");
 	self:RegisterEvent("ADDON_LOADED");
+	self:RegisterEvent("PLAYER_REGEN_ENABLED");
+	self:RegisterEvent("PLAYER_REGEN_DISABLED");
 
 	self:RegisterForDrag("LeftButton");
 end
@@ -74,6 +77,12 @@ function CurrencyTracking_OnEvent(self, event, ...)
 	local arg1 = ...;
 	if (event == "ADDON_LOADED" and arg1 == "CurrencyTracking") then
 		CurrencyTracking_Init();
+	end
+	-- for combact lockdown
+	if (event == "PLAYER_REGEN_DISABLED") then
+		isInLockdown = true;
+	elseif (event == "PLAYER_REGEN_ENABLED") then
+		isInLockdown = false;
 	end
 end
 
@@ -198,7 +207,7 @@ end
 
 function CurrencyTracking_Frame_HandleMouseDown(self, buttonName)    
 	-- Prevent activation when in combat
-	if (InCombatLockdown() == 1) then
+	if (isInLockdown) then
 		return;
 	end
 	-- Handle left button clicks

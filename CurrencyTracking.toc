@@ -4,11 +4,11 @@
 ## Title-zhTW: |cFF00FF00[資訊]|r通貨追蹤
 ## Notes-zhTW: |cff00CC33追蹤所有獲取的通貨，並顯示在遊戲畫面上|r
 ## Author: arith
-## Version: 1.00
+## Version: 1.01
 ## OptionalDeps: LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibStub, AceLocale-3.0
 ## DefaultState: Enabled
 ## SavedVariables: CurrencyTrackingDB
-## X-Date: May 23, 2016
+## X-Date: May 24, 2016
 ## X-Donate: https://pledgie.com/campaigns/31749
 ## X-Website: http://www.curse.com/addons/wow/currency-tracking
 ## X-License: GPLv2

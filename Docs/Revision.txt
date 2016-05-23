@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v1.01 (May 24, 2016)
+----------------------
+- Enhanced to prevent the money frame to be draged when in combat
+
 * v1.00 (May 23, 2016)
 ----------------------
 - Initial version which support WoW 6.2.4
