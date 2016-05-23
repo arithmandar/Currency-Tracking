@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+$Id$
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="CurrencyTracking_Options.lua"/>
+	<Frame name="CurrencyTrackingOptionsFrame" hidden="true">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString inherits="GameFontNormalLarge" text="CT_OPTION_TITLE">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="15" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="$parent_ShowOnScreen" inherits="InterfaceOptionsSmallCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-45"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						_G[self:GetName().."Text"]:SetText(CT_OPT_SHOWONSCREEN);
+					</OnLoad>
+					<OnClick>
+						CurrencyTracking_ShowOnScreenToggle();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parent_ResetPosition" inherits="OptionsButtonTemplate" text="CT_OPT_BTN_RESET">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_ShowOnScreen" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="310" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Size>
+					<AbsDimension x="160" y="21" />
+				</Size>
+				<Scripts>
+					<OnClick>
+						CurrencyTracking_ResetPosition();
+					</OnClick>
+				</Scripts>
+			</Button>
+<!--
+			<CheckButton name="$parent_2ndOption" inherits="InterfaceOptionsSmallCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="parent_ShowOnScreen">
+						<Offset>
+							<AbsDimension x="0" y="-25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						_G[self:GetName().."Text"]:SetText("2nd Option");
+					</OnLoad>
+					<OnClick>
+						AccountantClassicOptionsMoneyOnMinimap_Toggle();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+-->
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				CurrencyTrackingOptions_OnLoad(self);
+			</OnLoad>
+			<OnShow>
+				CurrencyTrackingOptions_OnShow(self);
+			</OnShow>
+			<OnHide>
+				CurrencyTrackingOptions_OnHide(self);
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

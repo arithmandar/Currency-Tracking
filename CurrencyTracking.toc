@@ -1,0 +1,23 @@
+## Interface: 60200
+## Title: Currency Tracking
+## Notes: Currency Tracking is an addon to help you track the currencies you gained, showing the selected currency even on top of the game screen.
+## Title-zhTW: |cFF00FF00[資訊]|r通貨追蹤
+## Notes-zhTW: |cff00CC33追蹤所有獲取的通貨，並顯示在遊戲畫面上|r
+## Author: arith
+## Version: 1.00
+## OptionalDeps: 
+## DefaultState: Enabled
+## SavedVariables: CurrencyTrackingDB
+## X-Date: May 23, 2016
+## X-Donate: 
+## X-Website: 
+## X-License: GPLv2
+## X-Category: Information
+## X-Localizations: enUS, zhTW
+
+Embeds.xml
+Locale\Locales.xml
+CurrencyTracking.lua
+CurrencyTracking.xml
+CurrencyTracking_Options.xml
+

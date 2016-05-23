@@ -1,0 +1,10 @@
+﻿$Id$
+
+Revision History:
+=================
+
+* v1.00 (May 23, 2016)
+----------------------
+- Initial version which support WoW 6.2.4
+- Shows tracked currencies on the screen
+- Shows all gained currencies when hover over
