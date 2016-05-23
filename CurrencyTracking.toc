@@ -5,7 +5,7 @@
 ## Notes-zhTW: |cff00CC33追蹤所有獲取的通貨，並顯示在遊戲畫面上|r
 ## Author: arith
 ## Version: 1.00
-## OptionalDeps: 
+## OptionalDeps: LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibStub, AceLocale-3.0
 ## DefaultState: Enabled
 ## SavedVariables: CurrencyTrackingDB
 ## X-Date: May 23, 2016
