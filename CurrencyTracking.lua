@@ -18,6 +18,8 @@ local CT_DefaultOptions = {
 	offsetx = 150,
 	offsety = 0,
 	show_currency = true,
+	tooltip_alpha = 0.9,
+	tooltip_scale = 1;
 };
 
 local LibStub = _G.LibStub;
@@ -45,6 +47,12 @@ local function CurrencyTracking_AddTooltipText(text)
 			end			
 		end
 	end
+end
+
+function Currency_UpdateAlpha()
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+	
+	AtlasFrame:SetAlpha(options.tooltip_alpha);
 end
 
 function CurrencyTracking_OnLoad(self)
@@ -96,6 +104,14 @@ function CurrencyTracking_InitOptions()
 	if ( CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] == nil ) then
 		CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] = { };
 		CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"] = CT_DefaultOptions;
+	end
+	
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+	if (options.tooltip_alpha == nil) then
+		options.tooltip_alpha = 0.9;
+	end
+	if (options.tooltip_scale == nil) then
+		options.tooltip_scale = 1;
 	end
 end
 
@@ -229,14 +245,17 @@ function CurrencyTracking_Frame_HandleMouseUp(self, button)
 end
 
 function CurrencyTracking_Frame_OnEnter(self)
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+	
 	if (not GameTooltip:IsShown()) then
 		GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -10, 0);
-		GameTooltip:SetBackdropColor(0, 0, 0, 0.9);
+		GameTooltip:SetBackdropColor(0, 0, 0, options.tooltip_alpha);
 		GameTooltip:SetText("|cFFFFFFFF"..L["TITLE"], 1, 1, 1, nil, 1);
 		local tooltip = CurrencyTracking_GetTooltipText();
 		if (tooltip) then
 			CurrencyTracking_AddTooltipText(tooltip);
 		end
+		GameTooltip:SetScale(options.tooltip_scale);
 		GameTooltip:Show();
 	else
 		GameTooltip:Hide();

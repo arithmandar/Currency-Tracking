@@ -29,6 +29,8 @@ function CurrencyTrackingOptions_OnShow()
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	
 	CurrencyTrackingOptionsFrame_ShowOnScreen:SetChecked(options.show_currency);
+	CurrencyTrackingOptionsFrameSliderAlpha:SetValue(options.tooltip_alpha);
+	CurrencyTrackingOptionsFrameSliderToolTipScale:SetValue(options.tooltip_scale);
 end
 
 function CurrencyTrackingOptions_OnHide(self)
@@ -37,7 +39,7 @@ function CurrencyTrackingOptions_OnHide(self)
 	end
 end
 
-function CurrencyTracking_ShowOnScreenToggle()
+function CurrencyTrackingOptions_ShowOnScreenToggle()
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	
 	if(CurrencyTrackingFrame:IsVisible()) then
@@ -49,10 +51,42 @@ function CurrencyTracking_ShowOnScreenToggle()
 	end
 end
 
-function CurrencyTracking_ResetPosition()
+function CurrencyTrackingOptions_ResetPosition()
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 
 	CurrencyTrackingFrame:SetPoint("TOPLEFT", nil, "TOPLEFT", 150, 0);
 	options.offsetx = 150;
 	options.offsety = 0;
 end
+
+function CurrencyTrackingOptions_SetupSlider(self, text, mymin, mymax, step)
+	self:SetMinMaxValues(mymin, mymax);
+	self:SetValueStep(step);
+end
+
+function CurrencyTrackingOptions_UpdateSlider(self, text)
+	_G[self:GetName().."Text"]:SetText("|cffffd200"..text.." ("..round(self:GetValue(), 3)..")");
+end
+
+function CurrencyTrackingOptions_SliderAlphaOnValueChanged(self)
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+	
+	CurrencyTrackingOptions_UpdateSlider(self, CT_OPT_TRANSPARENCY);
+	options.tooltip_alpha = self:GetValue();
+end
+
+function CurrencyTrackingOptions_SliderToolTipScaleOnValueChanged(self)
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+	
+	CurrencyTrackingOptions_UpdateSlider(self, CT_OPT_TOOLTIPSCALE);
+	options.tooltip_scale = self:GetValue();
+end
+
+function CurrencyTrackingOptions_OnMouseWheel(self, delta)
+	if (delta > 0) then
+		self:SetValue(self:GetValue() + self:GetValueStep())
+	else
+		self:SetValue(self:GetValue() - self:GetValueStep())
+	end
+end
+

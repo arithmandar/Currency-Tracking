@@ -3,6 +3,13 @@
 Revision History:
 =================
 
+* v1.02 (May 25, 2016)
+----------------------
+- Added options to customize tooltip's scale and alpha
+- Added German translation, thanks fo pas06
+- Added dummy lcoalization files for all the other language, they will get 
+  loaded in the new release once translation is available on CurseForge
+
 * v1.01 (May 24, 2016)
 ----------------------
 - Enhanced to prevent the money frame to be draged when in combat

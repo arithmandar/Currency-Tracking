@@ -9,4 +9,6 @@ if L then
 	L["Options"] = "Options";
 	L["OPT_ShowOnScreen"] = "Show currency info on screen";
 	L["OPT_BTN_Reset"] = "Reset position";
+	L["OPT_TRANSPARENCY"] = "Currencies info tooltip's transparency";
+	L["OPT_TOOLTIPSCALE"] = "Currencies info tooltip's scale";
 end

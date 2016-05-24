@@ -32,7 +32,7 @@ $Id$
 						_G[self:GetName().."Text"]:SetText(CT_OPT_SHOWONSCREEN);
 					</OnLoad>
 					<OnClick>
-						CurrencyTracking_ShowOnScreenToggle();
+						CurrencyTrackingOptions_ShowOnScreenToggle();
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -49,10 +49,63 @@ $Id$
 				</Size>
 				<Scripts>
 					<OnClick>
-						CurrencyTracking_ResetPosition();
+						CurrencyTrackingOptions_ResetPosition();
 					</OnClick>
 				</Scripts>
 			</Button>
+			<Slider name="$ParentSliderAlpha" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="360" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-325" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:EnableMouseWheel(true)
+						CurrencyTrackingOptions_SetupSlider(self, CT_OPT_TRANSPARENCY, 0, 1.0, 0.01);
+						CurrencyTrackingOptionsFrameSliderAlphaLow:SetText("0.00");
+						CurrencyTrackingOptionsFrameSliderAlphaHigh:SetText("1.00");
+					</OnLoad>
+					<OnValueChanged>
+						CurrencyTrackingOptions_SliderAlphaOnValueChanged(self);
+					</OnValueChanged>
+					<OnMouseWheel>
+						CurrencyTrackingOptions_OnMouseWheel(self, delta)
+					</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			<Slider name="$ParentSliderToolTipScale" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="360" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-395" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:EnableMouseWheel(true)
+						CurrencyTrackingOptions_SetupSlider(self, CT_OPT_TOOLTIPSCALE, 0.01, 1.75, 0.01);
+						CurrencyTrackingOptionsFrameSliderToolTipScaleLow:SetText("0.01");
+						CurrencyTrackingOptionsFrameSliderToolTipScaleHigh:SetText("1.75");
+					</OnLoad>
+					<OnValueChanged>
+						CurrencyTrackingOptions_SliderToolTipScaleOnValueChanged(self)
+					</OnValueChanged>
+					<OnMouseWheel>
+						CurrencyTrackingOptions_OnMouseWheel(self, delta)
+					</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
 <!--
 			<CheckButton name="$parent_2ndOption" inherits="InterfaceOptionsSmallCheckButtonTemplate">
 				<Anchors>
