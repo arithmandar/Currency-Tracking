@@ -129,14 +129,18 @@ function CurrencyTracking_Init()
 			if button == "LeftButton" then
 				--CurrencyTracking_OnClick();
 			elseif button == "RightButton" then
-				CurrencyTracking_Options_Toggle();
+				CurrencyTrackingOptions_Toggle();
 			end
 		end,
 		icon = "Interface\\Icons\\timelesscoin",
 		OnTooltipShow = function(tooltip)
 			if not tooltip or not tooltip.AddLine then return end
---			GameToolTip:AddLine(L["TITLE"]);
-			CurrencyTracking_AddTooltipText(tooltiptxt)
+			GameTooltip:SetBackdropColor(0, 0, 0, options.tooltip_alpha);
+			GameTooltip:SetText(L["TITLE"], 1, 1, 1, nil, 1);
+			if (tooltiptxt) then
+				CurrencyTracking_AddTooltipText(tooltiptxt);
+			end
+			GameTooltip:SetScale(options.tooltip_scale);
 		end,
 	});
 	if ( TitanPanelButton_UpdateButton ) then
@@ -145,9 +149,11 @@ function CurrencyTracking_Init()
 
 	if(options.show_currency == true) then
 		CurrencyTrackingFrame:Show();
+--[[
 		if ( options.offsetx and options.offsety ) then
 			CurrencyTrackingFrame:SetPoint("TOPLEFT", nil, "TOPLEFT", options.offsetx, options.offsety);
 		end
+]]
 	else
 		CurrencyTrackingFrame:Hide();
 	end
@@ -228,6 +234,8 @@ function CurrencyTracking_Frame_HandleMouseDown(self, buttonName)
 	end
 	-- Handle left button clicks
 	if (buttonName == "LeftButton") then
+		-- Hide tooltip while draging
+		GameTooltip:Hide();
 		CurrencyTrackingFrame:StartMoving();
 	elseif (buttonName == "RightButton") then
 		CurrencyTrackingOptions_Toggle();
@@ -237,14 +245,20 @@ end
 
 function CurrencyTracking_Frame_HandleMouseUp(self, button)
 	CurrencyTrackingFrame:StopMovingOrSizing();
+--[[
 	local x, y;
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	_, _, _, x, y = CurrencyTrackingFrame:GetPoint();
 	options.offsetx = x;
 	options.offsety = y;
+]]
 end
 
 function CurrencyTracking_Frame_OnEnter(self)
+	if (isInLockdown) then
+		return;
+	end
+
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	
 	if (not GameTooltip:IsShown()) then
@@ -264,9 +278,5 @@ end
 
 function CurrencyTracking_Frame_OnLeave(self)
 	GameTooltip_Hide();
-end
-
-function CurrencyTracking_Options_Toggle()
-
 end
 

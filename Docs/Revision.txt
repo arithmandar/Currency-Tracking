@@ -3,6 +3,12 @@
 Revision History:
 =================
 
+* v1.03 (May 29, 2016)
+----------------------
+- Hide tooltip while draging or in combat
+- Update LDB's button right-click function call, now it should lead to option panel
+- Update LDB button's GameToolTip to also support scale / alpha tuning
+
 * v1.02 (May 25, 2016)
 ----------------------
 - Added options to customize tooltip's scale and alpha
