@@ -12,7 +12,7 @@ CurrencyTracking_Server = GetRealmName();
 
 local CurrencyTracking_Version = GetAddOnMetadata("CurrencyTracking", "Version");
 local CurrencyTracking_Category = GetAddOnMetadata("CurrencyTracking", "X-Category");
-local isInLockdown;
+local isInLockdown = false;
 
 local CT_DefaultOptions = {
 	offsetx = 150,
@@ -25,8 +25,34 @@ local CT_DefaultOptions = {
 local LibStub = _G.LibStub;
 local L = LibStub("AceLocale-3.0"):GetLocale("CurrencyTracking");
 
+local LDB_CurrencyTracking = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("CurrencyTracking", {
+	type = "data source",
+	text = L["TITLE"],
+	label = L["TITLE"],
+	icon = "Interface\\Icons\\timelesscoin",
+	OnClick = function(self, button)
+		if button == "LeftButton" then
+			CurrencyTracking_OnClick();
+		elseif button == "RightButton" then
+			CurrencyTrackingOptions_Toggle();
+		end
+	end,
+	OnTooltipShow = function(tooltip)
+		if not tooltip or not tooltip.AddLine then return end
+		local tooltiptxt = CurrencyTracking_GetTooltipText();
+		local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+		
+		GameTooltip:SetBackdropColor(0, 0, 0, options.tooltip_alpha);
+		GameTooltip:SetText(L["TITLE"], 1, 1, 1, nil, 1);
+		if (tooltiptxt) then
+			CurrencyTracking_AddTooltipText(tooltiptxt);
+		end
+		GameTooltip:SetScale(options.tooltip_scale);
+	end,
+});
+
 -- Codes adopted from TitanPanel
-local function CurrencyTracking_AddTooltipText(text)
+function CurrencyTracking_AddTooltipText(text)
 	if ( text ) then
 		-- Append a "\n" to the end 
 		if ( string.sub(text, -1, -1) ~= "\n" ) then
@@ -47,150 +73,6 @@ local function CurrencyTracking_AddTooltipText(text)
 			end			
 		end
 	end
-end
-
-function Currency_UpdateAlpha()
-	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
-	
-	AtlasFrame:SetAlpha(options.tooltip_alpha);
-end
-
-function CurrencyTracking_OnLoad(self)
-	self.registry = { 
-		id = "CurrencyTracking",
-		category = CurrencyTracking_Category,
-		version = CurrencyTracking_Version,
-		menuText = L["TITLE"], 
-		tooltipTitle = L["TITLE"],
-		tooltipTextFunction = "CurrencyTracking_GetTooltipText",
-		buttonTextFunction = "CurrencyTracking_GetButtonText",
-		controlVariables = {
-			DisplayOnRightSide = true,
-		},
-		savedVariables = {
-			DisplayOnRightSide = false,             
-		},
-	};
-
-	-- Register the CurrencyTracking frame for the following events
-	self:RegisterEvent("PLAYER_LOGIN");
-	self:RegisterEvent("ADDON_LOADED");
-	self:RegisterEvent("PLAYER_REGEN_ENABLED");
-	self:RegisterEvent("PLAYER_REGEN_DISABLED");
-
-	self:RegisterForDrag("LeftButton");
-end
-
-function CurrencyTracking_OnEvent(self, event, ...)
-	local arg1 = ...;
-	if (event == "ADDON_LOADED" and arg1 == "CurrencyTracking") then
-		CurrencyTracking_Init();
-	end
-	-- for combact lockdown
-	if (event == "PLAYER_REGEN_DISABLED") then
-		isInLockdown = true;
-	elseif (event == "PLAYER_REGEN_ENABLED") then
-		isInLockdown = false;
-	end
-end
-
-function CurrencyTracking_InitOptions()
-	if ( CurrencyTrackingDB == nil ) then
-		CurrencyTrackingDB = { };
-	end
-	if ( CurrencyTrackingDB[CurrencyTracking_Server] == nil ) then
-		CurrencyTrackingDB[CurrencyTracking_Server] = { };
-	end
-	if ( CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] == nil ) then
-		CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] = { };
-		CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"] = CT_DefaultOptions;
-	end
-	
-	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
-	if (options.tooltip_alpha == nil) then
-		options.tooltip_alpha = 0.9;
-	end
-	if (options.tooltip_scale == nil) then
-		options.tooltip_scale = 1;
-	end
-end
-
-function CurrencyTracking_Init()
-	CurrencyTracking_InitOptions();
-	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
-
-	local tooltiptxt = CurrencyTracking_GetTooltipText();
-
-	-- Make an LDB object
-	LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("CurrencyTracking", {
-		type = "launcher",
-		text = L["TITLE"],
-		OnClick = function(self, button)
-			if button == "LeftButton" then
-				--CurrencyTracking_OnClick();
-			elseif button == "RightButton" then
-				CurrencyTrackingOptions_Toggle();
-			end
-		end,
-		icon = "Interface\\Icons\\timelesscoin",
-		OnTooltipShow = function(tooltip)
-			if not tooltip or not tooltip.AddLine then return end
-			GameTooltip:SetBackdropColor(0, 0, 0, options.tooltip_alpha);
-			GameTooltip:SetText(L["TITLE"], 1, 1, 1, nil, 1);
-			if (tooltiptxt) then
-				CurrencyTracking_AddTooltipText(tooltiptxt);
-			end
-			GameTooltip:SetScale(options.tooltip_scale);
-		end,
-	});
-	if ( TitanPanelButton_UpdateButton ) then
-		--TitanPanelButton_UpdateButton("CurrencyTracking");
-	end
-
-	if(options.show_currency == true) then
-		CurrencyTrackingFrame:Show();
---[[
-		if ( options.offsetx and options.offsety ) then
-			CurrencyTrackingFrame:SetPoint("TOPLEFT", nil, "TOPLEFT", options.offsetx, options.offsety);
-		end
-]]
-	else
-		CurrencyTrackingFrame:Hide();
-	end
-end
-
-function CurrencyTracking_OnClick()
-
-end
-
-
-function CurrencyTracking_GetFormattedCurrency(currencyID)
-	local _, amount, icon = GetCurrencyInfo(currencyID);
-	
-	if (amount >0) then
-		local CURRENCY_TEXTURE = "%s\124T"..icon..":%d:%d:2:0\124t";
-		return format(CURRENCY_TEXTURE.." ", BreakUpLargeNumbers(amount), 0, 0);
-	else
-		return "";
-	end
-end
-
-function CurrencyTracking_BackpackTokenFrame_Update()
-	local name, currencyID;
-	local currencystr = "";
-	for i=1, MAX_WATCHED_TOKENS do
-		name, _, _, currencyID = GetBackpackCurrencyInfo(i);
-		-- Update watched tokens
-		if ( name ) then
-			currencystr = currencystr..CurrencyTracking_GetFormattedCurrency(currencyID).." ";
-		end
-	end
-	return currencystr;
-end
-
-function CurrencyTracking_Frame_Update()
-	local currencystr = "|cFFFFFFFF"..CurrencyTracking_BackpackTokenFrame_Update();
-	CurrencyTrackingText:SetText(currencystr);
 end
 
 function CurrencyTracking_GetButtonText()
@@ -227,24 +109,146 @@ function CurrencyTracking_GetTooltipText()
 	return tooltip;    
 end
 
+function Currency_UpdateAlpha()
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+	
+	AtlasFrame:SetAlpha(options.tooltip_alpha);
+end
+
+local CurrencyTracking_Events = {
+	"ADDON_LOADED",
+	"PLAYER_ENTERING_WORLD",
+	"PLAYER_LEAVING_WORLD",
+	"PLAYER_LOGIN",
+	"PLAYER_REGEN_ENABLED",
+	"PLAYER_REGEN_DISABLED",
+};
+
+function CurrencyTracking_OnLoad(self)
+	-- Register the CurrencyTracking frame for the following events
+        for key, value in pairs( CurrencyTracking_Events ) do
+            self:RegisterEvent( value );
+        end
+
+	self:RegisterForDrag("LeftButton");
+end
+
+function CurrencyTracking_OnEvent(self, event, ...)
+	local arg1 = ...;
+	if (event == "ADDON_LOADED" and arg1 == "CurrencyTracking") then
+		CurrencyTracking_Init();
+	end
+	-- for combact lockdown
+	if (event == "PLAYER_REGEN_DISABLED") then
+		isInLockdown = true;
+	elseif (event == "PLAYER_REGEN_ENABLED") then
+		isInLockdown = false;
+	end
+	
+	LDB_CurrencyTracking.text = CurrencyTracking_GetButtonText();
+end
+
+function CurrencyTracking_InitOptions()
+	if ( CurrencyTrackingDB == nil ) then
+		CurrencyTrackingDB = { };
+	end
+	if ( CurrencyTrackingDB[CurrencyTracking_Server] == nil ) then
+		CurrencyTrackingDB[CurrencyTracking_Server] = { };
+	end
+	if ( CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] == nil ) then
+		CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] = { };
+		CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"] = CT_DefaultOptions;
+	end
+	
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+	if (options.tooltip_alpha == nil) then
+		options.tooltip_alpha = 0.9;
+	end
+	if (options.tooltip_scale == nil) then
+		options.tooltip_scale = 1;
+	end
+end
+
+function CurrencyTracking_Init()
+	CurrencyTracking_InitOptions();
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+
+	if(options.show_currency == true) then
+		CurrencyTrackingInfoFrame:Show();
+--[[
+		if ( options.offsetx and options.offsety ) then
+			CurrencyTrackingFrame:SetPoint("TOPLEFT", nil, "TOPLEFT", options.offsetx, options.offsety);
+		end
+]]
+	else
+		CurrencyTrackingInfoFrame:Hide();
+	end
+end
+
+function CurrencyTracking_OnClick()
+	ToggleCharacter("TokenFrame");
+end
+
+
+function CurrencyTracking_GetFormattedCurrency(currencyID)
+	local _, amount, icon = GetCurrencyInfo(currencyID);
+	
+	if (amount >0) then
+		local CURRENCY_TEXTURE = "%s\124T"..icon..":%d:%d:2:0\124t";
+		return format(CURRENCY_TEXTURE.." ", BreakUpLargeNumbers(amount), 0, 0);
+	else
+		return "";
+	end
+end
+
+function CurrencyTracking_BackpackTokenFrame_Update()
+	local name, currencyID;
+	local currencystr;
+	for i=1, MAX_WATCHED_TOKENS do
+		name, _, _, currencyID = GetBackpackCurrencyInfo(i);
+		-- Update watched tokens
+		if ( name ) then
+			if (currencystr) then
+				currencystr = currencystr..CurrencyTracking_GetFormattedCurrency(currencyID).." ";
+			else
+				currencystr = CurrencyTracking_GetFormattedCurrency(currencyID).." ";
+			end
+		end
+	end
+	-- return could be nil if no any currency being tracked
+	return currencystr;
+end
+
+function CurrencyTracking_Frame_Update()
+	local currencystr = CurrencyTracking_GetButtonText();
+	CurrencyTrackingText:SetText(currencystr);
+	LDB_CurrencyTracking.text = currencystr;
+end
+
+
 function CurrencyTracking_Frame_HandleMouseDown(self, buttonName)    
 	-- Prevent activation when in combat
 	if (isInLockdown) then
 		return;
 	end
-	-- Handle left button clicks
-	if (buttonName == "LeftButton") then
-		-- Hide tooltip while draging
-		GameTooltip:Hide();
-		CurrencyTrackingFrame:StartMoving();
-	elseif (buttonName == "RightButton") then
-		CurrencyTrackingOptions_Toggle();
-		GameTooltip_Hide();
+	if(CurrencyTrackingInfoFrame:IsVisible()) then
+		-- Handle left button clicks
+		if (buttonName == "LeftButton") then
+			-- Hide tooltip while draging
+			GameTooltip:Hide();
+			CurrencyTrackingFrame:StartMoving();
+		elseif (buttonName == "RightButton") then
+			--CurrencyTrackingOptions_Toggle();
+			CurrencyTracking_OnClick();
+			GameTooltip_Hide();
+		end
 	end
 end
 
-function CurrencyTracking_Frame_HandleMouseUp(self, button)
-	CurrencyTrackingFrame:StopMovingOrSizing();
+function CurrencyTracking_Frame_HandleMouseUp(self, buttonName)
+	if(CurrencyTrackingInfoFrame:IsVisible()) then
+		CurrencyTrackingFrame:StopMovingOrSizing();
+	end
 --[[
 	local x, y;
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
@@ -258,21 +262,23 @@ function CurrencyTracking_Frame_OnEnter(self)
 	if (isInLockdown) then
 		return;
 	end
-
-	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	
-	if (not GameTooltip:IsShown()) then
-		GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -10, 0);
-		GameTooltip:SetBackdropColor(0, 0, 0, options.tooltip_alpha);
-		GameTooltip:SetText("|cFFFFFFFF"..L["TITLE"], 1, 1, 1, nil, 1);
-		local tooltip = CurrencyTracking_GetTooltipText();
-		if (tooltip) then
-			CurrencyTracking_AddTooltipText(tooltip);
+	if(CurrencyTrackingInfoFrame:IsVisible()) then
+		local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+		
+		if (not GameTooltip:IsShown()) then
+			GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -10, 0);
+			GameTooltip:SetBackdropColor(0, 0, 0, options.tooltip_alpha);
+			GameTooltip:SetText("|cFFFFFFFF"..L["TITLE"], 1, 1, 1, nil, 1);
+			local tooltip = CurrencyTracking_GetTooltipText();
+			if (tooltip) then
+				CurrencyTracking_AddTooltipText(tooltip);
+			end
+			GameTooltip:SetScale(options.tooltip_scale);
+			GameTooltip:Show();
+		else
+			GameTooltip:Hide();
 		end
-		GameTooltip:SetScale(options.tooltip_scale);
-		GameTooltip:Show();
-	else
-		GameTooltip:Hide();
 	end
 end
 

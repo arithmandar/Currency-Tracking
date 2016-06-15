@@ -42,11 +42,11 @@ end
 function CurrencyTrackingOptions_ShowOnScreenToggle()
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	
-	if(CurrencyTrackingFrame:IsVisible()) then
-		CurrencyTrackingFrame:Hide();
+	if(CurrencyTrackingInfoFrame:IsVisible()) then
+		CurrencyTrackingInfoFrame:Hide();
 		options.show_currency = false;
 	else
-		CurrencyTrackingFrame:Show();
+		CurrencyTrackingInfoFrame:Show();
 		options.show_currency = true;
 	end
 end

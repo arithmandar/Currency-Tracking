@@ -3,6 +3,13 @@
 Revision History:
 =================
 
+* v1.04 (Jun. 15, 2016)
+----------------------
+- Change LDB type to data source and revise the displaying text to be currencies
+- Bug fixed for better supporting LDB so now currency info will properly display
+- Disabling the floating currency frame now won't impact to LDB's currency update
+- Right-click on the floating currency frame now will open Character -> Currency frame
+
 * v1.03 (May 29, 2016)
 ----------------------
 - Hide tooltip while draging or in combat
