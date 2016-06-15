@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v1.05 (Jun. 15, 2016)
+----------------------
+- TOC update
+
 * v1.04 (Jun. 15, 2016)
 ----------------------
 - Change LDB type to data source and revise the displaying text to be currencies

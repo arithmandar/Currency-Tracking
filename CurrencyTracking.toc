@@ -20,8 +20,8 @@
 ## Notes-koKR: @localization(locale="koKR", key="Description", namespace="ToC")@
 ## Notes-ptBR: @localization(locale="ptBR", key="Description", namespace="ToC")@
 ## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
-## Notes-zhCN: |cff00CC33@localization(locale="zhCN", key="Title", namespace="ToC")@|r
-## Notes-zhTW: |cff00CC33@localization(locale="zhTW", key="Title", namespace="ToC")@|r
+## Notes-zhCN: |cff00CC33@localization(locale="zhCN", key="Description", namespace="ToC")@|r
+## Notes-zhTW: |cff00CC33@localization(locale="zhTW", key="Description", namespace="ToC")@|r
 #@end-non-debug@
 #@debug@
 ## Title: Currency Tracking
@@ -30,7 +30,7 @@
 ## Notes-zhTW: |cff00CC33追蹤所有獲取的通貨，並顯示在遊戲畫面上|r
 #@end-debug@
 ## Author: arith
-## Version: 1.04
+## Version: 1.05
 ## OptionalDeps: LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibStub, AceLocale-3.0
 ## DefaultState: Enabled
 ## SavedVariables: CurrencyTrackingDB
