@@ -29,12 +29,12 @@
 ## Notes: Currency Tracking is an addon to help you track the currencies you gained, showing the selected currency even on top of the game screen.
 ## Notes-zhTW: |cff00CC33追蹤所有獲取的通貨，並顯示在遊戲畫面上|r
 #@end-debug@
-## Author: arith
+## Author: @project-author@
 ## Version: 1.05
 ## OptionalDeps: LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibStub, AceLocale-3.0
 ## DefaultState: Enabled
 ## SavedVariables: CurrencyTrackingDB
-## X-Date: Jun. 15, 2016
+## X-Date: @project-date-iso@
 ## X-Donate: https://pledgie.com/campaigns/31749
 ## X-Website: http://www.curse.com/addons/wow/currency-tracking
 ## X-License: GPLv2
