@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v1.06 (Jun. 17, 2016)
+----------------------
+- TOC update
+- Fixed missing lib link
+
 * v1.05 (Jun. 15, 2016)
 ----------------------
 - TOC update
