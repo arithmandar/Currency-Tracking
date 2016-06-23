@@ -13,6 +13,7 @@ CurrencyTracking_Server = GetRealmName();
 local CurrencyTracking_Version = GetAddOnMetadata("CurrencyTracking", "Version");
 local CurrencyTracking_Category = GetAddOnMetadata("CurrencyTracking", "X-Category");
 local isInLockdown = false;
+local CT_Orig_GampTooltip_Scale = GameTooltip:GetScale();
 
 local CT_DefaultOptions = {
 	offsetx = 150,
@@ -284,5 +285,6 @@ end
 
 function CurrencyTracking_Frame_OnLeave(self)
 	GameTooltip_Hide();
+	GameTooltip:SetScale(CT_Orig_GampTooltip_Scale);
 end
 
