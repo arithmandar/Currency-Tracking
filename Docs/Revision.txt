@@ -3,9 +3,11 @@
 Revision History:
 =================
 
-* v1.07 (Jun. XX, 2016)
+* v1.07 (Jun. 28, 2016)
 ----------------------
 - Fixed the issue that GameTooltip scale was also applied to other item's GameTooltip
+- Translation update:
+  - German (pas06)
 
 * v1.06 (Jun. 17, 2016)
 ----------------------
