@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v1.08 (Jul. 19, 2016)
+----------------------
+- Toc update to support WoW 7.0.3
+- Change the defaule floating frame's position
+
 * v1.07 (Jun. 28, 2016)
 ----------------------
 - Fixed the issue that GameTooltip scale was also applied to other item's GameTooltip

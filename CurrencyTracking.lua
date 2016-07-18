@@ -17,7 +17,7 @@ local CT_Orig_GampTooltip_Scale = GameTooltip:GetScale();
 
 local CT_DefaultOptions = {
 	offsetx = 150,
-	offsety = 0,
+	offsety = -80,
 	show_currency = true,
 	tooltip_alpha = 0.9,
 	tooltip_scale = 1;

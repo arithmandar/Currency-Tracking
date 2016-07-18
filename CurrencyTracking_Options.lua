@@ -54,9 +54,9 @@ end
 function CurrencyTrackingOptions_ResetPosition()
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 
-	CurrencyTrackingFrame:SetPoint("TOPLEFT", nil, "TOPLEFT", 150, 0);
+	CurrencyTrackingFrame:SetPoint("TOPLEFT", nil, "TOPLEFT", 150, -80);
 	options.offsetx = 150;
-	options.offsety = 0;
+	options.offsety = -80;
 end
 
 function CurrencyTrackingOptions_SetupSlider(self, text, mymin, mymax, step)
