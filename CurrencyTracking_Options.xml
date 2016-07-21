@@ -17,6 +17,19 @@ $Id$
 					</Anchors>
 				</FontString>
 			</Layer>
+<!--@alpha@-->
+			<Layer level="ARTWORK">
+				<FontString inherits="GameFontNormalLarge" text="Tracked Currencies">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="15" y="-165"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+<!--@end-alpha@-->
 		</Layers>
 		<Frames>
 			<CheckButton name="$parent_ShowOnScreen" inherits="InterfaceOptionsSmallCheckButtonTemplate">
@@ -40,7 +53,7 @@ $Id$
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parent_ShowOnScreen" relativePoint="TOPRIGHT">
 						<Offset>
-							<AbsDimension x="310" y="0"/>
+							<AbsDimension x="400" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -60,7 +73,7 @@ $Id$
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-325" />
+							<AbsDimension x="0" y="-85" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -86,7 +99,7 @@ $Id$
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-395" />
+							<AbsDimension x="0" y="-125" />
 						</Offset>
 					</Anchor>
 				</Anchors>

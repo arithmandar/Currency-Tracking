@@ -13,7 +13,8 @@ CurrencyTracking_Server = GetRealmName();
 local CurrencyTracking_Version = GetAddOnMetadata("CurrencyTracking", "Version");
 local CurrencyTracking_Category = GetAddOnMetadata("CurrencyTracking", "X-Category");
 local isInLockdown = false;
-local CT_Orig_GampTooltip_Scale = GameTooltip:GetScale();
+local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale();
+local CT_CURRSTR = nil;
 
 local CT_DefaultOptions = {
 	offsetx = 150,
@@ -96,6 +97,8 @@ function CurrencyTracking_GetTooltipText()
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	cCount = GetCurrencyListSize();
 	for i = 1, cCount do 
+		-- // GetCurrencyListInfo() syntax:
+		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index);
 		name, isHeader, isExpanded, isUnused, _, count, icon = GetCurrencyListInfo(i);
 		if ( isHeader ) then
 			tooltip = tooltip..name.."\n";
@@ -222,8 +225,11 @@ end
 
 function CurrencyTracking_Frame_Update()
 	local currencystr = CurrencyTracking_GetButtonText();
-	CurrencyTrackingText:SetText(currencystr);
-	LDB_CurrencyTracking.text = currencystr;
+	if (currencystr ~= CT_CURRSTR) then
+		CurrencyTrackingText:SetText(currencystr);
+		LDB_CurrencyTracking.text = currencystr;
+		CT_CURRSTR = currencystr;
+	end
 end
 
 
@@ -285,6 +291,6 @@ end
 
 function CurrencyTracking_Frame_OnLeave(self)
 	GameTooltip_Hide();
-	GameTooltip:SetScale(CT_Orig_GampTooltip_Scale);
+	GameTooltip:SetScale(CT_ORIG_GAMPTOOLTIP_SCALE);
 end
 

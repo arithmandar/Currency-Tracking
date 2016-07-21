@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v1.09 (Jul. 21, 2016)
+----------------------
+- Reduce the on-screen money frame's settext frequency
+
 * v1.08 (Jul. 19, 2016)
 ----------------------
 - Toc update to support WoW 7.0.3

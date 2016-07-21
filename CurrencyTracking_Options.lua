@@ -5,6 +5,25 @@ $Id$
 local LibStub = _G.LibStub;
 local L = LibStub("AceLocale-3.0"):GetLocale("CurrencyTracking");
 
+--@alpha@
+function CurrencyTrackingOptions_CreateCurrencyOptions()
+	local frame;
+	local name, isHeader, isExpanded, isUnused, isWatched, count, icon;
+	local aCount, cCount;
+	local hCount = 0;
+	aCount = GetCurrencyListSize();
+	for i = 1, aCount do 
+		name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(i);
+		if ( isHeader ) then
+			hCount = hCount + 1;
+		else
+			print("|T"..icon..":16|t"..name);
+		end
+	end
+	cCount = aCount - hCount;
+end
+--@end-alpha@
+
 function CurrencyTrackingOptions_Toggle()
 	if(InterfaceOptionsFrame:IsVisible()) then
 		InterfaceOptionsFrame:Hide();
