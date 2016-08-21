@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v1.10 (Aug. 21, 2016)
+----------------------
+- Minor update to change the default frame coordinates
+
 * v1.09 (Jul. 21, 2016)
 ----------------------
 - Reduce the on-screen money frame's settext frequency
