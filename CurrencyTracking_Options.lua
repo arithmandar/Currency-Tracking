@@ -83,6 +83,11 @@ function CurrencyTrackingOptions_SetupSlider(self, text, mymin, mymax, step)
 	self:SetValueStep(step);
 end
 
+local function round(num, idp)
+   local mult = 10 ^ (idp or 0);
+   return math.floor(num * mult + 0.5) / mult;
+end
+
 function CurrencyTrackingOptions_UpdateSlider(self, text)
 	_G[self:GetName().."Text"]:SetText("|cffffd200"..text.." ("..round(self:GetValue(), 3)..")");
 end

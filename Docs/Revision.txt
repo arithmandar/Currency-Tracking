@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v1.11 (Sep. 12, 2016)
+----------------------
+- Fixed the slider error in option panel
+
 * v1.10 (Aug. 21, 2016)
 ----------------------
 - Minor update to change the default frame coordinates
