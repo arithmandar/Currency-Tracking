@@ -29,8 +29,11 @@
 					<Layer level="OVERLAY">
 						<FontString name="CurrencyTrackingText" inherits="GameFontNormal" Text="CT_TITLE">
 							<Anchors>
-								<Anchor point="TOPLEFT" />
-								<Anchor point="BOTTOMRIGHT" />
+								<Anchor point="BOTTOM">
+									<Offset>
+										<AbsDimension x="30" y="0" />
+									</Offset>
+								</Anchor>
 							</Anchors>
 						</FontString>
 					</Layer>
