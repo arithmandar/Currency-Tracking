@@ -3,6 +3,13 @@
 Revision History:
 =================
 
+* v2.00 (Dec. 23, 2016)
+-----------------------
+- Added missing koKR localization file
+- Supports to track on whatever you would like to track. 
+  Tracking's configuration is now managed in addon's option panel. 
+  User will need to do a fresh config since this version.  
+
 * v1.12 (Oct. 27, 2016)
 -----------------------
 - Toc update to support WoW 7.1.0

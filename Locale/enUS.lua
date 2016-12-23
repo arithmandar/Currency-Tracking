@@ -11,4 +11,5 @@ if L then
 	L["OPT_BTN_Reset"] = "Reset position";
 	L["OPT_TRANSPARENCY"] = "Currencies info tooltip's transparency";
 	L["OPT_TOOLTIPSCALE"] = "Currencies info tooltip's scale";
+	L["CT_CURRENCY_TO_TRACK"] = "Currencies to be tracked on screen:";
 end

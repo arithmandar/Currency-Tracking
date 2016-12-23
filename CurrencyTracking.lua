@@ -22,6 +22,7 @@ local CT_DefaultOptions = {
 	show_currency = true,
 	tooltip_alpha = 0.9,
 	tooltip_scale = 1;
+	currencies = {},
 };
 
 local LibStub = _G.LibStub;
@@ -34,9 +35,10 @@ local LDB_CurrencyTracking = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObje
 	icon = "Interface\\Icons\\timelesscoin",
 	OnClick = function(self, button)
 		if button == "LeftButton" then
-			CurrencyTracking_OnClick();
-		elseif button == "RightButton" then
+			--CurrencyTracking_OnClick();
 			CurrencyTrackingOptions_Toggle();
+		elseif button == "RightButton" then
+			--CurrencyTrackingOptions_Toggle();
 		end
 	end,
 	OnTooltipShow = function(tooltip)
@@ -78,7 +80,8 @@ function CurrencyTracking_AddTooltipText(text)
 end
 
 function CurrencyTracking_GetButtonText()
-	local currencystr = CurrencyTracking_BackpackTokenFrame_Update();
+	--local currencystr = CurrencyTracking_BackpackTokenFrame_Update();
+	local currencystr = CurrencyTracking_CurrencyString_Update();
 
 	if (currencystr) then 
 		currencystr = "|cFFFFFFFF"..currencystr;
@@ -171,6 +174,9 @@ function CurrencyTracking_InitOptions()
 	if (options.tooltip_scale == nil) then
 		options.tooltip_scale = 1;
 	end
+	if (options.currencies == nil) then
+		options.currencies = {};
+	end
 end
 
 function CurrencyTracking_Init()
@@ -208,6 +214,7 @@ end
 function CurrencyTracking_BackpackTokenFrame_Update()
 	local name, currencyID;
 	local currencystr;
+
 	for i=1, MAX_WATCHED_TOKENS do
 		name, _, _, currencyID = GetBackpackCurrencyInfo(i);
 		-- Update watched tokens
@@ -216,6 +223,30 @@ function CurrencyTracking_BackpackTokenFrame_Update()
 				currencystr = currencystr..CurrencyTracking_GetFormattedCurrency(currencyID).." ";
 			else
 				currencystr = CurrencyTracking_GetFormattedCurrency(currencyID).." ";
+			end
+		end
+	end
+
+	-- return could be nil if no any currency being tracked
+	return currencystr;
+end
+
+function CurrencyTracking_CurrencyString_Update()
+	local name, currencyID;
+	local currencystr;
+
+	local numTokenTypes = GetCurrencyListSize();
+	local name, isHeader, count, icon;
+	for i=1, numTokenTypes do
+		name, isHeader, _, _, _, count, icon = GetCurrencyListInfo(i);
+		if ((not isHeader) and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"]["currencies"][name] == true) then
+			if (count >0) then
+				local CURRENCY_TEXTURE = "%s|T"..icon..":%d:%d:2:0|t";
+				if (currencystr) then
+					currencystr = currencystr..format(CURRENCY_TEXTURE.." ", BreakUpLargeNumbers(count), 0, 0);
+				else
+					currencystr = format(CURRENCY_TEXTURE.." ", BreakUpLargeNumbers(count), 0, 0);
+				end
 			end
 		end
 	end
@@ -245,8 +276,8 @@ function CurrencyTracking_Frame_HandleMouseDown(self, buttonName)
 			GameTooltip:Hide();
 			CurrencyTrackingFrame:StartMoving();
 		elseif (buttonName == "RightButton") then
-			--CurrencyTrackingOptions_Toggle();
-			CurrencyTracking_OnClick();
+			CurrencyTrackingOptions_Toggle();
+			--CurrencyTracking_OnClick();
 			GameTooltip_Hide();
 		end
 	end
