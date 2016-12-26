@@ -3,7 +3,7 @@
 Revision History:
 =================
 
-* v2.00 (Dec. 23, 2016)
+* v2.00 (Dec. 26, 2016)
 -----------------------
 - Added missing koKR localization file
 - Supports to track on whatever you would like to track. 
