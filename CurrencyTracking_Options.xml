@@ -336,9 +336,6 @@ $Id$
 			<OnShow>
 				CurrencyTrackingOptions_OnShow(self);
 			</OnShow>
-			<OnHide>
-				CurrencyTrackingOptions_OnHide(self);
-			</OnHide>
 		</Scripts>
 	</Frame>
 </Ui>
