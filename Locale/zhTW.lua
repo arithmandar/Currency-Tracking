@@ -13,6 +13,7 @@ if L then
 	L["OPT_BTN_Reset"] = "重置位置";
 	L["OPT_TRANSPARENCY"] = "通貨資訊提示的透明度";
 	L["OPT_TOOLTIPSCALE"] = "通貨資訊提示的大小比例";
+	L["OPT_BREAKUPNUMBERS"] = "將數字加上本地化千分號"
 	L["CT_CURRENCY_TO_TRACK"] = "在遊戲畫面上要追蹤的通貨：";
 --@end-do-not-package@
 --@localization(locale="zhTW", format="lua_additive_table")@

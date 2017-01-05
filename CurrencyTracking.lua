@@ -29,6 +29,7 @@ local CT_DefaultOptions = {
 	offsetx = 150,
 	offsety = -80,
 	show_currency = true,
+	breakupnumbers = true,
 	tooltip_alpha = 0.9,
 	tooltip_scale = 1;
 	currencies = {},
@@ -75,6 +76,7 @@ end
 local function CurrencyTracking_CurrencyString_Update()
 	local name, currencyID;
 	local currencystr;
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 
 	local numTokenTypes = GetCurrencyListSize();
 	local name, isHeader, count, icon;
@@ -82,13 +84,14 @@ local function CurrencyTracking_CurrencyString_Update()
 		-- // GetCurrencyListInfo() syntax:
 		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index);
 		name, isHeader, _, _, _, count, icon = GetCurrencyListInfo(i);
-		if ((not isHeader) and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"]["currencies"][name] == true) then
+		if ((not isHeader) and options["currencies"][name] == true) then
 			if (count >0) then
 				local CURRENCY_TEXTURE = " %s|T"..icon..":%d:%d:2:0|t ";
+				count = options.breakupnumbers and BreakUpLargeNumbers(count) or count;
 				if (currencystr) then
-					currencystr = currencystr..format(CURRENCY_TEXTURE, BreakUpLargeNumbers(count), 0, 0);
+					currencystr = currencystr..format(CURRENCY_TEXTURE, count, 0, 0);
 				else
-					currencystr = format(CURRENCY_TEXTURE, BreakUpLargeNumbers(count), 0, 0);
+					currencystr = format(CURRENCY_TEXTURE, count, 0, 0);
 				end
 			end
 		end
@@ -125,7 +128,8 @@ local function CurrencyTracking_GetTooltipText()
 			tooltip = tooltip..name.."\n";
 		elseif ( (count ~= 0) and not isUnused ) then
 			if (icon ~= nil) then
-				display = " - "..name.."\t"..BreakUpLargeNumbers(count).." |T"..icon..":16|t"
+				count = options.breakupnumbers and BreakUpLargeNumbers(count) or count;
+				display = " - "..name.."\t"..count.." |T"..icon..":16|t"
 			end
 			-- trace(display)
 			tooltip = strconcat(tooltip, display,"|r\n");

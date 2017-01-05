@@ -36,6 +36,7 @@ function CurrencyTrackingOptions_OnShow()
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	
 	CurrencyTrackingOptionsFrame_ShowOnScreen:SetChecked(options.show_currency);
+	CurrencyTrackingOptionsFrame_BreakupNumbers:SetChecked(options.breakupnumbers);
 	CurrencyTrackingOptionsFrameSliderAlpha:SetValue(options.tooltip_alpha);
 	CurrencyTrackingOptionsFrameSliderToolTipScale:SetValue(options.tooltip_scale);
 
@@ -64,6 +65,12 @@ function CurrencyTrackingOptions_ShowOnScreenToggle()
 	else
 		CurrencyTrackingInfoFrame:Hide();
 	end
+end
+
+function CurrencyTrackingOptions_BreakupNumbersToggle()
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+
+	options.breakupnumbers = not options.breakupnumbers;
 end
 
 function CurrencyTrackingOptions_ResetPosition()

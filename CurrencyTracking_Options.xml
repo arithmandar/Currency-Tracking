@@ -4,6 +4,7 @@ $Id$
 -->
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 	<Script file="CurrencyTracking_Options.lua"/>
+
 	<Button name="CurrencyTrackingTokenButtonTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="545" y="17"/>
@@ -186,7 +187,7 @@ $Id$
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
-								<AbsDimension x="15" y="-165"/>
+								<AbsDimension x="15" y="-190"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -208,6 +209,23 @@ $Id$
 					</OnLoad>
 					<OnClick>
 						CurrencyTrackingOptions_ShowOnScreenToggle();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parent_BreakupNumbers" inherits="InterfaceOptionsSmallCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_ShowOnScreen">>
+						<Offset>
+							<AbsDimension x="0" y="-25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						_G[self:GetName().."Text"]:SetText(CT_OPT_BREAKUPNUMBERS);
+					</OnLoad>
+					<OnClick>
+						CurrencyTrackingOptions_BreakupNumbersToggle();
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -235,7 +253,7 @@ $Id$
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-85" />
+							<AbsDimension x="0" y="-110" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -261,7 +279,7 @@ $Id$
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-125" />
+							<AbsDimension x="0" y="-150" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -287,7 +305,7 @@ $Id$
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
 						<Offset>
-							<AbsDimension x="30" y="-185"/>
+							<AbsDimension x="30" y="-210"/>
 						</Offset>
 					</Anchor>
 				</Anchors>

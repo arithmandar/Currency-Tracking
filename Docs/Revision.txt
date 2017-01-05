@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v2.02 (Jan. XX, 2017)
+-----------------------
+- Added option to toggle the numbers' displaying format
+
 * v2.01 (Jan. 04, 2017)
 -----------------------
 - Added more space between currencies
