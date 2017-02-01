@@ -3,6 +3,9 @@
 Revision History:
 =================
 
+* v2.03 (Feb. XX, 2017)
+-----------------------
+
 * v2.02 (Jan. 06, 2017)
 -----------------------
 - Added option to toggle the numbers' displaying format
