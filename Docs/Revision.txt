@@ -5,6 +5,9 @@ Revision History:
 
 * v2.03 (Feb. XX, 2017)
 -----------------------
+- Now supports to show currencies which have zero amount
+- Now supports to adjust currencies info's scale, transparency, and 
+  background transparency
 
 * v2.02 (Jan. 06, 2017)
 -----------------------

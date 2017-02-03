@@ -2,9 +2,10 @@
 <!-- $Id$ -->
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
-	<Frame name="CurrencyTrackingFrame" movable="true" enableMouse="true" parent="UIParent"> 
+	<!--<Button name="CurrencyTrackingFrame" movable="true" enableMouse="true" parent="UIParent" inherits="InsetFrameTemplate2"> -->
+	<Button name="CurrencyTrackingFrame" movable="true" enableMouse="true" parent="UIParent"> 
 		<Size>
-			<AbsDimension x="200" y="28" />
+			<AbsDimension x="200" y="27" />
 		</Size>
 		<Anchors>
 			<Anchor point="TOPLEFT" relativeTo="UIParent">
@@ -13,33 +14,28 @@
 				</Offset>
 			</Anchor>
 		</Anchors>
-		<Frames>	
-			<Frame name="CurrencyTrackingInfoFrame">
-				<Size>
-					<AbsDimension x="200" y="21" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPRIGHT">
-						<Offset>
-							<AbsDimension x="0" y="0" />
-						</Offset>
-					</Anchor>
-				</Anchors>
-				<Layers>
-					<Layer level="OVERLAY">
-						<FontString name="CurrencyTrackingText" inherits="GameFontNormal" Text="CT_TITLE">
-							<Anchors>
-								<Anchor point="BOTTOM">
-									<Offset>
-										<AbsDimension x="30" y="0" />
-									</Offset>
-								</Anchor>
-							</Anchors>
-						</FontString>
-					</Layer>
-				</Layers>
-			</Frame>
-		</Frames>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture" parentKey="Texture" />
+			</Layer>
+<!--			<Layer level="ARTWORK">
+				<Texture name="$parentButtonBackground" file="Interface\Buttons\UI-Button-Borders">
+					<Size x="200" y="19"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset x="-4" y="-1"/>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset x="6" y="1"/>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.0" right="0.3828125" top="0" bottom="0.40625"/>
+				</Texture>
+			</Layer>-->
+			<Layer level="OVERLAY">
+				<FontString name="CurrencyTrackingText" parentKey="Text" inherits="GameFontNormal" Text="CT_TITLE" />
+			</Layer>
+		</Layers>
 		<Scripts>
 			<OnLoad>
 				CurrencyTracking_OnLoad(self);
@@ -48,20 +44,20 @@
 				CurrencyTracking_OnEvent(self, event, ...);
 			</OnEvent>
 			<OnMouseDown>
-				CurrencyTracking_Frame_HandleMouseDown(self, button);
+				CurrencyTracking_OnMouseDown(self, button);
 			</OnMouseDown>
 			<OnMouseUp>
-				CurrencyTracking_Frame_HandleMouseUp(self, button);
+				CurrencyTracking_OnMouseUp(self, button);
 			</OnMouseUp>
 			<OnUpdate>
-				CurrencyTracking_Frame_Update(self);						
+				CurrencyTracking_OnUpdate(self);						
 			</OnUpdate>
 			<OnEnter>
-				CurrencyTracking_Frame_OnEnter(self);
+				CurrencyTracking_OnEnter(self);
 			</OnEnter>
 			<OnLeave>
-				CurrencyTracking_Frame_OnLeave(self);
+				CurrencyTracking_OnLeave(self);
 			</OnLeave>
 		</Scripts>
-	</Frame>
+	</Button>
 </Ui>
