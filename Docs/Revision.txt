@@ -3,6 +3,9 @@
 Revision History:
 =================
 
+* v2.04 (Feb. xx, 2017)
+-----------------------
+
 * v2.03 (Feb. 07, 2017)
 -----------------------
 - Now supports to show currencies which have zero amount
