@@ -3,12 +3,14 @@
 Revision History:
 =================
 
-* v2.03 (Feb. XX, 2017)
+* v2.03 (Feb. 07, 2017)
 -----------------------
 - Now supports to show currencies which have zero amount
 - Now supports to adjust currencies info's scale, transparency, and 
   background transparency
-
+- Translation update:
+  - Russian (DogmatX)
+  
 * v2.02 (Jan. 06, 2017)
 -----------------------
 - Added option to toggle the numbers' displaying format

@@ -37,7 +37,7 @@ function CurrencyTrackingOptions_OnShow()
 	CurrencyTrackingOptionsFrame_BreakupNumbers:SetChecked(options.breakupnumbers);
 	CurrencyTrackingOptionsFrameSliderFrameScale:SetValue(options.scale);
 	CurrencyTrackingOptionsFrameSliderFrameAlpha:SetValue(options.alpha);
-	CurrencyTrackingOptionsFrameSliderFrameBGAlpha:SetValue(options.alpha);
+	CurrencyTrackingOptionsFrameSliderFrameBGAlpha:SetValue(options.bgalpha);
 	CurrencyTrackingOptionsFrameSliderToolTipAlpha:SetValue(options.tooltip_alpha);
 	CurrencyTrackingOptionsFrameSliderToolTipScale:SetValue(options.tooltip_scale);
 end

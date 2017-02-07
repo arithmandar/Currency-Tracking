@@ -5,7 +5,7 @@
 	<!--<Button name="CurrencyTrackingFrame" movable="true" enableMouse="true" parent="UIParent" inherits="InsetFrameTemplate2"> -->
 	<Button name="CurrencyTrackingFrame" movable="true" enableMouse="true" parent="UIParent"> 
 		<Size>
-			<AbsDimension x="200" y="27" />
+			<AbsDimension x="200" y="20" />
 		</Size>
 		<Anchors>
 			<Anchor point="TOPLEFT" relativeTo="UIParent">
