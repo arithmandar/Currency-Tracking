@@ -319,12 +319,16 @@ end
 function CurrencyTracking_OnUpdate()
 	local currencystr = CurrencyTracking_GetButtonText();
 	if (currencystr ~= CT_CURRSTR) then
-		CurrencyTrackingText:SetText(currencystr);
+		if (CurrencyTrackingFrame:IsShown()) then
+			CurrencyTrackingText:SetText(currencystr);
+		end
 		LDB_CurrencyTracking.text = currencystr;
 		CT_CURRSTR = currencystr;
 	end
-	local width = CurrencyTrackingText:GetStringWidth();
-	CurrencyTrackingFrame:SetWidth(width + 12);
+	if (CurrencyTrackingFrame:IsShown()) then
+		local width = CurrencyTrackingText:GetStringWidth();
+		CurrencyTrackingFrame:SetWidth(width + 12);
+	end
 end
 
 function CurrencyTracking_OnEnter(self)
