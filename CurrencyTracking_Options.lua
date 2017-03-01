@@ -2,6 +2,8 @@
 $Id$
 ]]
 local _G = getfenv(0)
+-- Libraries
+local math = _G.math;
 
 local CurrencyTracking_Player = UnitName("player");
 local CurrencyTracking_Server = GetRealmName();
@@ -16,7 +18,6 @@ function CurrencyTrackingOptions_Toggle()
 		InterfaceOptionsFrame:Hide();
 	else
 		InterfaceOptionsFrame_OpenToCategory(L["CT_TITLE"]);
-		-- Yes we have to call this twice
 		InterfaceOptionsFrame_OpenToCategory(L["CT_CAT_TRACKED_CURRENCY"]);
 	end
 end
@@ -152,7 +153,7 @@ function CurrencyTrackingTokenOptions_OnShow()
 		local buttons = CurrencyTrackingTokenOptionsFrame.TokenContainer.buttons;
 		local numButtons = #buttons;
 		for i=1, numButtons do
-			if ( mod(i, 2) == 1 ) then
+			if ( math.fmod(i, 2) == 1 ) then
 				buttons[i].stripe:Hide();
 			end
 		end
