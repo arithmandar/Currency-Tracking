@@ -3,6 +3,9 @@
 Revision History:
 =================
 
+* v2.06 (Mar. xx, 2017)
+-----------------------
+
 * v2.05 (Mar. 01, 2017)
 -----------------------
 - math function correction
