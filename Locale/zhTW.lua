@@ -10,6 +10,7 @@ if L then
 	L["CT_ADDON_NOTES"] = "追蹤所有獲取的通貨，並顯示在遊戲畫面上";
 	L["CT_OPTIONS"] = "選項";
 	L["CT_OPT_SHOWONSCREEN"] = "在遊戲畫面上顯示通貨資訊";
+	L["CT_OPT_SHOWMONEY"] = "在遊戲畫面上顯示現金資訊";
 	L["CT_OPT_BTN_RESET"] = "重置位置";
 	L["CT_OPT_SCALE"] = "通貨資訊的大小比例";
 	L["CT_OPT_TRANSPARENCY"] = "通貨資訊的透明度";

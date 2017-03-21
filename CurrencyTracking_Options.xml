@@ -201,11 +201,28 @@ $Id$
 					</OnClick>
 				</Scripts>
 			</CheckButton>
+			<CheckButton name="$parent_ShowMoney" inherits="InterfaceOptionsSmallCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_ShowOnScreen">
+						<Offset>
+							<AbsDimension x="15" y="-25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						_G[self:GetName().."Text"]:SetText(CT_OPT_SHOWMONEY);
+					</OnLoad>
+					<OnClick>
+						CurrencyTrackingOptions_ShowMoneyToggle();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
 			<CheckButton name="$parent_BreakupNumbers" inherits="InterfaceOptionsSmallCheckButtonTemplate">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parent_ShowOnScreen">>
+					<Anchor point="TOPLEFT" relativeTo="$parent_ShowMoney">
 						<Offset>
-							<AbsDimension x="0" y="-25"/>
+							<AbsDimension x="-15" y="-25"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -242,7 +259,7 @@ $Id$
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-110" />
+							<AbsDimension x="0" y="-145" />
 						</Offset>
 					</Anchor>
 				</Anchors>

@@ -10,6 +10,7 @@ if L then
 	L["CT_ADDON_NOTES"] = "Currency Tracking is an addon to help you track the currencies you gained, showing the selected currency even on top of the game screen.";
 	L["CT_OPTIONS"] = "Options";
 	L["CT_OPT_SHOWONSCREEN"] = "Show currency info on screen";
+	L["CT_OPT_SHOWMONEY"] = "Show money info on screen";
 	L["CT_OPT_BTN_RESET"] = "Reset position";
 	L["CT_OPT_SCALE"] = "Currencies info's scale";
 	L["CT_OPT_TRANSPARENCY"] = "Currencies info's transparency";

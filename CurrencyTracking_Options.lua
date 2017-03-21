@@ -35,6 +35,7 @@ function CurrencyTrackingOptions_OnShow()
 	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
 	
 	CurrencyTrackingOptionsFrame_ShowOnScreen:SetChecked(options.show_currency);
+	CurrencyTrackingOptionsFrame_ShowMoney:SetChecked(options.show_money);
 	CurrencyTrackingOptionsFrame_BreakupNumbers:SetChecked(options.breakupnumbers);
 	CurrencyTrackingOptionsFrameSliderFrameScale:SetValue(options.scale);
 	CurrencyTrackingOptionsFrameSliderFrameAlpha:SetValue(options.alpha);
@@ -49,8 +50,21 @@ function CurrencyTrackingOptions_ShowOnScreenToggle()
 	options.show_currency = not options.show_currency;
 	if(options.show_currency) then
 		CurrencyTrackingFrame:Show();
+		CurrencyTrackingOptionsFrame_ShowMoney:Enable();
 	else
 		CurrencyTrackingFrame:Hide();
+		CurrencyTrackingOptionsFrame_ShowMoney:Disable();
+	end
+end
+
+function CurrencyTrackingOptions_ShowMoneyToggle()
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+	
+	options.show_money = not options.show_money;
+	if(options.show_currency) then
+		
+	else
+		
 	end
 end
 
@@ -175,6 +189,8 @@ function CurrencyTrackingTokenButton_OnLoad(self)
 end
 
 function CurrencyTrackingTokenContainer_Update()
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+
 	local numTokenTypes = GetCurrencyListSize();
 	
 	if (not CurrencyTrackingTokenOptionsFrame.TokenContainer.buttons) then
@@ -222,7 +238,7 @@ function CurrencyTrackingTokenContainer_Update()
 				button.categoryRight:Hide();
 				button.categoryMiddle:Hide();
 				button.expandIcon:Hide();
-				button.count:SetText(count);
+				button.count:SetText(options.breakupnumbers and BreakUpLargeNumbers(count) or count);
 				button.icon:SetTexture(icon);
 				--if ( isWatched ) then
 				--	button.check:Show();

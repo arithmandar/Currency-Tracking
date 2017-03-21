@@ -7,6 +7,7 @@ local _G = getfenv(0)
 local pairs = _G.pairs
 -- Libraries
 local string = _G.string;
+local floor, fmod = math.floor, math.fmod
 
 local CurrencyTracking_Player = UnitName("player");
 local CurrencyTracking_Server = GetRealmName();
@@ -31,6 +32,7 @@ local CT_DefaultOptions = {
 	offsetx = 150,
 	offsety = -80,
 	show_currency = true,
+	show_money = true,
 	breakupnumbers = true,
 	scale = 1,
 	alpha = 1,
@@ -51,6 +53,29 @@ local function CurrencyTracking_UpdateOptions(player_options)
 		if (player_options[k] == nil) then
 			player_options[k] = v;
 		end
+	end
+end
+
+-- codes adopted from Accountant_Classic
+local function CurrencyTracking_GetFormattedValue(amount)
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+
+	local gold = floor(amount / (COPPER_PER_SILVER * SILVER_PER_GOLD));
+	local goldDisplay = options.breakupnumbers and BreakUpLargeNumbers(gold) or gold;
+	local silver = floor((amount - (gold * COPPER_PER_SILVER * SILVER_PER_GOLD)) / COPPER_PER_SILVER);
+	local copper = fmod(amount, COPPER_PER_SILVER);
+	
+	local TMP_GOLD_AMOUNT_TEXTURE = "%s|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t";
+	local TMP_SILVER_AMOUNT_TEXTURE = "%02d|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t";
+	local TMP_COPPER_AMOUNT_TEXTURE = "%02d|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t";
+	if (gold >0) then
+		return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0, silver, 0, 0, copper, 0, 0);
+	elseif (silver >0) then 
+		return format("|cffffffff"..SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", silver, 0, 0, copper, 0, 0);
+	elseif (copper >0) then
+		return format("|cffffffff"..COPPER_AMOUNT_TEXTURE.."|r", copper, 0, 0);
+	else
+		return "";
 	end
 end
 
@@ -111,15 +136,22 @@ local function CurrencyTracking_CurrencyString_Update()
 end
 
 local function CurrencyTracking_GetButtonText()
-	--local currencystr = CurrencyTracking_BackpackTokenFrame_Update();
+	local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"];
+
 	local currencystr = CurrencyTracking_CurrencyString_Update();
 
 	if (currencystr) then 
-		currencystr = "|cFFFFFFFF"..currencystr;
+		if (options.show_money) then
+			currencystr = currencystr.." "..CurrencyTracking_GetFormattedValue(GetMoney());
+		end
 	else
-		currencystr = L["CT_TITLE"];
+		if (options.show_money) then
+			currencystr = CurrencyTracking_GetFormattedValue(GetMoney());
+		else
+			currencystr = L["CT_TITLE"];
+		end
 	end
-
+	
 	return currencystr;
 end
 
