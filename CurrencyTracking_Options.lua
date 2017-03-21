@@ -42,6 +42,11 @@ function CurrencyTrackingOptions_OnShow()
 	CurrencyTrackingOptionsFrameSliderFrameBGAlpha:SetValue(options.bgalpha);
 	CurrencyTrackingOptionsFrameSliderToolTipAlpha:SetValue(options.tooltip_alpha);
 	CurrencyTrackingOptionsFrameSliderToolTipScale:SetValue(options.tooltip_scale);
+	if(options.show_currency) then
+		CurrencyTrackingOptionsFrame_ShowMoney:Enable();
+	else
+		CurrencyTrackingOptionsFrame_ShowMoney:Disable();
+	end
 end
 
 function CurrencyTrackingOptions_ShowOnScreenToggle()
