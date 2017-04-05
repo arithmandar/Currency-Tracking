@@ -3,6 +3,14 @@
 Revision History:
 =================
 
+* v2.08 (Apr. 05, 2017)
+-----------------------
+- Added option to always lock the info frame
+- Added option to show currency icon prior to its amount
+  (same applies to money when configured)
+- Translation update:
+  - German (pas06)
+
 * v2.07 (Mar. 27, 2017)
 -----------------------
 - Toc update to support WoW 7.2

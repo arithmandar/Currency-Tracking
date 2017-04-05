@@ -18,6 +18,9 @@ if L then
 	L["CT_OPT_TOOLTIPTRANSPARENCY"] = "Currencies info tooltip's transparency";
 	L["CT_OPT_TOOLTIPSCALE"] = "Currencies info tooltip's scale";
 	L["CT_OPT_BREAKUPNUMBERS"] = "Converts a number into a localized string, grouping digits as required."
+	L["CT_OPT_ICONPRIORTONUMBER"] = "Put currency icon prior to its amount";
+	L["CT_OPT_ALWAYSLOCK"] = "Always lock the currency info frame";
+	L["CT_OPT_ALWAYSLOCK_TIP"] = "Enable to always lock the frame even not in combat. Disable to only lock the frame while in combat. ";
 	L["CT_CURRENCY_TO_TRACK"] = "Currencies to be tracked on screen:";
 	L["CT_CAT_TRACKED_CURRENCY"] = "Tracked Currencies";
 end
