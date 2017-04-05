@@ -3,6 +3,9 @@
 Revision History:
 =================
 
+* v2.09 (Apr. xx, 2017)
+-----------------------
+
 * v2.08 (Apr. 05, 2017)
 -----------------------
 - Added option to always lock the info frame
