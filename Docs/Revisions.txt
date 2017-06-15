@@ -17,6 +17,7 @@ Revision History:
 - Background adjusting is currently not supported.
 - Translation update:
   - Russian (BLizzatron)
+  - Korean (next96)
 
 * v2.08 (Apr. 05, 2017)
 -----------------------
