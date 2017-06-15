@@ -1,0 +1,537 @@
+-- $Id$
+-----------------------------------------------------------------------
+-- Upvalued Lua API.
+-----------------------------------------------------------------------
+-- Functions
+local _G = getfenv(0)
+local pairs = _G.pairs
+-- Libraries
+local string = _G.string;
+local floor, fmod = math.floor, math.fmod
+-- ----------------------------------------------------------------------------
+-- AddOn namespace.
+-- ----------------------------------------------------------------------------
+local FOLDER_NAME, private = ...
+
+local LibStub = _G.LibStub
+local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
+local AceDB = LibStub("AceDB-3.0")
+local LDB_CurrencyTracking = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject(private.addon_name, {
+	type = "data source",
+	text = L["CT_TITLE"],
+	label = L["CT_TITLE"],
+	icon = "Interface\\Icons\\timelesscoin",
+})
+
+local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceEvent-3.0")
+addon.constants = private.constants
+addon.constants.addon_name = private.addon_name
+addon.Name = FOLDER_NAME
+addon.LocName = select(2, GetAddOnInfo(addon.Name))
+addon.Notes = select(3, GetAddOnInfo(addon.Name))
+_G.CurrencyTracking = addon
+local profile
+
+local CurrencyTracking_Player = UnitName("player");
+local CurrencyTracking_Server = GetRealmName();
+
+local isInLockdown = false;
+local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale();
+local CT_CURRSTR = nil;
+
+local options;
+
+-- codes adopted from Accountant_Classic
+local function getFormattedValue(amount)
+	local gold = floor(amount / (COPPER_PER_SILVER * SILVER_PER_GOLD));
+	local goldDisplay = profile.breakupnumbers and BreakUpLargeNumbers(gold) or gold;
+	local silver = floor((amount - (gold * COPPER_PER_SILVER * SILVER_PER_GOLD)) / COPPER_PER_SILVER);
+	local copper = fmod(amount, COPPER_PER_SILVER);
+	
+	local TMP_GOLD_AMOUNT_TEXTURE;
+	local TMP_SILVER_AMOUNT_TEXTURE;
+	local TMP_COPPER_AMOUNT_TEXTURE;
+
+	if (profile.icon_first) then
+		TMP_GOLD_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t %s";
+		TMP_SILVER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t %02d";
+		TMP_COPPER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t %02d";
+	else
+		TMP_GOLD_AMOUNT_TEXTURE 	= "%s|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t";
+		TMP_SILVER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t";
+		TMP_COPPER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t";
+	end
+
+	if (profile.icon_first) then
+		if (gold >0) then
+			return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, goldDisplay, 0, 0, silver, 0, 0, copper);
+		elseif (silver >0) then 
+			return format("|cffffffff"..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, silver, 0, 0, copper);
+		elseif (copper >0) then
+			return format("|cffffffff"..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, copper);
+		else
+			return "";
+		end
+	else
+		if (gold >0) then
+			return format(" |cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0, silver, 0, 0, copper, 0, 0);
+		elseif (silver >0) then 
+			return format(" |cffffffff"..SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", silver, 0, 0, copper, 0, 0);
+		elseif (copper >0) then
+			return format(" |cffffffff"..COPPER_AMOUNT_TEXTURE.."|r", copper, 0, 0);
+		else
+			return "";
+		end
+	end
+end
+
+-- Codes adopted from TitanPanel
+local function addTooltipText(text)
+	if ( text ) then
+		-- Append a "\n" to the end 
+		if ( string.sub(text, -1, -1) ~= "\n" ) then
+			text = text.."\n";
+		end
+		
+		-- See if the string is intended for a double column
+		for text1, text2 in string.gmatch(text, "([^\t\n]*)\t?([^\t\n]*)\n") do
+			if ( text2 ~= "" ) then
+				-- Add as double wide
+				GameTooltip:AddDoubleLine(text1, text2);
+			elseif ( text1 ~= "" ) then
+				-- Add single column line
+				GameTooltip:AddLine(text1);
+			else
+				-- Assume a blank line
+				GameTooltip:AddLine("\n");
+			end			
+		end
+	end
+end
+
+-- Codes adopted from TitanCurrency and revised by arith
+local function getTooltipText()
+	local display = "";
+	local tooltip = "";
+	local name, isHeader, isUnused, count, icount, icon, cCount;
+	cCount = GetCurrencyListSize();
+	for i = 1, cCount do 
+		-- // GetCurrencyListInfo() syntax:
+		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index);
+		name, isHeader, _, isUnused, _, count, icon = GetCurrencyListInfo(i);
+		if ( isHeader ) then
+			tooltip = tooltip..name.."\n";
+		elseif ( (count >= 0) and not isUnused ) then
+			if (icon ~= nil) then
+				icount = profile.breakupnumbers and BreakUpLargeNumbers(count) or count;
+				if (count == 0) then
+					display = " - "..name.."\t|cffff0000"..icount.." |r|T"..icon..":16|t";
+				else
+					display = " - "..name.."\t|cffffffff"..icount.." |r|T"..icon..":16|t";
+				end
+			end
+			-- trace(display)
+			tooltip = strconcat(tooltip, display, "|r\n");
+		end
+	end 
+	return tooltip;    
+end
+
+local function button_OnMouseDown(self, buttonName)    
+	-- Prevent activation when in combat or when lock is set to true
+	if (isInLockdown or profile.always_lock) then
+		return
+	end
+	if(addon.frame:IsVisible()) then
+		-- Handle left button clicks
+		if (buttonName == "LeftButton") then
+			-- Hide tooltip while draging
+			GameTooltip:Hide()
+			addon.frame:StartMoving()
+		elseif (buttonName == "RightButton") then
+			addon:OpenOptions()
+			GameTooltip_Hide()
+		end
+	end
+end
+
+local function button_OnMouseUp(self, buttonName)
+	if (isInLockdown or profile.always_lock) then
+		return
+	end
+	if(addon.frame:IsVisible()) then
+		addon.frame:StopMovingOrSizing()
+		local a, b, c, d, e = addon.frame:GetPoint()
+		profile.point = { a, b, c, d, e }
+	end
+end
+
+local function button_OnEnter(self)
+	if (isInLockdown) then
+		return
+	end
+	
+	if(addon.frame:IsVisible()) then
+		if (not GameTooltip:IsShown()) then
+			GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -10, 0);
+			GameTooltip:SetBackdropColor(0, 0, 0, profile.tooltip_alpha);
+			GameTooltip:SetText("|cFFFFFFFF"..L["CT_TITLE"], 1, 1, 1, nil, 1);
+			local tooltip = getTooltipText();
+			if (tooltip) then
+				addTooltipText(tooltip);
+			end
+			GameTooltip:SetScale(profile.tooltip_scale);
+			GameTooltip:Show();
+		else
+			GameTooltip:Hide();
+		end
+	end
+end
+
+local function button_OnLeave(self)
+	GameTooltip_Hide();
+	GameTooltip:SetScale(CT_ORIG_GAMPTOOLTIP_SCALE);
+end
+
+local function currencyButton_Update()
+	local numTokenTypes = GetCurrencyListSize();
+	local name, isHeader, count, icon;
+
+	local nf = _G["CurrencyTrackingFrameN"]
+	local button
+	local gwidth = 0
+	local bi = 1
+
+	for i=1, numTokenTypes do
+		-- // GetCurrencyListInfo() syntax:
+		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index);
+		name, isHeader, _, _, _, count, icon = GetCurrencyListInfo(i);
+		if not icon then icon = "" end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
+		if ((not isHeader) and profile["currencies"][name] == true) then
+			if (count >= 0) then
+				-- handle the new currency frame
+				button = _G["CurrencyTrackingButton"..bi]
+				if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+				button.icon:SetTexture(icon)
+				if (count == 0) then 
+					button.count:SetText("|cffff0000"..count.."|r")
+				else
+					count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+					button.count:SetText(count)
+				end
+				local width = button.count:GetStringWidth()+10
+				gwidth = gwidth + width
+				button:SetWidth(width)
+				button.index = i
+				if (profile.icon_first) then
+					button.icon:SetPoint("LEFT", 0, 0)
+					button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
+				end
+				if (bi == 1) then
+					button:SetPoint("TOPLEFT", 0, 0)
+				else
+					button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+				end
+				button:SetScript("OnMouseDown",	button_OnMouseDown)
+				button:SetScript("OnMouseUp", 	button_OnMouseUp)
+				button:SetScript("OnEnter", 	button_OnEnter)
+				button:SetScript("OnLeave", 	button_OnLeave)
+				button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+				button.highlight:SetWidth(width)
+				button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+				button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
+				button.LinkButton:Show()
+				button:Show()
+				bi = bi + 1
+			end
+		end
+	end
+	if (profile.show_money) then
+		button = _G["CurrencyTrackingButton"..bi]
+		if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+		button.icon:SetTexture(nil)
+		button.count:SetText(getFormattedValue(GetMoney()))
+		local width = button.count:GetStringWidth()
+		gwidth = gwidth + width
+		button:SetWidth(width)
+		if (bi == 1) then
+			button:SetPoint("TOPLEFT", 0, 0)
+		else
+			button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+		end
+		button.index = nil
+		button:SetScript("OnMouseDown",	button_OnMouseDown)
+		button:SetScript("OnMouseUp", 	button_OnMouseUp)
+		button:SetScript("OnEnter", 	button_OnEnter)
+		button:SetScript("OnLeave", 	button_OnLeave)
+		button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+		button.highlight:SetWidth(width)
+		button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+		button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
+		button.LinkButton:Hide()
+		button:Show()
+		bi = bi + 1
+	end
+
+	nf:SetWidth(gwidth)
+	button = _G["CurrencyTrackingButton"..bi]
+	while button do
+		button.icon:SetTexture(nil)
+		button.count:SetText(nil)
+		button:SetWidth(0)
+		button.index = nil
+		button.LinkButton:Hide()
+		button:Hide()
+		bi = bi + 1
+		button = _G["CurrencyTrackingButton"..bi]
+	end
+
+end
+
+local function currencyString_Update()
+	local name, currencyID;
+	local currencystr;
+
+	local numTokenTypes = GetCurrencyListSize();
+	local name, isHeader, count, icon;
+	local CT_CURRENCY_TEXTURE;
+
+	for i=1, numTokenTypes do
+		-- // GetCurrencyListInfo() syntax:
+		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index);
+		name, isHeader, _, _, _, count, icon = GetCurrencyListInfo(i);
+		if not icon then icon = "" end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
+		if ((not isHeader) and profile["currencies"][name] == true) then
+			if (count >= 0) then
+				if (count == 0) then 
+					if (profile.icon_first) then
+						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t |cffff0000%s|r ";
+					else
+						CT_CURRENCY_TEXTURE = " |cffff0000%s|r|T"..icon..":%d:%d:2:0|t ";
+					end
+				else
+					if (profile.icon_first) then
+						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t |cffffffff%s|r ";
+					else
+						CT_CURRENCY_TEXTURE = " |cffffffff%s|r|T"..icon..":%d:%d:2:0|t ";
+					end
+				end
+				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count;
+				if (currencystr) then
+					if (profile.icon_first) then
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count);
+					else
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0);
+					end
+				else
+					if (profile.icon_first) then
+						currencystr = format(CT_CURRENCY_TEXTURE, 0, 0, count);
+					else
+						currencystr = format(CT_CURRENCY_TEXTURE, count, 0, 0);
+					end
+				end
+			end
+		end
+	end
+	-- return could be nil if no any currency being tracked
+	return currencystr;
+end
+
+local function getButtonText()
+	local currencystr = currencyString_Update();
+
+	if (currencystr) then 
+		if (profile.show_money) then
+			currencystr = currencystr..getFormattedValue(GetMoney());
+		end
+	else
+		if (profile.show_money) then
+			currencystr = getFormattedValue(GetMoney());
+		else
+			currencystr = L["CT_TITLE"];
+		end
+	end
+	
+	return currencystr;
+end
+
+--[[
+function CurrencyTracking_GetFormattedCurrency(currencyID)
+	local _, amount, icon = GetCurrencyInfo(currencyID);
+	
+	if (amount >0) then
+		local CURRENCY_TEXTURE = "%s|T"..icon..":%d:%d:2:0|t";
+		return format(CURRENCY_TEXTURE, BreakUpLargeNumbers(amount), 0, 0);
+	else
+		return "";
+	end
+end
+]]
+
+local function frame_OnUpdate(self)
+	local currencystr = getButtonText()
+	currencyButton_Update()
+	if (currencystr ~= CT_CURRSTR) then
+--		if (self.button:IsShown()) then
+--			self.button.Text:SetText(currencystr)
+--		end
+		LDB_CurrencyTracking.text = currencystr
+		CT_CURRSTR = currencystr
+	end
+--	if (self.button:IsShown()) then
+--		local width = self.button.Text:GetStringWidth()
+--		self.button:SetWidth(width + 12)
+--	end
+end
+
+local function createCurrencyFrame()
+--[[
+	local f
+	if not f then f = CreateFrame("Frame") end
+	f:SetScript("OnUpdate", frame_OnUpdate)
+	
+	f.button = CreateFrame("Button", "CurrencyTrackingFrame")
+	f.button:SetParent("UIParent")
+	f.button:SetWidth(200)
+	f.button:SetHeight(20)
+	local point, relativeTo, relativePoint, ofsx, ofsy = unpack(profile.point)
+	f.button:SetPoint(point or "TOPLEFT", "UIParent", relativePoint or "TOPLEFT", ofsx or 150, ofsy or -80)
+	f.button:SetClampedToScreen(true)
+	f.button:SetMovable(true)
+	f.button:EnableMouse(true)
+	f.button:RegisterForDrag("LeftButton")
+	f.button:RegisterForClicks("LeftButtonDown", "RightButtonDown")
+	
+	f.button.Texture = f.button:CreateTexture(nil, "BACKGROUND")
+	
+	f.button.Text = f.button:CreateFontString("CurrencyTrackingText", "OVERLAY", "GameFontNormal")
+	f.button.Text:SetPoint("TOPLEFT", f.button, "TOPLEFT", 0, 0)
+	f.button.Text:SetText(L["CT_TITLE"])
+	
+	f.button:SetScript("OnMouseDown", 	button_OnMouseDown)
+	f.button:SetScript("OnMouseUp", 	button_OnMouseUp)
+	f.button:SetScript("OnEnter", 		button_OnEnter)
+	f.button:SetScript("OnLeave", 		button_OnLeave)
+]]
+	local nf = _G["CurrencyTrackingFrameN"]
+	if not nf then nf = CreateFrame("Frame", "CurrencyTrackingFrameN") end
+	nf:SetParent("UIParent")
+	nf:SetWidth(200)
+	nf:SetHeight(20)
+	nf.Texture = nf:CreateTexture(nil, "BACKGROUND")
+	local point, relativeTo, relativePoint, ofsx, ofsy = unpack(profile.point)
+	nf:SetPoint(point or "TOPLEFT", "UIParent", relativePoint or "TOPLEFT", ofsx or 150, ofsy or -80)
+	nf:SetClampedToScreen(true)
+	nf:SetMovable(true)
+	nf:EnableMouse(true)
+	nf:SetScript("OnUpdate", frame_OnUpdate)
+	
+	return nf
+end
+-- ////////////////////////////////////////////////////////////////
+local function copyOptions()
+	if (profile.optionsCopied) then return end
+	if (CurrencyTrackingDB[CurrencyTracking_Server] and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"]) then
+		local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"]
+
+		profile.show_currency = options.show_currency
+		profile.show_money = options.show_money
+		profile.breakupnumbers = options.breakupnumbers
+		profile.icon_first = options.icon_first
+		profile.always_lock = options.always_lock
+		profile.scale = options.scale
+		profile.alpha = options.alpha
+		profile.bgalpha = options.bgalpha
+		profile.tooltip_alpha = options.tooltip_alpha
+		profile.tooltip_scale = options.tooltip_scale
+		profile.currencies = options.currencies
+	end
+	
+	profile.optionsCopied = true
+end
+
+local function setupLDB()
+	-- LDB object setting up
+	LDB_CurrencyTracking.OnClick = (function(self, button)
+		if button == "LeftButton" then
+			addon:OpenOptions()
+		elseif button == "RightButton" then
+		end
+	end)
+
+	LDB_CurrencyTracking.OnTooltipShow = (function(tooltip)
+		if not tooltip or not tooltip.AddLine then return end
+		local tooltiptxt = getTooltipText()
+		GameTooltip:SetBackdropColor(0, 0, 0, profile.tooltip_alpha)
+		GameTooltip:SetText(L["CT_TITLE"], 1, 1, 1, nil, 1)
+		if (tooltiptxt) then
+			addTooltipText(tooltiptxt)
+		end
+		GameTooltip:SetScale(profile.tooltip_scale)
+	end)
+	
+	LDB_CurrencyTracking.text = getButtonText()
+end
+
+local function frameRefresh()
+	if( profile.show_currency == true) then
+		addon.frame:Show()
+		addon.frame:SetAlpha(profile.alpha)
+		--addon.frame.Texture:SetColorTexture(0, 0, 0, profile.bgalpha)
+		addon.frame:SetScale(profile.scale)
+		--addon.frame:SetBackdropBorderColor(0, 1.0, 0, 1)
+		--addon.frame:SetBackdropColor(0, 0, 1.0, 1)
+		local bi = 1
+		local button
+		button = _G["CurrencyTrackingButton"..bi]
+		while button and button:IsVisible() and button.icon:GetTexture() do
+			if (profile.icon_first) then
+				button.icon:SetPoint("LEFT", 0, 0)
+				button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
+			else
+				button.count:SetPoint("LEFT", 0, 0)
+				button.icon:SetPoint("LEFT", button.count, "RIGHT", 2, 0)
+			end
+			bi = bi + 1
+			button = _G["CurrencyTrackingButton"..bi]
+		end
+	else
+		addon.frame:Hide()
+	end
+end
+
+function addon:OnInitialize()
+	self.db = AceDB:New(addon.Name.."DB", addon.constants.defaults)
+	profile = self.db.profile
+
+	self.db.RegisterCallback(self, "OnProfileChanged", "Refresh")
+	self.db.RegisterCallback(self, "OnProfileCopied", "Refresh")
+	self.db.RegisterCallback(self, "OnProfileReset", "Refresh")
+
+	copyOptions()
+	self:SetupOptions()
+	self.frame = createCurrencyFrame()
+end
+
+function addon:OnEnable()
+	for key, value in pairs( addon.constants.events ) do
+		self:RegisterEvent( value )
+	end
+
+	setupLDB()
+	self:Refresh()
+end
+
+function addon:Refresh()
+	profile = self.db.profile
+	
+	frameRefresh()
+end
+
+function addon:PLAYER_REGEN_DISABLED()
+	isInLockdown = true
+end
+
+function addon:PLAYER_REGEN_ENABLED()
+	isInLockdown = false
+end

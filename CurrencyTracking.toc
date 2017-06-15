@@ -30,8 +30,8 @@
 ## Notes-zhTW: |cff00CC33追蹤所有獲取的通貨，並顯示在遊戲畫面上|r
 #@end-debug@
 ## Author: arith
-## Version: 2.09
-## OptionalDeps: LibDataBroker-1.1, LibAboutPanel, CallbackHandler-1.0, LibStub, AceLocale-3.0
+## Version: @project-version@
+## OptionalDeps: Blizzard_TokenUI, LibStub, CallbackHandler-1.0, Ace3, LibDataBroker-1.1
 ## DefaultState: Enabled
 ## SavedVariables: CurrencyTrackingDB
 ## X-Date: @project-date-iso@
@@ -39,11 +39,15 @@
 ## X-Website: http://mods.curse.com/addons/wow/currency-tracking
 ## X-License: GPLv2
 ## X-Category: Information
-## X-Localizations: enUS, zhTW, deDE, zhCN, koKR
+## X-Localizations: enUS, zhTW, deDE, zhCN, koKR, ruRU
 
-Embeds.xml
+Libs\Libs.xml
+
 Locale\Locales.xml
-CurrencyTracking.lua
-CurrencyTracking.xml
-CurrencyTracking_Options.xml
+
+Core\Constants.lua
+Core\Core.lua
+Core\Templates.xml
+Core\Config.lua
+Core\TokenOptions.xml
 
