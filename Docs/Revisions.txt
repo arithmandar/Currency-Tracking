@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v3.01 (Jun. 16, 2017)
+-----------------------
+- Fixed currency amount won't update when the on-screen frame was set to hidden
+
 * v3.00 (Jun. 15, 2017)
 -----------------------
 - Removed LibAboutPanel.

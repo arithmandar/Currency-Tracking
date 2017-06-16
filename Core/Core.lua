@@ -4,9 +4,11 @@
 -----------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local pairs = _G.pairs
+local pairs, select, unpack = _G.pairs, _G.select, _G.unpack
 -- Libraries
-local string = _G.string;
+local string = _G.string
+local GameTooltip = GameTooltip
+local format, strsub, strgmatch = string.format, string.sub, string.gmatch
 local floor, fmod = math.floor, math.fmod
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -32,12 +34,12 @@ addon.Notes = select(3, GetAddOnInfo(addon.Name))
 _G.CurrencyTracking = addon
 local profile
 
-local CurrencyTracking_Player = UnitName("player");
-local CurrencyTracking_Server = GetRealmName();
+local CurrencyTracking_Player = UnitName("player")
+local CurrencyTracking_Server = GetRealmName()
 
-local isInLockdown = false;
-local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale();
-local CT_CURRSTR = nil;
+local isInLockdown = false
+local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale()
+local CT_CURRSTR = nil
 
 local options;
 
@@ -89,12 +91,12 @@ end
 local function addTooltipText(text)
 	if ( text ) then
 		-- Append a "\n" to the end 
-		if ( string.sub(text, -1, -1) ~= "\n" ) then
+		if ( strsub(text, -1, -1) ~= "\n" ) then
 			text = text.."\n";
 		end
 		
 		-- See if the string is intended for a double column
-		for text1, text2 in string.gmatch(text, "([^\t\n]*)\t?([^\t\n]*)\n") do
+		for text1, text2 in strgmatch(text, "([^\t\n]*)\t?([^\t\n]*)\n") do
 			if ( text2 ~= "" ) then
 				-- Add as double wide
 				GameTooltip:AddDoubleLine(text1, text2);
@@ -197,7 +199,7 @@ local function currencyButton_Update()
 	local numTokenTypes = GetCurrencyListSize();
 	local name, isHeader, count, icon;
 
-	local nf = _G["CurrencyTrackingFrameN"]
+	local nf = _G["CurrencyTrackingFrame"]
 	local button
 	local gwidth = 0
 	local bi = 1
@@ -355,33 +357,13 @@ local function getButtonText()
 	return currencystr;
 end
 
---[[
-function CurrencyTracking_GetFormattedCurrency(currencyID)
-	local _, amount, icon = GetCurrencyInfo(currencyID);
-	
-	if (amount >0) then
-		local CURRENCY_TEXTURE = "%s|T"..icon..":%d:%d:2:0|t";
-		return format(CURRENCY_TEXTURE, BreakUpLargeNumbers(amount), 0, 0);
-	else
-		return "";
-	end
-end
-]]
-
 local function frame_OnUpdate(self)
 	local currencystr = getButtonText()
 	currencyButton_Update()
 	if (currencystr ~= CT_CURRSTR) then
---		if (self.button:IsShown()) then
---			self.button.Text:SetText(currencystr)
---		end
 		LDB_CurrencyTracking.text = currencystr
 		CT_CURRSTR = currencystr
 	end
---	if (self.button:IsShown()) then
---		local width = self.button.Text:GetStringWidth()
---		self.button:SetWidth(width + 12)
---	end
 end
 
 local function createCurrencyFrame()
@@ -413,8 +395,11 @@ local function createCurrencyFrame()
 	f.button:SetScript("OnEnter", 		button_OnEnter)
 	f.button:SetScript("OnLeave", 		button_OnLeave)
 ]]
-	local nf = _G["CurrencyTrackingFrameN"]
-	if not nf then nf = CreateFrame("Frame", "CurrencyTrackingFrameN") end
+	local f = CreateFrame("Frame")
+	f:SetScript("OnUpdate", frame_OnUpdate)
+	
+	local nf = _G["CurrencyTrackingFrame"]
+	if not nf then nf = CreateFrame("Frame", "CurrencyTrackingFrame") end
 	nf:SetParent("UIParent")
 	nf:SetWidth(200)
 	nf:SetHeight(20)
@@ -424,7 +409,7 @@ local function createCurrencyFrame()
 	nf:SetClampedToScreen(true)
 	nf:SetMovable(true)
 	nf:EnableMouse(true)
-	nf:SetScript("OnUpdate", frame_OnUpdate)
+	--nf:SetScript("OnUpdate", frame_OnUpdate)
 	
 	return nf
 end
