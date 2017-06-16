@@ -143,8 +143,8 @@ function CurrencyTrackingTokenOptions_OnShow(self)
 	tokenContainer_Update();
 end
 
+local myaddon = {}
 local function addTokenOptionFrame()
-	local myaddon = {}
 	
 	UIPanelWindows['CurrencyTrackingTokenOptionsFrame'] = {area = 'center', pushable = 0}
 	
@@ -218,8 +218,8 @@ local function getOptions()
 						group1 = {
 							order = 10,
 							type = "group",
-							name = L["Display Settings"],
-							--inline = true,
+							name = L["On-screen frame"],
+							inline = true,
 							args = {
 								show_currency = {
 									order = 11,
@@ -233,43 +233,57 @@ local function getOptions()
 									name = L["Always lock the currency info frame"],
 									desc = L["Enable to always lock the frame even not in combat. Disable to only lock the frame while in combat."],
 									width = "full",
-								},
-								show_money = {
-									order = 13,
-									type = "toggle",
-									name = L["Show money info on screen"],
-									width = "full",
-								},
-								breakupnumbers = {
-									order = 14,
-									type = "toggle",
-									name = L["Converts a number into a localized string, grouping digits as required."],
-									width = "full",
-								},
-								icon_first = {
-									order = 15,
-									type = "toggle",
-									name = L["Put currency icon prior to its amount"],
-									width = "full",
+									disabled = function() return not addon.db.profile.show_currency end,
 								},
 								resetPos = {
-									order = 16, 
+									order = 13, 
 									type = "execute",
 									name = L["Reset position"],
+									desc = L["Reset on-screen currency frame's position."],
 									func = function()
 										addon.frame:SetPoint("TOPLEFT", nil, "TOPLEFT", 150, -80)
 										profile.point = { "TOPLEFT", "UIParent", "TOPLEFT", 150, -80 }
 									end,
+									disabled = function() return not addon.db.profile.show_currency end,
 								},
 							},
 						},
 						group2 = {
 							order = 20,
 							type = "group",
-							name = L["Scale and Transparency"],
-							--inline = true,
+							name = L["Display Settings"],
+							inline = true,
 							args = {
-								group21 = {
+								show_money = {
+									order = 21,
+									type = "toggle",
+									name = L["Show money info"],
+									desc = L["Enable to show total money together with currencies' info."],
+									width = "full",
+								},
+								breakupnumbers = {
+									order = 22,
+									type = "toggle",
+									name = L["Breakup numbers"],
+									desc = L["Converts a number into a localized string, grouping digits as required."],
+									width = "full",
+								},
+								icon_first = {
+									order = 23,
+									type = "toggle",
+									name = L["Icon first"],
+									desc = L["Put currency icon prior to its amount"],
+									width = "full",
+								},
+							},
+						},
+						group3 = {
+							order = 30,
+							type = "group",
+							name = L["Scale and Transparency"],
+							inline = true,
+							args = {
+								group31 = {
 									order = 20,
 									type = "group",
 									name = L["On-screen frame"],
@@ -298,7 +312,7 @@ local function getOptions()
 ]]
 									},
 								},
-								group22 = {
+								group32 = {
 									order = 30,
 									type = "group",
 									name = L["Tooltip"],
@@ -336,7 +350,7 @@ local function openOptions()
 	-- open the profiles tab before, so the menu expands
 	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles)
 	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles) -- yes, run twice to force the tre get expanded
-	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.General)
+	InterfaceOptionsFrame_OpenToCategory(myaddon.panel)
 	InterfaceOptionsFrame:Raise()
 end
 
