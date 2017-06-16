@@ -3,7 +3,7 @@
 Revision History:
 =================
 
-* v3.02 (Jun. xx, 2017)
+* v3.02 (Jun. 16, 2017)
 -----------------------
 - Option's opening will open the tracked currencies panel by default
 - Re-organized option panel's layout
