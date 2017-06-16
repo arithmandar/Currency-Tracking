@@ -7,6 +7,8 @@ Revision History:
 -----------------------
 - Option's opening will open the tracked currencies panel by default
 - Re-organized option panel's layout
+- Fixed missing library links
+- Fixed no-lib version's lib setting. LibDataBroker-1.1 should be embedded anyway.
 
 * v3.01 (Jun. 16, 2017)
 -----------------------

@@ -25,8 +25,16 @@
 #@end-non-debug@
 #@debug@
 ## Title: Currency Tracking
+## Title-deDE: Abzeichenverfolgung
+## Title-koKR: |cFF00FF00[가계부]|rCurrency Tracking
+## Title-ruRU: Currency Tracking
+## Title-zhCN: |cFF00FF00[信息]|r通货追踪
 ## Title-zhTW: |cFF00FF00[資訊]|r通貨追蹤
 ## Notes: Currency Tracking is an addon to help you track the currencies you gained, showing the selected currency even on top of the game screen.
+## Notes-deDE: Currency Tracking ist ein Addon, das dir dabei hilft, deine erhaltenen Abzeichen zu verfolgen, indem es die ausgewählten Abzeichen am oberen Bildschirmrand anzeigt.
+## Notes-koKR: |cff00CC33Currency Tracking은 획득한 화폐를 추적하고 화면 상단에 선택한 화폐를 표시해주는 애드온입니다.|r
+## Notes-ruRU: Currency Tracking это аддон, чтобы помочь вам отслеживать валюты, которую Вы приобрели, показывая некоторые валюты даже на верхней части игрового экрана.
+## Notes-zhCN: |cff00CC33追踪所有获取的通货，并显示在游戏画面上|r
 ## Notes-zhTW: |cff00CC33追蹤所有獲取的通貨，並顯示在遊戲畫面上|r
 #@end-debug@
 ## Author: arith
