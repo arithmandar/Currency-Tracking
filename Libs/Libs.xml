@@ -4,7 +4,6 @@ $Id$
 -->
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
-<Script file="LibDataBroker-1.1\LibDataBroker-1.1.lua"/>
 <!--@no-lib-strip@-->
 <Script file="LibStub\LibStub.lua"/>
 <Include file="CallbackHandler-1.0\CallbackHandler-1.0.xml"/>
@@ -16,4 +15,5 @@ $Id$
 <Include file="AceConfig-3.0\AceConfig-3.0.xml"/>
 <Include file="AceLocale-3.0\AceLocale-3.0.xml"/>
 <!--@end-no-lib-strip@-->
+<Script file="LibDataBroker-1.1\LibDataBroker-1.1.lua"/>
 </Ui>

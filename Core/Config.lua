@@ -5,7 +5,7 @@
 -- Functions
 local _G = getfenv(0)
 local pairs = _G.pairs
-local math = _G.math;
+local math = _G.math
 -- Libraries
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -18,7 +18,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 local AceDBOptions = LibStub("AceDBOptions-3.0")
-local Media = LibStub("LibSharedMedia-3.0")
 
 local profile
 
