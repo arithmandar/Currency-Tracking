@@ -587,6 +587,22 @@ local function copyOptions()
 end
 ]]
 
+local function scanItems()
+	for k, v in pairs(addon.constants.items) do
+		if k == "professions" then
+			for ka, profs in pairs(v) do
+				for kb, itemID in pairs(profs) do
+					local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+					end
+				end
+		else
+			for ka, itemID in pairs(v) do
+				local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+			end
+		end
+	end
+end
+
 local function setupLDB()
 	-- LDB object setting up
 	LDB_CurrencyTracking.OnClick = (function(self, button)
@@ -656,6 +672,7 @@ function addon:OnEnable()
 	end
 
 	setupLDB()
+	scanItems() -- pre-scan items so that they will properly showed in option panel
 	self:Refresh()
 end
 
