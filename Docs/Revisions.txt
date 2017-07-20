@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v4.00 (Jul. 20, 2017)
+-----------------------
+- Added to support items' tracking
+- Lib Update: AceConfigDialog-3.0, AceGUI-3.0
+
 * v3.02 (Jun. 16, 2017)
 -----------------------
 - Option's opening will open the tracked currencies panel by default

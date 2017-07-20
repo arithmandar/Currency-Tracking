@@ -44,10 +44,17 @@ $Id: CurrencyTracking_Options.xml 60 2017-04-05 15:50:17Z arith $
 				<Scripts>
 					<OnEnter>
 						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-						GameTooltip:SetCurrencyToken(self:GetParent().index);
+						if (self:GetParent().isCurrency) then
+							GameTooltip:SetCurrencyToken(self:GetParent().index);
+						elseif (self:GetParent().isItem) then
+							local name = self:GetParent().itemName;
+							GameTooltip:SetText(name, 1, 1, 1, nil, false);
+						end
 					</OnEnter>
 					<OnClick>
-						HandleModifiedItemClick(GetCurrencyListLink(self:GetParent().index));
+						if (self:GetParent().isCurrency) then
+							HandleModifiedItemClick(GetCurrencyListLink(self:GetParent().index));
+						end
 					</OnClick>
 					<OnLeave>
 						GameTooltip:Hide();

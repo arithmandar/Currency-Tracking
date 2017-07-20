@@ -33,5 +33,6 @@ L["Currencies info's background transparency"] = "Currencies info's background t
 -- Others
 L["Currencies to be tracked on screen:"] = "Currencies to be tracked on screen:"
 L["Tracked Currencies"] = "Tracked Currencies"
+L["Tracked Items"] = "Tracked Items"
 L["Profile Options"] = "Profile Options"
 end

@@ -35,6 +35,7 @@ L["Currencies info's background transparency"] = "通貨資訊的背景透明度
 -- Others
 L["Currencies to be tracked on screen:"] = "在遊戲畫面上要追蹤的通貨："
 L["Tracked Currencies"] = "追蹤的通貨"
+L["Tracked Items"] = "追蹤的物品"
 L["Profile Options"] = "設定檔選項"
 --@end-do-not-package@
 --@localization(locale="zhTW", format="lua_additive_table")@
