@@ -7,6 +7,8 @@ Revision History:
 -----------------------
 - Added to support items' tracking
 - Lib Update: AceConfigDialog-3.0, AceGUI-3.0
+- Translation update:
+  - Korean (next96)
 
 * v3.02 (Jun. 16, 2017)
 -----------------------
