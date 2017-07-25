@@ -35,401 +35,524 @@ constants.defaults = {
 	},
 }
 
+constants.currencyCategories = {
+	["MISC"] = { enUS="Miscellaneous",deDE="Verschiedenes",esES="Miscelánea",esMX="Miscelánea",frFR="Divers",itIT="Varie",koKR="기타",ptBR="Diversos",ruRU="Разное",zhCN="其它",zhTW="雜項" },
+	["PVP"] = { enUS="Player vs. Player",deDE="Spieler gegen Spieler",esES="Jugador contra Jugador",esMX="Jugador contra Jugador",frFR="JcJ",itIT="Personaggio vs Personaggio",koKR="플레이어 대 플레이어",ptBR="Jogador x Jogador",ruRU="PvP",zhCN="PvP",zhTW="玩家對玩家" },
+	["CLASSIC"] = { enUS="Classic",deDE="Classic",esES="Clásico",esMX="Clásico",frFR="Classique",itIT="Classico",koKR="오리지널",ptBR="Clássico",ruRU="World of Warcraft",zhCN="经典旧世",zhTW="艾澤拉斯" },
+	["WOLTK"] = { enUS="Wrath of the Lich King",deDE="Wrath of the Lich King",esES="Wrath of the Lich King",esMX="Wrath of the Lich King",frFR="Wrath of the Lich King",itIT="Wrath of the Lich King",koKR="리치 왕의 분노",ptBR="Wrath of the Lich King",ruRU="Wrath of the Lich King",zhCN="巫妖王之怒",zhTW="巫妖王之怒" },
+	["INSTANCE"] = { enUS="Dungeon and Raid",deDE="Dungeon und Schlachtzug",esES="Mazmorra y banda",esMX="Calabozo y banda",frFR="Donjons & Raids",itIT="Spedizioni e Incursioni",koKR="던전 및 공격대",ptBR="Masmorras e Raides",ruRU="Подземелья и рейды",zhCN="地下城与团队",zhTW="地城與團隊" },
+	["BC"] = { enUS="Burning Crusade",deDE="Burning Crusade",esES="Burning Crusade",esMX="Burning Crusade",frFR="Burning Crusade",itIT="Burning Crusade",koKR="불타는 성전",ptBR="Burning Crusade",ruRU="Burning Crusade",zhCN="燃烧的远征",zhTW="燃燒的遠征" },
+	["CATA"] = { enUS="Cataclysm",deDE="Cataclysm",esES="Cataclysm",esMX="Cataclysm",frFR="Cataclysm",itIT="Cataclysm",koKR="대격변",ptBR="Cataclysm",ruRU="Cataclysm",zhCN="大地的裂变",zhTW="浩劫與重生" },
+	["ARCH"] = { enUS="Archaeology",deDE="Archäologie",esES="Arqueología",esMX="Arqueología",frFR="Archéologie",itIT="Archeologia",koKR="고고학",ptBR="Arqueologia",ruRU="Археология",zhCN="考古学",zhTW="考古學" },
+	["MOP"] = { enUS="Mists of Pandaria",deDE="Mists of Pandaria",esES="Mists of Pandaria",esMX="Mists of Pandaria",frFR="Mists of Pandaria",itIT="Mists of Pandaria",koKR="판다리아의 안개",ptBR="Mists of Pandaria",ruRU="Mists of Pandaria",zhCN="熊猫人之谜",zhTW="潘達利亞之謎" },
+	["WOD"] = { enUS="Warlords of Draenor",deDE="Warlords of Draenor",esES="Warlords of Draenor",esMX="Warlords of Draenor",frFR="Warlords of Draenor",itIT="Warlords of Draenor",koKR="드레노어의 전쟁군주",ptBR="Warlords of Draenor",ruRU="Warlords of Draenor",zhCN="德拉诺之王",zhTW="德拉諾之霸" },
+	["LEGION"] = { enUS="Legion",deDE="Legion",esES="Legion",esMX="Legion",frFR="Legion",itIT="Legion",koKR="군단",ptBR="Legion",ruRU="Legion",zhCN="军团再临",zhTW="軍團" },
+}
+
+constants.currencies = {
+	["MISC"] = {
+		42, -- Badge of Justice
+		81, -- Epicurean's Award
+		402, -- Ironpaw Token
+		515, -- Darkmoon Prize Ticket
+		1379, -- Trial of Style Token
+	},
+	["PVP"] = {
+		103, -- Arena Points
+--		104, -- Honor Points DEPRECATED
+		121, -- Alterac Valley Mark of Honor
+		122, -- Arathi Basin Mark of Honor
+		123, -- Eye of the Storm Mark of Honor
+		124, -- Strand of the Ancients Mark of Honor
+		125, -- Warsong Gulch Mark of Honor
+		126, -- Wintergrasp Mark of Honor
+		161, -- Stone Keeper's Shard
+--		181, -- Honor Points DEPRECATED2
+		201, -- Venture Coin
+		321, -- Isle of Conquest Mark of Honor
+		391, -- Tol Barad Commendation
+	},
+--	["CLASSIC"] = {
+--	},
+	["WOLTK"] = {
+		61, -- Dalaran Jewelcrafter's Token
+		241, -- Champion's Seal
+	},
+	["INSTANCE"] = {
+		101, -- Emblem of Heroism
+		102, -- Emblem of Valor
+		221, -- Emblem of Conquest
+		301, -- Emblem of Triumph
+		341, -- Emblem of Frost
+		1166, -- Timewarped Badge
+		1191, -- Valor
+	},
+--	["BC"] = {
+--	},
+	["CATA"] = {
+		361, -- Illustrious Jewelcrafter's Token
+		416, -- Mark of the World Tree
+		614, -- Mote of Darkness
+		615, -- Essence of Corrupted Deathwing
+	},
+	["ARCH"] = {
+		1174, -- Demonic Archaeology Fragment
+		1173, -- Highmountain Tauren Archaeology Fragment
+		1172, -- Highborne Archaeology Fragment
+		829, -- Arakkoa Archaeology Fragment
+		828, -- Ogre Archaeology Fragment
+		821, -- Draenor Clans Archaeology Fragment
+		754, -- Mantid Archaeology Fragment
+		677, -- Mogu Archaeology Fragment
+		676, -- Pandaren Archaeology Fragment
+		401, -- Tol'vir Archaeology Fragment
+		400, -- Nerubian Archaeology Fragment
+		399, -- Vrykul Archaeology Fragment
+		398, -- Draenei Archaeology Fragment
+		397, -- Orc Archaeology Fragment
+		394, -- Night Elf Archaeology Fragment
+		393, -- Fossil Archaeology Fragment
+		385, -- Troll Archaeology Fragment
+		384, -- Dwarf Archaeology Fragment
+	},
+	["MOP"] = {
+		697, -- Elder Charm of Good Fortune
+		698, -- Zen Jewelcrafter's Token
+		738, -- Lesser Charm of Good Fortune
+		752, -- Mogu Rune of Fate
+		776, -- Warforged Seal
+		777, -- Timeless Coin
+		789, -- Bloody Coin
+		810, -- Black Iron Fragment
+	},
+	["WOD"] = {
+		823, -- Apexis Crystal
+		824, -- Garrison Resources
+		910, -- Secret of Draenor Alchemy
+		944, -- Artifact Fragment
+		980, -- Dingy Iron Coins
+		994, -- Seal of Tempered Fate
+		999, -- Secret of Draenor Tailoring
+		1008, -- Secret of Draenor Jewelcrafting
+		1017, -- Secret of Draenor Leatherworking
+		1020, -- Secret of Draenor Blacksmithing
+		1101, -- Oil
+		1129, -- Seal of Inevitable Fate
+	},
+	["LEGION"] = {
+		1149, -- Sightless Eye
+		1154, -- Shadowy Coins
+		1155, -- Ancient Mana
+		1220, -- Order Resources
+		1226, -- Nethershard
+		1268, -- Timeworn Artifact
+		1273, -- Seal of Broken Fate
+		1275, -- Curious Coin
+		1299, -- Brawler's Gold
+		1314, -- Lingering Soul Fragment
+		1342, -- Legionfall War Supplies
+		1355, -- Felessence
+		1356, -- Echoes of Battle
+		1357, -- Echoes of Domination
+		1416, -- Coins of Air
+		1171, -- Artifact Knowledge
+	},
+}
+
 constants.items = {
 	world_events = {
-		TRICKY_TREAT 		= 33226,
-		LOVE_TOKEN 		= 49927,
-		BREWFEST_PRIZE_TOKEN 	= 37829,
-		NOBLEGARDEN_CHOCOLATE 	= 44791,
-		COIN_OF_ANCESTRY 	= 21100, -- Lunar Festival
-		BURNING_BLOSSOM 	= 23247, -- Midsummer Fire Festival
+		49927, -- LOVE_TOKEN 
+		44791, -- NOBLEGARDEN_CHOCOLATE 
+		37829, -- BREWFEST_PRIZE_TOKEN 
+		33226, -- TRICKY_TREAT 
+		23247, -- Midsummer Fire Festiva, BURNING_BLOSSOM 
+		21100, -- Lunar Festiva, COIN_OF_ANCESTRY 
 	},
 	pvp = {
-		HALAA_RESEARCH_TOKEN 	= 26044,
-		HALAA_BATTLE_TOKEN 	= 26045,
-		VICIOUS_SADDLE 		= 103533, -- arena
-		MARK_OF_HONOR 		= 137642,
+		137642, -- MARK_OF_HONOR 
+		103533, -- aren, VICIOUS_SADDLE 
+		26045, -- HALAA_BATTLE_TOKEN 
+		26044, -- HALAA_RESEARCH_TOKEN 
 	},
 	others = {
-		SPIRIT_HARMONY 		= 76061,
-		PET_CHARM 		= 116415,
-		DRAENIC_SEEDS 		= 116053,
-		NATS_LUCKY_COIN 	= 117397,
-		PRIMAL_SPIRIT 		= 120945,
-		BLACKFANG_CLAW 		= 124099,
-		BLOOD_OF_SARGERAS 	= 124124,
+		124124, -- BLOOD_OF_SARGERAS
+		124099, -- BLACKFANG_CLAW
+		120945, -- PRIMAL_SPIRIT
+		117397, -- NATS_LUCKY_COIN
+		116415, -- PET_CHARM
+		116053, -- DRAENIC_SEEDS
+		76061, -- SPIRIT_HARMONY
 	},
 	professions = {
 		[3908] = { -- Tailoring
-			[127004] = 127004, -- Imbued Silkweave
-			[111556] = 111556, -- Hexweave Cloth
-			[124437] = 124437, -- Shal'dorei Silk
-			[127037] = 127037, -- Runic Catgut
-			[127681] = 127681, -- Sharp Spritethorn
-			[82441] = 82441, -- Bolt of Windwool Cloth
-			[111557] = 111557, -- Sumptuous Fur
-			[98619] = 98619, -- Celestial Cloth
-			[92960] = 92960, -- Silkworm Cocoon
-			[82447] = 82447, -- Imperial Silk
-			[72988] = 72988, -- Windwool Cloth
-			[54440] = 54440, -- Dreamcloth
-			[53643] = 53643, -- Bolt of Embersilk Cloth
-			[53010] = 53010, -- Embersilk Cloth
-			[41595] = 41595, -- Spellweave
-			[41593] = 41593, -- Ebonweave
-			[41594] = 41594, -- Moonshroud
-			[41511] = 41511, -- Bolt of Imbued Frostweave
-			[42253] = 42253, -- Iceweb Spider Silk
-			[38426] = 38426, -- Eternium Thread
-			[33470] = 33470, -- Frostweave Cloth
-			[41510] = 41510, -- Bolt of Frostweave
-			[21844] = 21844, -- Bolt of Soulcloth
-			[24272] = 24272, -- Shadowcloth
-			[24271] = 24271, -- Spellcloth
-			[21845] = 21845, -- Primal Mooncloth
-			[21842] = 21842, -- Bolt of Imbued Netherweave
-			[21881] = 21881, -- Netherweb Spider Silk
-			[21877] = 21877, -- Netherweave Cloth
-			[21840] = 21840, -- Bolt of Netherweave
-			[14048] = 14048, -- Bolt of Runecloth
-			[14342] = 14342, -- Mooncloth
-			[14341] = 14341, -- Rune Thread
-			[14047] = 14047, -- Runecloth
-			[14227] = 14227, -- Ironweb Spider Silk
-			[14256] = 14256, -- Felcloth
-			[4339] = 4339, -- Bolt of Mageweave
-			[4338] = 4338, -- Mageweave Cloth
-			[8343] = 8343, -- Heavy Silken Thread
-			[10285] = 10285, -- Shadow Silk
-			[4337] = 4337, -- Thick Spider's Silk
-			[4305] = 4305, -- Bolt of Silk Cloth
-			[4291] = 4291, -- Silken Thread
-			[4306] = 4306, -- Silk Cloth
-			[2997] = 2997, -- Bolt of Woolen Cloth
-			[2321] = 2321, -- Fine Thread
-			[3182] = 3182, -- Spider's Silk
-			[2592] = 2592, -- Wool Cloth
-			[2996] = 2996, -- Bolt of Linen Cloth
-			[2320] = 2320, -- Coarse Thread
-			[2589] = 2589, -- Linen Cloth
-			[146710] = 146710, -- Bolt of Shadowcloth
-			[146711] = 146711, -- Bolt of Starweave
+			146711, -- Bolt of Starweave
+			146710, -- Bolt of Shadowcloth
+			127681, -- Sharp Spritethorn
+			127037, -- Runic Catgut
+			127004, -- Imbued Silkweave
+			124437, -- Shal'dorei Silk
+			111557, -- Sumptuous Fur
+			111556, -- Hexweave Cloth
+			98619, -- Celestial Cloth
+			92960, -- Silkworm Cocoon
+			82447, -- Imperial Silk
+			82441, -- Bolt of Windwool Cloth
+			72988, -- Windwool Cloth
+			54440, -- Dreamcloth
+			53643, -- Bolt of Embersilk Cloth
+			53010, -- Embersilk Cloth
+			42253, -- Iceweb Spider Silk
+			41595, -- Spellweave
+			41594, -- Moonshroud
+			41593, -- Ebonweave
+			41511, -- Bolt of Imbued Frostweave
+			41510, -- Bolt of Frostweave
+			38426, -- Eternium Thread
+			33470, -- Frostweave Cloth
+			24272, -- Shadowcloth
+			24271, -- Spellcloth
+			21881, -- Netherweb Spider Silk
+			21877, -- Netherweave Cloth
+			21845, -- Primal Mooncloth
+			21844, -- Bolt of Soulcloth
+			21842, -- Bolt of Imbued Netherweave
+			21840, -- Bolt of Netherweave
+			14342, -- Mooncloth
+			14341, -- Rune Thread
+			14256, -- Felcloth
+			14227, -- Ironweb Spider Silk
+			14048, -- Bolt of Runecloth
+			14047, -- Runecloth
+			10285, -- Shadow Silk
+			8343, -- Heavy Silken Thread
+			4339, -- Bolt of Mageweave
+			4338, -- Mageweave Cloth
+			4337, -- Thick Spider's Silk
+			4306, -- Silk Cloth
+			4305, -- Bolt of Silk Cloth
+			4291, -- Silken Thread
+			3182, -- Spider's Silk
+			2997, -- Bolt of Woolen Cloth
+			2996, -- Bolt of Linen Cloth
+			2592, -- Wool Cloth
+			2589, -- Linen Cloth
+			2321, -- Fine Thread
+			2320, -- Coarse Thread
 		},
 		[2575] = { -- Mining
-			[124444] = 124444, -- Infernal Brimstone
-			[123919] = 123919, -- Felslate
-			[109118] = 109118, -- Blackrock Ore
-			[109119] = 109119, -- True Iron Ore
-			[123918] = 123918, -- Leystone Ore
-			[72094] = 72094, -- Black Trillium Ore
-			[72103] = 72103, -- White Trillium Ore
-			[109991] = 109991, -- True Iron Nugget
-			[109992] = 109992, -- Blackrock Fragment
-			[72093] = 72093, -- Kyparite
-			[72092] = 72092, -- Ghost Iron Ore
-			[52183] = 52183, -- Pyrite Ore
-			[108309] = 108309, -- Pyrite Ore Nugget
-			[97512] = 97512, -- Ghost Iron Nugget
-			[97546] = 97546, -- Kyparite Fragment
-			[52185] = 52185, -- Elementium Ore
-			[108308] = 108308, -- Elementium Ore Nugget
-			[53038] = 53038, -- Obsidium Ore
-			[108307] = 108307, -- Obsidium Ore Nugget
-			[36910] = 36910, -- Titanium Ore
-			[108391] = 108391, -- Titanium Ore Nugget
-			[36912] = 36912, -- Saronite Ore
-			[108306] = 108306, -- Saronite Ore Nugget
-			[36909] = 36909, -- Cobalt Ore
-			[108305] = 108305, -- Cobalt Ore Nugget
-			[23426] = 23426, -- Khorium Ore
-			[23427] = 23427, -- Eternium Ore
-			[108304] = 108304, -- Khorium Ore Nugget
-			[23425] = 23425, -- Adamantite Ore
-			[108302] = 108302, -- Adamantite Ore Nugget
-			[23424] = 23424, -- Fel Iron Ore
-			[108301] = 108301, -- Fel Iron Ore Nugget
-			[11370] = 11370, -- Dark Iron Ore
-			[12365] = 12365, -- Dense Stone
-			[7911] = 7911, -- Truesilver Ore
-			[108299] = 108299, -- Truesilver Ore Nugget
-			[3858] = 3858, -- Mithril Ore
-			[10620] = 10620, -- Thorium Ore
-			[108298] = 108298, -- Thorium Ore Nugget
-			[108300] = 108300, -- Mithril Ore Nugget
-			[7912] = 7912, -- Solid Stone
-			[2772] = 2772, -- Iron Ore
-			[108297] = 108297, -- Iron Ore Nugget
-			[2776] = 2776, -- Gold Ore
-			[108296] = 108296, -- Gold Ore Nugget
-			[2838] = 2838, -- Heavy Stone
-			[2771] = 2771, -- Tin Ore
-			[2836] = 2836, -- Coarse Stone
-			[2775] = 2775, -- Silver Ore
-			[108294] = 108294, -- Silver Ore Nugget
-			[2770] = 2770, -- Copper Ore
-			[2835] = 2835, -- Rough Stone
-			[22202] = 22202, -- Small Obsidian Shard
-			[22203] = 22203, -- Large Obsidian Shard
-			[115508] = 115508, -- Draenic Stone
+			124444, -- Infernal Brimstone
+			123919, -- Felslate
+			123918, -- Leystone Ore
+			115508, -- Draenic Stone
+			109992, -- Blackrock Fragment
+			109991, -- True Iron Nugget
+			109119, -- True Iron Ore
+			109118, -- Blackrock Ore
+			108391, -- Titanium Ore Nugget
+			108309, -- Pyrite Ore Nugget
+			108308, -- Elementium Ore Nugget
+			108307, -- Obsidium Ore Nugget
+			108306, -- Saronite Ore Nugget
+			108305, -- Cobalt Ore Nugget
+			108304, -- Khorium Ore Nugget
+			108302, -- Adamantite Ore Nugget
+			108301, -- Fel Iron Ore Nugget
+			108300, -- Mithril Ore Nugget
+			108299, -- Truesilver Ore Nugget
+			108298, -- Thorium Ore Nugget
+			108297, -- Iron Ore Nugget
+			108296, -- Gold Ore Nugget
+			108294, -- Silver Ore Nugget
+			97546, -- Kyparite Fragment
+			97512, -- Ghost Iron Nugget
+			72103, -- White Trillium Ore
+			72094, -- Black Trillium Ore
+			72093, -- Kyparite
+			72092, -- Ghost Iron Ore
+			53038, -- Obsidium Ore
+			52185, -- Elementium Ore
+			52183, -- Pyrite Ore
+			36912, -- Saronite Ore
+			36910, -- Titanium Ore
+			36909, -- Cobalt Ore
+			23427, -- Eternium Ore
+			23426, -- Khorium Ore
+			23425, -- Adamantite Ore
+			23424, -- Fel Iron Ore
+			22203, -- Large Obsidian Shard
+			22202, -- Small Obsidian Shard
+			12365, -- Dense Stone
+			11370, -- Dark Iron Ore
+			10620, -- Thorium Ore
+			7912, -- Solid Stone
+			7911, -- Truesilver Ore
+			3858, -- Mithril Ore
+			2838, -- Heavy Stone
+			2836, -- Coarse Stone
+			2835, -- Rough Stone
+			2776, -- Gold Ore
+			2775, -- Silver Ore
+			2772, -- Iron Ore
+			2771, -- Tin Ore
+			2770, -- Copper Ore
 		},
 		[2108] = { -- Leatherworking
-			[124116] = 124116, -- Felhide
-			[110611] = 110611, -- Burnished Leather
-			[110609] = 110609, -- Raw Beast Hide
-			[124113] = 124113, -- Stonehide Leather
-			[124115] = 124115, -- Stormscale
-			[72163] = 72163, -- Magnificent Hide
-			[110610] = 110610, -- Raw Beast Hide Scraps
-			[79101] = 79101, -- Prismatic Scale
-			[72120] = 72120, -- Exotic Leather
-			[72162] = 72162, -- Sha-Touched Leather
-			[112156] = 112156, -- Blackened Dragonscale Fragment
-			[56516] = 56516, -- Heavy Savage Leather
-			[38557] = 38557, -- Icy Dragonscale
-			[112158] = 112158, -- Icy Dragonscale Fragment
-			[33567] = 33567, -- Borean Leather Scraps
-			[33568] = 33568, -- Borean Leather
-			[38558] = 38558, -- Nerubian Chitin
-			[112177] = 112177, -- Nerubian Chitin Fragment
-			[23793] = 23793, -- Heavy Knothide Leather
-			[15414] = 15414, -- Red Dragonscale
-			[25649] = 25649, -- Knothide Leather Scraps
-			[15408] = 15408, -- Heavy Scorpid Scale
-			[15416] = 15416, -- Black Dragonscale
-			[8170] = 8170, -- Rugged Leather
-			[15412] = 15412, -- Green Dragonscale
-			[8154] = 8154, -- Scorpid Scale
-			[8165] = 8165, -- Worn Dragonscale
-			[8168] = 8168, -- Jet Black Feather
-			[4304] = 4304, -- Thick Leather
-			[8150] = 8150, -- Deeprock Salt
-			[8169] = 8169, -- Thick Hide
-			[5785] = 5785, -- Thick Murloc Scale
-			[4234] = 4234, -- Heavy Leather
-			[4235] = 4235, -- Heavy Hide
-			[4461] = 4461, -- Raptor Hide
-			[2319] = 2319, -- Medium Leather
-			[4232] = 4232, -- Medium Hide
-			[5784] = 5784, -- Slimy Murloc Scale
-			[783] = 783, -- Light Hide
-			[2318] = 2318, -- Light Leather
-			[5082] = 5082, -- Thin Kodo Leather
-			[6470] = 6470, -- Deviate Scale
-			[6471] = 6471, -- Perfect Deviate Scale
-			[5116] = 5116, -- Long Tail Feather
+			124116, -- Felhide
+			124115, -- Stormscale
+			124113, -- Stonehide Leather
+			112177, -- Nerubian Chitin Fragment
+			112158, -- Icy Dragonscale Fragment
+			112156, -- Blackened Dragonscale Fragment
+			110611, -- Burnished Leather
+			110610, -- Raw Beast Hide Scraps
+			110609, -- Raw Beast Hide
+			79101, -- Prismatic Scale
+			72163, -- Magnificent Hide
+			72162, -- Sha-Touched Leather
+			72120, -- Exotic Leather
+			56516, -- Heavy Savage Leather
+			38558, -- Nerubian Chitin
+			38557, -- Icy Dragonscale
+			33568, -- Borean Leather
+			33567, -- Borean Leather Scraps
+			25649, -- Knothide Leather Scraps
+			23793, -- Heavy Knothide Leather
+			15416, -- Black Dragonscale
+			15414, -- Red Dragonscale
+			15412, -- Green Dragonscale
+			15408, -- Heavy Scorpid Scale
+			8170, -- Rugged Leather
+			8169, -- Thick Hide
+			8168, -- Jet Black Feather
+			8165, -- Worn Dragonscale
+			8154, -- Scorpid Scale
+			8150, -- Deeprock Salt
+			6471, -- Perfect Deviate Scale
+			6470, -- Deviate Scale
+			5785, -- Thick Murloc Scale
+			5784, -- Slimy Murloc Scale
+			5116, -- Long Tail Feather
+			5082, -- Thin Kodo Leather
+			4461, -- Raptor Hide
+			4304, -- Thick Leather
+			4235, -- Heavy Hide
+			4234, -- Heavy Leather
+			4232, -- Medium Hide
+			2319, -- Medium Leather
+			2318, -- Light Leather
+			783, -- Light Hide
 		},
 		[7411] = { -- Enchanting
-			[124442] = 124442, -- Chaos Crystal
-			[124441] = 124441, -- Leylight Shard
-			[124440] = 124440, -- Arkhana
-			[111245] = 111245, -- Luminous Shard
-			[109693] = 109693, -- Draenic Dust
-			[113588] = 113588, -- Temporal Crystal
-			[115504] = 115504, -- Fractured Temporal Crystal
-			[115502] = 115502, -- Small Luminous Shard
-			[102218] = 102218, -- Spirit of War
-			[94289] = 94289, -- Haunting Spirit
-			[80433] = 80433, -- Blood Spirit
-			[74248] = 74248, -- Sha Crystal
-			[74247] = 74247, -- Ethereal Shard
-			[74250] = 74250, -- Mysterious Essence
-			[74252] = 74252, -- Small Ethereal Shard
-			[74249] = 74249, -- Spirit Dust
-			[52721] = 52721, -- Heavenly Shard
-			[52720] = 52720, -- Small Heavenly Shard
-			[52722] = 52722, -- Maelstrom Crystal
-			[105718] = 105718, -- Sha Crystal Fragment
-			[52719] = 52719, -- Greater Celestial Essence
-			[52555] = 52555, -- Hypnotic Dust
-			[52718] = 52718, -- Lesser Celestial Essence
-			[89738] = 89738, -- Essence or Dust
-			[34053] = 34053, -- Small Dream Shard
-			[34052] = 34052, -- Dream Shard
-			[34057] = 34057, -- Abyss Crystal
-			[34055] = 34055, -- Greater Cosmic Essence
-			[34054] = 34054, -- Infinite Dust
-			[22449] = 22449, -- Large Prismatic Shard
-			[22450] = 22450, -- Void Crystal
-			[34056] = 34056, -- Lesser Cosmic Essence
-			[22446] = 22446, -- Greater Planar Essence
-			[22448] = 22448, -- Small Prismatic Shard
-			[22445] = 22445, -- Arcane Dust
-			[20725] = 20725, -- Nexus Crystal
-			[22447] = 22447, -- Lesser Planar Essence
-			[14344] = 14344, -- Large Brilliant Shard
-			[16203] = 16203, -- Greater Eternal Essence
-			[16204] = 16204, -- Illusion Dust
-			[14343] = 14343, -- Small Brilliant Shard
-			[16202] = 16202, -- Lesser Eternal Essence
-			[11176] = 11176, -- Dream Dust
-			[11178] = 11178, -- Large Radiant Shard
-			[11175] = 11175, -- Greater Nether Essence
-			[11174] = 11174, -- Lesser Nether Essence
-			[11177] = 11177, -- Small Radiant Shard
-			[11139] = 11139, -- Large Glowing Shard
-			[11137] = 11137, -- Vision Dust
-			[11135] = 11135, -- Greater Mystic Essence
-			[11134] = 11134, -- Lesser Mystic Essence
-			[11138] = 11138, -- Small Glowing Shard
-			[11082] = 11082, -- Greater Astral Essence
-			[11084] = 11084, -- Large Glimmering Shard
-			[11083] = 11083, -- Soul Dust
-			[10998] = 10998, -- Lesser Astral Essence
-			[10978] = 10978, -- Small Glimmering Shard
-			[10939] = 10939, -- Greater Magic Essence
-			[10940] = 10940, -- Strange Dust
-			[10938] = 10938, -- Lesser Magic Essence
-			[6218] = 6218, -- Runed Copper Rod
-			[6217] = 6217, -- Copper Rod
+			124442, -- Chaos Crystal
+			124441, -- Leylight Shard
+			124440, -- Arkhana
+			111245, -- Luminous Shard
+			113588, -- Temporal Crystal
+			115504, -- Fractured Temporal Crystal
+			115502, -- Small Luminous Shard
+			109693, -- Draenic Dust
+			105718, -- Sha Crystal Fragment
+			102218, -- Spirit of War
+			94289, -- Haunting Spirit
+			80433, -- Blood Spirit
+			74248, -- Sha Crystal
+			74247, -- Ethereal Shard
+			74250, -- Mysterious Essence
+			74252, -- Small Ethereal Shard
+			74249, -- Spirit Dust
+			52721, -- Heavenly Shard
+			52720, -- Small Heavenly Shard
+			52722, -- Maelstrom Crystal
+			52719, -- Greater Celestial Essence
+			52555, -- Hypnotic Dust
+			52718, -- Lesser Celestial Essence
+			89738, -- Essence or Dust
+			34053, -- Small Dream Shard
+			34052, -- Dream Shard
+			34057, -- Abyss Crystal
+			34055, -- Greater Cosmic Essence
+			34054, -- Infinite Dust
+			22449, -- Large Prismatic Shard
+			22450, -- Void Crystal
+			34056, -- Lesser Cosmic Essence
+			22446, -- Greater Planar Essence
+			22448, -- Small Prismatic Shard
+			22445, -- Arcane Dust
+			20725, -- Nexus Crystal
+			22447, -- Lesser Planar Essence
+			14344, -- Large Brilliant Shard
+			16203, -- Greater Eternal Essence
+			16204, -- Illusion Dust
+			14343, -- Small Brilliant Shard
+			16202, -- Lesser Eternal Essence
+			11176, -- Dream Dust
+			11178, -- Large Radiant Shard
+			11175, -- Greater Nether Essence
+			11174, -- Lesser Nether Essence
+			11177, -- Small Radiant Shard
+			11139, -- Large Glowing Shard
+			11137, -- Vision Dust
+			11135, -- Greater Mystic Essence
+			11134, -- Lesser Mystic Essence
+			11138, -- Small Glowing Shard
+			11082, -- Greater Astral Essence
+			11084, -- Large Glimmering Shard
+			11083, -- Soul Dust
+			10998, -- Lesser Astral Essence
+			10978, -- Small Glimmering Shard
+			10939, -- Greater Magic Essence
+			10940, -- Strange Dust
+			10938, -- Lesser Magic Essence
+			6218, -- Runed Copper Rod
+			6217, -- Copper Rod
 		},
 		[2366] = { -- Herbalism
-			[124106] = 124106, -- Felwort
-			[129289] = 129289, -- Felwort Seed
-			[124101] = 124101, -- Aethril
-			[124102] = 124102, -- Dreamleaf
-			[124103] = 124103, -- Foxflower
-			[124104] = 124104, -- Fjarnskaggl
-			[124105] = 124105, -- Starlight Rose
-			[128304] = 128304, -- Yseralline Seed
-			[129284] = 129284, -- Aethril Seed
-			[129285] = 129285, -- Dreamleaf Seed
-			[129286] = 129286, -- Foxflower Seed
-			[129287] = 129287, -- Fjarnskaggl Seed
-			[129288] = 129288, -- Starlight Rose Seed
-			[109124] = 109124, -- Frostweed
-			[109125] = 109125, -- Fireweed
-			[109126] = 109126, -- Gorgrond Flytrap
-			[109127] = 109127, -- Starflower
-			[109128] = 109128, -- Nagrand Arrowbloom
-			[109129] = 109129, -- Talador Orchid
-			[72238] = 72238, -- Golden Lotus
-			[109624] = 109624, -- Broken Frostweed Stem
-			[109625] = 109625, -- Broken Fireweed Stem
-			[109626] = 109626, -- Gorgrond Flytrap Ichor
-			[109627] = 109627, -- Starflower Petal
-			[109628] = 109628, -- Nagrand Arrowbloom Petal
-			[109629] = 109629, -- Talador Orchid Petal
-			[79011] = 79011, -- Fool's Cap
-			[79010] = 79010, -- Snow Lily
-			[72235] = 72235, -- Silkweed
-			[52987] = 52987, -- Twilight Jasmine
-			[72234] = 72234, -- Green Tea Leaf
-			[72237] = 72237, -- Rain Poppy
-			[97619] = 97619, -- Torn Green Tea Leaf
-			[97620] = 97620, -- Rain Poppy Petal
-			[97621] = 97621, -- Silkweed Stem
-			[97622] = 97622, -- Snow Lily Petal
-			[97623] = 97623, -- Fool's Cap Spores
-			[97624] = 97624, -- Desecrated Herb Pod
-			[108364] = 108364, -- Twilight Jasmine Petal
-			[52988] = 52988, -- Whiptail
-			[108365] = 108365, -- Whiptail Stem
-			[52986] = 52986, -- Heartblossom
-			[108363] = 108363, -- Heartblossom Petal
-			[52984] = 52984, -- Stormvine
-			[52985] = 52985, -- Azshara's Veil
-			[108361] = 108361, -- Stormvine Stalk
-			[108362] = 108362, -- Azshara's Veil Stem
-			[52983] = 52983, -- Cinderbloom
-			[108360] = 108360, -- Cinderbloom Petal
-			[36908] = 36908, -- Frost Lotus
-			[36905] = 36905, -- Lichbloom
-			[36906] = 36906, -- Icethorn
-			[108355] = 108355, -- Lichbloom Stalk
-			[108356] = 108356, -- Icethorn Bramble
-			[36903] = 36903, -- Adder's Tongue
-			[108353] = 108353, -- Adder's Tongue Stem
-			[39970] = 39970, -- Fire Leaf
-			[108359] = 108359, -- Fire Leaf Bramble
-			[36902] = 36902, -- Constrictor Grass
-			[36901] = 36901, -- Goldclover
-			[36904] = 36904, -- Tiger Lily
-			[36907] = 36907, -- Talandra's Rose
-			[37921] = 37921, -- Deadnettle
-			[108352] = 108352, -- Goldclover Leaf
-			[108354] = 108354, -- Tiger Lily Petal
-			[108357] = 108357, -- Talandra's Rose Petal
-			[108358] = 108358, -- Deadnettle Bramble
-			[22794] = 22794, -- Fel Lotus
-			[22791] = 22791, -- Netherbloom
-			[22792] = 22792, -- Nightmare Vine
-			[22793] = 22793, -- Mana Thistle
-			[22797] = 22797, -- Nightmare Seed
-			[108349] = 108349, -- Netherbloom Leaf
-			[108350] = 108350, -- Nightmare Vine Stem
-			[108351] = 108351, -- Mana Thistle Leaf
-			[22790] = 22790, -- Ancient Lichen
-			[108348] = 108348, -- Ancient Lichen Petal
-			[22788] = 22788, -- Flame Cap
-			[22787] = 22787, -- Ragveil
-			[108346] = 108346, -- Ragveil Cap
-			[19727] = 19727, -- Blood Scythe
-			[13468] = 13468, -- Black Lotus
-			[22785] = 22785, -- Felweed
-			[22786] = 22786, -- Dreaming Glory
-			[22789] = 22789, -- Terocone
-			[108344] = 108344, -- Felweed Stalk
-			[108345] = 108345, -- Dreaming Glory Petal
-			[108347] = 108347, -- Terocone Leaf
-			[19726] = 19726, -- Bloodvine
-			[13467] = 13467, -- Icecap
-			[108343] = 108343, -- Icecap Petal
-			[13466] = 13466, -- Sorrowmoss
-			[108342] = 108342, -- Sorrowmoss Leaf
-			[13465] = 13465, -- Mountain Silversage
-			[108341] = 108341, -- Mountain Silversage Stalk
-			[13463] = 13463, -- Dreamfoil
-			[108339] = 108339, -- Dreamfoil Blade
-			[13464] = 13464, -- Golden Sansam
-			[108340] = 108340, -- Golden Sansam Leaf
-			[8846] = 8846, -- Gromsblood
-			[108338] = 108338, -- Gromsblood Leaf
-			[8839] = 8839, -- Blindweed
-			[8845] = 8845, -- Ghost Mushroom
-			[108336] = 108336, -- Blindweed Stem
-			[108337] = 108337, -- Ghost Mushroom Cap
-			[8838] = 8838, -- Sungrass
-			[108335] = 108335, -- Sungrass Stalk
-			[8836] = 8836, -- Arthas' Tears
-			[108334] = 108334, -- Arthas' Tears Petal
-			[8831] = 8831, -- Purple Lotus
-			[108333] = 108333, -- Purple Lotus Petal
-			[4625] = 4625, -- Firebloom
-			[108332] = 108332, -- Firebloom Petal
-			[8153] = 8153, -- Wildvine
-			[3819] = 3819, -- Dragon's Teeth
-			[108329] = 108329, -- Dragon's Teeth Stem
-			[3358] = 3358, -- Khadgar's Whisker
-			[108326] = 108326, -- Khadgar's Whisker Stem
-			[3821] = 3821, -- Goldthorn
-			[108331] = 108331, -- Goldthorn Bramble
-			[3818] = 3818, -- Fadeleaf
-			[108328] = 108328, -- Fadeleaf Petal
-			[3357] = 3357, -- Liferoot
-			[108325] = 108325, -- Liferoot Stem
-			[3356] = 3356, -- Kingsblood
-			[108324] = 108324, -- Kingsblood Petal
-			[3355] = 3355, -- Wild Steelbloom
-			[3369] = 3369, -- Grave Moss
-			[108323] = 108323, -- Wild Steelbloom Petal
-			[108327] = 108327, -- Grave Moss Leaf
-			[2453] = 2453, -- Bruiseweed
-			[3820] = 3820, -- Stranglekelp
-			[108322] = 108322, -- Bruiseweed Stem
-			[108330] = 108330, -- Stranglekelp Blade
-			[2450] = 2450, -- Briarthorn
-			[2452] = 2452, -- Swiftthistle
-			[108320] = 108320, -- Briarthorn Bramble
-			[108321] = 108321, -- Swiftthistle Leaf
-			[785] = 785, -- Mageroyal
-			[2449] = 2449, -- Earthroot
-			[108318] = 108318, -- Mageroyal Petal
-			[108319] = 108319, -- Earthroot Stem
-			[765] = 765, -- Silverleaf
-			[2447] = 2447, -- Peacebloom
-			[22710] = 22710, -- Bloodthistle
-			[116053] = 116053, -- Draenic Seeds
-
+			129289, -- Felwort Seed
+			129288, -- Starlight Rose Seed
+			129287, -- Fjarnskaggl Seed
+			129286, -- Foxflower Seed
+			129285, -- Dreamleaf Seed
+			129284, -- Aethril Seed
+			128304, -- Yseralline Seed
+			124106, -- Felwort
+			124105, -- Starlight Rose
+			124104, -- Fjarnskaggl
+			124103, -- Foxflower
+			124102, -- Dreamleaf
+			124101, -- Aethril
+			116053, -- Draenic Seeds
+			109629, -- Talador Orchid Petal
+			109628, -- Nagrand Arrowbloom Petal
+			109627, -- Starflower Petal
+			109626, -- Gorgrond Flytrap Ichor
+			109625, -- Broken Fireweed Stem
+			109624, -- Broken Frostweed Stem
+			109129, -- Talador Orchid
+			109128, -- Nagrand Arrowbloom
+			109127, -- Starflower
+			109126, -- Gorgrond Flytrap
+			109125, -- Fireweed
+			109124, -- Frostweed
+			108365, -- Whiptail Stem
+			108364, -- Twilight Jasmine Petal
+			108363, -- Heartblossom Petal
+			108362, -- Azshara's Veil Stem
+			108361, -- Stormvine Stalk
+			108360, -- Cinderbloom Petal
+			108359, -- Fire Leaf Bramble
+			108358, -- Deadnettle Bramble
+			108357, -- Talandra's Rose Petal
+			108356, -- Icethorn Bramble
+			108355, -- Lichbloom Stalk
+			108354, -- Tiger Lily Petal
+			108353, -- Adder's Tongue Stem
+			108352, -- Goldclover Leaf
+			108351, -- Mana Thistle Leaf
+			108350, -- Nightmare Vine Stem
+			108349, -- Netherbloom Leaf
+			108348, -- Ancient Lichen Petal
+			108347, -- Terocone Leaf
+			108346, -- Ragveil Cap
+			108345, -- Dreaming Glory Petal
+			108344, -- Felweed Stalk
+			108343, -- Icecap Petal
+			108342, -- Sorrowmoss Leaf
+			108341, -- Mountain Silversage Stalk
+			108340, -- Golden Sansam Leaf
+			108339, -- Dreamfoil Blade
+			108338, -- Gromsblood Leaf
+			108337, -- Ghost Mushroom Cap
+			108336, -- Blindweed Stem
+			108335, -- Sungrass Stalk
+			108334, -- Arthas' Tears Petal
+			108333, -- Purple Lotus Petal
+			108332, -- Firebloom Petal
+			108331, -- Goldthorn Bramble
+			108330, -- Stranglekelp Blade
+			108329, -- Dragon's Teeth Stem
+			108328, -- Fadeleaf Petal
+			108327, -- Grave Moss Leaf
+			108326, -- Khadgar's Whisker Stem
+			108325, -- Liferoot Stem
+			108324, -- Kingsblood Petal
+			108323, -- Wild Steelbloom Petal
+			108322, -- Bruiseweed Stem
+			108321, -- Swiftthistle Leaf
+			108320, -- Briarthorn Bramble
+			108319, -- Earthroot Stem
+			108318, -- Mageroyal Petal
+			97624, -- Desecrated Herb Pod
+			97623, -- Fool's Cap Spores
+			97622, -- Snow Lily Petal
+			97621, -- Silkweed Stem
+			97620, -- Rain Poppy Petal
+			97619, -- Torn Green Tea Leaf
+			79011, -- Fool's Cap
+			79010, -- Snow Lily
+			72238, -- Golden Lotus
+			72237, -- Rain Poppy
+			72235, -- Silkweed
+			72234, -- Green Tea Leaf
+			52988, -- Whiptail
+			52987, -- Twilight Jasmine
+			52986, -- Heartblossom
+			52985, -- Azshara's Veil
+			52984, -- Stormvine
+			52983, -- Cinderbloom
+			39970, -- Fire Leaf
+			37921, -- Deadnettle
+			36908, -- Frost Lotus
+			36907, -- Talandra's Rose
+			36906, -- Icethorn
+			36905, -- Lichbloom
+			36904, -- Tiger Lily
+			36903, -- Adder's Tongue
+			36902, -- Constrictor Grass
+			36901, -- Goldclover
+			22797, -- Nightmare Seed
+			22794, -- Fel Lotus
+			22793, -- Mana Thistle
+			22792, -- Nightmare Vine
+			22791, -- Netherbloom
+			22790, -- Ancient Lichen
+			22789, -- Terocone
+			22788, -- Flame Cap
+			22787, -- Ragveil
+			22786, -- Dreaming Glory
+			22785, -- Felweed
+			22710, -- Bloodthistle
+			19727, -- Blood Scythe
+			19726, -- Bloodvine
+			13468, -- Black Lotus
+			13467, -- Icecap
+			13466, -- Sorrowmoss
+			13465, -- Mountain Silversage
+			13464, -- Golden Sansam
+			13463, -- Dreamfoil
+			8846, -- Gromsblood
+			8845, -- Ghost Mushroom
+			8839, -- Blindweed
+			8838, -- Sungrass
+			8836, -- Arthas' Tears
+			8831, -- Purple Lotus
+			8153, -- Wildvine
+			4625, -- Firebloom
+			3821, -- Goldthorn
+			3820, -- Stranglekelp
+			3819, -- Dragon's Teeth
+			3818, -- Fadeleaf
+			3369, -- Grave Moss
+			3358, -- Khadgar's Whisker
+			3357, -- Liferoot
+			3356, -- Kingsblood
+			3355, -- Wild Steelbloom
+			2453, -- Bruiseweed
+			2452, -- Swiftthistle
+			2450, -- Briarthorn
+			2449, -- Earthroot
+			2447, -- Peacebloom
+			785, -- Mageroyal
+			765, -- Silverleaf
 		},
 	},
 }
@@ -439,6 +562,27 @@ constants.itemCategories = {
 	["pvp"] = PVP,
 	["others"] = MISCELLANEOUS,
 	["professions"] = TRADE_SKILLS,
+}
+
+constants.archaeology = {
+	1174, -- Demonic Archaeology Fragment
+	1173, -- Highmountain Tauren Archaeology Fragment
+	1172, -- Highborne Archaeology Fragment
+	829, -- Arakkoa Archaeology Fragment
+	828, -- Ogre Archaeology Fragment
+	821, -- Draenor Clans Archaeology Fragment
+	754, -- Mantid Archaeology Fragment
+	677, -- Mogu Archaeology Fragment
+	676, -- Pandaren Archaeology Fragment
+	401, -- Tol'vir Archaeology Fragment
+	400, -- Nerubian Archaeology Fragment
+	399, -- Vrykul Archaeology Fragment
+	398, -- Draenei Archaeology Fragment
+	397, -- Orc Archaeology Fragment
+	394, -- Night Elf Archaeology Fragment
+	393, -- Fossil Archaeology Fragment
+	385, -- Troll Archaeology Fragment
+	384, -- Dwarf Archaeology Fragment
 }
 
 constants.events = {

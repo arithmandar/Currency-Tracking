@@ -19,6 +19,7 @@ local FOLDER_NAME, private = ...
 
 local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
+local LibCurrencyInfo = LibStub:GetLibrary("LibCurrencyInfo")
 local AceDB = LibStub("AceDB-3.0")
 local LDB_CurrencyTracking = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject(private.addon_name, {
 	type = "data source",
@@ -42,8 +43,8 @@ local CurrencyTracking_Server = GetRealmName()
 local isInLockdown = false
 local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale()
 local CT_CURRSTR = nil
-
-local options;
+local CURRENCIESLIST = {}
+local numCurrencies = 0
 
 -- codes adopted from Accountant_Classic
 local function getFormattedValue(amount)
@@ -153,7 +154,7 @@ local function button_OnMouseDown(self, buttonName)
 			GameTooltip:Hide()
 			addon.frame:StartMoving()
 		elseif (buttonName == "RightButton") then
-			addon:OpenOptions()
+			addon:OpenOptions(self.isItem)
 			GameTooltip_Hide()
 		end
 	end
@@ -196,7 +197,7 @@ local function button_OnLeave(self)
 	GameTooltip_Hide();
 	GameTooltip:SetScale(CT_ORIG_GAMPTOOLTIP_SCALE);
 end
-
+--[[
 local function currencyButton_Update()
 	local numTokenTypes = GetCurrencyListSize()
 
@@ -248,6 +249,57 @@ local function currencyButton_Update()
 				button.isItem = false
 				button.itemID = nil
 				button.itemName = nil
+				button.currencyID = nil
+				button.LinkButton:Show()
+				button:Show()
+				bi = bi + 1
+			end
+		end
+	end
+	-- archaeology
+	for index, id in ipairs(addon.constants.archaeology) do
+		-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity = GetCurrencyInfo(id)
+		local name, count, icon = GetCurrencyInfo(id)
+		if not icon then icon = "" end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
+		if (profile["currencies"][name] == true) then
+			if (count >= 0) then
+				-- handle the new currency frame
+				button = _G["CurrencyTrackingButton"..bi]
+				if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+				button.icon:SetTexture(icon)
+				if (count == 0) then 
+					button.count:SetText("|cffff0000"..count.."|r")
+				else
+					count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+					button.count:SetText(count)
+				end
+				local width = button.count:GetStringWidth()+10
+				gwidth = gwidth + width
+				button:SetWidth(width)
+				button.index = nil
+				if (profile.icon_first) then
+					button.icon:SetPoint("LEFT", 0, 0)
+					button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
+				end
+				if (bi == 1) then
+					button:SetPoint("TOPLEFT", 0, 0)
+				else
+					button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+				end
+				button:SetScript("OnMouseDown",	button_OnMouseDown)
+				button:SetScript("OnMouseUp", 	button_OnMouseUp)
+				button:SetScript("OnEnter", 	button_OnEnter)
+				button:SetScript("OnLeave", 	button_OnLeave)
+				button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+				button.highlight:SetWidth(width)
+				button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+				button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
+				button.isCurrency = true
+				button.isMoney = false
+				button.isItem = false
+				button.itemID = nil
+				button.currencyID = id
+				button.itemName = name
 				button.LinkButton:Show()
 				button:Show()
 				bi = bi + 1
@@ -258,7 +310,7 @@ local function currencyButton_Update()
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
 			for ka, profs in pairs(v) do
-				for kb, itemID in pairs(profs) do
+				for kb, itemID in ipairs(profs) do
 					if (profile["items"][itemID] == true) then
 						button = _G["CurrencyTrackingButton"..bi]
 						if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
@@ -295,6 +347,7 @@ local function currencyButton_Update()
 						button.isMoney = false
 						button.isItem = true
 						button.itemID = itemID
+						button.currencyID = nil
 						button.itemName = name or ""
 						button.LinkButton:Show()
 						button:Show()
@@ -303,7 +356,7 @@ local function currencyButton_Update()
 				end
 			end
 		else
-			for ka, itemID in pairs(v) do
+			for ka, itemID in ipairs(v) do
 				if (profile["items"][itemID] == true) then
 					button = _G["CurrencyTrackingButton"..bi]
 					if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
@@ -340,6 +393,7 @@ local function currencyButton_Update()
 					button.isMoney = false
 					button.isItem = true
 					button.itemID = itemID
+					button.currencyID = nil
 					button.itemName = name or ""
 					button.LinkButton:Show()
 					button:Show()
@@ -376,6 +430,7 @@ local function currencyButton_Update()
 		button.isMoney = true
 		button.isItem = false
 		button.itemID = nil
+		button.currencyID = nil
 		button.itemName = nil
 		button.LinkButton:Hide()
 		button:Show()
@@ -393,7 +448,220 @@ local function currencyButton_Update()
 		button.isMoney = false
 		button.isItem = false
 		button.itemID = nil
+		button.currencyID = nil
 		button.itemName = nil
+		button.LinkButton:Hide()
+		button:Hide()
+		bi = bi + 1
+		button = _G["CurrencyTrackingButton"..bi]
+	end
+
+end
+]]
+local function currencyButton_Update()
+	local nf = _G["CurrencyTrackingFrame"]
+	local button
+	local gwidth = 0
+	local bi = 1
+
+	for i=1, numCurrencies do
+		local id = CURRENCIESLIST[i].id
+		local name, count, icon
+		if (id) then name, count, icon = GetCurrencyInfo(id) end
+		if (name and profile["currencies"][name] == true) then
+			if (count >= 0) then
+				-- handle the new currency frame
+				button = _G["CurrencyTrackingButton"..bi]
+				if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+				button.icon:SetTexture(icon)
+				if (count == 0) then 
+					button.count:SetText("|cffff0000"..count.."|r")
+				else
+					count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+					button.count:SetText(count)
+				end
+				local width = button.count:GetStringWidth()+10
+				gwidth = gwidth + width
+				button:SetWidth(width)
+				button.index = id
+				if (profile.icon_first) then
+					button.icon:SetPoint("LEFT", 0, 0)
+					button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
+				end
+				if (bi == 1) then
+					button:SetPoint("TOPLEFT", 0, 0)
+				else
+					button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+				end
+				button:SetScript("OnMouseDown",	button_OnMouseDown)
+				button:SetScript("OnMouseUp", 	button_OnMouseUp)
+				button:SetScript("OnEnter", 	button_OnEnter)
+				button:SetScript("OnLeave", 	button_OnLeave)
+				button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+				button.highlight:SetWidth(width)
+				button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+				button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
+				button.isCurrency = true
+				button.isMoney = false
+				button.isItem = false
+				button.itemID = nil
+				button.itemName = nil
+				button.currencyID = id
+				button.LinkButton.tooltipText = LibCurrencyInfo:GetCurrencyTokenStrings(id)
+				button.LinkButton:Show()
+				button:Show()
+				bi = bi + 1
+			end
+		end
+	end
+	-- tracked items
+	for k, v in pairs(addon.constants.items) do
+		if k == "professions" then
+			for ka, profs in pairs(v) do
+				for kb, itemID in ipairs(profs) do
+					if (profile["items"][itemID] == true) then
+						button = _G["CurrencyTrackingButton"..bi]
+						if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+						
+						local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+						local count = GetItemCount(itemID, true)
+						button.icon:SetTexture(icon or 0)
+						if (count and count == 0) then 
+							button.count:SetText("|cffff0000"..count.."|r")
+						elseif (count and count > 0) then
+							count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+							button.count:SetText(count)
+						else
+							button.count:SetText("")
+						end
+						local width = button.count:GetStringWidth()+10
+						gwidth = gwidth + width
+						button:SetWidth(width)
+						if (bi == 1) then
+							button:SetPoint("TOPLEFT", 0, 0)
+						else
+							button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+						end
+						button.index = nil
+						button:SetScript("OnMouseDown",	button_OnMouseDown)
+						button:SetScript("OnMouseUp", 	button_OnMouseUp)
+						--button:SetScript("OnEnter", 	button_OnEnter)
+						button:SetScript("OnLeave", 	button_OnLeave)
+						button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+						button.highlight:SetWidth(width)
+						button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+						button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
+						button.isCurrency = false
+						button.isMoney = false
+						button.isItem = true
+						button.itemID = itemID
+						button.currencyID = nil
+						button.itemName = name or ""
+						button.LinkButton.tooltipText = nil
+						button.LinkButton:Show()
+						button:Show()
+						bi = bi + 1
+					end
+				end
+			end
+		else
+			for ka, itemID in ipairs(v) do
+				if (profile["items"][itemID] == true) then
+					button = _G["CurrencyTrackingButton"..bi]
+					if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+					
+					local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+					local count = GetItemCount(itemID, true)
+					button.icon:SetTexture(icon or 0)
+					if (count and count == 0) then 
+						button.count:SetText("|cffff0000"..count.."|r")
+					elseif (count and count > 0) then
+						count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+						button.count:SetText(count)
+					else
+						button.count:SetText("")
+					end
+					local width = button.count:GetStringWidth()+10
+					gwidth = gwidth + width
+					button:SetWidth(width)
+					if (bi == 1) then
+						button:SetPoint("TOPLEFT", 0, 0)
+					else
+						button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+					end
+					button.index = nil
+					button:SetScript("OnMouseDown",	button_OnMouseDown)
+					button:SetScript("OnMouseUp", 	button_OnMouseUp)
+					--button:SetScript("OnEnter", 	button_OnEnter)
+					button:SetScript("OnLeave", 	button_OnLeave)
+					button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+					button.highlight:SetWidth(width)
+					button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+					button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
+					button.isCurrency = false
+					button.isMoney = false
+					button.isItem = true
+					button.itemID = itemID
+					button.currencyID = nil
+					button.itemName = name or ""
+					button.LinkButton.tooltipText = nil
+					button.LinkButton:Show()
+					button:Show()
+					bi = bi + 1
+				end
+			end
+		end
+	end
+	-- end of tracked items
+
+	if (profile.show_money) then
+		button = _G["CurrencyTrackingButton"..bi]
+		if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+		button.icon:SetTexture(nil)
+		button.count:SetText(getFormattedValue(GetMoney()))
+		local width = button.count:GetStringWidth()
+		gwidth = gwidth + width
+		button:SetWidth(width)
+		if (bi == 1) then
+			button:SetPoint("TOPLEFT", 0, 0)
+		else
+			button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+		end
+		button.index = nil
+		button:SetScript("OnMouseDown",	button_OnMouseDown)
+		button:SetScript("OnMouseUp", 	button_OnMouseUp)
+		--button:SetScript("OnEnter", 	button_OnEnter)
+		button:SetScript("OnLeave", 	button_OnLeave)
+		button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+		button.highlight:SetWidth(width)
+		button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+		button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
+		button.isCurrency = false
+		button.isMoney = true
+		button.isItem = false
+		button.itemID = nil
+		button.currencyID = nil
+		button.itemName = nil
+		button.LinkButton.tooltipText = nil
+		button.LinkButton:Hide()
+		button:Show()
+		bi = bi + 1
+	end
+
+	nf:SetWidth(gwidth)
+	button = _G["CurrencyTrackingButton"..bi]
+	while button do
+		button.icon:SetTexture(nil)
+		button.count:SetText(nil)
+		button:SetWidth(0)
+		button.index = nil
+		button.isCurrency = false
+		button.isMoney = false
+		button.isItem = false
+		button.itemID = nil
+		button.currencyID = nil
+		button.itemName = nil
+		button.LinkButton.tooltipText = nil
 		button.LinkButton:Hide()
 		button:Hide()
 		bi = bi + 1
@@ -447,11 +715,46 @@ local function currencyString_Update()
 			end
 		end
 	end
+	for index, id in ipairs(addon.constants.archaeology) do
+		local name, count, icon = GetCurrencyInfo(id)
+		if not icon then icon = "" end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
+		if (profile["currencies"][name] == true) then
+			if (count >= 0) then
+				if (count == 0) then 
+					if (profile.icon_first) then
+						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t |cffff0000%s|r ";
+					else
+						CT_CURRENCY_TEXTURE = " |cffff0000%s|r|T"..icon..":%d:%d:2:0|t ";
+					end
+				else
+					if (profile.icon_first) then
+						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t |cffffffff%s|r ";
+					else
+						CT_CURRENCY_TEXTURE = " |cffffffff%s|r|T"..icon..":%d:%d:2:0|t ";
+					end
+				end
+				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count;
+				if (currencystr) then
+					if (profile.icon_first) then
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count);
+					else
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0);
+					end
+				else
+					if (profile.icon_first) then
+						currencystr = format(CT_CURRENCY_TEXTURE, 0, 0, count);
+					else
+						currencystr = format(CT_CURRENCY_TEXTURE, count, 0, 0);
+					end
+				end
+			end
+		end
+	end
 	-- tracked items
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
 			for ka, profs in pairs(v) do
-				for kb, itemID in pairs(profs) do
+				for kb, itemID in ipairs(profs) do
 					if (profile["items"][itemID] == true) then
 						local _, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 						local count = GetItemCount(itemID, true)
@@ -468,7 +771,7 @@ local function currencyString_Update()
 				end
 			end
 		else
-			for ka, itemID in pairs(v) do
+			for ka, itemID in ipairs(v) do
 				if (profile["items"][itemID] == true) then
 					local _, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 					local count = GetItemCount(itemID, true)
@@ -591,12 +894,12 @@ local function scanItems()
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
 			for ka, profs in pairs(v) do
-				for kb, itemID in pairs(profs) do
+				for kb, itemID in ipairs(profs) do
 					local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 					end
 				end
 		else
-			for ka, itemID in pairs(v) do
+			for ka, itemID in ipairs(v) do
 				local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 			end
 		end
@@ -653,6 +956,36 @@ local function frameRefresh()
 	end
 end
 
+local function getNumberOfCurrencies()
+	local n = 0
+	for k,v in pairs(addon.constants.currencies) do
+		n = n + 1 + #v
+	end
+	
+	return n
+end
+
+local function populateCurrencyList()
+	if not CURRENCIESLIST then CURRENCIESLIST = {} end
+	-- CURRENCIESLIST table structure
+	--CURRENCIESLIST = {
+	--	[1] = { isHeader = true, headerKey = "MISC" },
+	--	[2] = { id = 42 },
+	--	....
+	--}
+
+	local i = 1
+	local lang = GetLocale()
+	for k,v in pairs(addon.constants.currencies) do
+		CURRENCIESLIST[i] = { isHeader = true, headerKey = k }
+		i = i + 1
+		for ka,id in ipairs(v) do
+			CURRENCIESLIST[i] = { id = id }
+			i = i + 1
+		end
+	end
+end
+
 function addon:OnInitialize()
 	self.db = AceDB:New(addon.Name.."DB", addon.constants.defaults)
 	profile = self.db.profile
@@ -664,6 +997,8 @@ function addon:OnInitialize()
 	--copyOptions()
 	self:SetupOptions()
 	self.frame = createCurrencyFrame()
+	numCurrencies = getNumberOfCurrencies()
+	populateCurrencyList()
 end
 
 function addon:OnEnable()

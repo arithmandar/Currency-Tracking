@@ -3,6 +3,7 @@
 $Id$
 -->
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+
 	<Frame name="CurrencyTrackingTokenOptionsFrame" hidden="true">
 		<Layers>
 			<Layer level="ARTWORK">
@@ -18,6 +19,27 @@ $Id$
 			</Layer>
 		</Layers>
 		<Frames>
+			<ScrollFrame name="$parentContainer" parentKey="TokenContainer" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="550" y="500" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-112"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(self, offset, 19, function() CurrencyTracking:OptionsTokenContainer_Update() end); 
+					</OnVerticalScroll>
+					<OnShow>
+						CurrencyTracking:OptionsTokenContainer_Update()
+					</OnShow>
+				</Scripts>
+			</ScrollFrame>
+<!--
 			<ScrollFrame name="$parentContainer" parentKey="TokenContainer" inherits="HybridScrollFrameTemplate">
 				<Size>
 					<AbsDimension x="550" y="500" />
@@ -25,7 +47,7 @@ $Id$
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
 						<Offset>
-							<AbsDimension x="20" y="-45"/>
+							<AbsDimension x="20" y="-112"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -46,6 +68,7 @@ $Id$
 					</Slider>
 				</Frames>
 			</ScrollFrame>
+-->
 		</Frames>
 		<Scripts>
 			<OnLoad>
