@@ -25,295 +25,6 @@ local AceDBOptions = LibStub("AceDBOptions-3.0")
 local profile
 
 -- /////////////////////////////////////////////////////////
--- Token option frames
--- /////////////////////////////////////////////////////////
-
---local numCurrencies = 0
---local CURRENCIESLIST = {}
---local function setupTokenOptions(name)
---	if (addon.db.profile["currencies"][name] == nil) then
---		addon.db.profile["currencies"][name] = false
---	end
---end
---[[
-local function tokenContainer_Update()
-	local numTokenTypes = GetCurrencyListSize()
-	
-	if (not CurrencyTrackingTokenOptionsFrame.TokenContainer.buttons) then
-		return
-	end
-
-	-- Setup the buttons
-	local scrollFrame = CurrencyTrackingTokenOptionsFrame.TokenContainer
-	local offset = HybridScrollFrame_GetOffset(scrollFrame)
-	local buttons = scrollFrame.buttons
-	local numButtons = #buttons
-	local name, isHeader, isExpanded, isUnused, isWatched, count, icon
-	local button, index
-	for i=1, numButtons do
-		index = offset+i
-		name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index)
-		button = buttons[i]
-		button.check:Hide()
-		--button.Select:Hide()
-		if ( not name or name == "" ) then
-			button:Hide()
-		else
-			if ( isHeader ) then
-				button.categoryLeft:Show()
-				button.categoryRight:Show()
-				button.categoryMiddle:Show()
-				button.expandIcon:Show()
-				button.count:SetText("")
-				button.icon:SetTexture("")
-				if ( isExpanded ) then
-					button.expandIcon:SetTexCoord(0.5625, 1, 0, 0.4375)
-				else
-					button.expandIcon:SetTexCoord(0, 0.4375, 0, 0.4375)
-				end
-				button.highlight:SetTexture("Interface\\TokenFrame\\UI-TokenFrame-CategoryButton")
-				button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 3, -2)
-				button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -3, 2)
-				button.name:SetText(name)
-				button.name:SetFontObject("GameFontNormal")
-				button.name:SetPoint("LEFT", 22, 0)
-				button.LinkButton:Hide()
-			else
-				setupTokenOptions(name)
-				button.categoryLeft:Hide()
-				button.categoryRight:Hide()
-				button.categoryMiddle:Hide()
-				button.expandIcon:Hide()
-				button.count:SetText(addon.db.profile.breakupnumbers and BreakUpLargeNumbers(count) or count)
-				button.icon:SetTexture(icon)
-				--if ( isWatched ) then
-				--	button.check:Show()
-				--end
-				button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-				button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
-				button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
-				if ( count == 0 ) then
-					button.count:SetFontObject("GameFontRed")
-					--button.name:SetFontObject("GameFontDisable")
-					button.name:SetFontObject("GameFontRed")
-				else
-					button.count:SetFontObject("GameFontHighlight")
-					button.name:SetFontObject("GameFontHighlight")
-				end
-				button.name:SetText(name)
-				button.name:SetPoint("LEFT", 11, 0)
-				button.LinkButton:Show()
-				if (addon.db.profile["currencies"][name] == true) then
-					button.check:Show()
-				end
-			end
-			--Manage highlight
-			if ( name == CurrencyTrackingTokenOptionsFrame.TokenContainer.selectedToken ) then
-				CurrencyTrackingTokenOptionsFrame.TokenContainer.selectedID = index
-				button:LockHighlight()
-			else
-				button:UnlockHighlight()
-			end
-
-			button.index = index
-			button.isHeader = isHeader
-			button.isExpanded = isExpanded
-			button.isUnused = isUnused
-			button.isWatched = isWatched
-			button:Show()
-		end
-	end
-	local totalHeight = numTokenTypes * (button:GetHeight()+TOKEN_BUTTON_OFFSET)
-	local displayedHeight = #buttons * (button:GetHeight()+TOKEN_BUTTON_OFFSET)
-
-	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight)
-end
-]]
---[[
-function addon:OptionsTokenContainer_Update()
-	-- Setup the buttons
-	local scrollFrame = CurrencyTrackingTokenOptionsFrame.TokenContainer
-	FauxScrollFrame_Update(scrollFrame, numCurrencies, 30, 17)
-
-	local lang = GetLocale()
-	local offset = FauxScrollFrame_GetOffset(scrollFrame)
-	local button, index
-	for i = 1, numCurrencies do
-		index = offset + i
-		button = _G["CurrencyTrackingCurrency"..index]
-		button.check:Hide()
-		--button.Select:Hide()
-		local isHeader, headerKey, id = CURRENCIESLIST[index].isHeader, CURRENCIESLIST[index].headerKey, CURRENCIESLIST[index].id
-		if (isHeader) then
-			local name = addon.constants.currencyCategories[headerKey][lang]
-			
-			button.categoryLeft:Show()
-			button.categoryRight:Show()
-			button.categoryMiddle:Show()
-			button.expandIcon:Show()
-			button.count:SetText("")
-			button.icon:SetTexture("")
-			--button.expandIcon:SetTexCoord(0.5625, 1, 0, 0.4375)
-			button.highlight:SetTexture("Interface\\TokenFrame\\UI-TokenFrame-CategoryButton")
-			button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 3, -2)
-			button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -3, 2)
-			button.name:SetText(name)
-			button.name:SetFontObject("GameFontNormal")
-			button.name:SetPoint("LEFT", 22, 0)
-			button.LinkButton:Hide()
-		else
-			-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity = GetCurrencyInfo(id)
-			local name, count, icon = GetCurrencyInfo(id)
-			setupTokenOptions(name)
-			button.categoryLeft:Hide()
-			button.categoryRight:Hide()
-			button.categoryMiddle:Hide()
-			--button.expandIcon:Hide()
-			button.count:SetText(addon.db.profile.breakupnumbers and BreakUpLargeNumbers(count) or count)
-			button.icon:SetTexture(icon)
-			button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-			button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
-			button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
-			if ( count == 0 ) then
-				button.count:SetFontObject("GameFontRed")
-				--button.name:SetFontObject("GameFontDisable")
-				button.name:SetFontObject("GameFontRed")
-			else
-				button.count:SetFontObject("GameFontHighlight")
-				button.name:SetFontObject("GameFontHighlight")
-			end
-			button.name:SetText(name)
-			button.name:SetPoint("LEFT", 11, 0)
-			button.LinkButton:Show()
-			if (addon.db.profile["currencies"][name] == true) then
-				button.check:Show()
-			end
-		end
-		-- Manage highlight
-		if ( name == CurrencyTrackingTokenOptionsFrame.TokenContainer.selectedToken ) then
-			CurrencyTrackingTokenOptionsFrame.TokenContainer.selectedID = index
-			button:LockHighlight()
-		else
-			button:UnlockHighlight()
-		end
-
-			button.index = index
-			button.isHeader = isHeader
-			--button.isExpanded = isExpanded
-			--button.isUnused = isUnused
-			--button.isWatched = isWatched
-			button:Show()
-	end
-	--local totalHeight = numCurrencies * (button:GetHeight()+TOKEN_BUTTON_OFFSET)
-	--local displayedHeight = 30 * (button:GetHeight()+TOKEN_BUTTON_OFFSET)
-end
-
-local myaddon = {}
-local function addTokenOptionFrame()
-	UIPanelWindows['CurrencyTrackingTokenOptionsFrame'] = {area = 'center', pushable = 0}
-	
-	myaddon.panel = _G["CurrencyTrackingTokenOptionsFrame"]
-	
-	myaddon.panel.name = L["Tracked Currencies"]
-	myaddon.panel.parent = addon.LocName
-	InterfaceOptions_AddCategory(myaddon.panel)
-end
-]]
-
--- /////////////////////////////////////////////////////////
-local function tokenButton_ToggleTrack(name)
-	profile = addon.db.profile
-	if (not profile["currencies"][name]) then profile["currencies"][name] = false end
-
-	profile["currencies"][name] = not profile["currencies"][name]
-end
---function CurrencyTrackingTokenButton_OnClick(self)
---	if ( self.isHeader ) then
---[[		if ( self.isExpanded ) then
---			ExpandCurrencyList(self.index, 0)
---		else
---			ExpandCurrencyList(self.index, 1)
---		end
---]]
---	else
---		CurrencyTrackingTokenOptionsFrame.TokenContainer.selectedToken = self.name:GetText()
---		tokenButton_ToggleTrack(CurrencyTrackingTokenOptionsFrame.TokenContainer.selectedToken)
---	end
---	addon:OptionsTokenContainer_Update()
---end
---[[
-local function getNumberOfCurrencies()
-	local n = 0
-	for k,v in pairs(addon.constants.currencies) do
-		n = n + 1 + #v
-	end
-	
-	return n
-end
-]]
---local function populateCurrencyList()
---	if not CURRENCIESLIST then CURRENCIESLIST = {} end
---	--[[ CURRENCIESLIST table structure
---	CURRENCIESLIST = {
---		[1] = { isHeader = true, headerKey = "MISC" },
---		[2] = { isHeader = false, id = 42 },
---		....
---	}
---	]]
---	local i = 1
---	local lang = GetLocale()
---	for k,v in pairs(addon.constants.currencies) do
---		--CURRENCIESLIST[i] = {}
---		CURRENCIESLIST[i] = { isHeader = true, headerKey = k }
---		i = i + 1
---		for ka,id in ipairs(v) do
---			--CURRENCIESLIST[i] = {}
---			CURRENCIESLIST[i] = { id = id }
---			i = i + 1
---		end
---	end
---end
---[[
-function CurrencyTrackingTokenOptions_OnLoad(self)
-	self.TokenContainer.update = (function() addon:OptionsTokenContainer_Update() end)
-	self.Text:SetText(L["Currencies to be tracked on screen:"])
-	
-	populateCurrencyList()
-end
-
-function CurrencyTrackingTokenOptions_OnShow(self)
-	-- Create buttons if not created yet
-	if (not self.TokenContainer.buttons) then
-		HybridScrollFrame_CreateButtons(self.TokenContainer, "CurrencyTrackingTokenButtonTemplate", 1, -2, "TOPLEFT", "TOPLEFT", 0, 0)
-		local buttons = self.TokenContainer.buttons
-		local numButtons = #buttons
-		print(numButtons)
-		for i=1, numButtons do
-			if ( math.fmod(i, 2) == 1 ) then
-				buttons[i].stripe:Hide()
-			end
-		end
-	end
-
-	tokenContainer_Update()
-end
-
-function CurrencyTrackingTokenOptions_OnShow(self)
-	-- Create buttons if not created yet
-	numCurrencies = getNumberOfCurrencies()
-	for i = 1, numCurrencies do
-		local b = _G["CurrencyTrackingCurrency"..i]
-		if (not b) then b = CreateFrame("Button", "CurrencyTrackingCurrency"..i, CurrencyTrackingTokenOptionsFrame, "CurrencyTrackingTokenButtonTemplate") end
-		if ( math.fmod(i, 2) == 1 ) then
-			b.stripe:Hide()
-		end
-	end
-
-	addon:OptionsTokenContainer_Update()
-end
-]]
-
--- /////////////////////////////////////////////////////////
 -- Options
 -- /////////////////////////////////////////////////////////
 local optGetter, optSetter
@@ -485,6 +196,69 @@ local function getOptions()
 end
 
 -- /////////////////////////////////////////////////////////
+-- Currencies
+-- /////////////////////////////////////////////////////////
+local currenciesOptions = nil
+local function tokenButton_ToggleTrack(name)
+	profile = addon.db.profile
+	if (not profile["currencies"][name]) then profile["currencies"][name] = false end
+
+	profile["currencies"][name] = not profile["currencies"][name]
+end
+
+local function getCurrenciesOptions()
+	if not profile then profile = addon.db.profile end
+	local lang = GetLocale()
+	if not currenciesOptions then
+		currenciesOptions = {
+			type = "group",
+			name = L["Tracked Currencies"],
+			args = { },
+		}
+		local t = currenciesOptions.args
+		local i = 1
+		for k,v in pairs(addon.constants.currencies) do
+			t["group"..i] = {}
+			t["group"..i].order = i
+			t["group"..i].type = "group"
+			t["group"..i].name = addon.constants.currencyCategories[k][lang]
+			t["group"..i].args = { }
+			local j = 1
+			local tg = t["group"..i].args
+			for index, id in ipairs(v) do
+				-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity, categoryID, categoryName, currencyDesc = lib:GetCurrencyByID(currencyID)
+				local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
+				if not count then count = 0 end
+				if not currencyDesc then 
+					currencyDesc = ""
+				else
+					currencyDesc = currencyDesc.."\n\n"
+				end
+				
+				if icon and name then
+					local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon or 0, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, name or "")
+					tg["currency"..index] = {}
+					tg["currency"..index].order = index
+					tg["currency"..index].type = "toggle"
+					tg["currency"..index].name = displayString
+					if (totalMax and totalMax > 0) then
+						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL_CAP, HIGHLIGHT_FONT_COLOR_CODE, count, totalMax)
+					else
+						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count)
+					end
+					tg["currency"..index].get = (function() return profile["currencies"][name] end)
+					tg["currency"..index].set = (function() tokenButton_ToggleTrack(name); addon:Refresh() end)
+				end
+				j = j + 1
+			end
+			i = i + 1
+		end
+	end
+	
+	return currenciesOptions
+end
+
+-- /////////////////////////////////////////////////////////
 -- Items
 -- /////////////////////////////////////////////////////////
 local itemOptions = nil
@@ -567,62 +341,6 @@ local function getItemOptions()
 	end
 	
 	return itemOptions
-end
-
--- /////////////////////////////////////////////////////////
--- Currencies
--- /////////////////////////////////////////////////////////
-local currenciesOptions = nil
-local function getCurrenciesOptions()
-	if not profile then profile = addon.db.profile end
-	local lang = GetLocale()
-	if not currenciesOptions then
-		currenciesOptions = {
-			type = "group",
-			name = L["Tracked Currencies"],
-			args = { },
-		}
-		local t = currenciesOptions.args
-		local i = 1
-		for k,v in pairs(addon.constants.currencies) do
-			t["group"..i] = {}
-			t["group"..i].order = i
-			t["group"..i].type = "group"
-			t["group"..i].name = addon.constants.currencyCategories[k][lang]
-			t["group"..i].args = { }
-			local j = 1
-			local tg = t["group"..i].args
-			for index, id in ipairs(v) do
-				-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity, categoryID, categoryName, currencyDesc = lib:GetCurrencyByID(currencyID)
-				local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
-				if not count then count = 0 end
-				if not currencyDesc then 
-					currencyDesc = ""
-				else
-					currencyDesc = currencyDesc.."\n\n"
-				end
-				
-				if icon and name then
-					local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon or 0, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, name or "")
-					tg["currency"..index] = {}
-					tg["currency"..index].order = index
-					tg["currency"..index].type = "toggle"
-					tg["currency"..index].name = displayString
-					if (totalMax and totalMax > 0) then
-						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL_CAP, HIGHLIGHT_FONT_COLOR_CODE, count, totalMax)
-					else
-						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count)
-					end
-					tg["currency"..index].get = (function() return profile["currencies"][name] end)
-					tg["currency"..index].set = (function() tokenButton_ToggleTrack(name); addon:Refresh() end)
-				end
-				j = j + 1
-			end
-			i = i + 1
-		end
-	end
-	
-	return currenciesOptions
 end
 
 local function openOptions(openItems)

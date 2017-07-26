@@ -51,7 +51,7 @@ constants.currencyCategories = {
 
 constants.currencies = {
 	["MISC"] = {
-		42, -- Badge of Justice
+--		42, -- Badge of Justice
 		81, -- Epicurean's Award
 		402, -- Ironpaw Token
 		515, -- Darkmoon Prize Ticket
@@ -161,12 +161,12 @@ constants.currencies = {
 
 constants.items = {
 	world_events = {
-		49927, -- LOVE_TOKEN 
-		44791, -- NOBLEGARDEN_CHOCOLATE 
-		37829, -- BREWFEST_PRIZE_TOKEN 
-		33226, -- TRICKY_TREAT 
-		23247, -- Midsummer Fire Festiva, BURNING_BLOSSOM 
-		21100, -- Lunar Festiva, COIN_OF_ANCESTRY 
+		49927, -- Love Token, Love is in the Air
+		44791, -- Noblegarden Chocolate
+		37829, -- Brewfest Prize Token
+		33226, -- Tricky Treat
+		23247, -- Burning Blossom, Midsummer Fire Festiva
+		21100, -- Coin of Ancestry, Lunar Festiva
 	},
 	pvp = {
 		137642, -- MARK_OF_HONOR 

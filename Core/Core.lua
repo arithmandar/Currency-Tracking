@@ -4,13 +4,13 @@
 -----------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local pairs, select, unpack = _G.pairs, _G.select, _G.unpack
+local pairs, ipairs, select, unpack, type = _G.pairs, _G.ipairs, _G.select, _G.unpack, _G.type
+local string, tonumber = _G.string, _G.tonumber
 -- Libraries
-local string = _G.string
 local GameTooltip = _G.GameTooltip
 local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
 local GetItemInfoInstant, GetItemCount, GetItemInfo = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo
-local format, strsub, strgmatch = string.format, string.sub, string.gmatch
+local format, strsub, strlen, strgmatch = string.format, string.sub, string.len, string.gmatch
 local floor, fmod = math.floor, math.fmod
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -48,44 +48,44 @@ local numCurrencies = 0
 
 -- codes adopted from Accountant_Classic
 local function getFormattedValue(amount)
-	local gold = floor(amount / (COPPER_PER_SILVER * SILVER_PER_GOLD));
-	local goldDisplay = profile.breakupnumbers and BreakUpLargeNumbers(gold) or gold;
-	local silver = floor((amount - (gold * COPPER_PER_SILVER * SILVER_PER_GOLD)) / COPPER_PER_SILVER);
-	local copper = fmod(amount, COPPER_PER_SILVER);
+	local gold = floor(amount / (COPPER_PER_SILVER * SILVER_PER_GOLD))
+	local goldDisplay = profile.breakupnumbers and BreakUpLargeNumbers(gold) or gold
+	local silver = floor((amount - (gold * COPPER_PER_SILVER * SILVER_PER_GOLD)) / COPPER_PER_SILVER)
+	local copper = fmod(amount, COPPER_PER_SILVER)
 	
-	local TMP_GOLD_AMOUNT_TEXTURE;
-	local TMP_SILVER_AMOUNT_TEXTURE;
-	local TMP_COPPER_AMOUNT_TEXTURE;
+	local TMP_GOLD_AMOUNT_TEXTURE
+	local TMP_SILVER_AMOUNT_TEXTURE
+	local TMP_COPPER_AMOUNT_TEXTURE
 
 	if (profile.icon_first) then
-		TMP_GOLD_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t %s";
-		TMP_SILVER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t %02d";
-		TMP_COPPER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t %02d";
+		TMP_GOLD_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t %s"
+		TMP_SILVER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t %02d"
+		TMP_COPPER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t %02d"
 	else
-		TMP_GOLD_AMOUNT_TEXTURE 	= "%s|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t";
-		TMP_SILVER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t";
-		TMP_COPPER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t";
+		TMP_GOLD_AMOUNT_TEXTURE 	= "%s|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t"
+		TMP_SILVER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t"
+		TMP_COPPER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t"
 	end
 
 	if (profile.icon_first) then
 		if (gold >0) then
-			return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, goldDisplay, 0, 0, silver, 0, 0, copper);
+			return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, goldDisplay, 0, 0, silver, 0, 0, copper)
 		elseif (silver >0) then 
-			return format("|cffffffff"..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, silver, 0, 0, copper);
+			return format("|cffffffff"..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, silver, 0, 0, copper)
 		elseif (copper >0) then
-			return format("|cffffffff"..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, copper);
+			return format("|cffffffff"..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, copper)
 		else
-			return "";
+			return ""
 		end
 	else
 		if (gold >0) then
-			return format(" |cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0, silver, 0, 0, copper, 0, 0);
+			return format(" |cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0, silver, 0, 0, copper, 0, 0)
 		elseif (silver >0) then 
-			return format(" |cffffffff"..SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", silver, 0, 0, copper, 0, 0);
+			return format(" |cffffffff"..SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", silver, 0, 0, copper, 0, 0)
 		elseif (copper >0) then
-			return format(" |cffffffff"..COPPER_AMOUNT_TEXTURE.."|r", copper, 0, 0);
+			return format(" |cffffffff"..COPPER_AMOUNT_TEXTURE.."|r", copper, 0, 0)
 		else
-			return "";
+			return ""
 		end
 	end
 end
@@ -95,20 +95,20 @@ local function addTooltipText(text)
 	if ( text ) then
 		-- Append a "\n" to the end 
 		if ( strsub(text, -1, -1) ~= "\n" ) then
-			text = text.."\n";
+			text = text.."\n"
 		end
 		
 		-- See if the string is intended for a double column
 		for text1, text2 in strgmatch(text, "([^\t\n]*)\t?([^\t\n]*)\n") do
 			if ( text2 ~= "" ) then
 				-- Add as double wide
-				GameTooltip:AddDoubleLine(text1, text2);
+				GameTooltip:AddDoubleLine(text1, text2)
 			elseif ( text1 ~= "" ) then
 				-- Add single column line
-				GameTooltip:AddLine(text1);
+				GameTooltip:AddLine(text1)
 			else
 				-- Assume a blank line
-				GameTooltip:AddLine("\n");
+				GameTooltip:AddLine("\n")
 			end			
 		end
 	end
@@ -116,30 +116,30 @@ end
 
 -- Codes adopted from TitanCurrency and revised by arith
 local function getTooltipText()
-	local display = "";
-	local tooltip = "";
-	local name, isHeader, isUnused, count, icount, icon, cCount;
-	cCount = GetCurrencyListSize();
+	local display = ""
+	local tooltip = ""
+	local name, isHeader, isUnused, count, icount, icon, cCount
+	cCount = GetCurrencyListSize()
 	for i = 1, cCount do 
 		-- // GetCurrencyListInfo() syntax:
-		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index);
-		name, isHeader, _, isUnused, _, count, icon = GetCurrencyListInfo(i);
+		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index)
+		name, isHeader, _, isUnused, _, count, icon = GetCurrencyListInfo(i)
 		if ( isHeader ) then
-			tooltip = tooltip..name.."\n";
+			tooltip = tooltip..name.."\n"
 		elseif ( (count >= 0) and not isUnused ) then
 			if (icon ~= nil) then
-				icount = profile.breakupnumbers and BreakUpLargeNumbers(count) or count;
+				icount = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
 				if (count == 0) then
-					display = " - "..name.."\t|cffff0000"..icount.." |r|T"..icon..":16|t";
+					display = " - "..name.."\t|cffff0000"..icount.." |r|T"..icon..":16|t"
 				else
-					display = " - "..name.."\t|cffffffff"..icount.." |r|T"..icon..":16|t";
+					display = " - "..name.."\t|cffffffff"..icount.." |r|T"..icon..":16|t"
 				end
 			end
 			-- trace(display)
-			tooltip = strconcat(tooltip, display, "|r\n");
+			tooltip = strconcat(tooltip, display, "|r\n")
 		end
 	end 
-	return tooltip;    
+	return tooltip    
 end
 
 local function button_OnMouseDown(self, buttonName)    
@@ -178,24 +178,24 @@ local function button_OnEnter(self)
 	
 	if(addon.frame:IsVisible()) then
 		if (not GameTooltip:IsShown()) then
-			GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -10, 0);
-			GameTooltip:SetBackdropColor(0, 0, 0, profile.tooltip_alpha);
-			GameTooltip:SetText("|cFFFFFFFF"..L["CT_TITLE"], 1, 1, 1, nil, 1);
-			local tooltip = getTooltipText();
+			GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -10, 0)
+			GameTooltip:SetBackdropColor(0, 0, 0, profile.tooltip_alpha)
+			GameTooltip:SetText("|cFFFFFFFF"..L["CT_TITLE"], 1, 1, 1, nil, 1)
+			local tooltip = getTooltipText()
 			if (tooltip) then
-				addTooltipText(tooltip);
+				addTooltipText(tooltip)
 			end
-			GameTooltip:SetScale(profile.tooltip_scale);
-			GameTooltip:Show();
+			GameTooltip:SetScale(profile.tooltip_scale)
+			GameTooltip:Show()
 		else
-			GameTooltip:Hide();
+			GameTooltip:Hide()
 		end
 	end
 end
 
 local function button_OnLeave(self)
-	GameTooltip_Hide();
-	GameTooltip:SetScale(CT_ORIG_GAMPTOOLTIP_SCALE);
+	GameTooltip_Hide()
+	GameTooltip:SetScale(CT_ORIG_GAMPTOOLTIP_SCALE)
 end
 --[[
 local function currencyButton_Update()
@@ -458,6 +458,79 @@ local function currencyButton_Update()
 
 end
 ]]
+
+local function handleTrackedButtons(button, currencyID, itemID)
+	if not button then return end
+	local buttonName = button:GetName()
+	local bi = tonumber(strsub(buttonName, strlen("CurrencyTrackingButton")+1))
+	
+	local name, count, icon, width
+	if (currencyID) then 
+		name, count, icon = GetCurrencyInfo(currencyID) 
+	elseif (itemID) then
+		name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+		count = GetItemCount(itemID, true)
+	end
+
+	if (currencyID or itemID) then
+		button.icon:SetTexture(icon or 0)
+		if (count and count == 0) then 
+			button.count:SetText("|cffff0000"..count.."|r")
+		elseif (count and count > 0) then
+			count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+			button.count:SetText(count)
+		else
+			button.count:SetText("")
+		end
+		width = button.count:GetStringWidth()+10
+		
+		if (profile.icon_first) then
+			button.icon:SetPoint("LEFT", 0, 0)
+			button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
+		else
+			button.count:SetPoint("LEFT", 0, 0)
+			button.icon:SetPoint("LEFT", button.count, "RIGHT", 2, 0)
+		end
+	else
+		button.icon:SetTexture(nil)
+		button.count:SetText(getFormattedValue(GetMoney()))
+		width = button.count:GetStringWidth()
+	end
+	
+	button:SetWidth(width)
+	if (bi == 1) then
+		button:SetPoint("TOPLEFT", 0, 0)
+	else
+		button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+	end
+	button:SetScript("OnMouseDown",	button_OnMouseDown)
+	button:SetScript("OnMouseUp", 	button_OnMouseUp)
+	if (currencyID) then
+		button:SetScript("OnEnter", 	button_OnEnter)
+	else
+		button:SetScript("OnEnter", nil)
+	end
+	button:SetScript("OnLeave", 	button_OnLeave)
+	button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
+	button.highlight:SetWidth(width)
+	button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+	button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
+	button.isCurrency = currencyID and true or nil
+	button.currencyID = currencyID or nil
+	button.isMoney = (not currencyID and not itemID) and true or nil
+	button.isItem = itemID and true or nil
+	button.itemID = itemID or nil
+	button.itemName = itemID and name or nil
+	button.LinkButton.tooltipText = currencyID and LibCurrencyInfo:GetCurrencyTokenStrings(currencyID) or nil
+	if (currencyID or itemID) then
+		button.LinkButton:Show()
+	else
+		button.LinkButton:Hide()
+	end
+	button:Show()
+
+end
+
 local function currencyButton_Update()
 	local nf = _G["CurrencyTrackingFrame"]
 	local button
@@ -465,51 +538,15 @@ local function currencyButton_Update()
 	local bi = 1
 
 	for i=1, numCurrencies do
-		local id = CURRENCIESLIST[i].id
-		local name, count, icon
-		if (id) then name, count, icon = GetCurrencyInfo(id) end
+		local currencyID = CURRENCIESLIST[i].id
+		local name, count
+		if (currencyID) then name, count = GetCurrencyInfo(currencyID) end
 		if (name and profile["currencies"][name] == true) then
 			if (count >= 0) then
-				-- handle the new currency frame
 				button = _G["CurrencyTrackingButton"..bi]
 				if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
-				button.icon:SetTexture(icon)
-				if (count == 0) then 
-					button.count:SetText("|cffff0000"..count.."|r")
-				else
-					count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
-					button.count:SetText(count)
-				end
-				local width = button.count:GetStringWidth()+10
-				gwidth = gwidth + width
-				button:SetWidth(width)
-				button.index = id
-				if (profile.icon_first) then
-					button.icon:SetPoint("LEFT", 0, 0)
-					button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
-				end
-				if (bi == 1) then
-					button:SetPoint("TOPLEFT", 0, 0)
-				else
-					button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
-				end
-				button:SetScript("OnMouseDown",	button_OnMouseDown)
-				button:SetScript("OnMouseUp", 	button_OnMouseUp)
-				button:SetScript("OnEnter", 	button_OnEnter)
-				button:SetScript("OnLeave", 	button_OnLeave)
-				button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-				button.highlight:SetWidth(width)
-				button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
-				button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
-				button.isCurrency = true
-				button.isMoney = false
-				button.isItem = false
-				button.itemID = nil
-				button.itemName = nil
-				button.currencyID = id
-				button.LinkButton.tooltipText = LibCurrencyInfo:GetCurrencyTokenStrings(id)
-				button.LinkButton:Show()
-				button:Show()
+				handleTrackedButtons(button, currencyID)
+				gwidth = gwidth + button:GetWidth()
 				bi = bi + 1
 			end
 		end
@@ -522,44 +559,8 @@ local function currencyButton_Update()
 					if (profile["items"][itemID] == true) then
 						button = _G["CurrencyTrackingButton"..bi]
 						if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
-						
-						local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-						local count = GetItemCount(itemID, true)
-						button.icon:SetTexture(icon or 0)
-						if (count and count == 0) then 
-							button.count:SetText("|cffff0000"..count.."|r")
-						elseif (count and count > 0) then
-							count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
-							button.count:SetText(count)
-						else
-							button.count:SetText("")
-						end
-						local width = button.count:GetStringWidth()+10
-						gwidth = gwidth + width
-						button:SetWidth(width)
-						if (bi == 1) then
-							button:SetPoint("TOPLEFT", 0, 0)
-						else
-							button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
-						end
-						button.index = nil
-						button:SetScript("OnMouseDown",	button_OnMouseDown)
-						button:SetScript("OnMouseUp", 	button_OnMouseUp)
-						--button:SetScript("OnEnter", 	button_OnEnter)
-						button:SetScript("OnLeave", 	button_OnLeave)
-						button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-						button.highlight:SetWidth(width)
-						button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
-						button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
-						button.isCurrency = false
-						button.isMoney = false
-						button.isItem = true
-						button.itemID = itemID
-						button.currencyID = nil
-						button.itemName = name or ""
-						button.LinkButton.tooltipText = nil
-						button.LinkButton:Show()
-						button:Show()
+						handleTrackedButtons(button, nil, itemID)
+						gwidth = gwidth + button:GetWidth()
 						bi = bi + 1
 					end
 				end
@@ -569,95 +570,33 @@ local function currencyButton_Update()
 				if (profile["items"][itemID] == true) then
 					button = _G["CurrencyTrackingButton"..bi]
 					if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
-					
-					local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-					local count = GetItemCount(itemID, true)
-					button.icon:SetTexture(icon or 0)
-					if (count and count == 0) then 
-						button.count:SetText("|cffff0000"..count.."|r")
-					elseif (count and count > 0) then
-						count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
-						button.count:SetText(count)
-					else
-						button.count:SetText("")
-					end
-					local width = button.count:GetStringWidth()+10
-					gwidth = gwidth + width
-					button:SetWidth(width)
-					if (bi == 1) then
-						button:SetPoint("TOPLEFT", 0, 0)
-					else
-						button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
-					end
-					button.index = nil
-					button:SetScript("OnMouseDown",	button_OnMouseDown)
-					button:SetScript("OnMouseUp", 	button_OnMouseUp)
-					--button:SetScript("OnEnter", 	button_OnEnter)
-					button:SetScript("OnLeave", 	button_OnLeave)
-					button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-					button.highlight:SetWidth(width)
-					button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
-					button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
-					button.isCurrency = false
-					button.isMoney = false
-					button.isItem = true
-					button.itemID = itemID
-					button.currencyID = nil
-					button.itemName = name or ""
-					button.LinkButton.tooltipText = nil
-					button.LinkButton:Show()
-					button:Show()
+					handleTrackedButtons(button, nil, itemID)
+					gwidth = gwidth + button:GetWidth()
 					bi = bi + 1
 				end
 			end
 		end
 	end
 	-- end of tracked items
-
+	-- handle money
 	if (profile.show_money) then
 		button = _G["CurrencyTrackingButton"..bi]
 		if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
-		button.icon:SetTexture(nil)
-		button.count:SetText(getFormattedValue(GetMoney()))
-		local width = button.count:GetStringWidth()
-		gwidth = gwidth + width
-		button:SetWidth(width)
-		if (bi == 1) then
-			button:SetPoint("TOPLEFT", 0, 0)
-		else
-			button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
-		end
-		button.index = nil
-		button:SetScript("OnMouseDown",	button_OnMouseDown)
-		button:SetScript("OnMouseUp", 	button_OnMouseUp)
-		--button:SetScript("OnEnter", 	button_OnEnter)
-		button:SetScript("OnLeave", 	button_OnLeave)
-		button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-		button.highlight:SetWidth(width)
-		button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
-		button.highlight:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
-		button.isCurrency = false
-		button.isMoney = true
-		button.isItem = false
-		button.itemID = nil
-		button.currencyID = nil
-		button.itemName = nil
-		button.LinkButton.tooltipText = nil
-		button.LinkButton:Hide()
-		button:Show()
+		handleTrackedButtons(button, nil, itemID)
+		gwidth = gwidth + button:GetWidth()
 		bi = bi + 1
 	end
 
 	nf:SetWidth(gwidth)
+
 	button = _G["CurrencyTrackingButton"..bi]
 	while button do
 		button.icon:SetTexture(nil)
 		button.count:SetText(nil)
 		button:SetWidth(0)
-		button.index = nil
-		button.isCurrency = false
-		button.isMoney = false
-		button.isItem = false
+		button.isCurrency = nil
+		button.isMoney = nil
+		button.isItem = nil
 		button.itemID = nil
 		button.currencyID = nil
 		button.itemName = nil
@@ -671,85 +610,48 @@ local function currencyButton_Update()
 end
 
 local function currencyString_Update()
-	local name, currencyID;
-	local currencystr;
+	local currencystr
 
-	local numTokenTypes = GetCurrencyListSize();
-	local name, isHeader, count, icon;
-	local CT_CURRENCY_TEXTURE;
+	local CT_CURRENCY_TEXTURE
 
-	for i=1, numTokenTypes do
-		-- // GetCurrencyListInfo() syntax:
-		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index);
-		name, isHeader, _, _, _, count, icon = GetCurrencyListInfo(i);
-		if not icon then icon = "" end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
-		if ((not isHeader) and profile["currencies"][name] == true) then
+	for i=1, numCurrencies do
+		local currencyID = CURRENCIESLIST[i].id
+		local name, count, icon
+		if (currencyID) then name, count, icon = GetCurrencyInfo(currencyID) end
+		if not icon then icon = 0 end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
+		if (name and profile["currencies"][name] == true) then
 			if (count >= 0) then
 				if (count == 0) then 
 					if (profile.icon_first) then
-						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t |cffff0000%s|r ";
+						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t "..RED_FONT_COLOR_CODE.."%s "..FONT_COLOR_CODE_CLOSE
 					else
-						CT_CURRENCY_TEXTURE = " |cffff0000%s|r|T"..icon..":%d:%d:2:0|t ";
+						CT_CURRENCY_TEXTURE = RED_FONT_COLOR_CODE.." %s"..FONT_COLOR_CODE_CLOSE.."|T"..icon..":%d:%d:2:0|t "
 					end
 				else
 					if (profile.icon_first) then
-						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t |cffffffff%s|r ";
+						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t "..HIGHLIGHT_FONT_COLOR_CODE.."%s "..FONT_COLOR_CODE_CLOSE
 					else
-						CT_CURRENCY_TEXTURE = " |cffffffff%s|r|T"..icon..":%d:%d:2:0|t ";
+						CT_CURRENCY_TEXTURE = HIGHLIGHT_FONT_COLOR_CODE.." %s"..FONT_COLOR_CODE_CLOSE.."|T"..icon..":%d:%d:2:0|t "
 					end
 				end
-				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count;
+				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
 				if (currencystr) then
 					if (profile.icon_first) then
-						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count);
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count)
 					else
-						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0);
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0)
 					end
 				else
 					if (profile.icon_first) then
-						currencystr = format(CT_CURRENCY_TEXTURE, 0, 0, count);
+						currencystr = format(CT_CURRENCY_TEXTURE, 0, 0, count)
 					else
-						currencystr = format(CT_CURRENCY_TEXTURE, count, 0, 0);
+						currencystr = format(CT_CURRENCY_TEXTURE, count, 0, 0)
 					end
 				end
 			end
 		end
 	end
-	for index, id in ipairs(addon.constants.archaeology) do
-		local name, count, icon = GetCurrencyInfo(id)
-		if not icon then icon = "" end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
-		if (profile["currencies"][name] == true) then
-			if (count >= 0) then
-				if (count == 0) then 
-					if (profile.icon_first) then
-						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t |cffff0000%s|r ";
-					else
-						CT_CURRENCY_TEXTURE = " |cffff0000%s|r|T"..icon..":%d:%d:2:0|t ";
-					end
-				else
-					if (profile.icon_first) then
-						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t |cffffffff%s|r ";
-					else
-						CT_CURRENCY_TEXTURE = " |cffffffff%s|r|T"..icon..":%d:%d:2:0|t ";
-					end
-				end
-				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count;
-				if (currencystr) then
-					if (profile.icon_first) then
-						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count);
-					else
-						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0);
-					end
-				else
-					if (profile.icon_first) then
-						currencystr = format(CT_CURRENCY_TEXTURE, 0, 0, count);
-					else
-						currencystr = format(CT_CURRENCY_TEXTURE, count, 0, 0);
-					end
-				end
-			end
-		end
-	end
+
 	-- tracked items
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
@@ -789,25 +691,25 @@ local function currencyString_Update()
 		end
 	end
 	-- return could be nil if no any currency being tracked
-	return currencystr;
+	return currencystr
 end
 
 local function getButtonText()
-	local currencystr = currencyString_Update();
+	local currencystr = currencyString_Update()
 
 	if (currencystr) then 
 		if (profile.show_money) then
-			currencystr = currencystr..getFormattedValue(GetMoney());
+			currencystr = currencystr..getFormattedValue(GetMoney())
 		end
 	else
 		if (profile.show_money) then
-			currencystr = getFormattedValue(GetMoney());
+			currencystr = getFormattedValue(GetMoney())
 		else
-			currencystr = L["CT_TITLE"];
+			currencystr = L["CT_TITLE"]
 		end
 	end
 	
-	return currencystr;
+	return currencystr
 end
 
 local function frame_OnUpdate(self)
