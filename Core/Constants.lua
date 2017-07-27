@@ -175,6 +175,7 @@ constants.items = {
 		26044, -- HALAA_RESEARCH_TOKEN 
 	},
 	others = {
+		113578, -- Hearty Soup Bone
 		124124, -- Blood of Sargeras
 		124099, -- Blackfang Claw
 		120945, -- Primal Spirit
