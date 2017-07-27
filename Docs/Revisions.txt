@@ -3,13 +3,14 @@
 Revision History:
 =================
 
-* v4.01 (Jul. xx, 2017)
+* v4.01 (Jul. 27, 2017)
 -----------------------
 - Right-click on tracked items will now open the item's config page instead of currencies page
 - Sorted items per expansion
 - Added archaeology fragements
 - Introduced LibCurrencyInfo to handle currency's description and tooltip
 - Reorganized currency tracking's config panel
+- Added WoD Garrison Barn's caged items; also added Highmaul Relic and Hearty Soup Bone
 - Translation update:
   - Russian (DogmatX)
 

@@ -175,13 +175,20 @@ constants.items = {
 		26044, -- HALAA_RESEARCH_TOKEN 
 	},
 	others = {
-		124124, -- BLOOD_OF_SARGERAS
-		124099, -- BLACKFANG_CLAW
-		120945, -- PRIMAL_SPIRIT
+		124124, -- Blood of Sargeras
+		124099, -- Blackfang Claw
+		120945, -- Primal Spirit
+		119819, -- Caged Mighty Clefthoof
+		119817, -- Caged Mighty Riverbeast
+		119815, -- Caged Mighty Wolf
+		119814, -- Leathery Caged Beast
+		119813, -- Furry Caged Beast
+		119810, -- Meaty Caged Beast
+		118100, -- Highmaul Relic
 		117397, -- NATS_LUCKY_COIN
 		116415, -- PET_CHARM
-		116053, -- DRAENIC_SEEDS
 		76061, -- SPIRIT_HARMONY
+		43089, -- Vrykul Bones
 	},
 	professions = {
 		[3908] = { -- Tailoring
