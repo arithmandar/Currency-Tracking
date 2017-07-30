@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v4.02 (Jul. 30, 2017)
+-----------------------
+- Fixed issue that only item(s) were tracked on LDB and got error
+
 * v4.01 (Jul. 27, 2017)
 -----------------------
 - Right-click on tracked items will now open the item's config page instead of currencies page

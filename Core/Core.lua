@@ -610,7 +610,7 @@ local function currencyButton_Update()
 end
 
 local function currencyString_Update()
-	local currencystr
+	local currencystr = ""
 
 	local CT_CURRENCY_TEXTURE
 
@@ -635,18 +635,10 @@ local function currencyString_Update()
 					end
 				end
 				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
-				if (currencystr) then
-					if (profile.icon_first) then
-						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count)
-					else
-						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0)
-					end
+				if (profile.icon_first) then
+					currencystr = format(CT_CURRENCY_TEXTURE, 0, 0, count)
 				else
-					if (profile.icon_first) then
-						currencystr = format(CT_CURRENCY_TEXTURE, 0, 0, count)
-					else
-						currencystr = format(CT_CURRENCY_TEXTURE, count, 0, 0)
-					end
+					currencystr = format(CT_CURRENCY_TEXTURE, count, 0, 0)
 				end
 			end
 		end
