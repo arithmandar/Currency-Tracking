@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v4.03 (Jul. 31, 2017)
+-----------------------
+- Fixed tracked currencies' display issue on LDB supported action bar like Titan Panel.
+
 * v4.02 (Jul. 30, 2017)
 -----------------------
 - Fixed issue that only item(s) were tracked on LDB and got error

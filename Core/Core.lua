@@ -636,9 +636,9 @@ local function currencyString_Update()
 				end
 				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
 				if (profile.icon_first) then
-					currencystr = format(CT_CURRENCY_TEXTURE, 0, 0, count)
+					currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count)
 				else
-					currencystr = format(CT_CURRENCY_TEXTURE, count, 0, 0)
+					currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0)
 				end
 			end
 		end
