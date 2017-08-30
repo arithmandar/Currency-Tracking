@@ -20,6 +20,8 @@ constants.defaults = {
 	profile = {
 		show_currency = true,
 		show_money = true,
+		show_iconOnly = false,
+		show_tooltip = true,
 		breakupnumbers = true,
 		icon_first = false,
 		always_lock = false,
@@ -31,6 +33,7 @@ constants.defaults = {
 		tooltip_scale = 1,
 		currencies = {},
 		items = {},
+		maxItems = 0, -- 0 means un-limited
 		--optionsCopied = false,
 	},
 }

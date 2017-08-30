@@ -42,6 +42,9 @@ $Id: CurrencyTracking_Options.xml 60 2017-04-05 15:50:17Z arith $
 					</Anchor>
 				</Anchors>
 				<Scripts>
+					<OnLoad>
+						self:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+					</OnLoad>
 					<OnEnter>
 						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 						if (self.tooltipText) then
@@ -52,11 +55,16 @@ $Id: CurrencyTracking_Options.xml 60 2017-04-05 15:50:17Z arith $
 						end
 					</OnEnter>
 					<OnClick>
-						if (self:GetParent().isCurrency) then
-							if (self:GetParent().index) then
-								HandleModifiedItemClick(GetCurrencyListLink(self:GetParent().index));
-							elseif (self:GetParent().currencyID) then
-								HandleModifiedItemClick(GetCurrencyLink(self:GetParent().currencyID));
+						if (button == "RightButton") then
+							CurrencyTracking:OpenOptions(self:GetParent().isItem)
+							GameTooltip_Hide()
+						else
+							if (self:GetParent().isCurrency) then
+								if (self:GetParent().index) then
+									HandleModifiedItemClick(GetCurrencyListLink(self:GetParent().index));
+								elseif (self:GetParent().currencyID) then
+									HandleModifiedItemClick(GetCurrencyLink(self:GetParent().currencyID));
+								end
 							end
 						end
 					</OnClick>

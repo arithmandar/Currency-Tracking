@@ -3,6 +3,17 @@
 Revision History:
 =================
 
+* v5.00 (Aug. 30, 2017)
+-----------------------
+- ToC update to support WoW 7.3.0
+- Added option to toggle tooltip's displaying
+- Added options to configure maximum items to be displayed per row. 
+  With this configuration get adjusted, you can display tracked items in multiple rows.
+- Added options to toggle tracked items to be display with icon only or with amount info.
+- Library update: Aces
+- Translation update:
+  - Russian (BLizzatron)
+
 * v4.03 (Jul. 31, 2017)
 -----------------------
 - Fixed tracked currencies' display issue on LDB supported action bar like Titan Panel.

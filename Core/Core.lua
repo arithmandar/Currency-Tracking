@@ -463,8 +463,20 @@ local function handleTrackedButtons(button, currencyID, itemID)
 	if not button then return end
 	local buttonName = button:GetName()
 	local bi = tonumber(strsub(buttonName, strlen("CurrencyTrackingButton")+1))
+	local maxItems = profile.maxItems or 0
+	local nRow, nRowItem
+	local rowHeight = 20
 	
-	local name, count, icon, width
+	if (maxItems == 0) then 
+		nRow = 1
+	else
+		nRow = ( (bi - (bi % maxItems) ) / maxItems ) + 1
+		nRowItem = bi % maxItems
+		if nRowItem == 0 then nRowItem = maxItems end
+	end
+	
+	local name, count, icon
+	local width = 15
 	if (currencyID) then 
 		name, count, icon = GetCurrencyInfo(currencyID) 
 	elseif (itemID) then
@@ -474,23 +486,35 @@ local function handleTrackedButtons(button, currencyID, itemID)
 
 	if (currencyID or itemID) then
 		button.icon:SetTexture(icon or 0)
-		if (count and count == 0) then 
-			button.count:SetText("|cffff0000"..count.."|r")
-		elseif (count and count > 0) then
-			count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
-			button.count:SetText(count)
+		if (profile.show_iconOnly) then
+			button.count:Hide()
 		else
-			button.count:SetText("")
+			if (count and count == 0) then 
+				button.count:SetText("|cffff0000"..count.."|r")
+			elseif (count and count > 0) then
+				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+				button.count:SetText(count)
+			else
+				button.count:SetText("")
+			end
+			button.count:Show()
+			width = button.count:GetStringWidth() + 10
+
+			if (profile.icon_first) then
+				button.icon:SetPoint("LEFT", 0, 0)
+				if (not profile.show_iconOnly) then
+					button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
+				end
+			else
+				if (profile.show_iconOnly) then
+					button.icon:SetPoint("LEFT", 0, 0)
+				else
+					button.count:SetPoint("LEFT", 0, 0)
+					button.icon:SetPoint("LEFT", button.count, "RIGHT", 2, 0)
+				end
+			end
 		end
-		width = button.count:GetStringWidth()+10
 		
-		if (profile.icon_first) then
-			button.icon:SetPoint("LEFT", 0, 0)
-			button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
-		else
-			button.count:SetPoint("LEFT", 0, 0)
-			button.icon:SetPoint("LEFT", button.count, "RIGHT", 2, 0)
-		end
 	else
 		button.icon:SetTexture(nil)
 		button.count:SetText(getFormattedValue(GetMoney()))
@@ -501,16 +525,24 @@ local function handleTrackedButtons(button, currencyID, itemID)
 	if (bi == 1) then
 		button:SetPoint("TOPLEFT", 0, 0)
 	else
-		button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", 15, 0)
+		if (nRow == 1) then
+			button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", profile.show_iconOnly and 5 or 15, 0)
+		else
+			if (nRowItem == 1) then
+				button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-maxItems], "TOPLEFT", 0, -rowHeight)
+			else
+				button:SetPoint("TOPLEFT", _G["CurrencyTrackingButton"..bi-1], "TOPRIGHT", profile.show_iconOnly and 5 or 15, 0)
+			end
+		end
 	end
-	button:SetScript("OnMouseDown",	button_OnMouseDown)
-	button:SetScript("OnMouseUp", 	button_OnMouseUp)
-	if (currencyID) then
-		button:SetScript("OnEnter", 	button_OnEnter)
+	button:SetScript("OnMouseDown", button_OnMouseDown)
+	button:SetScript("OnMouseUp", button_OnMouseUp)
+	if (currencyID and profile.show_tooltip) then
+		button:SetScript("OnEnter", button_OnEnter)
 	else
 		button:SetScript("OnEnter", nil)
 	end
-	button:SetScript("OnLeave", 	button_OnLeave)
+	button:SetScript("OnLeave", button_OnLeave)
 	button.highlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
 	button.highlight:SetWidth(width)
 	button.highlight:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
@@ -593,6 +625,11 @@ local function currencyButton_Update()
 	while button do
 		button.icon:SetTexture(nil)
 		button.count:SetText(nil)
+		if (profile.show_iconOnly) then
+			button.count:Hide()
+		else
+			button.count:Show()
+		end
 		button:SetWidth(0)
 		button.isCurrency = nil
 		button.isMoney = nil
@@ -837,10 +874,16 @@ local function frameRefresh()
 		while button and button:IsVisible() and button.icon:GetTexture() do
 			if (profile.icon_first) then
 				button.icon:SetPoint("LEFT", 0, 0)
-				button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
+				if (not profile.show_iconOnly) then
+					button.count:SetPoint("LEFT", button.icon, "RIGHT", 2, 0)
+				end
 			else
-				button.count:SetPoint("LEFT", 0, 0)
-				button.icon:SetPoint("LEFT", button.count, "RIGHT", 2, 0)
+				if (profile.show_iconOnly) then
+					button.icon:SetPoint("LEFT", 0, 0)
+				else
+					button.count:SetPoint("LEFT", 0, 0)
+					button.icon:SetPoint("LEFT", button.count, "RIGHT", 2, 0)
+				end
 			end
 			bi = bi + 1
 			button = _G["CurrencyTrackingButton"..bi]

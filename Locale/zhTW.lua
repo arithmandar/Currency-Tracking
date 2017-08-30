@@ -14,6 +14,8 @@ L["Options"] = "選項";
 -- Display Settings
 L["Display Settings"] = "顯示設定"
 L["Show currency info on screen"] = "在遊戲畫面上顯示通貨資訊"
+L["Show tooltip"] = "顯示提示資訊"
+L["Show all currency's info in tooltip."] = "總是顯示所有通貨的提示資訊。"
 L["Show money info"] = "顯示現金資訊"
 L["Enable to show total money together with currencies' info."] = "啟用以與通貨資訊一起顯示目前的總現金資訊。"
 L["Reset position"] = "重設位置"

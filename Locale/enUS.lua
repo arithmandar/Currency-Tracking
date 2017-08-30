@@ -12,6 +12,8 @@ L["Options"] = "Options"
 -- Display Settings
 L["Display Settings"] = "Display Settings"
 L["Show currency info on screen"] = "Show currency info on screen"
+L["Show tooltip"] = "Show tooltip"
+L["Show all currency's info in tooltip."] = "Show all currency's info in tooltip."
 L["Show money info"] = "Show money info"
 L["Enable to show total money together with currencies' info."] = "Enable to show total money together with currencies' info."
 L["Reset position"] = "Reset position"
