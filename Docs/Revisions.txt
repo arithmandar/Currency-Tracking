@@ -7,6 +7,8 @@ Revision History:
 -----------------------
 - Added currencies: Writhing Essence, Argus Waystone, Veiled Argunite
 - Set frame not to clamp to screen
+- Translation update:
+  - Korean (next96)
 
 * v5.00 (Aug. 30, 2017)
 -----------------------
