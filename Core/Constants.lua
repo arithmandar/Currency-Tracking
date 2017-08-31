@@ -159,6 +159,9 @@ constants.currencies = {
 		1357, -- Echoes of Domination
 		1416, -- Coins of Air
 		1171, -- Artifact Knowledge
+		1501, -- Writhing Essence
+		1506, -- Argus Waystone
+		1508, -- Veiled Argunite
 	},
 }
 

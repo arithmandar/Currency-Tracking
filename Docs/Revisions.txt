@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v5.01 (Aug. 31, 2017)
+-----------------------
+- Added currencies: Writhing Essence, Argus Waystone, Veiled Argunite
+- Set frame not to clamp to screen
+
 * v5.00 (Aug. 30, 2017)
 -----------------------
 - ToC update to support WoW 7.3.0
