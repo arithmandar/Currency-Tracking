@@ -3,6 +3,12 @@
 Revision History:
 =================
 
+* v5.03 (Sep. 04, 2017)
+-----------------------
+- Fixed performance issue
+- # Development
+  - Remove externals
+
 * v5.02 (Sep. 04, 2017)
 -----------------------
 - Added option to toggle whether or not to auto-hide currencies / items which amount becomes zero.

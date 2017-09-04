@@ -118,7 +118,7 @@ end
 local function getTooltipText()
 	local display = ""
 	local tooltip = ""
-	local name, isHeader, isUnused, count, icount, icon, cCount
+	local name, isHeader, isUnused, count, icount, icon, cCount, _
 	cCount = GetCurrencyListSize()
 	for i = 1, cCount do 
 		-- // GetCurrencyListInfo() syntax:
@@ -477,7 +477,7 @@ local function handleTrackedButtons(button, currencyID, itemID)
 		if nRowItem == 0 then nRowItem = maxItems end
 	end
 	
-	local name, count, icon
+	local name, count, icon, _
 	local width = 15
 	if (currencyID) then 
 		name, count, icon = GetCurrencyInfo(currencyID) 
@@ -594,8 +594,8 @@ local function currencyButton_Update()
 		if k == "professions" then
 			for ka, profs in pairs(v) do
 				for kb, itemID in ipairs(profs) do
-					local count = GetItemCount(itemID, true)
 					if (profile["items"][itemID] == true) then
+						local count = GetItemCount(itemID, true)
 						if (profile.hide_zero and count == 0) then
 							-- do nothing
 						else
@@ -610,8 +610,8 @@ local function currencyButton_Update()
 			end
 		else
 			for ka, itemID in ipairs(v) do
-				local count = GetItemCount(itemID, true)
 				if (profile["items"][itemID] == true) then
+					local count = GetItemCount(itemID, true)
 					if (profile.hide_zero and count == 0) then
 						-- do nothing
 					else
@@ -707,7 +707,8 @@ local function currencyString_Update()
 			for ka, profs in pairs(v) do
 				for kb, itemID in ipairs(profs) do
 					if (profile["items"][itemID] == true) then
-						local _, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+						local icon, _
+						_, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 						local count = GetItemCount(itemID, true)
 						
 						if (profile.hide_zero and count == 0) then
@@ -728,7 +729,8 @@ local function currencyString_Update()
 		else
 			for ka, itemID in ipairs(v) do
 				if (profile["items"][itemID] == true) then
-					local _, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+					local icon, _
+					_, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 					local count = GetItemCount(itemID, true)
 					
 					if (profile.hide_zero and count == 0) then
@@ -854,12 +856,14 @@ local function scanItems()
 		if k == "professions" then
 			for ka, profs in pairs(v) do
 				for kb, itemID in ipairs(profs) do
-					local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-					end
+					local name, icon, _
+					name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 				end
+			end
 		else
 			for ka, itemID in ipairs(v) do
-				local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+				local name, icon, _
+				name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 			end
 		end
 	end
