@@ -22,6 +22,7 @@ constants.defaults = {
 		show_money = true,
 		show_iconOnly = false,
 		show_tooltip = true,
+		hide_zero = false,
 		breakupnumbers = true,
 		icon_first = false,
 		always_lock = false,

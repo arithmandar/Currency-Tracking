@@ -130,7 +130,9 @@ local function getTooltipText()
 			if (icon ~= nil) then
 				icount = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
 				if (count == 0) then
-					display = " - "..name.."\t|cffff0000"..icount.." |r|T"..icon..":16|t"
+					if (not profile.hide_zero) then
+						display = " - "..name.."\t|cffff0000"..icount.." |r|T"..icon..":16|t"
+					end
 				else
 					display = " - "..name.."\t|cffffffff"..icount.." |r|T"..icon..":16|t"
 				end
@@ -575,11 +577,15 @@ local function currencyButton_Update()
 		if (currencyID) then name, count = GetCurrencyInfo(currencyID) end
 		if (name and profile["currencies"][name] == true) then
 			if (count >= 0) then
-				button = _G["CurrencyTrackingButton"..bi]
-				if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
-				handleTrackedButtons(button, currencyID)
-				gwidth = gwidth + button:GetWidth()
-				bi = bi + 1
+				if (profile.hide_zero and count == 0) then
+					-- do nothing
+				else
+					button = _G["CurrencyTrackingButton"..bi]
+					if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+					handleTrackedButtons(button, currencyID)
+					gwidth = gwidth + button:GetWidth()
+					bi = bi + 1
+				end
 			end
 		end
 	end
@@ -588,23 +594,33 @@ local function currencyButton_Update()
 		if k == "professions" then
 			for ka, profs in pairs(v) do
 				for kb, itemID in ipairs(profs) do
+					local count = GetItemCount(itemID, true)
 					if (profile["items"][itemID] == true) then
+						if (profile.hide_zero and count == 0) then
+							-- do nothing
+						else
+							button = _G["CurrencyTrackingButton"..bi]
+							if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+							handleTrackedButtons(button, nil, itemID)
+							gwidth = gwidth + button:GetWidth()
+							bi = bi + 1
+						end
+					end
+				end
+			end
+		else
+			for ka, itemID in ipairs(v) do
+				local count = GetItemCount(itemID, true)
+				if (profile["items"][itemID] == true) then
+					if (profile.hide_zero and count == 0) then
+						-- do nothing
+					else
 						button = _G["CurrencyTrackingButton"..bi]
 						if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
 						handleTrackedButtons(button, nil, itemID)
 						gwidth = gwidth + button:GetWidth()
 						bi = bi + 1
 					end
-				end
-			end
-		else
-			for ka, itemID in ipairs(v) do
-				if (profile["items"][itemID] == true) then
-					button = _G["CurrencyTrackingButton"..bi]
-					if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
-					handleTrackedButtons(button, nil, itemID)
-					gwidth = gwidth + button:GetWidth()
-					bi = bi + 1
 				end
 			end
 		end
@@ -658,24 +674,28 @@ local function currencyString_Update()
 		if not icon then icon = 0 end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
 		if (name and profile["currencies"][name] == true) then
 			if (count >= 0) then
-				if (count == 0) then 
-					if (profile.icon_first) then
-						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t "..RED_FONT_COLOR_CODE.."%s "..FONT_COLOR_CODE_CLOSE
-					else
-						CT_CURRENCY_TEXTURE = RED_FONT_COLOR_CODE.." %s"..FONT_COLOR_CODE_CLOSE.."|T"..icon..":%d:%d:2:0|t "
-					end
+				if (profile.hide_zero and count == 0) then
+					-- do nothing
 				else
-					if (profile.icon_first) then
-						CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t "..HIGHLIGHT_FONT_COLOR_CODE.."%s "..FONT_COLOR_CODE_CLOSE
+					if (count == 0) then 
+						if (profile.icon_first) then
+							CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t "..RED_FONT_COLOR_CODE.."%s "..FONT_COLOR_CODE_CLOSE
+						else
+							CT_CURRENCY_TEXTURE = RED_FONT_COLOR_CODE.." %s"..FONT_COLOR_CODE_CLOSE.."|T"..icon..":%d:%d:2:0|t "
+						end
 					else
-						CT_CURRENCY_TEXTURE = HIGHLIGHT_FONT_COLOR_CODE.." %s"..FONT_COLOR_CODE_CLOSE.."|T"..icon..":%d:%d:2:0|t "
+						if (profile.icon_first) then
+							CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t "..HIGHLIGHT_FONT_COLOR_CODE.."%s "..FONT_COLOR_CODE_CLOSE
+						else
+							CT_CURRENCY_TEXTURE = HIGHLIGHT_FONT_COLOR_CODE.." %s"..FONT_COLOR_CODE_CLOSE.."|T"..icon..":%d:%d:2:0|t "
+						end
 					end
-				end
-				count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
-				if (profile.icon_first) then
-					currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count)
-				else
-					currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0)
+					count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+					if (profile.icon_first) then
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count)
+					else
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0)
+					end
 				end
 			end
 		end
@@ -690,14 +710,18 @@ local function currencyString_Update()
 						local _, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 						local count = GetItemCount(itemID, true)
 						
-						local displayString
-						if (profile.icon_first) then
-							displayString = format("|T%d:%d:%d:2:0|t |cffffffff%d|r", icon, 16, 16, count)
+						if (profile.hide_zero and count == 0) then
+							-- do nothing
 						else
-							displayString = format("|cffffffff%d|r|T%d:%d:%d:2:0|t ", count, icon, 16, 16)
+							local displayString
+							if (profile.icon_first) then
+								displayString = format("|T%d:%d:%d:2:0|t |cffffffff%d|r", icon, 16, 16, count)
+							else
+								displayString = format("|cffffffff%d|r|T%d:%d:%d:2:0|t ", count, icon, 16, 16)
+							end
+							
+							currencystr = currencystr..displayString
 						end
-						
-						currencystr = currencystr..displayString
 					end
 				end
 			end
@@ -707,14 +731,18 @@ local function currencyString_Update()
 					local _, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 					local count = GetItemCount(itemID, true)
 					
-					local displayString
-					if (profile.icon_first) then
-						displayString = format("|T%d:%d:%d:2:0|t |cffffffff%d|r", icon, 16, 16, count)
+					if (profile.hide_zero and count == 0) then
+						-- do nothing
 					else
-						displayString = format("|cffffffff%d|r|T%d:%d:%d:2:0|t ", count, icon, 16, 16)
+						local displayString
+						if (profile.icon_first) then
+							displayString = format("|T%d:%d:%d:2:0|t |cffffffff%d|r", icon, 16, 16, count)
+						else
+							displayString = format("|cffffffff%d|r|T%d:%d:%d:2:0|t ", count, icon, 16, 16)
+						end
+						
+						currencystr = currencystr..displayString
 					end
-					
-					currencystr = currencystr..displayString
 				end
 			end
 		end

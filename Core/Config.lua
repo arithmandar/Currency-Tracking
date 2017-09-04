@@ -124,15 +124,22 @@ local function getOptions()
 									desc = L["Converts a number into a localized string, grouping digits as required."],
 									width = "double",
 								},
-								show_iconOnly = {
+								hide_zero = {
 									order = 23,
+									type = "toggle",
+									name = L["Hide zero"],
+									desc = L["Auto-hide items / currencies which have zero amount."],
+									width = "double",
+								},
+								show_iconOnly = {
+									order = 24,
 									type = "toggle",
 									name = L["Show icon only"],
 									desc = L["Show only the currency / item's icon, do not show the amounts."],
 									width = "double",
 								},
 								icon_first = {
-									order = 24,
+									order = 25,
 									type = "toggle",
 									name = L["Icon first"],
 									desc = L["Put currency icon prior to its amount"],
@@ -140,7 +147,7 @@ local function getOptions()
 									disabled = function() return addon.db.profile.show_iconOnly end,
 								},
 								maxItems = {
-									order = 25,
+									order = 26,
 									type = "range",
 									name = L["Max items per row"],
 									desc = L["Set the maximum number of items to be displayed per row. Set to 0 to allow unlimited items on one single row."],
