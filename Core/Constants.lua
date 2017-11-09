@@ -26,6 +26,7 @@ constants.defaults = {
 		breakupnumbers = true,
 		icon_first = false,
 		always_lock = false,
+		hide_in_petbattle = false,
 		point = { "TOPLEFT", "UIParent", "TOPLEFT", 150, -80 },
 		scale = 1,
 		alpha = 1,
@@ -603,4 +604,6 @@ constants.archaeology = {
 constants.events = {
 	"PLAYER_REGEN_ENABLED",
 	"PLAYER_REGEN_DISABLED",
+	"PET_BATTLE_OPENING_START",
+	"PET_BATTLE_CLOSE",
 }

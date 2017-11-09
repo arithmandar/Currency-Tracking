@@ -993,3 +993,17 @@ end
 function addon:PLAYER_REGEN_ENABLED()
 	isInLockdown = false
 end
+
+function addon:PET_BATTLE_OPENING_START()
+	if (profile.show_currency and profile.hide_in_petbattle) then
+		local nf = _G["CurrencyTrackingFrame"]
+		nf:Hide()
+	end
+end
+
+function addon:PET_BATTLE_CLOSE()
+	local nf = _G["CurrencyTrackingFrame"]
+	if (profile.show_currency and not nf:IsShown()) then
+		nf:Show()
+	end
+end

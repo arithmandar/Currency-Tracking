@@ -3,6 +3,13 @@
 Revision History:
 =================
 
+* v5.04 (Nov. 09, 2017)
+-----------------------
+- Added to support in toggling auto-hide while in pet battle
+- Translation update:
+  - Korean (yuk6196)
+  - Russian (BLizzatron)
+
 * v5.03 (Sep. 04, 2017)
 -----------------------
 - Fixed performance issue

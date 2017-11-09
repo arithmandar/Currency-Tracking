@@ -26,6 +26,8 @@ L["Icon first"] = "Icon first"
 L["Put currency icon prior to its amount"] = "Put currency icon prior to its amount"
 L["Always lock the currency info frame"] = "Always lock the currency info frame"
 L["Enable to always lock the frame even not in combat. Disable to only lock the frame while in combat."] = "Enable to always lock the frame even not in combat. Disable to only lock the frame while in combat."
+L["Hide while in pet battle"] = "Hide while in pet battle"
+L["Automatically hide the tracking frame while in pet battle."] = "Automatically hide the tracking frame while in pet battle."
 -- Scale and Transparency
 L["Scale and Transparency"] = "Scale and Transparency"
 L["On-screen frame"] = "On-screen frame"

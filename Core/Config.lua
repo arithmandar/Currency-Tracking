@@ -91,8 +91,16 @@ local function getOptions()
 									width = "full",
 									disabled = function() return not addon.db.profile.show_currency end,
 								},
+								hide_in_petbattle = {
+									order = 13,
+									type = "toggle",
+									name = L["Hide while in pet battle"],
+									desc = L["Automatically hide the tracking frame while in pet battle."],
+									width = "full",
+									disabled = function() return not addon.db.profile.show_currency end,
+								},
 								resetPos = {
-									order = 13, 
+									order = 20, 
 									type = "execute",
 									name = L["Reset position"],
 									desc = L["Reset on-screen currency frame's position."],
