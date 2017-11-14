@@ -3,6 +3,12 @@
 Revision History:
 =================
 
+* v5.05 (Nov. 14, 2017)
+-----------------------
+- Translation update:
+  - Korean (next96)
+- Added to support in toggling auto-hide while in combat or in battleground
+
 * v5.04 (Nov. 09, 2017)
 -----------------------
 - Added to support in toggling auto-hide while in pet battle

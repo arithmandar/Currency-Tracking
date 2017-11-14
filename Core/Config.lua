@@ -91,8 +91,24 @@ local function getOptions()
 									width = "full",
 									disabled = function() return not addon.db.profile.show_currency end,
 								},
-								hide_in_petbattle = {
+								hide_in_combat = {
 									order = 13,
+									type = "toggle",
+									name = L["Hide while in combat"],
+									desc = L["Automatically hide the tracking frame while in combat."],
+									width = "full",
+									disabled = function() return not addon.db.profile.show_currency end,
+								},
+								hide_in_battleground = {
+									order = 14,
+									type = "toggle",
+									name = L["Hide while in battleground"],
+									desc = L["Automatically hide the tracking frame while in battleground."],
+									width = "full",
+									disabled = function() return not addon.db.profile.show_currency end,
+								},
+								hide_in_petbattle = {
+									order = 15,
 									type = "toggle",
 									name = L["Hide while in pet battle"],
 									desc = L["Automatically hide the tracking frame while in pet battle."],

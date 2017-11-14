@@ -41,6 +41,7 @@ local CurrencyTracking_Player = UnitName("player")
 local CurrencyTracking_Server = GetRealmName()
 
 local isInLockdown = false
+local isInBattleGround = false
 local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale()
 local CT_CURRSTR = nil
 local CURRENCIESLIST = {}
@@ -986,14 +987,55 @@ function addon:Refresh()
 	frameRefresh()
 end
 
+-- ///////////////////////////////////////////////////
+-- Combat
+-- Event fired whenever you enter combat
 function addon:PLAYER_REGEN_DISABLED()
 	isInLockdown = true
+	if (profile.show_currency and profile.hide_in_combat) then
+		local nf = _G["CurrencyTrackingFrame"]
+		nf:Hide()
+	end
 end
 
+-- Event fired after ending combat
 function addon:PLAYER_REGEN_ENABLED()
 	isInLockdown = false
+	
+	local nf = _G["CurrencyTrackingFrame"]
+	if (profile.show_currency and not nf:IsShown()) then
+		if (isInBattleGround and profile.hide_in_battleground) then
+			-- if player is in battleground and also set to auto-hide frame untile leave battle ground, 
+			-- then we should not show the frame after player ending combat, so do nothing here!
+		else
+			nf:Show()
+		end
+	end
 end
 
+-- ///////////////////////////////////////////////////
+-- Battleground
+-- Event fired when the battlegrounds signup window is opened.
+function addon:BATTLEFIELDS_SHOW()
+	isInBattleGround = true
+	if (profile.show_currency and profile.hide_in_battleground) then
+		local nf = _G["CurrencyTrackingFrame"]
+		nf:Hide()
+	end
+end
+
+-- Event fired when the battlegrounds signup window is closed.
+function addon:BATTLEFIELDS_CLOSED()
+	isInBattleGround = false
+	
+	local nf = _G["CurrencyTrackingFrame"]
+	if (profile.show_currency and not nf:IsShown()) then
+		nf:Show()
+	end
+end
+
+-- ///////////////////////////////////////////////////
+-- Pet battle
 function addon:PET_BATTLE_OPENING_START()
 	if (profile.show_currency and profile.hide_in_petbattle) then
 		local nf = _G["CurrencyTrackingFrame"]
@@ -1004,6 +1046,11 @@ end
 function addon:PET_BATTLE_CLOSE()
 	local nf = _G["CurrencyTrackingFrame"]
 	if (profile.show_currency and not nf:IsShown()) then
-		nf:Show()
+		if (isInBattleGround and profile.hide_in_battleground) then
+			-- if player is in battleground and also set to auto-hide frame untile leave battle ground, 
+			-- then we should not show the frame right after pet battle ends, so do nothing here!
+		else
+			nf:Show()
+		end
 	end
 end
