@@ -3,6 +3,13 @@
 Revision History:
 =================
 
+* v5.06 (Jan. 22, 2018)
+-----------------------
+- Added Wakening Essence which was introduced in 7.3.2.25326
+- Translation update:
+  - Korean (next96)
+  - Russian (Hubbotu)
+
 * v5.05 (Nov. 14, 2017)
 -----------------------
 - Translation update:
