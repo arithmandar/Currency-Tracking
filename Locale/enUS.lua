@@ -34,6 +34,8 @@ L["Hide while in battleground"] = "Hide while in battleground"
 L["Automatically hide the tracking frame while in battleground."] = "Automatically hide the tracking frame while in battleground."
 L["Show icon only"] = "Show icon only"
 L["Show only the currency / item's icon, do not show the amounts."] = "Show only the currency / item's icon, do not show the amounts."
+L["Max items per row"] = "Max items per row"
+L["Set the maximum number of items to be displayed per row. Set to 0 to allow unlimited items on one single row."] = "Set the maximum number of items to be displayed per row. Set to 0 to allow unlimited items on one single row."
 -- Scale and Transparency
 L["Scale and Transparency"] = "Scale and Transparency"
 L["On-screen frame"] = "On-screen frame"

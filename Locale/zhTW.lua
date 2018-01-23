@@ -36,6 +36,8 @@ L["Hide while in battleground"] = "在戰場時隱藏"
 L["Automatically hide the tracking frame while in battleground."] = "在戰場時自動隱藏追蹤窗格。"
 L["Show icon only"] = "僅顯示圖示"
 L["Show only the currency / item's icon, do not show the amounts."] = "僅顯示通貨/物品的圖示，不顯示其數量。"
+L["Max items per row"] = "每行最多顯示數量"
+L["Set the maximum number of items to be displayed per row. Set to 0 to allow unlimited items on one single row."] = "設定每一行最多可顯示多少通貨/物品。若設為 0 則表示單一一行顯示無限數量的通貨/物品。"
 -- Scale and Transparency
 L["Scale and Transparency"] = "大小與透明度"
 L["On-screen frame"] = "遊戲畫面窗格"
