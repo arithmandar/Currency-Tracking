@@ -166,7 +166,6 @@ constants.currencies = {
 		1501, -- Writhing Essence
 		1506, -- Argus Waystone
 		1508, -- Veiled Argunite
-		1533, -- Wakening Essence
 	},
 }
 
