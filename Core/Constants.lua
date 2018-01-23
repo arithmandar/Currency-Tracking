@@ -180,12 +180,13 @@ constants.items = {
 		21100, -- Coin of Ancestry, Lunar Festiva
 	},
 	pvp = {
-		137642, -- MARK_OF_HONOR 
-		103533, -- aren, VICIOUS_SADDLE 
+		137642, -- Mark of Honor
+		103533, -- Vicious Saddle
 		26045, -- HALAA_BATTLE_TOKEN 
 		26044, -- HALAA_RESEARCH_TOKEN 
 	},
 	others = {
+		157796, -- Purified Titan Essence, added in 7.3.5.25807
 		113578, -- Hearty Soup Bone
 		124124, -- Blood of Sargeras
 		124099, -- Blackfang Claw

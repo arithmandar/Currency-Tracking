@@ -32,6 +32,8 @@ L["Hide while in combat"] = "Hide while in combat"
 L["Automatically hide the tracking frame while in combat."] = "Automatically hide the tracking frame while in combat."
 L["Hide while in battleground"] = "Hide while in battleground"
 L["Automatically hide the tracking frame while in battleground."] = "Automatically hide the tracking frame while in battleground."
+L["Show icon only"] = "Show icon only"
+L["Show only the currency / item's icon, do not show the amounts."] = "Show only the currency / item's icon, do not show the amounts."
 -- Scale and Transparency
 L["Scale and Transparency"] = "Scale and Transparency"
 L["On-screen frame"] = "On-screen frame"
