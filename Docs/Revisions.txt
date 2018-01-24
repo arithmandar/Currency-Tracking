@@ -5,7 +5,7 @@ Revision History:
 
 * v5.07 (Jan. 23, 2018)
 -----------------------
--- Added Purified Titan Essence which was introduced in 7.3.5.25807
+- Added Purified Titan Essence which was introduced in 7.3.5.25807
 
 * v5.06 (Jan. 22, 2018)
 -----------------------
