@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v5.08 (Mar. 04, 2018)
+-----------------------
+  - Lib Update: 
+    - AceConfig
+
 * v5.07 (Jan. 23, 2018)
 -----------------------
 - Added Purified Titan Essence which was introduced in 7.3.5.25807
