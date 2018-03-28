@@ -5,8 +5,13 @@ Revision History:
 
 * v5.08 (Mar. 04, 2018)
 -----------------------
-  - Lib Update: 
-    - AceConfig
+- Translation update:
+  - Korean (next96)
+
+* v5.08 (Mar. 04, 2018)
+-----------------------
+- Lib Update: 
+  - AceConfig
 
 * v5.07 (Jan. 23, 2018)
 -----------------------
