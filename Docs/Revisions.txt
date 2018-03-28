@@ -3,7 +3,7 @@
 Revision History:
 =================
 
-* v5.08 (Mar. 04, 2018)
+* v5.09 (Mar. 28, 2018)
 -----------------------
 - Translation update:
   - Korean (next96)
