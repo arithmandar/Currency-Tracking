@@ -205,6 +205,7 @@ constants.items = {
 	},
 	professions = {
 		[3908] = { -- Tailoring
+			151567, -- Lightweave Cloth
 			146711, -- Bolt of Starweave
 			146710, -- Bolt of Shadowcloth
 			127681, -- Sharp Spritethorn
@@ -260,6 +261,7 @@ constants.items = {
 			2320, -- Coarse Thread
 		},
 		[2575] = { -- Mining
+			151564, -- Empyrium
 			124444, -- Infernal Brimstone
 			123919, -- Felslate
 			123918, -- Leystone Ore
@@ -317,6 +319,7 @@ constants.items = {
 			2770, -- Copper Ore
 		},
 		[2108] = { -- Leatherworking
+			151566, -- Fiendish Leather
 			124116, -- Felhide
 			124115, -- Stormscale
 			124113, -- Stonehide Leather
@@ -427,6 +430,7 @@ constants.items = {
 			6217, -- Copper Rod
 		},
 		[2366] = { -- Herbalism
+			151565, -- Astral Glory
 			129289, -- Felwort Seed
 			129288, -- Starlight Rose Seed
 			129287, -- Fjarnskaggl Seed

@@ -3,6 +3,14 @@
 Revision History:
 =================
 
+* v5.10 (Mar. 30, 2018)
+-----------------------
+- Added items introduced in 7.3.0:
+  - Mining: Empyrium
+  - Herb Gathering: Astral Glory
+  - Leatherworking: Fiendish Leather
+  - Tailoring: Lightweave Cloth
+
 * v5.09 (Mar. 28, 2018)
 -----------------------
 - Translation update:
