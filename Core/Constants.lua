@@ -187,7 +187,7 @@ constants.items = {
 	},
 	others = {
 		157796, -- Purified Titan Essence, added in 7.3.5.25807
-		113578, -- Hearty Soup Bone
+		151568, -- Primal Sargerite, added in patch 7.3.0.24484
 		124124, -- Blood of Sargeras
 		124099, -- Blackfang Claw
 		120945, -- Primal Spirit
@@ -198,10 +198,12 @@ constants.items = {
 		119813, -- Furry Caged Beast
 		119810, -- Meaty Caged Beast
 		118100, -- Highmaul Relic
-		117397, -- NATS_LUCKY_COIN
-		116415, -- PET_CHARM
-		76061, -- SPIRIT_HARMONY
+		117397, -- Nats Lucky Coin
+		116415, -- Pet Charm
+		113578, -- Hearty Soup Bone
+		76061, -- Spirit of Harmony
 		43089, -- Vrykul Bones
+		28558, -- Spirit Shard, currency tokens dropped by bosses in the Auchindoun
 	},
 	professions = {
 		[3908] = { -- Tailoring

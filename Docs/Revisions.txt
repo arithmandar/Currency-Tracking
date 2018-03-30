@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v5.11 (Mar. 31, 2018)
+-----------------------
+- Added Spirit Shard and Primal Sargerite
+
 * v5.10 (Mar. 30, 2018)
 -----------------------
 - Added items introduced in 7.3.0:
