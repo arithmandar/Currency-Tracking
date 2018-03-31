@@ -162,7 +162,7 @@ constants.currencies = {
 		1356, -- Echoes of Battle
 		1357, -- Echoes of Domination
 		1416, -- Coins of Air
-		1171, -- Artifact Knowledge
+		1171, -- Artifact Knowledge, this is actually from Hidden category
 		1501, -- Writhing Essence
 		1506, -- Argus Waystone
 		1508, -- Veiled Argunite
@@ -590,6 +590,7 @@ constants.itemCategories = {
 	["professions"] = TRADE_SKILLS,
 }
 
+--[[
 constants.archaeology = {
 	1174, -- Demonic Archaeology Fragment
 	1173, -- Highmountain Tauren Archaeology Fragment
@@ -610,6 +611,7 @@ constants.archaeology = {
 	385, -- Troll Archaeology Fragment
 	384, -- Dwarf Archaeology Fragment
 }
+]]
 
 constants.events = {
 	"PLAYER_REGEN_ENABLED",

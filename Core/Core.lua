@@ -37,9 +37,6 @@ addon.Notes = select(3, GetAddOnInfo(addon.Name))
 _G.CurrencyTracking = addon
 local profile
 
-local CurrencyTracking_Player = UnitName("player")
-local CurrencyTracking_Server = GetRealmName()
-
 local isInLockdown = false
 local isInBattleGround = false
 local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale()
@@ -852,6 +849,8 @@ local function copyOptions()
 end
 ]]
 
+-- pre-scan items so that they will properly showed in option panel
+-- this function will not generate any visible result but it's more like scanning items so that those will be in your cache
 local function scanItems()
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
