@@ -176,7 +176,7 @@ local function getOptions()
 									name = L["Max items per row"],
 									desc = L["Set the maximum number of items to be displayed per row. Set to 0 to allow unlimited items on one single row."],
 									width = "double",
-									min = 1, max = 60, bigStep = 1,
+									min = 0, max = 60, bigStep = 1,
 								},
 							},
 						},

@@ -6,6 +6,7 @@ Revision History:
 * v5.11 (Mar. 31, 2018)
 -----------------------
 - Added Spirit Shard and Primal Sargerite
+- Fixed the settings for number of items / currencies per line cannot be set to 0 (means maximum to be displayed)
 
 * v5.10 (Mar. 30, 2018)
 -----------------------
