@@ -987,14 +987,21 @@ function addon:Refresh()
 end
 
 -- ///////////////////////////////////////////////////
+-- Event handling
+-- ///////////////////////////////////////////////////
+local function hideFrame(key)
+	if (profile.show_currency and profile[key]) then
+		local nf = _G["CurrencyTrackingFrame"]
+		nf:Hide()
+	end
+end
+
+-- ///////////////////////////////////////////////////
 -- Combat
 -- Event fired whenever you enter combat
 function addon:PLAYER_REGEN_DISABLED()
 	isInLockdown = true
-	if (profile.show_currency and profile.hide_in_combat) then
-		local nf = _G["CurrencyTrackingFrame"]
-		nf:Hide()
-	end
+	hideFrame("hide_in_combat")
 end
 
 -- Event fired after ending combat
@@ -1017,10 +1024,7 @@ end
 -- Event fired when the battlegrounds signup window is opened.
 function addon:BATTLEFIELDS_SHOW()
 	isInBattleGround = true
-	if (profile.show_currency and profile.hide_in_battleground) then
-		local nf = _G["CurrencyTrackingFrame"]
-		nf:Hide()
-	end
+	hideFrame("hide_in_battleground")
 end
 
 -- Event fired when the battlegrounds signup window is closed.
@@ -1036,10 +1040,7 @@ end
 -- ///////////////////////////////////////////////////
 -- Pet battle
 function addon:PET_BATTLE_OPENING_START()
-	if (profile.show_currency and profile.hide_in_petbattle) then
-		local nf = _G["CurrencyTrackingFrame"]
-		nf:Hide()
-	end
+	hideFrame("hide_in_petbattle")
 end
 
 function addon:PET_BATTLE_CLOSE()
