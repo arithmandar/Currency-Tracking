@@ -16,6 +16,8 @@ local LibStub = _G.LibStub
 local constants = {}
 private.constants = constants
 
+constants.ldb_icon = "Interface\\Icons\\timelesscoin"
+
 constants.defaults = {
 	profile = {
 		show_currency = true,

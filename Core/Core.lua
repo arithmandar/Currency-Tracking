@@ -10,6 +10,7 @@ local string, tonumber = _G.string, _G.tonumber
 local GameTooltip = _G.GameTooltip
 local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
 local GetItemInfoInstant, GetItemCount, GetItemInfo = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo
+local GetMoney = _G.GetMoney
 local format, strsub, strlen, strgmatch = string.format, string.sub, string.len, string.gmatch
 local floor, fmod = math.floor, math.fmod
 -- ----------------------------------------------------------------------------
@@ -25,7 +26,6 @@ local LDB_CurrencyTracking = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObje
 	type = "data source",
 	text = L["CT_TITLE"],
 	label = L["CT_TITLE"],
-	icon = "Interface\\Icons\\timelesscoin",
 })
 
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceEvent-3.0")
@@ -37,53 +37,55 @@ addon.Notes = select(3, GetAddOnInfo(addon.Name))
 _G.CurrencyTracking = addon
 local profile
 
-local isInLockdown = false
-local isInBattleGround = false
-local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale()
+-- local booleans, constants, and arrays
+local isInLockdown = false		-- boolean to check if player is in combat
+local isInBattleGround = false	-- boolean to check if player is in battleground
+local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale()	-- to get the original GameTooltip's scaling value
 local CT_CURRSTR = nil
-local CURRENCIESLIST = {}
-local numCurrencies = 0
+local CURRENCIESLIST = {}		-- initialize currency list array
+local numCurrencies = 0			-- initialize the number of currencies
+
 
 -- codes adopted from Accountant_Classic
 local function getFormattedValue(amount)
-	local gold = floor(amount / (COPPER_PER_SILVER * SILVER_PER_GOLD))
-	local goldDisplay = profile.breakupnumbers and BreakUpLargeNumbers(gold) or gold
-	local silver = floor((amount - (gold * COPPER_PER_SILVER * SILVER_PER_GOLD)) / COPPER_PER_SILVER)
-	local copper = fmod(amount, COPPER_PER_SILVER)
-	
-	local TMP_GOLD_AMOUNT_TEXTURE
-	local TMP_SILVER_AMOUNT_TEXTURE
-	local TMP_COPPER_AMOUNT_TEXTURE
+	if (amount and type(amount) == "number") then 
+		local gold = floor(amount / (COPPER_PER_SILVER * SILVER_PER_GOLD))
+		local goldDisplay = profile.breakupnumbers and BreakUpLargeNumbers(gold) or gold
+		local silver = floor((amount - (gold * COPPER_PER_SILVER * SILVER_PER_GOLD)) / COPPER_PER_SILVER)
+		local copper = fmod(amount, COPPER_PER_SILVER)
+		
+		local TMP_GOLD_AMOUNT_TEXTURE
+		local TMP_SILVER_AMOUNT_TEXTURE
+		local TMP_COPPER_AMOUNT_TEXTURE
 
-	if (profile.icon_first) then
-		TMP_GOLD_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t %s"
-		TMP_SILVER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t %02d"
-		TMP_COPPER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t %02d"
-	else
-		TMP_GOLD_AMOUNT_TEXTURE 	= "%s|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t"
-		TMP_SILVER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t"
-		TMP_COPPER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t"
-	end
+		if (profile.icon_first) then
+			TMP_GOLD_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t %s"
+			TMP_SILVER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t %02d"
+			TMP_COPPER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t %02d"
 
-	if (profile.icon_first) then
-		if (gold >0) then
-			return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, goldDisplay, 0, 0, silver, 0, 0, copper)
-		elseif (silver >0) then 
-			return format("|cffffffff"..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, silver, 0, 0, copper)
-		elseif (copper >0) then
-			return format("|cffffffff"..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, copper)
+			if (gold >0) then
+				return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, goldDisplay, 0, 0, silver, 0, 0, copper)
+			elseif (silver >0) then 
+				return format("|cffffffff"..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, silver, 0, 0, copper)
+			elseif (copper >0) then
+				return format("|cffffffff"..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, copper)
+			else
+				return ""
+			end
 		else
-			return ""
-		end
-	else
-		if (gold >0) then
-			return format(" |cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0, silver, 0, 0, copper, 0, 0)
-		elseif (silver >0) then 
-			return format(" |cffffffff"..SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", silver, 0, 0, copper, 0, 0)
-		elseif (copper >0) then
-			return format(" |cffffffff"..COPPER_AMOUNT_TEXTURE.."|r", copper, 0, 0)
-		else
-			return ""
+			TMP_GOLD_AMOUNT_TEXTURE 	= "%s|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t"
+			TMP_SILVER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t"
+			TMP_COPPER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t"
+
+			if (gold >0) then
+				return format(" |cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0, silver, 0, 0, copper, 0, 0)
+			elseif (silver >0) then 
+				return format(" |cffffffff"..SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", silver, 0, 0, copper, 0, 0)
+			elseif (copper >0) then
+				return format(" |cffffffff"..COPPER_AMOUNT_TEXTURE.."|r", copper, 0, 0)
+			else
+				return ""
+			end
 		end
 	end
 end
@@ -705,8 +707,8 @@ local function currencyString_Update()
 			for ka, profs in pairs(v) do
 				for kb, itemID in ipairs(profs) do
 					if (profile["items"][itemID] == true) then
-						local icon, _
-						_, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+						local icon
+						icon = select(10, GetItemInfo(itemID))
 						local count = GetItemCount(itemID, true)
 						
 						if (profile.hide_zero and count == 0) then
@@ -727,8 +729,8 @@ local function currencyString_Update()
 		else
 			for ka, itemID in ipairs(v) do
 				if (profile["items"][itemID] == true) then
-					local icon, _
-					_, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+					local icon
+					icon = select(10, GetItemInfo(itemID))
 					local count = GetItemCount(itemID, true)
 					
 					if (profile.hide_zero and count == 0) then
@@ -871,6 +873,7 @@ end
 
 local function setupLDB()
 	-- LDB object setting up
+	LDB_CurrencyTracking.icon = addon.constants.ldb_icon
 	LDB_CurrencyTracking.OnClick = (function(self, button)
 		if button == "LeftButton" then
 			addon:OpenOptions()
