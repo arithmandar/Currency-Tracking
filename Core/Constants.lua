@@ -165,8 +165,8 @@ constants.currencies = {
 		1357, -- Echoes of Domination
 		1416, -- Coins of Air
 		1171, -- Artifact Knowledge, this is actually from Hidden category
-		1501, -- Writhing Essence
-		1506, -- Argus Waystone
+		1501, -- Writhing Essence, this is actually from Hidden category
+		1506, -- Argus Waystone, this is actually from Hidden category
 		1508, -- Veiled Argunite
 		1533, -- Wakening Essence
 	},
