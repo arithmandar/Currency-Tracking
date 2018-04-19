@@ -7,12 +7,15 @@ local _G = getfenv(0)
 local pairs, ipairs, select, unpack, type = _G.pairs, _G.ipairs, _G.select, _G.unpack, _G.type
 local string, tonumber = _G.string, _G.tonumber
 -- Libraries
-local GameTooltip = _G.GameTooltip
-local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
-local GetItemInfoInstant, GetItemCount, GetItemInfo = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo
-local GetMoney = _G.GetMoney
 local format, strsub, strlen, strgmatch = string.format, string.sub, string.len, string.gmatch
 local floor, fmod = math.floor, math.fmod
+-- WoW
+local GetAddOnInfo = _G.GetAddOnInfo
+local GameTooltip = _G.GameTooltip
+local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
+local GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
+local GetItemInfoInstant, GetItemCount, GetItemInfo = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo
+local GetMoney = _G.GetMoney
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -44,7 +47,6 @@ local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale()	-- to get the original 
 local CT_CURRSTR = nil
 local CURRENCIESLIST = {}		-- initialize currency list array
 local numCurrencies = 0			-- initialize the number of currencies
-
 
 -- codes adopted from Accountant_Classic
 local function getFormattedValue(amount)
@@ -590,6 +592,21 @@ local function currencyButton_Update()
 		end
 	end
 	-- tracked items
+	for itemID, v in pairs(profile["items"]) do
+		if (itemID and profile["items"][itemID] == true) then
+			local count = GetItemCount(itemID, true)
+			if (profile.hide_zero and count == 0) then
+				-- do nothing
+			else
+				button = _G["CurrencyTrackingButton"..bi]
+				if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+				handleTrackedButtons(button, nil, itemID)
+				gwidth = gwidth + button:GetWidth()
+				bi = bi + 1
+			end
+		end
+	end
+--[[
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
 			for ka, profs in pairs(v) do
@@ -625,6 +642,7 @@ local function currencyButton_Update()
 			end
 		end
 	end
+]]
 	-- end of tracked items
 	-- handle money
 	if (profile.show_money) then
@@ -702,6 +720,26 @@ local function currencyString_Update()
 	end
 
 	-- tracked items
+	for itemID, v in pairs(profile["items"]) do
+		if (itemID and profile["items"][itemID] == true) then
+			local count = GetItemCount(itemID, true)
+			local icon = select(10, GetItemInfo(itemID))
+
+			if (profile.hide_zero and count == 0) then
+				-- do nothing
+			else
+				local displayString
+				if (profile.icon_first) then
+					displayString = format("|T%d:%d:%d:2:0|t |cffffffff%d|r", icon, 16, 16, count)
+				else
+					displayString = format("|cffffffff%d|r|T%d:%d:%d:2:0|t ", count, icon, 16, 16)
+				end
+				
+				currencystr = currencystr..displayString
+			end
+		end
+	end
+--[[
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
 			for ka, profs in pairs(v) do
@@ -749,6 +787,7 @@ local function currencyString_Update()
 			end
 		end
 	end
+]]
 	-- return could be nil if no any currency being tracked
 	return currencystr
 end
