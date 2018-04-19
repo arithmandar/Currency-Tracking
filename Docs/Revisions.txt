@@ -6,6 +6,8 @@ Revision History:
 * v5.12 (Apr. xx, 2018)
 -----------------------
 - Enhanced currency's icon's tolltip to also support customized scale and transparency
+- Rewrote the tracked items' scanning method to slightly improve the performance
+- Convert the tracked currencies' tracking format from name to currencyID
 
 * v5.11 (Mar. 31, 2018)
 -----------------------

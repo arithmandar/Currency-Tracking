@@ -16,6 +16,7 @@ local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
 local GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
 local GetItemInfoInstant, GetItemCount, GetItemInfo = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo
 local GetMoney = _G.GetMoney
+local GetLocale = _G.GetLocale
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -573,11 +574,12 @@ local function currencyButton_Update()
 	local gwidth = 0
 	local bi = 1
 
+	-- tracked currencies
 	for i=1, numCurrencies do
 		local currencyID = CURRENCIESLIST[i].id
 		local name, count
 		if (currencyID) then name, count = GetCurrencyInfo(currencyID) end
-		if (name and profile["currencies"][name] == true) then
+		if (profile["currencies"][currencyID] == true) then
 			if (count >= 0) then
 				if (profile.hide_zero and count == 0) then
 					-- do nothing
@@ -690,7 +692,7 @@ local function currencyString_Update()
 		local name, count, icon
 		if (currencyID) then name, count, icon = GetCurrencyInfo(currencyID) end
 		if not icon then icon = 0 end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
-		if (name and profile["currencies"][name] == true) then
+		if (profile["currencies"][currencyID] == true) then
 			if (count >= 0) then
 				if (profile.hide_zero and count == 0) then
 					-- do nothing
@@ -997,6 +999,31 @@ local function populateCurrencyList()
 	end
 end
 
+-- temp function to convert the tracked currencies from recorded name to recorded the currency ID
+local function convertTrackedCurrencies()
+	if (profile.currencyFormatConverted) then
+		return
+	end
+	for k, v in pairs(addon.constants.currencies) do
+		for index, id in ipairs(v) do
+			local name = LibCurrencyInfo:GetCurrencyByID(id)
+			
+			if (profile["currencies"][name] ~= nil) then
+				profile["currencies"][id] = profile["currencies"][name]
+				profile["currencies"][name] = nil
+			end
+		end
+	end
+	
+	-- further cleaning up
+	for k, v in pairs(profile["currencies"]) do
+		if (type(k) ~= "number") then
+			profile["currencies"][k] = nil
+		end
+	end
+	profile.currencyFormatConverted = true
+end
+
 function addon:OnInitialize()
 	self.db = AceDB:New(addon.Name.."DB", addon.constants.defaults)
 	profile = self.db.profile
@@ -1006,6 +1033,7 @@ function addon:OnInitialize()
 	self.db.RegisterCallback(self, "OnProfileReset", "Refresh")
 
 	--copyOptions()
+	convertTrackedCurrencies()
 	self:SetupOptions()
 	self.frame = createCurrencyFrame()
 	numCurrencies = getNumberOfCurrencies()

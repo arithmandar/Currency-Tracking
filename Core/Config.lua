@@ -4,11 +4,16 @@
 -----------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local pairs = _G.pairs
+local pairs, ipairs, type = _G.pairs, _G.ipairs, _G.type
 local math = _G.math
 local table = _G.table
 local tsort = table.sort
+local string = _G.string
 -- Libraries
+local format = string.format
+-- WoW
+local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = _G.GetSpellTexture, _G.GetSpellInfo, _G.GetItemInfo, _G.GetItemCount
+local GetLocale = _G.GetLocale
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -254,11 +259,11 @@ end
 -- Currencies
 -- /////////////////////////////////////////////////////////
 local currenciesOptions = nil
-local function tokenButton_ToggleTrack(name)
+local function tokenButton_ToggleTrack(id)
 	profile = addon.db.profile
-	if (not profile["currencies"][name]) then profile["currencies"][name] = false end
+	if (not profile["currencies"][id]) then profile["currencies"][id] = false end
 
-	profile["currencies"][name] = not profile["currencies"][name]
+	profile["currencies"][id] = not profile["currencies"][id]
 end
 
 local function getCurrenciesOptions()
@@ -301,8 +306,8 @@ local function getCurrenciesOptions()
 					else
 						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count)
 					end
-					tg["currency"..index].get = (function() return profile["currencies"][name] end)
-					tg["currency"..index].set = (function() tokenButton_ToggleTrack(name); addon:Refresh() end)
+					tg["currency"..index].get = (function() return profile["currencies"][id] end)
+					tg["currency"..index].set = (function() tokenButton_ToggleTrack(id); addon:Refresh() end)
 				end
 				j = j + 1
 			end
