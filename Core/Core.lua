@@ -124,13 +124,13 @@ local function getTooltipText()
 	for i = 1, cCount do 
 		-- // GetCurrencyListInfo() syntax:
 		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index)
-		local name, isHeader, isUnused, count, icount, icon, _
+		local name, isHeader, isUnused, count, icon, _
 		name, isHeader, _, isUnused, _, count, icon = GetCurrencyListInfo(i)
 		if ( isHeader ) then
 			tooltip = tooltip..name.."\n"
 		elseif ( (count >= 0) and not isUnused ) then
 			if (icon ~= nil) then
-				icount = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+				local icount = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
 				if (count == 0) then
 					if (not profile.hide_zero) then
 						display = " - "..name.."\t|cffff0000"..icount.." |r|T"..icon..":16|t"
@@ -864,18 +864,23 @@ local function getButtonText()
 	return currencystr
 end
 
-local function frame_OnUpdate(self)
+local function currencyUpdate()
 	-- leave while in combat or in battlegrounds
 	if (isInLockdown or isInBattleGround) then
 		return
 	end
 	
+	if (profile.show_currency) then currencyButton_Update() end
+
 	local currencystr = getButtonText()
-	currencyButton_Update()
 	if (currencystr ~= CT_CURRSTR) then
 		LDB_CurrencyTracking.text = currencystr
 		CT_CURRSTR = currencystr
 	end
+end
+
+local function frame_OnUpdate(self)
+	--currencyUpdate()
 end
 
 local function createCurrencyFrame()
@@ -949,8 +954,10 @@ local function copyOptions()
 end
 ]]
 
+-- scanItems()
 -- pre-scan items so that they will properly showed in option panel
--- this function will not generate any visible result but it's more like scanning items so that those will be in your cache
+-- this function will not generate any visible result but it's more like scanning items 
+-- so that those will be in your cache
 local function scanItems()
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
@@ -1104,6 +1111,7 @@ function addon:OnEnable()
 
 	setupLDB()
 	scanItems() -- pre-scan items so that they will properly showed in option panel
+	currencyUpdate()
 	self:Refresh()
 end
 
@@ -1180,4 +1188,45 @@ function addon:PET_BATTLE_CLOSE()
 			nf:Show()
 		end
 	end
+end
+
+-- Fired when a bags inventory changes.
+function addon:BAG_UPDATE()
+	currencyUpdate()
+end
+
+function addon:TRADE_CURRENCY_CHANGED()
+	currencyUpdate()
+end
+
+-- This event fires whenever the data for an artifact has been updated, such as after completing a new one. 
+function addon:ARTIFACT_UPDATE()
+	currencyUpdate()
+end
+
+-- Event fired when gaining artifact power for the current equipped artifact weapon.
+function addon:ARTIFACT_XP_UPDATE()
+	currencyUpdate()
+end
+
+-- Fired when an item in the target's trade window is changed (items added or removed from trade).
+function addon:TRADE_PLAYER_ITEM_CHANGED()
+	currencyUpdate()
+end
+
+function addon:PLAYER_TRADE_CURRENCY()
+	currencyUpdate()
+end
+
+-- Fires when you gain currency other than money (for example Chef's Awards or Champion's Seals). 
+function addon:CHAT_MSG_CURRENCY()
+	currencyUpdate()
+end
+
+function addon:SHIPMENT_CRAFTER_REAGENT_UPDATE()
+	currencyUpdate()
+end
+
+function addon:CURRENCY_DISPLAY_UPDATE()
+	currencyUpdate()
 end

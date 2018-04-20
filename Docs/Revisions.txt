@@ -3,13 +3,13 @@
 Revision History:
 =================
 
-* v5.12 (Apr. xx, 2018)
+* v6.00 (Apr. xx, 2018)
 -----------------------
 - Enhanced currency's icon's tolltip to also support customized scale and transparency
 - Rewrote the tracked items' scanning method to slightly improve the performance
 - Rewrote the tracked currencies' scanning method to slightly improve the performance
-- OnUpdate enhancement
 - Convert the tracked currencies' tracking format from name to currencyID
+- Added more events' handling and use the event to trigger the currency update instead of triggered from frame update
 
 * v5.11 (Mar. 31, 2018)
 -----------------------
