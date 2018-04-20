@@ -261,9 +261,13 @@ end
 local currenciesOptions = nil
 local function tokenButton_ToggleTrack(id)
 	profile = addon.db.profile
-	if (not profile["currencies"][id]) then profile["currencies"][id] = false end
-
-	profile["currencies"][id] = not profile["currencies"][id]
+	if (not profile["currencies"][id]) then 
+		profile["currencies"][id] = true
+	else
+		profile["currencies"][id] = nil
+	end
+	
+	addon:Refresh()
 end
 
 local function getCurrenciesOptions()
@@ -307,7 +311,7 @@ local function getCurrenciesOptions()
 						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count)
 					end
 					tg["currency"..index].get = (function() return profile["currencies"][id] end)
-					tg["currency"..index].set = (function() tokenButton_ToggleTrack(id); addon:Refresh() end)
+					tg["currency"..index].set = (function() tokenButton_ToggleTrack(id) end)
 				end
 				j = j + 1
 			end
@@ -324,9 +328,12 @@ end
 local itemOptions = nil
 local function itemButton_ToggleTrack(itemID)
 	if not profile then profile = addon.db.profile end
-	if (not profile["items"][itemID]) then profile["items"][itemID] = false end
+	if (not profile["items"][itemID]) then 
+		profile["items"][itemID] = true 
+	else
+		profile["items"][itemID] = nil
+	end
 
-	profile["items"][itemID] = not profile["items"][itemID]
 	addon:Refresh()
 end
 

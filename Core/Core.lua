@@ -36,8 +36,8 @@ local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceEvent-3.0
 addon.constants = private.constants
 addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
-addon.LocName = select(2, GetAddOnInfo(addon.Name))
-addon.Notes = select(3, GetAddOnInfo(addon.Name))
+local _
+_, addon.LocName, addon.Notes = GetAddOnInfo(addon.Name)
 _G.CurrencyTracking = addon
 local profile
 
@@ -57,9 +57,7 @@ local function getFormattedValue(amount)
 		local silver = floor((amount - (gold * COPPER_PER_SILVER * SILVER_PER_GOLD)) / COPPER_PER_SILVER)
 		local copper = fmod(amount, COPPER_PER_SILVER)
 		
-		local TMP_GOLD_AMOUNT_TEXTURE
-		local TMP_SILVER_AMOUNT_TEXTURE
-		local TMP_COPPER_AMOUNT_TEXTURE
+		local TMP_GOLD_AMOUNT_TEXTURE, TMP_SILVER_AMOUNT_TEXTURE, TMP_COPPER_AMOUNT_TEXTURE
 
 		if (profile.icon_first) then
 			TMP_GOLD_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t %s"
@@ -121,11 +119,12 @@ end
 local function getTooltipText()
 	local display = ""
 	local tooltip = ""
-	local name, isHeader, isUnused, count, icount, icon, cCount, _
+	local cCount
 	cCount = GetCurrencyListSize()
 	for i = 1, cCount do 
 		-- // GetCurrencyListInfo() syntax:
 		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index)
+		local name, isHeader, isUnused, count, icount, icon, _
 		name, isHeader, _, isUnused, _, count, icon = GetCurrencyListInfo(i)
 		if ( isHeader ) then
 			tooltip = tooltip..name.."\n"
@@ -171,8 +170,8 @@ local function button_OnMouseUp(self, buttonName)
 	end
 	if(addon.frame:IsVisible()) then
 		addon.frame:StopMovingOrSizing()
-		local a, b, c, d, e = addon.frame:GetPoint()
-		profile.point = { a, b, c, d, e }
+		local point, relativeTo, relativePoint, xOfs, yOfs = addon.frame:GetPoint()
+		profile.point = { point, relativeTo, relativePoint, xOfs, yOfs }
 	end
 end
 
@@ -575,6 +574,24 @@ local function currencyButton_Update()
 	local bi = 1
 
 	-- tracked currencies
+	for currencyID, v in pairs(profile["currencies"]) do
+		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
+			local _, count = GetCurrencyInfo(currencyID)
+
+			if (count >= 0) then
+				if (profile.hide_zero and count == 0) then
+					-- do nothing
+				else
+					button = _G["CurrencyTrackingButton"..bi]
+					if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+					handleTrackedButtons(button, currencyID)
+					gwidth = gwidth + button:GetWidth()
+					bi = bi + 1
+				end
+			end
+		end
+	end
+--[[
 	for i=1, numCurrencies do
 		local currencyID = CURRENCIESLIST[i].id
 		local name, count
@@ -593,6 +610,7 @@ local function currencyButton_Update()
 			end
 		end
 	end
+]]
 	-- tracked items
 	for itemID, v in pairs(profile["items"]) do
 		if (itemID and profile["items"][itemID] == true) then
@@ -687,6 +705,40 @@ local function currencyString_Update()
 
 	local CT_CURRENCY_TEXTURE
 
+	-- tracked currencies
+	for currencyID, v in pairs(profile["currencies"]) do
+		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
+			local _, count, icon = GetCurrencyInfo(currencyID)
+			if not icon then icon = 0 end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
+			
+			if (count >= 0) then
+				if (profile.hide_zero and count == 0) then
+					-- do nothing
+				else
+					if (count == 0) then 
+						if (profile.icon_first) then
+							CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t "..RED_FONT_COLOR_CODE.."%s "..FONT_COLOR_CODE_CLOSE
+						else
+							CT_CURRENCY_TEXTURE = RED_FONT_COLOR_CODE.." %s"..FONT_COLOR_CODE_CLOSE.."|T"..icon..":%d:%d:2:0|t "
+						end
+					else
+						if (profile.icon_first) then
+							CT_CURRENCY_TEXTURE = "|T"..icon..":%d:%d:2:0|t "..HIGHLIGHT_FONT_COLOR_CODE.."%s "..FONT_COLOR_CODE_CLOSE
+						else
+							CT_CURRENCY_TEXTURE = HIGHLIGHT_FONT_COLOR_CODE.." %s"..FONT_COLOR_CODE_CLOSE.."|T"..icon..":%d:%d:2:0|t "
+						end
+					end
+					count = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
+					if (profile.icon_first) then
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, 0, 0, count)
+					else
+						currencystr = currencystr..format(CT_CURRENCY_TEXTURE, count, 0, 0)
+					end
+				end
+			end
+		end
+	end
+--[[
 	for i=1, numCurrencies do
 		local currencyID = CURRENCIESLIST[i].id
 		local name, count, icon
@@ -720,7 +772,7 @@ local function currencyString_Update()
 			end
 		end
 	end
-
+]]
 	-- tracked items
 	for itemID, v in pairs(profile["items"]) do
 		if (itemID and profile["items"][itemID] == true) then
@@ -1008,7 +1060,7 @@ local function convertTrackedCurrencies()
 		for index, id in ipairs(v) do
 			local name = LibCurrencyInfo:GetCurrencyByID(id)
 			
-			if (profile["currencies"][name] ~= nil) then
+			if (profile["currencies"][name]) then
 				profile["currencies"][id] = profile["currencies"][name]
 				profile["currencies"][name] = nil
 			end
