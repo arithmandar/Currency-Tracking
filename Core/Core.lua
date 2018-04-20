@@ -64,28 +64,36 @@ local function getFormattedValue(amount)
 			TMP_SILVER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t %02d"
 			TMP_COPPER_AMOUNT_TEXTURE 	= "|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t %02d"
 
-			if (gold >0) then
-				return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, goldDisplay, 0, 0, silver, 0, 0, copper)
-			elseif (silver >0) then 
-				return format("|cffffffff"..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, silver, 0, 0, copper)
-			elseif (copper >0) then
-				return format("|cffffffff"..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, copper)
+			if (profile.showLowerDenominations) then
+				if (gold >0) then
+					return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, goldDisplay, 0, 0, silver, 0, 0, copper)
+				elseif (silver >0) then 
+					return format("|cffffffff"..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, silver, 0, 0, copper)
+				elseif (copper >0) then
+					return format("|cffffffff"..TMP_COPPER_AMOUNT_TEXTURE.."|r", 0, 0, copper)
+				else
+					return ""
+				end
 			else
-				return ""
+				return format("|cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.."|r", 0, 0, goldDisplay)
 			end
 		else
 			TMP_GOLD_AMOUNT_TEXTURE 	= "%s|TInterface\\MoneyFrame\\UI-GoldIcon:%d:%d:2:0|t"
 			TMP_SILVER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-SilverIcon:%d:%d:2:0|t"
 			TMP_COPPER_AMOUNT_TEXTURE 	= "%02d|TInterface\\MoneyFrame\\UI-CopperIcon:%d:%d:2:0|t"
 
-			if (gold >0) then
-				return format(" |cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0, silver, 0, 0, copper, 0, 0)
-			elseif (silver >0) then 
-				return format(" |cffffffff"..SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", silver, 0, 0, copper, 0, 0)
-			elseif (copper >0) then
-				return format(" |cffffffff"..COPPER_AMOUNT_TEXTURE.."|r", copper, 0, 0)
+			if (profile.showLowerDenominations) then
+				if (gold >0) then
+					return format(" |cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.." "..TMP_SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0, silver, 0, 0, copper, 0, 0)
+				elseif (silver >0) then 
+					return format(" |cffffffff"..SILVER_AMOUNT_TEXTURE.." "..TMP_COPPER_AMOUNT_TEXTURE.."|r", silver, 0, 0, copper, 0, 0)
+				elseif (copper >0) then
+					return format(" |cffffffff"..COPPER_AMOUNT_TEXTURE.."|r", copper, 0, 0)
+				else
+					return ""
+				end
 			else
-				return ""
+				return format(" |cffffffff"..TMP_GOLD_AMOUNT_TEXTURE.."|r", goldDisplay, 0, 0)
 			end
 		end
 	end
@@ -518,8 +526,7 @@ local function handleTrackedButtons(button, currencyID, itemID)
 				end
 			end
 		end
-		
-	else
+	else -- money
 		button.icon:SetTexture(nil)
 		button.count:SetText(getFormattedValue(GetMoney()))
 		width = button.count:GetStringWidth()
@@ -668,7 +675,7 @@ local function currencyButton_Update()
 	if (profile.show_money) then
 		button = _G["CurrencyTrackingButton"..bi]
 		if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
-		handleTrackedButtons(button, nil, itemID)
+		handleTrackedButtons(button)
 		gwidth = gwidth + button:GetWidth()
 		bi = bi + 1
 	end
@@ -865,11 +872,6 @@ local function getButtonText()
 end
 
 local function currencyUpdate()
-	-- leave while in combat or in battlegrounds
-	if (isInLockdown or isInBattleGround) then
-		return
-	end
-	
 	if (profile.show_currency) then currencyButton_Update() end
 
 	local currencystr = getButtonText()
@@ -1117,7 +1119,7 @@ end
 
 function addon:Refresh()
 	profile = self.db.profile
-	
+	currencyUpdate()
 	frameRefresh()
 end
 
@@ -1227,6 +1229,7 @@ function addon:SHIPMENT_CRAFTER_REAGENT_UPDATE()
 	currencyUpdate()
 end
 
+-- Fired every time the UI need to draw the currencies list. 
 function addon:CURRENCY_DISPLAY_UPDATE()
 	currencyUpdate()
 end

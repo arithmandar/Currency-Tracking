@@ -42,6 +42,7 @@ constants.defaults = {
 		maxItems = 0, -- 0 means un-limited
 		--optionsCopied = false,
 		currencyFormatConverted = false,
+		showLowerDenominations = true,
 	},
 }
 
