@@ -865,6 +865,11 @@ local function getButtonText()
 end
 
 local function frame_OnUpdate(self)
+	-- leave while in combat or in battlegrounds
+	if (isInLockdown or isInBattleGround) then
+		return
+	end
+	
 	local currencystr = getButtonText()
 	currencyButton_Update()
 	if (currencystr ~= CT_CURRSTR) then
