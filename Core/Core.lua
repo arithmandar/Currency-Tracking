@@ -1233,3 +1233,25 @@ end
 function addon:CURRENCY_DISPLAY_UPDATE()
 	currencyUpdate()
 end
+
+function addon:PLAYER_MONEY()
+	currencyUpdate()
+end
+function addon:PLAYER_TRADE_MONEY()
+	currencyUpdate()
+end
+function addon:TRADE_MONEY_CHANGED()
+	currencyUpdate()
+end
+function addon:SEND_MAIL_MONEY_CHANGED()
+	currencyUpdate()
+end
+function addon:SEND_MAIL_COD_CHANGED()
+	currencyUpdate()
+end
+function addon:TRIAL_STATUS_UPDATE()
+	currencyUpdate()
+end
+function addon:CHAT_MSG_MONEY()
+	currencyUpdate()
+end
