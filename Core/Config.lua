@@ -29,6 +29,25 @@ local AceDBOptions = LibStub("AceDBOptions-3.0")
 
 local profile
 
+local function orderednext(t, n)
+	local key = t[t.__next]
+	
+	if not key then return end
+	t.__next = t.__next + 1
+	return key, t.__source[key]
+end
+
+local function orderedpairs(t, f)
+	local keys, kn = {__source = t, __next = 1}, 1
+	
+	for k in pairs(t) do
+		keys[kn], kn = k, kn + 1
+	end
+	tsort(keys, f)
+	return orderednext, keys
+end
+
+
 -- /////////////////////////////////////////////////////////
 -- Options
 -- /////////////////////////////////////////////////////////
@@ -289,11 +308,11 @@ local function getCurrenciesOptions()
 		}
 		local t = currenciesOptions.args
 		local i = 1
-		for k,v in pairs(addon.constants.currencies) do
+		for k,v in orderedpairs(LibCurrencyInfo.data.CurrencyByCategory) do
 			t["group"..i] = {}
 			t["group"..i].order = i
 			t["group"..i].type = "group"
-			t["group"..i].name = addon.constants.currencyCategories[k][lang]
+			t["group"..i].name = LibCurrencyInfo:GetCurrencyCategoryNameByCategoryID(k, lang)
 			t["group"..i].args = { }
 			local j = 1
 			local tg = t["group"..i].args

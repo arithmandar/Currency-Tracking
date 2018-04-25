@@ -605,7 +605,7 @@ end
 
 local function getNumberOfCurrencies()
 	local n = 0
-	for k,v in pairs(addon.constants.currencies) do
+	for k,v in pairs(LibCurrencyInfo.data.CurrencyByCategory) do
 		n = n + 1 + #v
 	end
 	
@@ -623,7 +623,7 @@ local function populateCurrencyList()
 
 	local i = 1
 	local lang = GetLocale()
-	for k,v in pairs(addon.constants.currencies) do
+	for k,v in pairs(LibCurrencyInfo.data.CurrencyByCategory) do
 		CURRENCIESLIST[i] = { isHeader = true, headerKey = k }
 		i = i + 1
 		for ka,id in ipairs(v) do
@@ -638,14 +638,12 @@ local function convertTrackedCurrencies()
 	if (profile.currencyFormatConverted) then
 		return
 	end
-	for k, v in pairs(addon.constants.currencies) do
-		for index, id in ipairs(v) do
-			local name = LibCurrencyInfo:GetCurrencyByID(id)
-			
-			if (profile["currencies"][name]) then
-				profile["currencies"][id] = profile["currencies"][name]
-				profile["currencies"][name] = nil
-			end
+	for k, v in pairs(LibCurrencyInfo.data.Currencies) do
+		local name = LibCurrencyInfo:GetCurrencyByID(k)
+		
+		if (profile["currencies"][name]) then
+			profile["currencies"][id] = profile["currencies"][name]
+			profile["currencies"][name] = nil
 		end
 	end
 	

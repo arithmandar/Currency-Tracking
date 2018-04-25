@@ -12,6 +12,8 @@ Revision History:
 - Added more events' handling and use the event to trigger the currency update instead of triggered from frame update
 - Fixed the issue that money won't be showing on the floating frame
 - Added feature to toggle whether to show lower denominations of money or not.
+- Lib update: LibCurrencyInfo
+- Migrate to fully use currency info from LibCurrencyInfo
 
 * v5.11 (Mar. 31, 2018)
 -----------------------

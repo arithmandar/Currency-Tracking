@@ -46,6 +46,7 @@ constants.defaults = {
 	},
 }
 
+--[[
 constants.currencyCategories = {
 	["MISC"] = { enUS="Miscellaneous",deDE="Verschiedenes",esES="Miscelánea",esMX="Miscelánea",frFR="Divers",itIT="Varie",koKR="기타",ptBR="Diversos",ruRU="Разное",zhCN="其它",zhTW="雜項" },
 	["PVP"] = { enUS="Player vs. Player",deDE="Spieler gegen Spieler",esES="Jugador contra Jugador",esMX="Jugador contra Jugador",frFR="JcJ",itIT="Personaggio vs Personaggio",koKR="플레이어 대 플레이어",ptBR="Jogador x Jogador",ruRU="PvP",zhCN="PvP",zhTW="玩家對玩家" },
@@ -59,7 +60,8 @@ constants.currencyCategories = {
 	["WOD"] = { enUS="Warlords of Draenor",deDE="Warlords of Draenor",esES="Warlords of Draenor",esMX="Warlords of Draenor",frFR="Warlords of Draenor",itIT="Warlords of Draenor",koKR="드레노어의 전쟁군주",ptBR="Warlords of Draenor",ruRU="Warlords of Draenor",zhCN="德拉诺之王",zhTW="德拉諾之霸" },
 	["LEGION"] = { enUS="Legion",deDE="Legion",esES="Legion",esMX="Legion",frFR="Legion",itIT="Legion",koKR="군단",ptBR="Legion",ruRU="Legion",zhCN="军团再临",zhTW="軍團" },
 }
-
+]]
+--[[
 constants.currencies = {
 	["MISC"] = {
 --		42, -- Badge of Justice
@@ -173,7 +175,7 @@ constants.currencies = {
 		1533, -- Wakening Essence
 	},
 }
-
+]]
 constants.items = {
 	world_events = {
 		49927, -- Love Token, Love is in the Air
@@ -593,29 +595,6 @@ constants.itemCategories = {
 	["others"] = MISCELLANEOUS,
 	["professions"] = TRADE_SKILLS,
 }
-
---[[
-constants.archaeology = {
-	1174, -- Demonic Archaeology Fragment
-	1173, -- Highmountain Tauren Archaeology Fragment
-	1172, -- Highborne Archaeology Fragment
-	829, -- Arakkoa Archaeology Fragment
-	828, -- Ogre Archaeology Fragment
-	821, -- Draenor Clans Archaeology Fragment
-	754, -- Mantid Archaeology Fragment
-	677, -- Mogu Archaeology Fragment
-	676, -- Pandaren Archaeology Fragment
-	401, -- Tol'vir Archaeology Fragment
-	400, -- Nerubian Archaeology Fragment
-	399, -- Vrykul Archaeology Fragment
-	398, -- Draenei Archaeology Fragment
-	397, -- Orc Archaeology Fragment
-	394, -- Night Elf Archaeology Fragment
-	393, -- Fossil Archaeology Fragment
-	385, -- Troll Archaeology Fragment
-	384, -- Dwarf Archaeology Fragment
-}
-]]
 
 constants.events = {
 	"PLAYER_REGEN_ENABLED",
