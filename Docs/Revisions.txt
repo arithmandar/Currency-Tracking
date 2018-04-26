@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.01 (Apr. 26, 2018)
+-----------------------
+- Fixed conversion error
+
 * v6.00 (Apr. 25, 2018)
 -----------------------
 - Enhanced currency's icon's tolltip to also support customized scale and transparency

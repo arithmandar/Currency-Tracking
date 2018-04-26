@@ -642,7 +642,7 @@ local function convertTrackedCurrencies()
 		local name = LibCurrencyInfo:GetCurrencyByID(k)
 		
 		if (profile["currencies"][name]) then
-			profile["currencies"][id] = profile["currencies"][name]
+			profile["currencies"][k] = profile["currencies"][name]
 			profile["currencies"][name] = nil
 		end
 	end
