@@ -192,6 +192,7 @@ constants.items = {
 		26044, -- HALAA_RESEARCH_TOKEN 
 	},
 	others = {
+		162461, -- Sanguicell
 		157796, -- Purified Titan Essence, added in 7.3.5.25807
 		151568, -- Primal Sargerite, added in patch 7.3.0.24484
 		124124, -- Blood of Sargeras
@@ -269,6 +270,9 @@ constants.items = {
 			2320, -- Coarse Thread
 		},
 		[2575] = { -- Mining
+			152513, -- Platinum Ore
+			152512, -- Monelite Ore
+			152579, -- Storm Silver Ore
 			151564, -- Empyrium
 			124444, -- Infernal Brimstone
 			123919, -- Felslate
@@ -327,6 +331,16 @@ constants.items = {
 			2770, -- Copper Ore
 		},
 		[2108] = { -- Leatherworking
+			152542, -- Hardened Tempest Hide
+			158378, -- Embroidered Deep Sea Satin
+			152577, -- Deep Sea Satin
+			153051, -- Mistscale
+			154165, -- Calcified Bone
+			154722, -- Tempest Hide
+			152541, -- Coarse Leather
+			152576, -- Tidespray Linen
+			153050, -- Shimmerscale
+			154164, -- Blood-Stained Bone
 			151566, -- Fiendish Leather
 			124116, -- Felhide
 			124115, -- Stormscale
@@ -374,6 +388,9 @@ constants.items = {
 			783, -- Light Hide
 		},
 		[7411] = { -- Enchanting
+			152875, -- Gloom Dust
+			152876, -- Umbra Shard
+			152877, -- Veiled Crystal
 			124442, -- Chaos Crystal
 			124441, -- Leylight Shard
 			124440, -- Arkhana
@@ -438,6 +455,13 @@ constants.items = {
 			6217, -- Copper Rod
 		},
 		[2366] = { -- Herbalism
+			152505, -- Riverbud
+			152506, -- Star Moss
+			152507, -- Akunda's Bite
+			152508, -- Winter's Kiss
+			152509, -- Siren's Pollen
+			152510, -- Anchor Weed
+			152511, -- Sea Stalk
 			151565, -- Astral Glory
 			129289, -- Felwort Seed
 			129288, -- Starlight Rose Seed

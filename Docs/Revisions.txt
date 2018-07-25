@@ -3,6 +3,22 @@
 Revision History:
 =================
 
+* v6.02 (Jul. 25, 2018)
+-----------------------
+- ToC update to support WoW 8.0.1
+- Libraries update
+- Added professional items:
+  - Mining:
+    - Storm Silver Ore, Monelite Ore, Platinum Ore
+  - Herbalism: 
+    - Sea Stalk, Siren's Pollen, Winter's Kiss, Akunda's Bite, Star Moss, Riverbud, Anchor Weed
+  - Leatherworking:
+    - Blood-Stained Bone, Shimmerscale, Tidespray Linen, Coarse Leather, Tempest Hide, Calcified Bone, Mistscale, Deep Sea Satin, Embroidered Deep Sea Satin, Hardened Tempest Hide
+  - Enchanting:
+    - Veiled Crystal, Umbra Shard, Gloom Dust
+- Added items:
+  - Sanguicell
+
 * v6.01 (Apr. 26, 2018)
 -----------------------
 - Fixed conversion error
