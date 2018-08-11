@@ -3,12 +3,9 @@
 Revision History:
 =================
 
-* v6.05 (Aug. 11, 2018)
+* v6.04 (Aug. 11, 2018)
 -----------------------
 - Library update - LibCurrency
-
-* v6.04 (Aug. 09, 2018)
------------------------
 - Arranged a development lib env
 
 * v6.03 (Aug. 07, 2018)
