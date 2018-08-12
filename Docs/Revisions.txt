@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.05 (Aug. 12, 2018)
+-----------------------
+- Fixed the issues that all libraries were not added to the package
+
 * v6.04 (Aug. 11, 2018)
 -----------------------
 - Library update - LibCurrency
