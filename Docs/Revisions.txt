@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v6.06 (Sep. 05, 2018)
+-----------------------
+- Library update - LibCurrency
+  - Fixed the issue that Wakening Essence was missing in Legion category
+
 * v6.05 (Aug. 12, 2018)
 -----------------------
 - Fixed the issues that all libraries were not added to the package
