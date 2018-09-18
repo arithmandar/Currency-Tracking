@@ -84,6 +84,9 @@ constants.items = {
 	},
 	professions = {
 		[3908] = { -- Tailoring
+			158378, -- Embroidered Deep Sea Satin
+			152577, -- Deep Sea Satin
+			152576, -- Tidespray Linen
 			151567, -- Lightweave Cloth
 			146711, -- Bolt of Starweave
 			146710, -- Bolt of Shadowcloth
@@ -202,13 +205,10 @@ constants.items = {
 		},
 		[2108] = { -- Leatherworking
 			152542, -- Hardened Tempest Hide
-			158378, -- Embroidered Deep Sea Satin
-			152577, -- Deep Sea Satin
 			153051, -- Mistscale
 			154165, -- Calcified Bone
 			154722, -- Tempest Hide
 			152541, -- Coarse Leather
-			152576, -- Tidespray Linen
 			153050, -- Shimmerscale
 			154164, -- Blood-Stained Bone
 			151566, -- Fiendish Leather

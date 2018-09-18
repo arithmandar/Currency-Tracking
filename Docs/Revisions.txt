@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.07 (Sep. 18, 2018)
+-----------------------
+- Moved Embroidered Deep Sea Satin, Deep Sea Satin and Tidespray Linen from leatherworking to tailoring (thanks to Vyger)
+
 * v6.06 (Sep. 05, 2018)
 -----------------------
 - Library update - LibCurrency
