@@ -480,6 +480,24 @@ constants.items = {
 			785, -- Mageroyal
 			765, -- Silverleaf
 		},
+		[7620] = { -- Fishing
+			162515, -- Midnight Salmon
+			152543, -- Sand Shifter
+			152544, -- Slimy Mackerel
+			152545, -- Frenzied Fangtooth
+			152546, -- Lane Snapper
+			152547, -- Great Sea Catfish
+			152548, -- Tiragarde Perch
+			152549, -- Redtail Loach
+		},
+		[2550] = { -- Cooking
+			152631, -- briny-flesh
+			154897, -- stringy-loins
+			154898, -- meaty-haunch
+			154899, -- dickes-paleosteak
+			160711, -- aromatic-fish-oil
+			163782, -- cursed-haunch
+		},
 	},
 }
 
