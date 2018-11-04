@@ -48,12 +48,12 @@ constants.defaults = {
 
 constants.items = {
 	world_events = {
-		49927, -- Love Token, Love is in the Air
-		44791, -- Noblegarden Chocolate
-		37829, -- Brewfest Prize Token
-		33226, -- Tricky Treat
-		23247, -- Burning Blossom, Midsummer Fire Festiva
 		21100, -- Coin of Ancestry, Lunar Festiva
+		23247, -- Burning Blossom, Midsummer Fire Festiva
+		33226, -- Tricky Treat, Hallow's End
+		37829, -- Brewfest Prize Token
+		44791, -- Noblegarden Chocolate
+		49927, -- Love Token, Love is in the Air
 	},
 	pvp = {
 		137642, -- Mark of Honor
@@ -62,6 +62,7 @@ constants.items = {
 		26044, -- HALAA_RESEARCH_TOKEN 
 	},
 	others = {
+		163036, -- Polished Pet Charm, added in patch 8.0.1.26624
 		162461, -- Sanguicell
 		157796, -- Purified Titan Essence, added in 7.3.5.25807
 		151568, -- Primal Sargerite, added in patch 7.3.0.24484
