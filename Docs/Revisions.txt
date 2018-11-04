@@ -3,12 +3,9 @@
 Revision History:
 =================
 
-* v6.09 (Nov. 04, 2018)
+* v6.08 (Nov. 04, 2018)
 -----------------------
 - Added Polished Pet Charm
-
-* v6.08 (Sep. xx, 2018)
------------------------
 - Added fishing and cooking items from BfA (thanks to Vyger)
 
 * v6.07 (Sep. 18, 2018)
