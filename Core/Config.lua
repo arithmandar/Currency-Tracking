@@ -298,6 +298,21 @@ local function tokenButton_ToggleTrack(id)
 end
 
 local function getCurrenciesOptions()
+	local tCurrencyCategory = {
+		143, -- Battle for Azeroth
+		141, -- Legion
+		137, -- Warlords of Draenor
+		133, -- Mists of Pandaria
+		81, -- Cataclysm
+		23, -- Burning Crusade
+		21, -- Wrath of the Lich King
+		2, -- Player vs. Player
+		82, -- Archaeology
+		22, -- Dungeon and Raid
+		144, -- Virtual
+		142, -- Hidden
+		1, -- Miscellaneous
+	}
 	if not profile then profile = addon.db.profile end
 	local lang = GetLocale()
 	if not currenciesOptions then
@@ -308,7 +323,11 @@ local function getCurrenciesOptions()
 		}
 		local t = currenciesOptions.args
 		local i = 1
-		for k,v in orderedpairs(LibCurrencyInfo.data.CurrencyByCategory) do
+		-- LibCurrencyInfo.data.CurrencyByCategory
+		--for k,v in orderedpairs(LibCurrencyInfo.data.CurrencyByCategory) do
+		for ki,vi in ipairs(tCurrencyCategory) do
+			local k = vi
+			local v = LibCurrencyInfo.data.CurrencyByCategory[k]
 			t["group"..i] = {}
 			t["group"..i].order = i
 			t["group"..i].type = "group"

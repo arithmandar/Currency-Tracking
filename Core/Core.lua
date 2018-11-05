@@ -43,7 +43,7 @@ local profile
 
 -- local booleans, constants, and arrays
 local isInLockdown = false		-- boolean to check if player is in combat
-local isInBattleGround = false	-- boolean to check if player is in battleground
+local isInBattleGround = false		-- boolean to check if player is in battleground
 local CT_ORIG_GAMPTOOLTIP_SCALE = GameTooltip:GetScale()	-- to get the original GameTooltip's scaling value
 local CT_CURRSTR = nil
 local CURRENCIESLIST = {}		-- initialize currency list array

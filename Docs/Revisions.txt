@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.09 (Nov. 05, 2018)
+-----------------------
+- Sorted currency config's categories. Shows by expansions and then others.
+
 * v6.08 (Nov. 04, 2018)
 -----------------------
 - Added Polished Pet Charm
