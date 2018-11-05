@@ -65,208 +65,47 @@ do
 	end
 end
 
-local options, moduleOptions = nil, {}
-
-local function getOptions()
-	profile = addon.db.profile
-	if not options then
-		options = {
+local aboutPanel, moduleOptions = nil, {}
+local function getAboutPanel()
+	if not aboutPanel then
+		aboutPanel = {
 			type = "group",
 			name = addon.LocName,
 			args = {
 				general = {
 					order = 1,
 					type = "group",
-					name = L["Options"],
-					get = optGetter,
-					set = optSetter,
+					name = L["About"],
 					args = {
-						version = {
-							order = 1,
+						description = {
+							order = 10,
 							type = "description",
 							name = addon.Notes,
 							width = "full",
 						},
-						group1 = {
-							order = 10,
-							type = "group",
-							name = L["On-screen frame"],
-							inline = true,
-							args = {
-								show_currency = {
-									order = 11,
-									type = "toggle",
-									name = L["Show currency info on screen"],
-									width = "full",
-								},
-								show_tooltip = {
-									order = 11.1,
-									type = "toggle",
-									name = L["Show tooltip"],
-									desc = L["Show all currency's info in tooltip."],
-									width = "full",
-									disabled = function() return not addon.db.profile.show_currency end,
-								},
-								always_lock = {
-									order = 12,
-									type = "toggle",
-									name = L["Always lock the currency info frame"],
-									desc = L["Enable to always lock the frame even not in combat. Disable to only lock the frame while in combat."],
-									width = "full",
-									disabled = function() return not addon.db.profile.show_currency end,
-								},
-								hide_in_combat = {
-									order = 13,
-									type = "toggle",
-									name = L["Hide while in combat"],
-									desc = L["Automatically hide the tracking frame while in combat."],
-									width = "full",
-									disabled = function() return not addon.db.profile.show_currency end,
-								},
-								hide_in_battleground = {
-									order = 14,
-									type = "toggle",
-									name = L["Hide while in battleground"],
-									desc = L["Automatically hide the tracking frame while in battleground."],
-									width = "full",
-									disabled = function() return not addon.db.profile.show_currency end,
-								},
-								hide_in_petbattle = {
-									order = 15,
-									type = "toggle",
-									name = L["Hide while in pet battle"],
-									desc = L["Automatically hide the tracking frame while in pet battle."],
-									width = "full",
-									disabled = function() return not addon.db.profile.show_currency end,
-								},
-								resetPos = {
-									order = 20, 
-									type = "execute",
-									name = L["Reset position"],
-									desc = L["Reset on-screen currency frame's position."],
-									func = function()
-										addon.frame:SetPoint("TOPLEFT", nil, "TOPLEFT", 150, -80)
-										profile.point = { "TOPLEFT", "UIParent", "TOPLEFT", 150, -80 }
-									end,
-									disabled = function() return not addon.db.profile.show_currency end,
-								},
-							},
-						},
-						group2 = {
+						info = {
 							order = 20,
 							type = "group",
-							name = L["Display Settings"],
+							name = L["Addon Info"],
 							inline = true,
 							args = {
-								show_money = {
+								version = {
 									order = 21,
-									type = "toggle",
-									name = L["Show money info"],
-									desc = L["Enable to show total money together with currencies' info."],
-									width = "double",
+									type = "description",
+									name = GAME_VERSION_LABEL..HEADER_COLON.." "..addon.Version,
+									width = "full",
 								},
-								showLowerDenominations = {
-									order = 22,
-									type = "toggle",
-									name = L["Show Lower Denominations"],
-									desc = L["Enable to show all the lower denominations, disable to only show money in gold."],
-									width = "double",
-									disabled = function() return not addon.db.profile.show_money end,
+								update = {
+									order = 22, 
+									type = "description",
+									name = UPDATE..HEADER_COLON.." "..addon.UpdateDate,
+									width = "full",
 								},
-								breakupnumbers = {
-									order = 23,
-									type = "toggle",
-									name = L["Breakup numbers"],
-									desc = L["Converts a number into a localized string, grouping digits as required."],
-									width = "double",
-								},
-								hide_zero = {
-									order = 24,
-									type = "toggle",
-									name = L["Hide zero"],
-									desc = L["Auto-hide items / currencies which have zero amount."],
-									width = "double",
-								},
-								show_iconOnly = {
-									order = 25,
-									type = "toggle",
-									name = L["Show icon only"],
-									desc = L["Show only the currency / item's icon, do not show the amounts."],
-									width = "double",
-								},
-								icon_first = {
-									order = 26,
-									type = "toggle",
-									name = L["Icon first"],
-									desc = L["Put currency icon prior to its amount"],
-									width = "double",
-									disabled = function() return addon.db.profile.show_iconOnly end,
-								},
-								maxItems = {
-									order = 27,
-									type = "range",
-									name = L["Max items per row"],
-									desc = L["Set the maximum number of items to be displayed per row. Set to 0 to allow unlimited items on one single row."],
-									width = "double",
-									min = 0, max = 60, bigStep = 1,
-								},
-							},
-						},
-						group3 = {
-							order = 30,
-							type = "group",
-							name = L["Scale and Transparency"],
-							inline = true,
-							args = {
-								group31 = {
-									order = 20,
-									type = "group",
-									name = L["On-screen frame"],
-									inline = true,
-									disabled = function() return not addon.db.profile.show_currency end,
-									args = {
-										scale = {
-											order = 21,
-											type = "range",
-											name = L["Scale"],
-											min = 0.5, max = 2, bigStep = 0.1, 
-										},
-										alpha = {
-											order = 22,
-											type = "range",
-											name = L["Transparency"],
-											min = 0, max = 1, bigStep = 0.1, 
-										},
---[[
-										bgalpha = {
-											order = 23,
-											type = "range",
-											name = L["Background"],
-											desc = L["Currencies info's background transparency"],
-											min = 0, max = 1, bigStep = 0.1, 
-										},
-]]
-									},
-								},
-								group32 = {
-									order = 30,
-									type = "group",
-									name = L["Tooltip"],
-									inline = true,
-									args = {
-										tooltip_scale = {
-											order = 31,
-											type = "range",
-											name = L["Scale"],
-											min = 0, max = 1.75, bigStep = 0.01, 
-										},
-										tooltip_alpha = {
-											order = 32,
-											type = "range",
-											name = L["Transparency"],
-											min = 0, max = 1, bigStep = 0.1, 
-										},
-									},
+								author = {
+									order = 23, 
+									type = "description",
+									name = L["Author"]..HEADER_COLON.." "..addon.Author,
+									width = "full",
 								},
 							},
 						},
@@ -275,8 +114,210 @@ local function getOptions()
 			},
 		}
 		for k,v in pairs(moduleOptions) do
-			options.args[k] = (type(v) == "function") and v() or v
+			aboutPanel.args[k] = (type(v) == "function") and v() or v
 		end
+	end
+	
+	return aboutPanel
+end
+
+local options
+
+local function getOptions()
+	profile = addon.db.profile
+	if not options then
+		options = {
+			order = 1,
+			type = "group",
+			name = L["Options"],
+			get = optGetter,
+			set = optSetter,
+			args = {
+				group1 = {
+					order = 10,
+					type = "group",
+					name = L["On-screen frame"],
+					inline = true,
+					args = {
+						show_currency = {
+							order = 11,
+							type = "toggle",
+							name = L["Show currency info on screen"],
+							width = "full",
+						},
+						show_tooltip = {
+							order = 11.1,
+							type = "toggle",
+							name = L["Show tooltip"],
+							desc = L["Show all currency's info in tooltip."],
+							width = "full",
+							disabled = function() return not addon.db.profile.show_currency end,
+						},
+						always_lock = {
+							order = 12,
+							type = "toggle",
+							name = L["Always lock the currency info frame"],
+							desc = L["Enable to always lock the frame even not in combat. Disable to only lock the frame while in combat."],
+							width = "full",
+							disabled = function() return not addon.db.profile.show_currency end,
+						},
+						hide_in_combat = {
+							order = 13,
+							type = "toggle",
+							name = L["Hide while in combat"],
+							desc = L["Automatically hide the tracking frame while in combat."],
+							width = "full",
+							disabled = function() return not addon.db.profile.show_currency end,
+						},
+						hide_in_battleground = {
+							order = 14,
+							type = "toggle",
+							name = L["Hide while in battleground"],
+							desc = L["Automatically hide the tracking frame while in battleground."],
+							width = "full",
+							disabled = function() return not addon.db.profile.show_currency end,
+						},
+						hide_in_petbattle = {
+							order = 15,
+							type = "toggle",
+							name = L["Hide while in pet battle"],
+							desc = L["Automatically hide the tracking frame while in pet battle."],
+							width = "full",
+							disabled = function() return not addon.db.profile.show_currency end,
+						},
+						resetPos = {
+							order = 20, 
+							type = "execute",
+							name = L["Reset position"],
+							desc = L["Reset on-screen currency frame's position."],
+							func = function()
+								addon.frame:SetPoint("TOPLEFT", nil, "TOPLEFT", 150, -80)
+								profile.point = { "TOPLEFT", "UIParent", "TOPLEFT", 150, -80 }
+							end,
+							disabled = function() return not addon.db.profile.show_currency end,
+						},
+					},
+				},
+				group2 = {
+					order = 20,
+					type = "group",
+					name = L["Display Settings"],
+					inline = true,
+					args = {
+						show_money = {
+							order = 21,
+							type = "toggle",
+							name = L["Show money info"],
+							desc = L["Enable to show total money together with currencies' info."],
+							width = "double",
+						},
+						showLowerDenominations = {
+							order = 22,
+							type = "toggle",
+							name = L["Show Lower Denominations"],
+							desc = L["Enable to show all the lower denominations, disable to only show money in gold."],
+							width = "double",
+							disabled = function() return not addon.db.profile.show_money end,
+						},
+						breakupnumbers = {
+							order = 23,
+							type = "toggle",
+							name = L["Breakup numbers"],
+							desc = L["Converts a number into a localized string, grouping digits as required."],
+							width = "double",
+						},
+						hide_zero = {
+							order = 24,
+							type = "toggle",
+							name = L["Hide zero"],
+							desc = L["Auto-hide items / currencies which have zero amount."],
+							width = "double",
+						},
+						show_iconOnly = {
+							order = 25,
+							type = "toggle",
+							name = L["Show icon only"],
+							desc = L["Show only the currency / item's icon, do not show the amounts."],
+							width = "double",
+						},
+						icon_first = {
+							order = 26,
+							type = "toggle",
+							name = L["Icon first"],
+							desc = L["Put currency icon prior to its amount"],
+							width = "double",
+							disabled = function() return addon.db.profile.show_iconOnly end,
+						},
+						maxItems = {
+							order = 27,
+							type = "range",
+							name = L["Max items per row"],
+							desc = L["Set the maximum number of items to be displayed per row. Set to 0 to allow unlimited items on one single row."],
+							width = "double",
+							min = 0, max = 60, bigStep = 1,
+						},
+					},
+				},
+				group3 = {
+					order = 30,
+					type = "group",
+					name = L["Scale and Transparency"],
+					inline = true,
+					args = {
+						group31 = {
+							order = 20,
+							type = "group",
+							name = L["On-screen frame"],
+							inline = true,
+							disabled = function() return not addon.db.profile.show_currency end,
+							args = {
+								scale = {
+									order = 21,
+									type = "range",
+									name = L["Scale"],
+									min = 0.5, max = 2, bigStep = 0.1, 
+								},
+								alpha = {
+									order = 22,
+									type = "range",
+									name = L["Transparency"],
+									min = 0, max = 1, bigStep = 0.1, 
+								},
+--[[
+								bgalpha = {
+									order = 23,
+									type = "range",
+									name = L["Background"],
+									desc = L["Currencies info's background transparency"],
+									min = 0, max = 1, bigStep = 0.1, 
+								},
+]]
+							},
+						},
+						group32 = {
+							order = 30,
+							type = "group",
+							name = L["Tooltip"],
+							inline = true,
+							args = {
+								tooltip_scale = {
+									order = 31,
+									type = "range",
+									name = L["Scale"],
+									min = 0, max = 1.75, bigStep = 0.01, 
+								},
+								tooltip_alpha = {
+									order = 32,
+									type = "range",
+									name = L["Transparency"],
+									min = 0, max = 1, bigStep = 0.1, 
+								},
+							},
+						},
+					},
+				},
+			},
+		}
 	end
 	
 	return options
@@ -481,8 +522,9 @@ function addon:SetupOptions()
 	self.optionsFrames = {}
 
 	-- setup options table
-	AceConfigReg:RegisterOptionsTable(addon.LocName, getOptions)
+	AceConfigReg:RegisterOptionsTable(addon.LocName, getAboutPanel)
 	self.optionsFrames.General = AceConfigDialog:AddToBlizOptions(addon.LocName, nil, nil, "general")
+	self:RegisterModuleOptions("Options", getOptions, L["Options"])
 	self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
 	--addTokenOptionFrame()
 	self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])

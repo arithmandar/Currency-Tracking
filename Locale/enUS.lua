@@ -9,6 +9,9 @@ if L then
 L["CT_TITLE"] = "Currency Tracking"
 L["CT_ADDON_NOTES"] = "Currency Tracking is an addon to help you track the currencies you gained, showing the selected currency even on top of the game screen."
 L["Options"] = "Options"
+L["About"] = "About"
+L["Author"] = "Author"
+L["Addon Info"] = "Addon Info"
 -- Display Settings
 L["Display Settings"] = "Display Settings"
 L["Show currency info on screen"] = "Show currency info on screen"

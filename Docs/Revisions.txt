@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.10 (Nov. xx, 2018)
+-----------------------
+- Updated option panel
+
 * v6.09 (Nov. 05, 2018)
 -----------------------
 - Sorted currency config's categories. Shows by expansions and then others.

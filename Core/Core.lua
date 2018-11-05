@@ -10,7 +10,7 @@ local string, tonumber = _G.string, _G.tonumber
 local format, strsub, strlen, strgmatch = string.format, string.sub, string.len, string.gmatch
 local floor, fmod = math.floor, math.fmod
 -- WoW
-local GetAddOnInfo = _G.GetAddOnInfo
+local GetAddOnInfo, GetAddOnMetadata = _G.GetAddOnInfo, _G.GetAddOnMetadata
 local GameTooltip = _G.GameTooltip
 local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
 local GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
@@ -39,6 +39,9 @@ addon.Name = FOLDER_NAME
 local _
 _, addon.LocName, addon.Notes = GetAddOnInfo(addon.Name)
 _G.CurrencyTracking = addon
+addon.Version = GetAddOnMetadata(addon.Name, "Version")
+addon.UpdateDate = GetAddOnMetadata(addon.Name, "X-Date")
+addon.Author = GetAddOnMetadata(addon.Name, "Author")
 local profile
 
 -- local booleans, constants, and arrays
