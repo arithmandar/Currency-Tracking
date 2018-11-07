@@ -12,6 +12,10 @@ L["Options"] = "Options"
 L["About"] = "About"
 L["Author"] = "Author"
 L["Addon Info"] = "Addon Info"
+
+-- Trading goods
+L["Elemental"] = "Elemental"
+L["Meat"] = "Meat"
 -- Display Settings
 L["Display Settings"] = "Display Settings"
 L["Show currency info on screen"] = "Show currency info on screen"

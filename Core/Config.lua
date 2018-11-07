@@ -339,6 +339,7 @@ local function tokenButton_ToggleTrack(id)
 end
 
 local function getCurrenciesOptions()
+	-- below to force currency category to be displayed in specific order
 	local tCurrencyCategory = {
 		143, -- Battle for Azeroth
 		141, -- Legion
@@ -364,7 +365,7 @@ local function getCurrenciesOptions()
 		}
 		local t = currenciesOptions.args
 		local i = 1
-		-- LibCurrencyInfo.data.CurrencyByCategory
+		
 		--for k,v in orderedpairs(LibCurrencyInfo.data.CurrencyByCategory) do
 		for ki,vi in ipairs(tCurrencyCategory) do
 			local k = vi

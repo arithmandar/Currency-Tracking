@@ -15,6 +15,7 @@ local GameTooltip = _G.GameTooltip
 local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
 local GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
 local GetItemInfoInstant, GetItemCount, GetItemInfo = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo
+local UnitName, GetRealmName = _G.UnitName, _G.GetRealmName
 local GetMoney = _G.GetMoney
 local GetLocale = _G.GetLocale
 -- ----------------------------------------------------------------------------
@@ -38,10 +39,14 @@ addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
 local _
 _, addon.LocName, addon.Notes = GetAddOnInfo(addon.Name)
+local CurrencyTracking_Player = UnitName("player")
+local CurrencyTracking_Server = GetRealmName()
+-- ToC Metadata
+addon.Version 		= GetAddOnMetadata(addon.Name, "Version")
+addon.UpdateDate 	= GetAddOnMetadata(addon.Name, "X-Date")
+addon.Author 		= GetAddOnMetadata(addon.Name, "Author")
+
 _G.CurrencyTracking = addon
-addon.Version = GetAddOnMetadata(addon.Name, "Version")
-addon.UpdateDate = GetAddOnMetadata(addon.Name, "X-Date")
-addon.Author = GetAddOnMetadata(addon.Name, "Author")
 local profile
 
 -- local booleans, constants, and arrays
@@ -480,13 +485,8 @@ local function currencyUpdate()
 	end
 end
 
-local function frame_OnUpdate(self)
-	--currencyUpdate()
-end
-
 local function createCurrencyFrame()
 	local f = CreateFrame("Frame")
-	--f:SetScript("OnUpdate", frame_OnUpdate)
 	
 	local nf = _G["CurrencyTrackingFrame"]
 	if not nf then nf = CreateFrame("Frame", "CurrencyTrackingFrame") end
@@ -499,12 +499,10 @@ local function createCurrencyFrame()
 	--nf:SetClampedToScreen(true)
 	nf:SetMovable(true)
 	nf:EnableMouse(true)
-	--nf:SetScript("OnUpdate", frame_OnUpdate)
 	
 	return nf
 end
 -- ////////////////////////////////////////////////////////////////
---[[
 local function copyOptions()
 	if (profile.optionsCopied) then return end
 	if (CurrencyTrackingDB[CurrencyTracking_Server] and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"]) then
@@ -525,7 +523,6 @@ local function copyOptions()
 	
 	profile.optionsCopied = true
 end
-]]
 
 -- scanItems()
 -- pre-scan items so that they will properly showed in option panel
@@ -659,6 +656,13 @@ local function convertTrackedCurrencies()
 	profile.currencyFormatConverted = true
 end
 
+local function dbCleanup()
+	if CurrencyTrackingDB and CurrencyTrackingDB.char then CurrencyTrackingDB.char = nil end
+	if (profile.optionsCopied and CurrencyTrackingDB[CurrencyTracking_Server] and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]) then
+		CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] = nil
+	end
+end
+
 function addon:OnInitialize()
 	self.db = AceDB:New(addon.Name.."DB", addon.constants.defaults)
 	profile = self.db.profile
@@ -667,8 +671,9 @@ function addon:OnInitialize()
 	self.db.RegisterCallback(self, "OnProfileCopied", "Refresh")
 	self.db.RegisterCallback(self, "OnProfileReset", "Refresh")
 
-	--copyOptions()
+	copyOptions()
 	convertTrackedCurrencies()
+	dbCleanup()
 	self:SetupOptions()
 	self.frame = createCurrencyFrame()
 	numCurrencies = getNumberOfCurrencies()
