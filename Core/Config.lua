@@ -453,7 +453,7 @@ local function getItemOptions()
 					--local n = 1
 					local tp = t["group"..j].args
 					for n, itemID in ipairs(profs) do
-						item_cache = {}
+						--item_cache = {}
 						local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 						local count = GetItemCount(itemID, true)
 						

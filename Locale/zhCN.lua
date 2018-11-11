@@ -11,6 +11,13 @@ if L then
 L["CT_TITLE"] = "通货追踪";
 L["CT_ADDON_NOTES"] = "追踪所有获取的通货，并显示在游戏画面上";
 L["Options"] = "选项";
+L["About"] = "关于"
+L["Author"] = "作者"
+L["Addon Info"] = "插件信息"
+
+-- Trading goods
+L["Elemental"] = "元素"
+L["Meat"] = "肉"
 -- Display Settings
 L["Display Settings"] = "显示设置"
 L["Show currency info on screen"] = "在游戏画面上显示通货信息"
@@ -38,6 +45,8 @@ L["Show icon only"] = "仅显示图标"
 L["Show only the currency / item's icon, do not show the amounts."] = "仅显示通货/物品的图标，不显示其数量。"
 L["Max items per row"] = "每行最多显示数量"
 L["Set the maximum number of items to be displayed per row. Set to 0 to allow unlimited items on one single row."] = "设定每一行最多可显示多少通货/物品。 若设为0则表示单一一行显示无限数量的通货/物品。"
+L["Show Lower Denominations"] = "显示较低面额"
+L["Enable to show all the lower denominations, disable to only show money in gold."] = "勾选以显示所有较低面额的现金，取消则仅显示金币数量。"
 -- Scale and Transparency
 L["Scale and Transparency"] = "大小与透明度"
 L["On-screen frame"] = "游戏画面窗格"

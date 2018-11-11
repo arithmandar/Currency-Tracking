@@ -14,7 +14,7 @@ local GetAddOnInfo, GetAddOnMetadata = _G.GetAddOnInfo, _G.GetAddOnMetadata
 local GameTooltip = _G.GameTooltip
 local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
 local GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
-local GetItemInfoInstant, GetItemCount, GetItemInfo = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo
+local GetItemInfoInstant, GetItemCount, GetItemInfo, GetItemIcon = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo, _G.GetItemIcon
 local UnitName, GetRealmName = _G.UnitName, _G.GetRealmName
 local GetMoney = _G.GetMoney
 local GetLocale = _G.GetLocale
@@ -239,7 +239,7 @@ local function handleTrackedButtons(button, currencyID, itemID)
 	if (currencyID) then 
 		name, count, icon = GetCurrencyInfo(currencyID) 
 	elseif (itemID) then
-		name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+		name, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 		count = GetItemCount(itemID, true)
 	end
 
@@ -437,7 +437,8 @@ local function currencyString_Update()
 	for itemID, v in pairs(profile["items"]) do
 		if (itemID and profile["items"][itemID] == true) then
 			local count = GetItemCount(itemID, true)
-			local icon = select(10, GetItemInfo(itemID))
+			--local icon = select(10, GetItemInfo(itemID))
+			local icon = GetItemIcon(itemID)
 
 			if (profile.hide_zero and count == 0) then
 				-- do nothing

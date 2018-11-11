@@ -273,7 +273,7 @@ constants.items = {
 		62791, -- Blood Shrimp
 		62785, -- Delicate Wing
 		62784, -- Crocolisk Tail
-		62783, -- Basilisk \
+		62783, -- Basilisk
 		62782, -- Dragon Flank
 		62781, -- Giant Turtle Tongue
 		62780, -- Snake Eye

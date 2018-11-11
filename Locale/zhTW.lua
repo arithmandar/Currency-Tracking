@@ -11,6 +11,13 @@ if L then
 L["CT_TITLE"] = "通貨追蹤";
 L["CT_ADDON_NOTES"] = "追蹤所有獲取的通貨，並顯示在遊戲畫面上";
 L["Options"] = "選項";
+L["About"] = "關於"
+L["Author"] = "作者"
+L["Addon Info"] = "插件資訊"
+
+-- Trading goods
+L["Elemental"] = "元素"
+L["Meat"] = "肉"
 -- Display Settings
 L["Display Settings"] = "顯示設定"
 L["Show currency info on screen"] = "在遊戲畫面上顯示通貨資訊"

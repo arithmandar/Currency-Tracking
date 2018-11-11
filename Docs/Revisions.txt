@@ -7,8 +7,10 @@ Revision History:
 -----------------------
 - Updated option panel
 - Added tons of items and crafted items made by professional skills
+- Fixed the error while Shift-Click on tracked-currency's icon to paste the item link to chat frame
 - Translation update:
   - Korean (next96)
+  - Traditional / Simplified Chinese
 
 * v6.09 (Nov. 05, 2018)
 -----------------------
