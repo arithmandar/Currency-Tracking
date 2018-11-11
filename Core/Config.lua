@@ -454,11 +454,11 @@ local function getItemOptions()
 					local tp = t["group"..j].args
 					for n, itemID in ipairs(profs) do
 						--item_cache = {}
-						local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+						local itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 						local count = GetItemCount(itemID, true)
 						
-						if icon and name then
-							local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, name)
+						if icon and itemName then
+							local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, itemName)
 							tp["item"..n] = {}
 							tp["item"..n].order = n
 							tp["item"..n].type = "toggle"
@@ -475,10 +475,10 @@ local function getItemOptions()
 				end
 			else
 				for ka, itemID in ipairs(v) do
-					local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+					local itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 					local count = GetItemCount(itemID, true)
-					if icon and name then
-						local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, name)
+					if icon and itemName then
+						local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, itemName)
 						t["item"..j] = {}
 						t["item"..j].order = j
 						t["item"..j].type = "toggle"

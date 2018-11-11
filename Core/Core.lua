@@ -234,12 +234,12 @@ local function handleTrackedButtons(button, currencyID, itemID)
 		if nRowItem == 0 then nRowItem = maxItems end
 	end
 	
-	local name, count, icon, _
+	local itemName, itemLink, count, icon, _
 	local width = 15
 	if (currencyID) then 
-		name, count, icon = GetCurrencyInfo(currencyID) 
+		_, count, icon = GetCurrencyInfo(currencyID) 
 	elseif (itemID) then
-		name, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+		itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 		count = GetItemCount(itemID, true)
 	end
 
@@ -310,8 +310,13 @@ local function handleTrackedButtons(button, currencyID, itemID)
 	button.isMoney = (not currencyID and not itemID) and true or nil
 	button.isItem = itemID and true or nil
 	button.itemID = itemID or nil
-	button.itemName = itemID and name or nil
-	button.LinkButton.tooltipText = currencyID and LibCurrencyInfo:GetCurrencyTokenStrings(currencyID) or nil
+	button.itemName = itemID and itemName or nil
+	button.itemLink = itemLink or nil
+	if (button.isItem) then
+		button.LinkButton.tooltipText = itemLink or nil
+	else
+		button.LinkButton.tooltipText = currencyID and LibCurrencyInfo:GetCurrencyTokenStrings(currencyID) or nil
+	end
 	if (currencyID or itemID) then
 		button.LinkButton:Show()
 	else
@@ -387,6 +392,7 @@ local function currencyButton_Update()
 		button.itemID = nil
 		button.currencyID = nil
 		button.itemName = nil
+		button.itemLink = nil
 		button.LinkButton.tooltipText = nil
 		button.LinkButton:Hide()
 		button:Hide()
