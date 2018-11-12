@@ -425,7 +425,37 @@ local function itemButton_ToggleTrack(itemID)
 	addon:Refresh()
 end
 
+local cache_tooltip = CreateFrame("GameTooltip", "cacheToolTip", UIParent, "GameTooltipTemplate")
+local function getItemTooltip(itemLink)
+	if not itemLink then return end
+	local t2 = _G["cacheToolTipTextLeft2"]
+	local t3 = _G["cacheToolTipTextLeft3"]
+	local creature_cache, s2, s3
+
+	cache_tooltip:SetOwner(UIParent, "ANCHOR_NONE")
+	cache_tooltip:SetHyperlink(itemLink)
+	if (t2) then 
+		local r, g, b, a = t2:GetTextColor()
+		s2 = format("|cff%02x%02x%02x%s|r", r * 255, g * 255, b * 255, t2:GetText())
+	end
+	if (t3) then 
+		local s = t3:GetText()
+		if (s) then
+			local r, g, b, a = t3:GetTextColor()
+			s3 = format("\n|cff%02x%02x%02x%s|r", r * 255, g * 255, b * 255, s)
+		else
+			s3 = ""
+		end
+	end
+
+	
+	creature_cache = format("%s%s", s2 or "", s3 or "")
+	
+	return creature_cache
+end
+
 local function getItemOptions()
+	
 	if not profile then profile = addon.db.profile end
 	if not itemOptions then
 		itemOptions = {
@@ -463,7 +493,7 @@ local function getItemOptions()
 							tp["item"..n].order = n
 							tp["item"..n].type = "toggle"
 							tp["item"..n].name = displayString
-							tp["item"..n].desc = format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
+							tp["item"..n].desc = getItemTooltip(itemLink).."\n"..format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
 							tp["item"..n].get = (function() return profile["items"][itemID] end)
 							tp["item"..n].set = (function() itemButton_ToggleTrack(itemID) end)
 						
@@ -475,7 +505,7 @@ local function getItemOptions()
 				end
 			else
 				for ka, itemID in ipairs(v) do
-					local itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+					local itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 					local count = GetItemCount(itemID, true)
 					if icon and itemName then
 						local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, itemName)
@@ -483,7 +513,7 @@ local function getItemOptions()
 						t["item"..j].order = j
 						t["item"..j].type = "toggle"
 						t["item"..j].name = displayString
-						t["item"..j].desc = format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
+						t["item"..j].desc = getItemTooltip(itemLink).."\n"..format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
 						t["item"..j].get = (function() return profile["items"][itemID] end)
 						t["item"..j].set = (function() itemButton_ToggleTrack(itemID) end)
 					

@@ -47,14 +47,19 @@ $Id: CurrencyTracking_Options.xml 60 2017-04-05 15:50:17Z arith $
 						self.orig_tooltipScale = GameTooltip:GetScale();
 					</OnLoad>
 					<OnEnter>
+						local p = self:GetParent();
 						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 						GameTooltip:SetScale(CurrencyTracking.db.profile.tooltip_scale);
 						GameTooltip:SetBackdropColor(0, 0, 0, CurrencyTracking.db.profile.tooltip_alpha);
 						if (self.tooltipText) then
-							GameTooltip:SetText(self.tooltipText);
-						elseif (self:GetParent().isItem) then
-							local name = self:GetParent().itemName;
-							GameTooltip:SetText(name, 1, 1, 1, nil, false);
+							if (p.isItem and p.itemLink) then 
+								GameTooltip:SetHyperlink(self.tooltipText);
+							elseif (p.isCurrency) then 
+								GameTooltip:SetText(self.tooltipText);
+							else
+							end
+						elseif (p.isItem) then
+							GameTooltip:SetText(p.itemName, 1, 1, 1, nil, false);
 						end
 					</OnEnter>
 					<OnClick>

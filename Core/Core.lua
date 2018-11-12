@@ -535,19 +535,20 @@ end
 -- pre-scan items so that they will properly showed in option panel
 -- this function will not generate any visible result but it's more like scanning items 
 -- so that those will be in your cache
+
 local function scanItems()
 	for k, v in pairs(addon.constants.items) do
 		if k == "professions" then
 			for ka, profs in pairs(v) do
 				for kb, itemID in ipairs(profs) do
-					local name, icon, _
-					name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+					local itemName, itemLink, icon, _
+					itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 				end
 			end
 		else
 			for ka, itemID in ipairs(v) do
-				local name, icon, _
-				name, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+				local itemName, icon, _
+				itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 			end
 		end
 	end
