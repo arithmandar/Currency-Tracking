@@ -3,7 +3,7 @@
 Revision History:
 =================
 
-* v6.10 (Nov. xx, 2018)
+* v6.10 (Nov. 13, 2018)
 -----------------------
 - Updated option panel
 - Added tons of items and crafted items made by professional skills
