@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.11 (Dec. 16, 2018)
+-----------------------
+- ToC update to support WoW 8.1.0
+
 * v6.10 (Nov. 13, 2018)
 -----------------------
 - Updated option panel
