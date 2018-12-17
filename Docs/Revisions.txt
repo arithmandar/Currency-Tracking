@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v6.12 (Dec. 17, 2018)
+-----------------------
+- Library update - LibCurrency
+  - Added BfA currencies: 7th Legion Service Medal, Honorbound Service Medal, Titan Residuum
+
 * v6.11 (Dec. 16, 2018)
 -----------------------
 - ToC update to support WoW 8.1.0
