@@ -64,6 +64,7 @@ constants.items = {
 	},
 	elemental = {
 		-- BfA
+		165703, -- Breath of Bwonsamdi
 		165948, -- Tidalcore
 		162461, -- Sanguicell
 		162460, -- Hydrocore
@@ -140,6 +141,11 @@ constants.items = {
 		7067, -- Elemental Earth
 	},
 	meat = {
+		168303, -- Rubbery Flank
+		168302, -- Viper Fish
+		168646, -- Mauve Stinger
+		168645, -- Moist Fillet
+		166741, -- Nomi's Grocery Tote
 		163782, -- Cursed Haunch
 		160712, -- Powdered Sugar
 		160711, -- Aromatic Fish Oil
@@ -1333,6 +1339,9 @@ constants.items = {
 	},
 	professions = {
 		[3908] = { -- Tailoring: Cloth
+			-- RoA
+			167738, -- Gilded Seaweave
+			164733, -- Synchronous Thread
 			-- BfA
 			159959, -- Nylon Thread
 			158378, -- Embroidered Deep Sea Satin
@@ -1401,6 +1410,8 @@ constants.items = {
 			2320, -- Coarse Thread
 		},
 		[2575] = { -- Mining: Metal & Stone
+			-- RoA
+			168185, -- Osmenite Ore
 			-- BfA
 			152513, -- Platinum Ore
 			152512, -- Monelite Ore
@@ -1513,6 +1524,9 @@ constants.items = {
 			2770, -- Copper Ore
 		},
 		[2108] = { -- Leatherworking
+			168649, -- Dredged Leather
+			168650, -- Cragscale
+			164978, -- Mallet of Thunderous Skins
 			152542, -- Hardened Tempest Hide
 			153051, -- Mistscale
 			154165, -- Calcified Bone
@@ -1567,6 +1581,8 @@ constants.items = {
 			783, -- Light Hide
 		},
 		[7411] = { -- Enchanting
+			-- RoA
+			164766, -- Iwen's Enchanting Rod
 			-- BfA
 			152882, -- Runed Norgal Rod
 			152877, -- Veiled Crystal
@@ -1631,6 +1647,8 @@ constants.items = {
 			10938, -- Lesser Magic Essence
 		},
 		[2366] = { -- Herbalism
+			-- RoA
+			168487, -- Zin'anthid
 			-- BfA
 			152505, -- Riverbud
 			152506, -- Star Moss
@@ -1795,6 +1813,15 @@ constants.items = {
 			765, -- Silverleaf
 		},
 		[25229] = { -- Jewelcrafting
+			-- RoA
+			168190, -- Lava Lazuli
+			168188, -- Sage Agate
+			168193, -- Azsharine
+			168635, -- Leviathan's Eye
+			168191, -- Sea Currant
+			168189, -- Dark Opal
+			168192, -- Sand Spinel
+			
 			154125, -- Royal Quartz
 			154124, -- Laribole
 			154123, -- Amberblaze
@@ -1934,6 +1961,13 @@ constants.items = {
 			774, -- Malachite
 		},
 		[4036] = { -- Engineering
+			-- RoA
+			169470, -- Pressure Relief Valve
+			167649, -- Hundred-Fathom Lure
+			167064, -- 500S-Cybergenic Powercore
+			168483, -- Protocol Transference Device
+			167158, -- Pascal-K1N6's Proprietary Gizmo-matic			
+			
 			163569, -- Insulated Wiring
 			161137, -- Blast-Fired Electric Servomotor
 			161136, -- Azerite Forged Protection Plating

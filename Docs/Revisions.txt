@@ -3,6 +3,19 @@
 Revision History:
 =================
 
+* v6.14 (Sep. 02, 2019)
+-----------------------
+- Added tracked items:
+  - Elemental: Breath of Bwonsamdi, 
+  - Meat: Rubbery Flank, Viper Fish, Mauve Stinger, Moist Fillet, 
+  - Cloth: Gilded Seaweave, Synchronous Thread,
+  - Mining: Osmenite Ore
+  - Leatherworking: Dredged Leather, Cragscale, Mallet of Thunderous Skins
+  - Enchanting: Iwen's Enchanting Rod
+  - Herbalism: Zin'anthid
+  - Jewelcrafting: Lava Lazuli, Sage Agate, Azsharine, Leviathan's Eye, Sea Currant, Dark Opal, Sand Spinel
+  - Engineering: Pressure Relief Valve, Hundred-Fathom Lure, 500S-Cybergenic Powercore, Protocol Transference Device, Pascal-K1N6's Proprietary, Gizmo-matic
+
 * v6.13 (Sep. 02, 2019)
 -----------------------
 - ToC update to support WoW 8.2.0
