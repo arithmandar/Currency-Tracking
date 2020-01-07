@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v6.15 (Jan. 07, 2020)
+-----------------------
+- ToC update to support WoW 8.2.0
+- Library update - LibCurrency
+
 * v6.14 (Sep. 02, 2019)
 -----------------------
 - Added tracked items:
