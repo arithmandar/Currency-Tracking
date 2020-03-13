@@ -1233,6 +1233,17 @@ constants.items = {
 		118, -- Minor Healing Potion
 	},]]
 	others = {
+		174768, -- Cursed Relic
+		174767, -- Mogu Relic
+		174766, -- Mantid Relic
+		174765, -- Tol'vir Relic
+		174764, -- Tol'vir Relic Fragment
+		174761, -- Aqir Relic
+		174760, -- Mantid Relic Fragment
+		174759, -- Mogu Relic Fragment
+		174758, -- Voidwarped Relic Fragment
+		174756, -- Aqir Relic Fragment
+
 		163036, -- Polished Pet Charm, added in patch 8.0.1.26624
 		157796, -- Purified Titan Essence, added in 7.3.5.25807
 		124099, -- Blackfang Claw
