@@ -3,9 +3,11 @@
 Revision History:
 =================
 
-* v6.19 (Mar. XX, 2020)
+* v6.19 (Jun. 28, 2020)
 -----------------------
 - Added Locked Assault Caches' Relic items
+- Implemented new feature to cache item info
+- Library update - LibCurrency
 
 * v6.18 (Jan. 20, 2020)
 -----------------------

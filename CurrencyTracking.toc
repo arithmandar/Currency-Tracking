@@ -55,6 +55,7 @@ Locale\Locales.xml
 
 Core\Constants.lua
 Core\Core.lua
+Core\Query.lua
 Core\Templates.xml
 Core\Config.lua
 #Core\TokenOptions.xml

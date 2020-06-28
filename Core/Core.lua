@@ -39,8 +39,6 @@ addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
 local _
 _, addon.LocName, addon.Notes = GetAddOnInfo(addon.Name)
-local CurrencyTracking_Player = UnitName("player")
-local CurrencyTracking_Server = GetRealmName()
 -- ToC Metadata
 addon.Version 		= GetAddOnMetadata(addon.Name, "Version")
 addon.UpdateDate 	= GetAddOnMetadata(addon.Name, "X-Date")
@@ -509,50 +507,6 @@ local function createCurrencyFrame()
 	
 	return nf
 end
--- ////////////////////////////////////////////////////////////////
-local function copyOptions()
-	if (profile.optionsCopied) then return end
-	if (CurrencyTrackingDB[CurrencyTracking_Server] and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"]) then
-		local options = CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]["options"]
-
-		profile.show_currency = options.show_currency
-		profile.show_money = options.show_money
-		profile.breakupnumbers = options.breakupnumbers
-		profile.icon_first = options.icon_first
-		profile.always_lock = options.always_lock
-		profile.scale = options.scale
-		profile.alpha = options.alpha
-		profile.bgalpha = options.bgalpha
-		profile.tooltip_alpha = options.tooltip_alpha
-		profile.tooltip_scale = options.tooltip_scale
-		profile.currencies = options.currencies
-	end
-	
-	profile.optionsCopied = true
-end
-
--- scanItems()
--- pre-scan items so that they will properly showed in option panel
--- this function will not generate any visible result but it's more like scanning items 
--- so that those will be in your cache
-
-local function scanItems()
-	for k, v in pairs(addon.constants.items) do
-		if k == "professions" then
-			for ka, profs in pairs(v) do
-				for kb, itemID in ipairs(profs) do
-					local itemName, itemLink, icon, _
-					itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-				end
-			end
-		else
-			for ka, itemID in ipairs(v) do
-				local itemName, icon, _
-				itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-			end
-		end
-	end
-end
 
 local function setupLDB()
 	-- LDB object setting up
@@ -641,36 +595,6 @@ local function populateCurrencyList()
 	end
 end
 
--- temp function to convert the tracked currencies from recorded name to recorded the currency ID
-local function convertTrackedCurrencies()
-	if (profile.currencyFormatConverted) then
-		return
-	end
-	for k, v in pairs(LibCurrencyInfo.data.Currencies) do
-		local name = LibCurrencyInfo:GetCurrencyByID(k)
-		
-		if (profile["currencies"][name]) then
-			profile["currencies"][k] = profile["currencies"][name]
-			profile["currencies"][name] = nil
-		end
-	end
-	
-	-- further cleaning up
-	for k, v in pairs(profile["currencies"]) do
-		if (type(k) ~= "number") then
-			profile["currencies"][k] = nil
-		end
-	end
-	profile.currencyFormatConverted = true
-end
-
-local function dbCleanup()
-	if CurrencyTrackingDB and CurrencyTrackingDB.char then CurrencyTrackingDB.char = nil end
-	if (profile.optionsCopied and CurrencyTrackingDB[CurrencyTracking_Server] and CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player]) then
-		CurrencyTrackingDB[CurrencyTracking_Server][CurrencyTracking_Player] = nil
-	end
-end
-
 function addon:OnInitialize()
 	self.db = AceDB:New(addon.Name.."DB", addon.constants.defaults)
 	profile = self.db.profile
@@ -679,9 +603,6 @@ function addon:OnInitialize()
 	self.db.RegisterCallback(self, "OnProfileCopied", "Refresh")
 	self.db.RegisterCallback(self, "OnProfileReset", "Refresh")
 
-	copyOptions()
-	convertTrackedCurrencies()
-	dbCleanup()
 	self:SetupOptions()
 	self.frame = createCurrencyFrame()
 	numCurrencies = getNumberOfCurrencies()
@@ -694,7 +615,7 @@ function addon:OnEnable()
 	end
 
 	setupLDB()
-	scanItems() -- pre-scan items so that they will properly showed in option panel
+	self.Query.ScanItems() -- pre-scan items so that they will properly showed in option panel
 	currencyUpdate()
 	self:Refresh()
 end

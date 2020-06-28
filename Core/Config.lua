@@ -28,6 +28,8 @@ local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 local AceDBOptions = LibStub("AceDBOptions-3.0")
 
 local profile
+local item_list
+
 
 local function orderednext(t, n)
 	local key = t[t.__next]
@@ -133,7 +135,7 @@ local function getOptions()
 			get = optGetter,
 			set = optSetter,
 			args = {
-				group1 = {
+				group1 = { -- On-screen frame
 					order = 10,
 					type = "group",
 					name = L["On-screen frame"],
@@ -198,7 +200,7 @@ local function getOptions()
 						},
 					},
 				},
-				group2 = {
+				group2 = { -- Display Settings
 					order = 20,
 					type = "group",
 					name = L["Display Settings"],
@@ -258,7 +260,7 @@ local function getOptions()
 						},
 					},
 				},
-				group3 = {
+				group3 = { -- Scale and Transparency
 					order = 30,
 					type = "group",
 					name = L["Scale and Transparency"],
@@ -425,39 +427,42 @@ local function itemButton_ToggleTrack(itemID)
 	addon:Refresh()
 end
 
---[[
-local cache_tooltip = CreateFrame("GameTooltip", "cacheToolTip", UIParent, "GameTooltipTemplate")
-local function getItemTooltip(itemLink)
-	if not itemLink then return end
-	local t2 = _G["cacheToolTipTextLeft2"]
-	local t3 = _G["cacheToolTipTextLeft3"]
-	local creature_cache, s2, s3
-
-	cache_tooltip:SetOwner(UIParent, "ANCHOR_NONE")
-	cache_tooltip:SetHyperlink(itemLink)
-	if (t2) then 
-		local r, g, b, a = t2:GetTextColor()
-		s2 = format("|cff%02x%02x%02x%s|r", r * 255, g * 255, b * 255, t2:GetText())
-	end
-	if (t3) then 
-		local s = t3:GetText()
-		if (s) then
-			local r, g, b, a = t3:GetTextColor()
-			s3 = format("\n|cff%02x%02x%02x%s|r", r * 255, g * 255, b * 255, s)
-		else
-			s3 = ""
-		end
-	end
-
-	
-	creature_cache = format("%s%s", s2 or "", s3 or "")
-	
-	return creature_cache
-end
-]]
 local function getItemOptions()
-	
 	if not profile then profile = addon.db.profile end
+	if not item_list then item_list = addon.db.item_list end
+	
+	local function getProfOptions(tp, itemID, n)
+		local itemName, icon, _
+	
+		if (item_list[itemID] and item_list[itemID][1] and item_list[itemID][2]) then
+			itemName, icon = item_list[itemID][1], item_list[itemID][2]
+		else
+			itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+			if not (itemName) then 
+				itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+			end
+			if ( itemName and icon ) then
+				item_list[itemID] = { itemName, icon, }
+			end
+		end
+		local count = GetItemCount(itemID, true)
+		
+		if icon and itemName then
+			local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, itemName)
+			tp["item"..n] = {}
+			tp["item"..n].order = n
+			tp["item"..n].type = "toggle"
+			tp["item"..n].name = displayString
+			tp["item"..n].desc = format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
+			tp["item"..n].get = (function() return profile["items"][itemID] end)
+			tp["item"..n].set = (function() itemButton_ToggleTrack(itemID) end)
+		
+			n = n + 1
+		end
+		
+		return tp, n
+	end
+	
 	if not itemOptions then
 		itemOptions = {
 			type = "group",
@@ -471,42 +476,50 @@ local function getItemOptions()
 			itemOptions.args["group"..i].type = "group"
 			itemOptions.args["group"..i].name = addon.constants.itemCategories[k]
 			itemOptions.args["group"..i].args = { }
-			local j = 1
 			local t = itemOptions.args["group"..i].args
 			if k == "professions" then
+				local prof1, prof2 = GetProfessions()
+--				local prof1_name = GetProfessionInfo(prof1)
+--				local prof2_name = GetProfessionInfo(prof2)
+				local j = 1
 				for ka, profs in pairs(v) do
-					t["group"..j] = {}
-					t["group"..j].order = j
-					t["group"..j].type = "group"
-					t["group"..j].name = format("|T%d:16:16:2:0|t |cffffffff%s|r", GetSpellTexture(ka), GetSpellInfo(ka))
-					--t["group"..j].inline = true
-					t["group"..j].args = { }
-					--local n = 1
-					local tp = t["group"..j].args
-					for n, itemID in ipairs(profs) do
-						--item_cache = {}
-						local itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-						local count = GetItemCount(itemID, true)
-						
-						if icon and itemName then
-							local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, itemName)
-							tp["item"..n] = {}
-							tp["item"..n].order = n
-							tp["item"..n].type = "toggle"
-							tp["item"..n].name = displayString
-							tp["item"..n].desc = --[[getItemTooltip(itemLink).."\n"..]]format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
-							tp["item"..n].get = (function() return profile["items"][itemID] end)
-							tp["item"..n].set = (function() itemButton_ToggleTrack(itemID) end)
-						
-							n = n + 1
+--					local spellinfo = GetSpellInfo(ka)
+--					if (spellinfo == prof1_name or spellinfo == prof2_name) then
+						t["group"..j] = {}
+						t["group"..j].order = j
+						t["group"..j].type = "group"
+						t["group"..j].name = format("|T%d:16:16:2:0|t |cffffffff%s|r", GetSpellTexture(ka), GetSpellInfo(ka))
+						--t["group"..j].inline = true
+						t["group"..j].args = { }
+						local n = 1
+						local tp = t["group"..j].args
+						for kb, vb in ipairs(profs) do
+							if (type(vb) == "number") then
+								tp, n = getProfOptions(tp, vb, n)
+							end
 						end
-					end
 
-					j = j + 1
+						j = j + 1
+--					end
 				end
 			else
+				local j = 1
+				--Query:AddItemInfoList(v)
 				for ka, itemID in ipairs(v) do
-					local itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+--					t, j = getProfOptions(t, itemID, j)
+					local itemName, icon, _
+				
+					if (item_list[itemID] and item_list[itemID][1] and item_list[itemID][2]) then
+						itemName, icon = item_list[itemID][1], item_list[itemID][2]
+					else
+						itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+						if not (itemName) then 
+							itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+						end
+						if ( itemName and icon ) then
+							item_list[itemID] = { itemName, icon, }
+						end
+					end
 					local count = GetItemCount(itemID, true)
 					if icon and itemName then
 						local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, itemName)
@@ -514,11 +527,12 @@ local function getItemOptions()
 						t["item"..j].order = j
 						t["item"..j].type = "toggle"
 						t["item"..j].name = displayString
-						t["item"..j].desc = --[[getItemTooltip(itemLink).."\n"..]]format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
+						t["item"..j].desc = format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
 						t["item"..j].get = (function() return profile["items"][itemID] end)
 						t["item"..j].set = (function() itemButton_ToggleTrack(itemID) end)
 					
 						j = j + 1
+
 					end
 				end
 			end
