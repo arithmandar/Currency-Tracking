@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.20 (Jun. 28, 2020)
+-----------------------
+- WoW Classic support
+
 * v6.19 (Jun. 28, 2020)
 -----------------------
 - Added Locked Assault Caches' Relic items

@@ -14,6 +14,7 @@ local format = string.format
 -- WoW
 local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = _G.GetSpellTexture, _G.GetSpellInfo, _G.GetItemInfo, _G.GetItemCount
 local GetLocale = _G.GetLocale
+local WoWClassic = select(4, GetBuildInfo()) < 20000
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -478,17 +479,15 @@ local function getItemOptions()
 			itemOptions.args["group"..i].args = { }
 			local t = itemOptions.args["group"..i].args
 			if k == "professions" then
-				local prof1, prof2 = GetProfessions()
---				local prof1_name = GetProfessionInfo(prof1)
---				local prof2_name = GetProfessionInfo(prof2)
 				local j = 1
 				for ka, profs in pairs(v) do
---					local spellinfo = GetSpellInfo(ka)
---					if (spellinfo == prof1_name or spellinfo == prof2_name) then
+					local spellInfo = GetSpellInfo(ka)
+					local spellTexture = GetSpellTexture(ka)
+					if (spellInfo ~= nil) then
 						t["group"..j] = {}
 						t["group"..j].order = j
 						t["group"..j].type = "group"
-						t["group"..j].name = format("|T%d:16:16:2:0|t |cffffffff%s|r", GetSpellTexture(ka), GetSpellInfo(ka))
+						t["group"..j].name = format("|T%d:16:16:2:0|t |cffffffff%s|r", spellTexture, spellInfo)
 						--t["group"..j].inline = true
 						t["group"..j].args = { }
 						local n = 1
@@ -500,7 +499,7 @@ local function getItemOptions()
 						end
 
 						j = j + 1
---					end
+					end
 				end
 			else
 				local j = 1
@@ -550,8 +549,11 @@ local function openOptions(openItems)
 	if (openItems) then
 		InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Items)
 	else
-		--InterfaceOptionsFrame_OpenToCategory(myaddon.panel)
-		InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Currencies)
+		if (WoWClassic) then
+			InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.General)
+		else
+			InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Currencies)
+		end
 	end
 	InterfaceOptionsFrame:Raise()
 end
@@ -573,7 +575,9 @@ function addon:SetupOptions()
 	self:RegisterModuleOptions("Options", getOptions, L["Options"])
 	self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
 	--addTokenOptionFrame()
-	self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
+	if (not WoWClassic) then
+		self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
+	end
 	self:RegisterModuleOptions("Profiles", giveProfiles, L["Profile Options"])
 end
 
