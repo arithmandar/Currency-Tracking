@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v6.21 (Jul. XX, 2020)
+-----------------------
+- Fixed issue with non-cached item being added to tracked button
+- Added item Vessel of Horrific Visions
+
 * v6.20 (Jun. 28, 2020)
 -----------------------
 - WoW Classic support

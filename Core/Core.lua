@@ -46,6 +46,7 @@ addon.Author 		= GetAddOnMetadata(addon.Name, "Author")
 
 _G.CurrencyTracking = addon
 local profile
+local item_list
 
 -- local booleans, constants, and arrays
 local isInLockdown = false		-- boolean to check if player is in combat
@@ -217,6 +218,7 @@ local function button_OnLeave(self)
 end
 
 local function handleTrackedButtons(button, currencyID, itemID)
+	item_list = addon.db.item_list
 	if not button then return end
 	local buttonName = button:GetName()
 	local bi = tonumber(strsub(buttonName, strlen("CurrencyTrackingButton")+1))
@@ -237,7 +239,17 @@ local function handleTrackedButtons(button, currencyID, itemID)
 	if (currencyID) then 
 		_, count, icon = GetCurrencyInfo(currencyID) 
 	elseif (itemID) then
-		itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+		if (item_list[itemID] and item_list[itemID][1] and item_list[itemID][2] and item_list[itemID][3]) then
+			itemName, icon, itemLink = item_list[itemID][1], item_list[itemID][2], item_list[itemID][3]
+		else
+			itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+			if not itemName then itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID) end
+			local t = {}
+			t.itemID = itemID
+			t.itemName = itemName
+			t.itemLink = itemLink
+			addon.Query.RefreshItem(t)
+		end
 		count = GetItemCount(itemID, true)
 	end
 
@@ -598,6 +610,7 @@ end
 function addon:OnInitialize()
 	self.db = AceDB:New(addon.Name.."DB", addon.constants.defaults)
 	profile = self.db.profile
+	item_list = self.db.item_list
 
 	self.db.RegisterCallback(self, "OnProfileChanged", "Refresh")
 	self.db.RegisterCallback(self, "OnProfileCopied", "Refresh")

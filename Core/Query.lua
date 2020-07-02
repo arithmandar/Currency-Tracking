@@ -43,19 +43,19 @@ end
 item_list structure:
 	["item_list"] = {
 		[item_id] = {
-			itemname, icon
+			itemname, icon, itemLink
 		},
 	}
 /////////////////////////////// ]]
 
-local function refreshItem(item)
+function Query.RefreshItem(item)
 	if not item_list[item.itemID] then
 		if ( item.itemName and item.icon ) then
-			item_list[item.itemID] = { item.itemName, item.icon, }
+			item_list[item.itemID] = { item.itemName, item.icon, item.itemLink }
 		end
 	else
 		if ( item_list[item.itemID][1] ~= item.itemName ) then
-			item_list[item.itemID] = { item.itemName, item.icon, }
+			item_list[item.itemID] = { item.itemName, item.icon, item.itemLink }
 		end
 	end
 end
@@ -73,14 +73,15 @@ function Query.ScanItems()
 					if ( item_list[itemID] and item_list[itemID][1] ) then
 						-- do nothing
 					else
-						local itemName, icon, _
-						itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+						local itemName, itemLink, icon, _
+						itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 						if not itemName then itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID) end
 						local item = {}
 						item.itemID = itemID
 						item.itemName = itemName
+						item.itemLink = itemLink
 						item.icon = icon
-						refreshItem(item)
+						Query.RefreshItem(item)
 					end
 				end
 			end
@@ -89,14 +90,15 @@ function Query.ScanItems()
 				if ( item_list[itemID] and item_list[itemID][1] ) then
 					-- do nothing
 				else
-					local itemName, icon, _
-					itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+					local itemName, itemLink, icon, _
+					itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
 					if not itemName then itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID) end
 					local item = {}
 					item.itemID = itemID
 					item.itemName = itemName
+					item.itemLink = itemLink
 					item.icon = icon
-					refreshItem(item)
+					Query.RefreshItem(item)
 				end
 			end
 		end
