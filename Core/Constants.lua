@@ -1296,17 +1296,163 @@ constants.items = {
 			2863, -- Coarse Sharpening Stone
 			2862, -- Rough Sharpening Stone
 		},
---[[
 		[7620] = { -- Fishing
-			162515, -- Midnight Salmon
-			152543, -- Sand Shifter
-			152544, -- Slimy Mackerel
-			152545, -- Frenzied Fangtooth
-			152546, -- Lane Snapper
-			152547, -- Great Sea Catfish
-			152548, -- Tiragarde Perch
-			152549, -- Redtail Loach
-		},]]
+			174328, --  Aberrant Voidfin
+			174327, --  Malformed Gnasher
+			168646, --  Mauve Stinger
+			168302, --  Viper Fish
+			152549, --  Redtail Loach
+			152548, --  Tiragarde Perch
+			152547, --  Great Sea Catfish
+			152546, --  Lane Snapper
+			152545, --  Frenzied Fangtooth
+			152544, --  Slimy Mackerel
+			152543, --  Sand Shifter
+			139669, --  Ancient Black Barracuda
+			139667, --  Axefish
+			139666, --  Tainted Runescale Koi
+			139664, --  Magic-Eater Frog
+			139663, --  Thundering Stormray
+			139662, --  Graybelly Lobster
+			139661, --  Oodelfjisk
+			139660, --  Ancient Highmountain Salmon
+			139659, --  Coldriver Carp
+			139658, --  Mountain Puffer
+			139657, --  Ancient Mossgill
+			139656, --  Thorned Flounder
+			139655, --  Terrorfin
+			139654, --  Ghostly Queenfish
+			139653, --  Nar'thalas Hermit
+			139652, --  Leyshimmer Blenny
+			138967, --  Big Fountain Goldfish
+			133742, --  Ancient Black Barracuda
+			133740, --  Axefish
+			133739, --  Tainted Runescale Koi
+			133737, --  Magic-Eater Frog
+			133736, --  Thundering Stormray
+			133735, --  Graybelly Lobster
+			133734, --  Oodelfjisk
+			133733, --  Ancient Highmountain Salmon
+			133732, --  Coldriver Carp
+			133731, --  Mountain Puffer
+			133730, --  Ancient Mossgill
+			133729, --  Thorned Flounder
+			133728, --  Terrorfin
+			133727, --  Ghostly Queenfish
+			133726, --  Nar'thalas Hermit
+			133725, --  Leyshimmer Blenny
+			133607, --  Silver Mackerel
+			127994, --  Felmouth Frenzy Lunker
+			127991, --  Felmouth Frenzy
+			124669, --  Darkmoon Daggermaw
+			124112, --  Black Barracuda
+			124111, --  Runescale Koi
+			124110, --  Stormray
+			124109, --  Highmountain Salmon
+			124108, --  Mossgill Perch
+			124107, --  Cursed Queenfish
+			122696, --  Sea Scorpion Lunker
+			118565, --  Savage Piranha
+			116822, --  Jawless Skulker Lunker
+			116821, --  Fat Sleeper Lunker
+			116820, --  Blind Lake Lunker
+			116819, --  Fire Ammonite Lunker
+			116818, --  Abyssal Gulper Lunker
+			116817, --  Blackwater Whiptail Lunker
+			111676, --  Enormous Jawless Skulker
+			111675, --  Enormous Fat Sleeper
+			111674, --  Enormous Blind Lake Sturgeon
+			111673, --  Enormous Fire Ammonite
+			111672, --  Enormous Sea Scorpion
+			111671, --  Enormous Abyssal Gulper Eel
+			111670, --  Enormous Blackwater Whiptail
+			111669, --  Jawless Skulker
+			111668, --  Fat Sleeper
+			111667, --  Blind Lake Sturgeon
+			111666, --  Fire Ammonite
+			111665, --  Sea Scorpion
+			111664, --  Abyssal Gulper Eel
+			111663, --  Blackwater Whiptail
+			111662, --  Small Blackwater Whiptail
+			111659, --  Small Abyssal Gulper Eel
+			111658, --  Small Sea Scorpion
+			111656, --  Small Fire Ammonite
+			111652, --  Small Blind Lake Sturgeon
+			111651, --  Small Fat Sleeper
+			111650, --  Small Jawless Skulker
+			111601, --  Enormous Crescent Saberfish
+			111595, --  Crescent Saberfish
+			111589, --  Small Crescent Saberfish
+			74866, --  Golden Carp
+			74865, --  Krasarang Paddlefish
+			74864, --  Reef Octopus
+			74863, --  Jewel Danio
+			74861, --  Tiger Gourami
+			74860, --  Redbelly Mandarin
+			74859, --  Emperor Salmon
+			74857, --  Giant Mantis Shrimp
+			74856, --  Jade Lungfish
+			62778, --  Toughened Flesh
+			53072, --  Deepsea Sagefish
+			53071, --  Algaefin Rockfish
+			53070, --  Fathom Eel
+			53069, --  Murglesnout
+			53068, --  Lavascale Catfish
+			53067, --  Striped Lurker
+			53066, --  Blackbelly Mudfish
+			53065, --  Albino Cavefish
+			53064, --  Highland Guppy
+			53063, --  Mountain Trout
+			53062, --  Sharptooth
+			43652, --  Slippery Eel
+			43647, --  Shimmering Minnow
+			43646, --  Fountain Goldfish
+			43572, --  Magic Eater
+			43571, --  Sewer Carp
+			41814, --  Glassfin Minnow
+			41813, --  Nettlefish
+			41812, --  Barrelhead Goby
+			41810, --  Fangtooth Herring
+			41809, --  Glacial Salmon
+			41808, --  Bonescale Snapper
+			41807, --  Dragonfin Angelfish
+			41806, --  Musselback Sculpin
+			41805, --  Borean Man O' War
+			41803, --  Rockfin Grouper
+			41802, --  Imperial Manta Ray
+			41801, --  Moonglow Cuttlefish
+			41800, --  Deep Sea Monsterbelly
+			37588, --  Mostly Digested Fish
+			35285, --  Giant Sunfish
+			33824, --  Crescent-Tail Skullfish
+			33823, --  Bloodfin Catfish
+			27439, --  Furious Crawdad
+			27438, --  Golden Darter
+			27437, --  Icefin Bluefish
+			27435, --  Figluster's Mudfish
+			27429, --  Zangarian Sporefish
+			27425, --  Spotted Feltail
+			27422, --  Barbed Gill Trout
+			23676, --  Moongraze Stag Tenderloin
+			21153, --  Raw Greater Sagefish
+			21071, --  Raw Sagefish
+			13889, --  Raw Whitescale Salmon
+			13888, --  Darkclaw Lobster
+			13760, --  Raw Sunscale Salmon
+			13759, --  Raw Nightfin Snapper
+			13758, --  Raw Redgill
+			13756, --  Raw Summer Bass
+			13754, --  Raw Glossy Mightfish
+			8365, --  Raw Mithril Head Trout
+			6362, --  Raw Rockscale Cod
+			6361, --  Raw Rainbow Fin Albacore
+			6317, --  Raw Loch Frenzy
+			6308, --  Raw Bristle Whisker Catfish
+			6303, --  Raw Slitherskin Mackerel
+			6291, --  Raw Brilliant Smallfish
+			6289, --  Raw Longjaw Mud Snapper
+			4603, --  Raw Spotted Yellowtail
+		},
 		[2550] = { -- Cooking
 			166344, -- Seasoned Steak and Potatoes
 			166343, -- Wild Berry Bread

@@ -9,6 +9,7 @@ Revision History:
 - Added item Vessel of Horrific Visions
 - Added Shadowlands tailing items
 - Added more missing meat
+- Added fishing
 
 * v6.20 (Jun. 28, 2020)
 -----------------------
