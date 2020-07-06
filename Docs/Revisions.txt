@@ -7,6 +7,8 @@ Revision History:
 -----------------------
 - Fixed issue with non-cached item being added to tracked button
 - Added item Vessel of Horrific Visions
+- Added Shadowlands tailing items
+- Added more missing meat
 
 * v6.20 (Jun. 28, 2020)
 -----------------------

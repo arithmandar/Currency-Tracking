@@ -64,6 +64,9 @@ constants.items = {
 	},
 	professions = {
 		[3908] = { -- Tailoring: Cloth
+			-- Shadowland
+			173202, -- Shrouded Cloth
+			173204, -- Lightless Silk
 			-- RoA
 			167738, -- Gilded Seaweave
 			164733, -- Synchronous Thread
@@ -1851,10 +1854,14 @@ constants.items = {
 		7067, -- Elemental Earth
 	},
 	meat = {
-		168303, -- Rubbery Flank
-		168302, -- Viper Fish
+		-- 8.x.x
+		174353, -- Questionable Meat
+		174328, -- Aberrant Voidfin
+		174327, -- Malformed Gnasher
 		168646, -- Mauve Stinger
 		168645, -- Moist Fillet
+		168303, -- Rubbery Flank
+		168302, -- Viper Fish
 		166741, -- Nomi's Grocery Tote
 		163782, -- Cursed Haunch
 		160712, -- Powdered Sugar
@@ -1875,7 +1882,47 @@ constants.items = {
 		152545, -- Frenzied Fangtooth
 		152544, -- Slimy Mackerel
 		152543, -- Sand Shifter
+		-- 7.x.x
+		146757, -- Prepared Ingredients
 		142336, -- Falcosaur Egg
+		139669, -- Ancient Black Barracuda
+		139668, -- Seabottom Squid
+		139667, -- Axefish
+		139666, -- Tainted Runescale Koi
+		139665, -- Seerspine Puffer
+		139664, -- Magic-Eater Frog
+		139663, -- Thundering Stormray
+		139662, -- Graybelly Lobster
+		139661, -- Oodelfjisk
+		139660, -- Ancient Highmountain Salmon
+		139659, -- Coldriver Carp
+		139658, -- Mountain Puffer
+		139657, -- Ancient Mossgill
+		139656, -- Thorned Flounder
+		139655, -- Terrorfin
+		139654, -- Ghostly Queenfish
+		139653, -- Nar'thalas Hermit
+		139652, -- Leyshimmer Blenny
+		138967, -- Big Fountain Goldfish
+		135512, -- Thick Slab of Bacon
+		133742, -- Ancient Black Barracuda
+		133741, -- Seabottom Squid
+		133740, -- Axefish
+		133739, -- Tainted Runescale Koi
+		133738, -- Seerspine Puffer
+		133737, -- Magic-Eater Frog
+		133736, -- Thundering Stormray
+		133735, -- Graybelly Lobster
+		133734, -- Oodelfjisk
+		133733, -- Ancient Highmountain Salmon
+		133732, -- Coldriver Carp
+		133731, -- Mountain Puffer
+		133730, -- Ancient Mossgill
+		133729, -- Thorned Flounder
+		133728, -- Terrorfin
+		133727, -- Ghostly Queenfish
+		133726, -- Nar'thalas Hermit
+		133725, -- Leyshimmer Blenny
 		133680, -- Slice of Bacon
 		133607, -- Silver Mackerel
 		133593, -- Royal Olive
@@ -1884,9 +1931,6 @@ constants.items = {
 		133590, -- Muskenbutter
 		133589, -- Dalapeño Pepper
 		133588, -- Flaked Sea Salt
-		128500, -- Fel Ham
-		128499, -- Fel Egg
-		124669, -- Darkmoon Daggermaw
 		124121, -- Wildfowl Egg
 		124120, -- Leyblood
 		124119, -- Big Gamy Ribs
@@ -1898,6 +1942,20 @@ constants.items = {
 		124109, -- Highmountain Salmon
 		124108, -- Mossgill Perch
 		124107, -- Cursed Queenfish
+		-- 6.x.x
+		128500, -- Fel Ham
+		128499, -- Fel Egg
+		127994, -- Felmouth Frenzy Lunker
+		127991, -- Felmouth Frenzy
+		124669, -- Darkmoon Daggermaw
+		122696, -- Sea Scorpion Lunker
+		118565, -- Savage Piranha
+		116822, -- Jawless Skulker Lunker
+		116821, -- Fat Sleeper Lunker
+		116820, -- Blind Lake Lunker
+		116819, -- Fire Ammonite Lunker
+		116818, -- Abyssal Gulper Lunker
+		116817, -- Blackwater Whiptail Lunker
 		111676, -- Enormous Jawless Skulker
 		111675, -- Enormous Fat Sleeper
 		111674, -- Enormous Blind Lake Sturgeon
@@ -1936,6 +1994,7 @@ constants.items = {
 		109133, -- Rylak Egg
 		109132, -- Raw Talbuk Meat
 		109131, -- Raw Clefthoof Meat
+		-- 5.x.x
 		102543, -- Aged Mogu'shan Cheese
 		102542, -- Ancient Pandaren Spices
 		102541, -- Aged Balsamic Vinegar
@@ -1985,6 +2044,7 @@ constants.items = {
 		74661, -- Black Pepper
 		74660, -- Pandaren Peach
 		74659, -- Farm Chicken
+		-- 4.x.x
 		67229, -- Stag Flank
 		62791, -- Blood Shrimp
 		62785, -- Delicate Wing
@@ -2006,7 +2066,13 @@ constants.items = {
 		53064, -- Highland Guppy
 		53063, -- Mountain Trout
 		53062, -- Sharptooth
+		-- 3.x.x
 		44834, -- Wild Turkey
+		43652, -- Slippery Eel
+		43647, -- Shimmering Minnow
+		43646, -- Fountain Goldfish
+		43572, -- Magic Eater
+		43571, -- Sewer Carp
 		43501, -- Northern Egg
 		43013, -- Chilled Meat
 		43012, -- Rhino Meat
@@ -2027,8 +2093,12 @@ constants.items = {
 		41801, -- Moonglow Cuttlefish
 		41800, -- Deep Sea Monsterbelly
 		36782, -- Succulent Clam Meat
-		35562, -- Bear Flank
+		35794, -- Silvercoat Stag Meat
 		34736, -- Chunk o' Mammoth
+		-- 2.x.x
+		37588, -- Mostly Digested Fish
+		35562, -- Bear Flank
+		35285, -- Giant Sunfish
 		33824, -- Crescent-Tail Skullfish
 		33823, -- Bloodfin Catfish
 		31671, -- Serpent Flesh
@@ -2051,69 +2121,76 @@ constants.items = {
 		24477, -- Jaggal Clam Meat
 		23676, -- Moongraze Stag Tenderloin
 		22644, -- Crunchy Spider Leg
-		21153, -- Raw Greater Sagefish
-		21071, -- Raw Sagefish
-		21024, -- Chimaerok Tenderloin
-		20424, -- Sandworm Meat
-		13889, -- Raw Whitescale Salmon
-		13888, -- Darkclaw Lobster
-		13760, -- Raw Sunscale Salmon
-		13759, -- Raw Nightfin Snapper
-		13758, -- Raw Redgill
-		13756, -- Raw Summer Bass
-		13754, -- Raw Glossy Mightfish
-		12223, -- Meaty Bat Wing
-		12208, -- Tender Wolf Meat
-		12207, -- Giant Egg
-		12206, -- Tender Crab Meat
-		12205, -- White Spider Meat
-		12204, -- Heavy Kodo Meat
-		12203, -- Red Wolf Meat
-		12202, -- Tiger Meat
-		12184, -- Raptor Flesh
-		12037, -- Mystery Meat
-		8365, -- Raw Mithril Head Trout
-		7974, -- Zesty Clam Meat
-		6889, -- Small Egg
-		6362, -- Raw Rockscale Cod
-		6361, -- Raw Rainbow Fin Albacore
-		6317, -- Raw Loch Frenzy
-		6308, -- Raw Bristle Whisker Catfish
-		6303, -- Raw Slitherskin Mackerel
-		6291, -- Raw Brilliant Smallfish
-		6289, -- Raw Longjaw Mud Snapper
-		5504, -- Tangy Clam Meat
-		5503, -- Clam Meat
-		5471, -- Stag Meat
-		5470, -- Thunder Lizard Tail
-		5469, -- Strider Meat
-		5468, -- Soft Frenzy Flesh
-		5467, -- Kodo Meat
-		5466, -- Scorpid Stinger
-		5465, -- Small Spider Leg
-		4655, -- Giant Clam Meat
-		4603, -- Raw Spotted Yellowtail
-		3731, -- Lion Meat
-		3730, -- Big Bear Meat
-		3712, -- Turtle Meat
-		3685, -- Raptor Egg
-		3667, -- Tender Crocolisk Meat
-		3404, -- Buzzard Wing
-		3173, -- Bear Meat
-		2924, -- Crocolisk Meat
-		2886, -- Crag Boar Rib
-		2677, -- Boar Ribs
-		2675, -- Crawler Claw
-		2674, -- Crawler Meat
-		2673, -- Coyote Meat
-		2672, -- Stringy Wolf Meat
-		2251, -- Gooey Spider Leg
-		1468, -- Murloc Fin
-		1080, -- Tough Condor Meat
-		1015, -- Lean Wolf Flank
-		769, -- Chunk of Boar Meat
-		723, -- Goretusk Liver
-
+		-- 1.x.x
+		21153, --  Raw Greater Sagefish
+		21071, --  Raw Sagefish
+		21024, --  Chimaerok Tenderloin
+		20424, --  Sandworm Meat
+		13889, --  Raw Whitescale Salmon
+		13888, --  Darkclaw Lobster
+		13760, --  Raw Sunscale Salmon
+		13759, --  Raw Nightfin Snapper
+		13758, --  Raw Redgill
+		13756, --  Raw Summer Bass
+		13754, --  Raw Glossy Mightfish
+		12223, --  Meaty Bat Wing
+		12208, --  Tender Wolf Meat
+		12207, --  Giant Egg
+		12206, --  Tender Crab Meat
+		12205, --  White Spider Meat
+		12204, --  Heavy Kodo Meat
+		12203, --  Red Wolf Meat
+		12202, --  Tiger Meat
+		12184, --  Raptor Flesh
+		12037, --  Mystery Meat
+		8959, --  Raw Spinefin Halibut
+		8365, --  Raw Mithril Head Trout
+		7974, --  Zesty Clam Meat
+		6889, --  Small Egg
+		6362, --  Raw Rockscale Cod
+		6361, --  Raw Rainbow Fin Albacore
+		6317, --  Raw Loch Frenzy
+		6308, --  Raw Bristle Whisker Catfish
+		6303, --  Raw Slitherskin Mackerel
+		6291, --  Raw Brilliant Smallfish
+		6289, --  Raw Longjaw Mud Snapper
+		5504, --  Tangy Clam Meat
+		5503, --  Clam Meat
+		5471, --  Stag Meat
+		5470, --  Thunder Lizard Tail
+		5469, --  Strider Meat
+		5468, --  Soft Frenzy Flesh
+		5467, --  Kodo Meat
+		5466, --  Scorpid Stinger
+		5465, --  Small Spider Leg
+		4655, --  Giant Clam Meat
+		4603, --  Raw Spotted Yellowtail
+		3731, --  Lion Meat
+		3730, --  Big Bear Meat
+		3712, --  Turtle Meat
+		3685, --  Raptor Egg
+		3667, --  Tender Crocolisk Meat
+		3404, --  Buzzard Wing
+		3174, --  Spider Ichor
+		3173, --  Bear Meat
+		3172, --  Boar Intestines
+		2924, --  Crocolisk Meat
+		2886, --  Crag Boar Rib
+		2677, --  Boar Ribs
+		2675, --  Crawler Claw
+		2674, --  Crawler Meat
+		2673, --  Coyote Meat
+		2672, --  Stringy Wolf Meat
+		2665, --  Stormwind Seasoning Herbs
+		2251, --  Gooey Spider Leg
+		1468, --  Murloc Fin
+		1080, --  Tough Condor Meat
+		1015, --  Lean Wolf Flank
+		769, --  Chunk of Boar Meat
+		731, --  Goretusk Snout
+		730, --  Murloc Eye
+		729, --  Stringy Vulture Meat
+		723, --  Goretusk Liver
 	},
 
 --[[	quest = {
