@@ -69,9 +69,7 @@ constants.items = {
 			173204, -- Lightless Silk
 			-- RoA
 			167738, -- Gilded Seaweave
-			164733, -- Synchronous Thread
 			-- BfA
-			159959, -- Nylon Thread
 			158378, -- Embroidered Deep Sea Satin
 			152577, -- Deep Sea Satin
 			152576, -- Tidespray Linen
@@ -103,7 +101,6 @@ constants.items = {
 			41593, -- Ebonweave
 			41511, -- Bolt of Imbued Frostweave
 			41510, -- Bolt of Frostweave
-			38426, -- Eternium Thread
 			33470, -- Frostweave Cloth
 			-- BC
 			24272, -- Shadowcloth
@@ -116,26 +113,21 @@ constants.items = {
 			21840, -- Bolt of Netherweave
 			-- Classic
 			14342, -- Mooncloth
-			14341, -- Rune Thread
 			14256, -- Felcloth
 			14227, -- Ironweb Spider Silk
 			14048, -- Bolt of Runecloth
 			14047, -- Runecloth
 			10285, -- Shadow Silk
-			8343, -- Heavy Silken Thread
 			4339, -- Bolt of Mageweave
 			4338, -- Mageweave Cloth
 			4337, -- Thick Spider's Silk
 			4306, -- Silk Cloth
 			4305, -- Bolt of Silk Cloth
-			4291, -- Silken Thread
 			3182, -- Spider's Silk
 			2997, -- Bolt of Woolen Cloth
 			2996, -- Bolt of Linen Cloth
 			2592, -- Wool Cloth
 			2589, -- Linen Cloth
-			2321, -- Fine Thread
-			2320, -- Coarse Thread
 		},
 		[2575] = { -- Mining: Metal & Stone
 			-- RoA
@@ -252,9 +244,27 @@ constants.items = {
 			2770, -- Copper Ore
 		},
 		[2108] = { -- Leatherworking
+			-- Shadowland
+			177281, --  Heavy Sorrowscale
+			177279, --  Gaunt Sinew
+			172438, --  Enchanted Heavy Desolate Hide
+			172333, --  Purified Leather
+			172332, --  Necrotic Leather
+			172331, --  Sinful Leather
+			172330, --  Unseelie Leather
+			172097, --  Heavy Desolate Hide
+			172096, --  Heavy Desolate Leather
+			172095, --  Desolate Hide Scraps
+			172094, --  Desolate Hide
+			172093, --  Desolate Leather Scraps
+			172092, --  Pallid Bone
+			172090, --  Sorrowscale Fragment
+			172089, --  Desolate Leather
+			-- RoA
 			168649, -- Dredged Leather
 			168650, -- Cragscale
-			164978, -- Mallet of Thunderous Skins
+			-- BfA
+--			164978, -- Mallet of Thunderous Skins, not quite a "gathered" item to be tracked
 			152542, -- Hardened Tempest Hide
 			153051, -- Mistscale
 			154165, -- Calcified Bone
@@ -262,51 +272,103 @@ constants.items = {
 			152541, -- Coarse Leather
 			153050, -- Shimmerscale
 			154164, -- Blood-Stained Bone
+			-- Legion
 			151566, -- Fiendish Leather
 			124116, -- Felhide
 			124115, -- Stormscale
 			124113, -- Stonehide Leather
-			112177, -- Nerubian Chitin Fragment
-			112158, -- Icy Dragonscale Fragment
-			112156, -- Blackened Dragonscale Fragment
-			110611, -- Burnished Leather
-			110610, -- Raw Beast Hide Scraps
-			110609, -- Raw Beast Hide
+			-- WoD
+			112185, --  Wind Scale Fragment
+			112184, --  Cobra Scale Fragment
+			112183, --  Nether Dragonscale Fragment
+			112182, --  Patch of Fel Hide
+			112181, --  Fel Scale Fragment
+			112180, --  Patch of Crystal Infused Leather
+			112179, --  Patch of Thick Clefthoof Leather
+			112178, --  Jormungar Scale Fragment
+			112177, --  Nerubian Chitin Fragment
+			112158, --  Icy Dragonscale Fragment
+			112157, --  Prismatic Scale Fragment
+			112156, --  Blackened Dragonscale Fragment
+			112155, --  Deepsea Scale Fragment
+			110611, --  Burnished Leather
+			110610, --  Raw Beast Hide Scraps
+			110609, --  Raw Beast Hide
+			-- MoP
 			79101, -- Prismatic Scale
 			72163, -- Magnificent Hide
 			72162, -- Sha-Touched Leather
 			72120, -- Exotic Leather
-			56516, -- Heavy Savage Leather
-			38558, -- Nerubian Chitin
-			38557, -- Icy Dragonscale
-			33568, -- Borean Leather
-			33567, -- Borean Leather Scraps
-			25649, -- Knothide Leather Scraps
-			23793, -- Heavy Knothide Leather
-			15416, -- Black Dragonscale
-			15414, -- Red Dragonscale
-			15412, -- Green Dragonscale
-			15408, -- Heavy Scorpid Scale
-			8170, -- Rugged Leather
-			8169, -- Thick Hide
-			8168, -- Jet Black Feather
-			8165, -- Worn Dragonscale
-			8154, -- Scorpid Scale
-			8150, -- Deeprock Salt
-			6471, -- Perfect Deviate Scale
-			6470, -- Deviate Scale
-			5785, -- Thick Murloc Scale
-			5784, -- Slimy Murloc Scale
-			5116, -- Long Tail Feather
-			5082, -- Thin Kodo Leather
-			4461, -- Raptor Hide
-			4304, -- Thick Leather
-			4235, -- Heavy Hide
-			4234, -- Heavy Leather
-			4232, -- Medium Hide
-			2319, -- Medium Leather
-			2318, -- Light Leather
-			783, -- Light Hide
+			-- Catalysm
+			56516, --  Heavy Savage Leather
+			52982, --  Deepsea Scale
+			52980, --  Pristine Hide
+			52979, --  Blackened Dragonscale
+			52977, --  Savage Leather Scraps
+			52976, --  Savage Leather
+			-- WotLK			
+			44128, --  Arctic Fur
+			38425, --  Heavy Borean Leather
+			33568, --  Borean Leather
+			38557, --  Icy Dragonscale
+			38558, --  Nerubian Chitin
+			38561, --  Jormungar Scale
+			33567, --  Borean Leather Scraps
+			-- BC
+			29548, --  Nether Dragonscales
+			29547, --  Wind Scales
+			29539, --  Cobra Scales
+			25708, --  Thick Clefthoof Leather
+			25707, --  Fel Hide
+			25700, --  Fel Scales
+			25699, --  Crystal Infused Leather
+			25649, --  Knothide Leather Scraps
+			23793, --  Heavy Knothide Leather
+			21887, --  Knothide Leather
+			-- Classic
+			20381, --  Dreamscale
+			19768, --  Primal Tiger Leather
+			19767, --  Primal Bat Leather
+			17967, --  Refined Scale of Onyxia
+			17012, --  Core Leather
+			15419, --  Warbear Leather
+			15417, --  Devilsaur Leather
+			15416, --  Black Dragonscale
+			15415, --  Blue Dragonscale
+			15414, --  Red Dragonscale
+			15412, --  Green Dragonscale
+			15410, --  Scale of Onyxia
+			15408, --  Heavy Scorpid Scale
+			15407, --  Cured Rugged Hide
+			12810, --  Enchanted Leather
+			8172, --  Cured Thick Hide
+			8171, --  Rugged Hide
+			8170, --  Rugged Leather
+			8169, --  Thick Hide
+			8168, --  Jet Black Feather
+			8167, --  Turtle Scale
+			8165, --  Worn Dragonscale
+			8154, --  Scorpid Scale
+			7392, --  Green Whelp Scale
+			7286, --  Black Whelp Scale
+			6471, --  Perfect Deviate Scale
+			6470, --  Deviate Scale
+			5785, --  Thick Murloc Scale
+			5784, --  Slimy Murloc Scale
+			5116, --  Long Tail Feather
+			5082, --  Thin Kodo Leather
+			4461, --  Raptor Hide
+			4304, --  Thick Leather
+			4236, --  Cured Heavy Hide
+			4235, --  Heavy Hide
+			4234, --  Heavy Leather
+			4233, --  Cured Medium Hide
+			4232, --  Medium Hide
+			4231, --  Cured Light Hide
+			2934, --  Ruined Leather Scraps
+			2319, --  Medium Leather
+			2318, --  Light Leather
+			783, --  Light Hide
 		},
 		[7411] = { -- Enchanting
 			-- RoA

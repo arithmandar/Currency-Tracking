@@ -10,6 +10,7 @@ Revision History:
 - Added Shadowlands tailing items
 - Added more missing meat
 - Added fishing
+- Added more leatherworking items
 
 * v6.20 (Jun. 28, 2020)
 -----------------------
