@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v6.22 (Aug. xx, 2020)
+-----------------------
+- Classic WoW's quest and stackable items are now trackable
+- WoW 9.0.1 supports
+
 * v6.21 (Jul. 07, 2020)
 -----------------------
 - Fixed issue with non-cached item being added to tracked button
