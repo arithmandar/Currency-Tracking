@@ -3,8 +3,9 @@
 Revision History:
 =================
 
-* v6.22 (Aug. xx, 2020)
+* v6.22 (Oct. 18, 2020)
 -----------------------
+- ToC update to support WoW 9.0.1
 - Classic WoW's quest and stackable items are now trackable
 - WoW 9.0.1 supports
 
