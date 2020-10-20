@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.23 (Oct. 21, 2020)
+-----------------------
+- Added Shadowlands currencies
+
 * v6.22 (Oct. 18, 2020)
 -----------------------
 - ToC update to support WoW 9.0.1
