@@ -1860,6 +1860,8 @@ constants.items = {
 		},
 	},
 	others = {
+		180720, -- Pitch Black Scourgestone
+		183200, -- Darkened Scourgestone
 		173363, -- Vessel of Horrific Visions
 		163036, -- Polished Pet Charm, added in patch 8.0.1.26624
 		157796, -- Purified Titan Essence, added in 7.3.5.25807

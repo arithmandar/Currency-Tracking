@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.24 (Nov. 15, 2020)
+-----------------------
+- Added Shadowlands pre-launch items: Pitch Black Scourgestone, Darkened Scourgestone
+
 * v6.23 (Oct. 21, 2020)
 -----------------------
 - Added Shadowlands currencies
