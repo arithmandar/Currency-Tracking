@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v6.25 (Nov. 22, 2020)
+-----------------------
+- ToC Update to support WoW 9.0.2
+- Library update - LibCurrency
+
 * v6.24 (Nov. 15, 2020)
 -----------------------
 - Added Shadowlands pre-launch items: Pitch Black Scourgestone, Darkened Scourgestone
