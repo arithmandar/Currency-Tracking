@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.27 (Dec. 14, 2020)
+-----------------------
+- Lib update: LibCurrency
+
 * v6.26 (Nov. 22, 2020)
 -----------------------
 - Disable no-lib release as the new CurseForge seems to bring-in more torubles for users to download addon
