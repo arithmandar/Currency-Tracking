@@ -19,7 +19,7 @@ private.constants = constants
 
 constants.ldb_icon = "Interface\\Icons\\timelesscoin"
 
-local WoWClassic = select(4, GetBuildInfo()) < 20000
+local WoWClassic = select(4, GetBuildInfo()) < 30000
 
 constants.defaults = {
 	profile = {
