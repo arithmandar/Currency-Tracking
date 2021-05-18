@@ -28,15 +28,15 @@ externals:
         url: https://repos.wowace.com/wow/ace3/trunk/AceConfig-3.0
     Libs-release/AceDBOptions-3.0: 
         url: https://repos.wowace.com/wow/ace3/trunk/AceDBOptions-3.0
-#    Libs-release/LibCurrencyInfo:
-#        url: https://repos.wowace.com/wow/libcurrencyinfo/trunk/LibCurrencyInfo
+    Libs-release/LibCurrencyInfo:
+        url: https://repos.wowace.com/wow/libcurrencyinfo/trunk/LibCurrencyInfo
 # Git
     Libs-release/LibDataBroker-1.1: 
         url: https://repos.wowace.com/wow/libdatabroker-1-1
 
 
 move-folders:
-    CurrencyTracking/Libs/LibCurrencyInfo: CurrencyTracking/Libs-release/LibCurrencyInfo
+#    CurrencyTracking/Libs/LibCurrencyInfo: CurrencyTracking/Libs-release/LibCurrencyInfo
     CurrencyTracking/Libs: CurrencyTracking/Libs-dev
     CurrencyTracking/Libs-release: CurrencyTracking/Libs
 
