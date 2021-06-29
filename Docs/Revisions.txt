@@ -3,6 +3,22 @@
 Revision History:
 =================
 
+* v6.32 (Jun. 29, 2021)
+-----------------------
+- Added items:
+  - Tailoring: Enchanted Lightless Silk
+  - Mining: Luminous Flux, Shadowghast Ingot, Laestrite Ore, Solenium Ore, Oxxein Ore, Phaedrum Ore, Sinvyr Ore, Elethium Ore, Laestrite Nugget, Solenium Nugget, Oxxein Nugget, Phaedrum Nugget, Sinvyr Nugget, Elethium Nugget, Porous Stone, Shaded Stone
+  - Enchanting: Sacred Shard, Soul Dust, Eternal Crystal
+  - Herbalism: Vigil's Torch, Ground Death Blossom, Ground Vigil's Torch, Ground Widowbloom, Ground Marrowroot, Ground Rising Glory, Ground Nightshade
+  - Jewelcrafting: Oriblase, Angerseye, Umbryl, Laestrite Setting, Essence of Rebirth, Essence of Torment, Essence of Servitude, Essence of Valor, Soulfire Chisel
+  - Engineering: Handful of Laestrite Bolts, Porous Polishing Abrasive, Mortal Coiled Spring, Wormfed Gear Assembly, Distilled Death Extract
+  - Elemental: Korthite Crystal, Orboreal Shard
+  - Alchemy: Abyssal Healing Potion, Potion of Wild Mending, Potion of Unbridled Fury, Greater Mystical Cauldron, Greater Flask of the Undertow, Greater Flask of the Vast Horizon, Greater Flask of Endless Fathoms, Greater Flask of the Currents, Potion of Empowered Proximity, Potion of Focused Resolve, Superior Battle Potion of Strength, Superior Battle Potion of Stamina, Superior Battle Potion of Intellect, Superior Battle Potion of Agility, Sanguicell, Hydrocore, Potion of Soul Purity, Potion of Shaded Sight, Potion of the Hidden Spirit, Spiritual Healing Potion, Spiritual Mana Potion, Spiritual Rejuvenation Potion, Potion of Spectral Agility, Potion of Spiritual Clarity, Potion of Spectral Intellect, Potion of Spectral Stamina, Potion of Spectral Strength, Spectral Flask of Power, Spectral Flask of Stamina, Eternal Cauldron, Shadowcore Oil, Embalmer's Oil, Ground Death Blossom, Ground Vigil's Torch, Ground Widowbloom, Ground Marrowroot, Ground Rising Glory, Ground Nightshade, Spiritual Anti-Venom, Potion of Phantom Fire, Potion of Divine Awakening, Potion of Deathly Fixation, Potion of Empowered Exorcisms, Potion of Specter Swiftness, Shadowghast Ingot, Crafter's Mark I, Crafter's Mark II, Crafter's Mark III, Crafter's Mark of the Chained Isle, Potion of Sacrificial Anima, Shadestone, Potion of Hibernal Rest, Elixir of Humility, Draught of Grotesque Strength, Flask of Measured Discipline, Liquid Sleep, Powdered Dreamroot, Distilled Resolve, Pulverized Breezebloom, Brutal Oil, Crushed Bones, Refined Submission, Bramblethorn Juice, Potion of Unhindered Passing, Novice Crafter's Mark, Potion of the Psychopomp's Speed
+  - Blacksmithing: Shadowghast Ingot, Porous Sharpening Stone, Shaded Sharpening Stone, Porous Weightstone, Shaded Weightstone, Laestrite Skeleton Key, Crafter's Mark I, Crafter's Mark II, Crafter's Mark III, Crafter's Mark of the Chained Isle, Relic of the Past I, Relic of the Past II, Relic of the Past III, Relic of the Past IV, Relic of the Past V, Bundle of Stalker Arrowheads, Molten Phaedrum, Unrefined Arrowheads, Reforged Kyrian Shield, Polished Kyrian Shield, Tarnished Kyrian Shield, Hardened Heavy Razor, Soft Heavy Razor, Binding Cuffs, Tempered Manacle Chains, Soft Manacle Chains, Novice Crafter's Mark, Vestige of Origins, Hydrocore, Sanguicell, Inflatable Mount Shoes
+  - Cooking: Extra Sugary Fish Feast, Extra Lemony Herb Filet, Extra Fancy Darkmoon Feast, Twilight Tea, Bonemeal Bread, Porous Rock Candy, Baked Voidfin, K'Bab, Dubious Delight, Ghastly Goulash, Grilled Gnasher, Mecha-Bytes, Unagi Skewer, Famine Evaluator And Snack Table, Bil'Tong, Baked Port Tato, Fragrant Kakavia, Abyssal-Fried Rissole, Mech-Dowel's "Big Mech", Boralus Blood Sausage
+  - Fishing: Laestrite Skeleton Key, Lost Sole, Iridescent Amberjack, Elysian Thade, Shrouded Cloth Bandage, Partially Eaten Fish, Lost Earring, Rusty Chain, Speckled Flametail, Voidwarped Relic Fragment, Sentry Fish, Ionized Minnow, Empty Energy Cell, Energy Cell, Spare Parts, Silver Dawning Salvage, Severed Azurefin Head, Severed Crimsonscale Head, U'taka, Rasboralus, Midnight Salmon, Spirit Ichor, Iridescent Speck, Springy Eyeball, Sea Stalk, Star Moss, Riverbud, 
+- Removed items: Heavy Sorrowscale, Runed Norgal Rod
+
 * v6.31 (Jun. 28, 2021)
 -----------------------
 - ToC Update to support WoW 9.1.0

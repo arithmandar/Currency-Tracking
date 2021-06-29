@@ -344,7 +344,7 @@ end
 local function getCurrenciesOptions()
 	-- below to force currency category to be displayed in specific order
 	local tCurrencyCategory = {
-		248, -- Torghast
+		--248, -- Torghast
 		245, -- Shadowlands
 		143, -- Battle for Azeroth
 		141, -- Legion
