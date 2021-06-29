@@ -404,7 +404,7 @@ constants.items = {
 			-- RoA
 			164766, -- Iwen's Enchanting Rod
 			-- BfA
-			152882, -- Runed Norgal Rod
+--			152882, -- Runed Norgal Rod
 			152877, -- Veiled Crystal
 			152876, -- Umbra Shard
 			152875, -- Gloom Dust

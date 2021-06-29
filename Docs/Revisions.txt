@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.33 (Jun. 29, 2021)
+-----------------------
+- Removed Runed Norgal Rod again (it was missed in previous release)
+
 * v6.32 (Jun. 29, 2021)
 -----------------------
 - Added items:
