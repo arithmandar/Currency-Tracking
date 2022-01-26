@@ -224,7 +224,7 @@ local function button_OnEnter(self)
 	if(addon.frame:IsVisible()) then
 		if (not GameTooltip:IsShown()) then
 			GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -10, 0)
-			GameTooltip:SetBackdropColor(0, 0, 0, profile.tooltip_alpha)
+			GameTooltip.NineSlice:SetCenterColor(0, 0, 0, profile.tooltip_alpha)
 			GameTooltip:SetText("|cFFFFFFFF"..L["CT_TITLE"], 1, 1, 1, nil, 1)
 			local tooltip = getTooltipText()
 			if (tooltip) then
@@ -578,7 +578,7 @@ local function setupLDB()
 	LDB_CurrencyTracking.OnTooltipShow = (function(tooltip)
 		if not tooltip or not tooltip.AddLine then return end
 		local tooltiptxt = getTooltipText()
-		GameTooltip:SetBackdropColor(0, 0, 0, profile.tooltip_alpha)
+		GameTooltip.NineSlice:SetCenterColor(0, 0, 0, profile.tooltip_alpha)
 		GameTooltip:SetText(L["CT_TITLE"], 1, 1, 1, nil, 1)
 		if (tooltiptxt) then
 			addTooltipText(tooltiptxt)

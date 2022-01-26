@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v6.34 (Jan. 26, 2022)
+-----------------------
+- TOC update to support WoW 9.1.5
+- Fixed GameToolTip's backdrop setting issue
+
 * v6.33 (Jun. 29, 2021)
 -----------------------
 - Removed Runed Norgal Rod again (it was missed in previous release)
