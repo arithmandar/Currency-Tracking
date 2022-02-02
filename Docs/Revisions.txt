@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v6.35 (Feb. 3, 2022)
+-----------------------
+- Lib update: LibCurrency
+  - Added: Archivists' Codex, Torghast - Scoreboard - Run Layer, Torghast - Scoreboard - Run ID
+
 * v6.34 (Jan. 26, 2022)
 -----------------------
 - TOC update to support WoW 9.1.5
