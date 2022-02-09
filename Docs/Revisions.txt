@@ -3,6 +3,12 @@
 Revision History:
 =================
 
+* v6.36 (Feb. 9, 2022)
+-----------------------
+- Support multiple ToC
+- BCC ToC update to support WoW 2.5.3
+- Classic ToC update to support WoW 1.14.2
+
 * v6.35 (Feb. 3, 2022)
 -----------------------
 - Lib update: LibCurrency
