@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.37 (Feb. 23, 2022)
+-----------------------
+- Toc update to support WoW 9.2.0
+
 * v6.36 (Feb. 9, 2022)
 -----------------------
 - Support multiple ToC
