@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v6.39 (Mar. 1, 2022)
+-----------------------
+- Lib update: LibCurrency
+
 * v6.38 (Mar. 1, 2022)
 -----------------------
 - Updated LibCurrency to add the following currencies: 
