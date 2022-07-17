@@ -3,6 +3,15 @@
 Revision History:
 =================
 
+* v6.40 (Jul. 17, 2022)
+-----------------------
+- Added items:
+  - Tailoring - Cloth: Silken Protofiber
+  - Herbalism: First Flower
+  - Leatherworking: Protogenic Pelt
+  - Elemental: Progenitor Essentia
+  - Meats added after 9.0.1
+
 * v6.39 (Mar. 1, 2022)
 -----------------------
 - Lib update: LibCurrency

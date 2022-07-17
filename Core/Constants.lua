@@ -72,7 +72,10 @@ constants.items = {
 	},
 	professions = {
 		[3908] = { -- Tailoring: Cloth
+			-- 9.2.5 Eternity's End
+
 			-- Shadowland
+			187703, -- Silken Protofiber, 9.2.0.42423
 			173202, -- Shrouded Cloth
 			173204, -- Lightless Silk
 			172439, -- Enchanted Lightless Silk
@@ -271,6 +274,7 @@ constants.items = {
 		},
 		[2108] = { -- Leatherworking
 			-- Shadowland
+			187701, -- Protogenic Pelt
 --			177281, --  Heavy Sorrowscale
 			177279, --  Gaunt Sinew
 			172438, --  Enchanted Heavy Desolate Hide
@@ -468,6 +472,7 @@ constants.items = {
 		},
 		[2366] = { -- Herbalism
 			-- Shadowland
+			187699, -- First Flower
 			170554, -- Vigil's Torch
 			171287, -- Ground Death Blossom
 			171288, -- Ground Vigil's Torch
@@ -2073,6 +2078,12 @@ constants.items = {
 		},
 	},
 	others = {
+		166846, -- Spare Parts, Mechagon Tinkering
+		166970, -- Energy Cell, Mechagon Tinkering
+		169610, -- S.P.A.R.E. Crate, Mechagon Tinkering
+		168327, -- Chain Ignitercoil, Mechagon Tinkering
+		168832, -- Galvanic Oscillator, Mechagon Tinkering
+		
 		180720, -- Pitch Black Scourgestone
 		183200, -- Darkened Scourgestone
 		173363, -- Vessel of Horrific Visions
@@ -2200,6 +2211,7 @@ constants.items = {
 	},
 	elemental = {
 		-- Shadowland
+		187707, -- Progenitor Essentia
 		186017, -- Korthite Crystal
 		178787, -- Orboreal Shard
 		-- BfA
@@ -2280,6 +2292,28 @@ constants.items = {
 		7067, -- Elemental Earth
 	},
 	meat = {
+		-- 9.x.x
+		187812, -- Empty Kettle
+		187704, -- Protoflesh
+		187702, -- Precursor Placoderm
+		179315, -- Shadowy Shank
+		179314, -- Creeping Crawler Meat
+		178786, -- Lusterwheat Flour
+		175111, -- Marrow Larva
+		173037, -- Elysian Thade
+		173036, -- Spinefin Piranha
+		173035, -- Pocked Bonefish
+		173034, -- Silvergill Pike
+		173033, -- Iridescent Amberjack
+		173032, -- Lost Sole
+		172059, -- Rich Grazer Milk
+		172058, -- Smuggled Azerothian Produce
+		172057, -- Inconceivably Aged Vinegar
+		172056, -- Medley of Transplanar Spices
+		172055, -- Phantasmal Haunch
+		172054, -- Raw Seraphic Wing
+		172053, -- Tenebrous Ribs
+		172052, -- Aethereal Meat
 		-- 8.x.x
 		174353, -- Questionable Meat
 		174328, -- Aberrant Voidfin
