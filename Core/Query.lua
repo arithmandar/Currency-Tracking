@@ -66,7 +66,7 @@ end
 -- this function will not generate any visible result but it's more like scanning items 
 -- so that those will be in your cache
 function Query.ScanItems()
-	for k, v in pairs(addon.constants.items) do
+	for k, v in pairs(addon.items) do
 		if k == "professions" then
 			for ka, profs in pairs(v) do
 				for kb, itemID in ipairs(profs) do

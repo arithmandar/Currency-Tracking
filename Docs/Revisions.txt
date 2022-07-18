@@ -3,6 +3,12 @@
 Revision History:
 =================
 
+* v6.42 (Jul. 18, 2022)
+-----------------------
+- Development Enhancement:
+  - Separate items into individual file
+- Added lots of stackable items
+
 * v6.41 (Jul. 17, 2022)
 -----------------------
 - Classic ToC update to support WoW 1.14.3

@@ -14,7 +14,20 @@ local format = string.format
 -- WoW
 local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = _G.GetSpellTexture, _G.GetSpellInfo, _G.GetItemInfo, _G.GetItemCount
 local GetLocale = _G.GetLocale
-local WoWClassic = select(4, GetBuildInfo()) < 30000
+
+local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail, WoWDragonflight
+local wowversion  = select(4, GetBuildInfo())
+if wowversion < 20000 then
+	WoWClassicEra = true
+elseif wowversion < 30000 then 
+	WoWClassicTBC = true
+elseif wowversion < 40000 then 
+	WoWWOTLKC = true
+elseif wowversion < 100000 then
+	WoWRetail = true
+else
+	WoWDragonflight = true
+end
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -344,6 +357,8 @@ end
 local function getCurrenciesOptions()
 	-- below to force currency category to be displayed in specific order
 	local tCurrencyCategory = {
+		--251, -- Dragon Racing UI (Hidden)
+		--250, -- Dragonflight
 		--248, -- Torghast
 		245, -- Shadowlands
 		143, -- Battle for Azeroth
@@ -473,7 +488,7 @@ local function getItemOptions()
 			args = { },
 		}
 		local i = 1
-		for k, v in pairs(addon.constants.items) do
+		for k, v in pairs(addon.items) do
 			itemOptions.args["group"..i] = {}
 			itemOptions.args["group"..i].order = i
 			itemOptions.args["group"..i].type = "group"
@@ -551,7 +566,7 @@ local function openOptions(openItems)
 	if (openItems) then
 		InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Items)
 	else
-		if (WoWClassic) then
+		if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
 			InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.General)
 		else
 			InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Currencies)
@@ -577,7 +592,7 @@ function addon:SetupOptions()
 	self:RegisterModuleOptions("Options", getOptions, L["Options"])
 	self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
 	--addTokenOptionFrame()
-	if (not WoWClassic) then
+	if (WoWRetail) then
 		self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
 	end
 	self:RegisterModuleOptions("Profiles", giveProfiles, L["Profile Options"])

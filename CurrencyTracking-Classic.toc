@@ -54,6 +54,7 @@ Libs\Libs.xml
 Locale\Locales.xml
 
 Core\Constants.lua
+Core\Items.lua
 Core\Core.lua
 Core\Query.lua
 Core\Templates.xml

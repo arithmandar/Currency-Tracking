@@ -22,18 +22,24 @@ local GetLocale = _G.GetLocale
 local GetBuildInfo = _G.GetBuildInfo
 
 -- Determine WoW TOC Version
-local WoWClassic, WoWRetail
-local wowtocversion  = select(4, GetBuildInfo())
-if wowtocversion < 30000 then
-	WoWClassic = true
-else
+local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
+local wowversion  = select(4, GetBuildInfo())
+if wowversion < 20000 then
+	WoWClassicEra = true
+elseif wowversion < 30000 then 
+	WoWClassicTBC = true
+elseif wowversion < 40000 then 
+	WoWWOTLKC = true
+elseif wowversion > 90000 then
 	WoWRetail = true
+else
+	-- n/a
 end
 
-if WoWClassic then
-	GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
-else -- Shadowlands
+if (WoWRetail) then
 	GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = C_CurrencyInfo.GetCurrencyListSize, C_CurrencyInfo.GetCurrencyListInfo, C_CurrencyInfo.GetCurrencyInfo
+else
+	GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
 end
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -52,6 +58,7 @@ local LDB_CurrencyTracking = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObje
 
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceEvent-3.0")
 addon.constants = private.constants
+addon.items = private.items
 addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
 local _
@@ -157,7 +164,7 @@ local function getTooltipText()
 		-- // GetCurrencyListInfo() syntax:
 		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index)
 		local name, isHeader, isUnused, count, icon, _
-		if WoWClassic then
+		if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
 			name, isHeader, _, isUnused, _, count, icon = GetCurrencyListInfo(i)
 		else
 			local curr = GetCurrencyListInfo(i)
@@ -263,7 +270,7 @@ local function handleTrackedButtons(button, currencyID, itemID)
 	local itemName, itemLink, count, icon, _
 	local width = 15
 	if (currencyID) then 
-		if WoWClassic then
+		if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
 			_, count, icon = GetCurrencyInfo(currencyID) 
 		else
 			local curr = GetCurrencyInfo(currencyID)
@@ -378,7 +385,7 @@ local function currencyButton_Update()
 	for currencyID, v in pairs(profile["currencies"]) do
 		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
 			local _, count
-			if WoWClassic then
+			if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
 				_, count = GetCurrencyInfo(currencyID)
 			else
 				local curr = GetCurrencyInfo(currencyID)
@@ -458,7 +465,7 @@ local function currencyString_Update()
 	for currencyID, v in pairs(profile["currencies"]) do
 		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
 			local _, count, icon
-			if WoWClassic then
+			if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
 				_, count, icon = GetCurrencyInfo(currencyID)
 			else
 				local curr = GetCurrencyInfo(currencyID)
