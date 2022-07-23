@@ -66,39 +66,26 @@ end
 -- this function will not generate any visible result but it's more like scanning items 
 -- so that those will be in your cache
 function Query.ScanItems()
+	local function queryItems(itemID)
+		local itemName, itemLink, icon, _
+		
+		itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+		if not itemName then itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID) end
+		local item = {}
+		item.itemID = itemID
+		item.itemName = itemName
+		item.itemLink = itemLink
+		item.icon = icon
+		Query.RefreshItem(item)	
+	end
+
 	for k, v in pairs(addon.items) do
-		if k == "professions" then
-			for ka, profs in pairs(v) do
-				for kb, itemID in ipairs(profs) do
-					if ( item_list[itemID] and item_list[itemID][1] ) then
-						-- do nothing
-					else
-						local itemName, itemLink, icon, _
-						itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-						if not itemName then itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID) end
-						local item = {}
-						item.itemID = itemID
-						item.itemName = itemName
-						item.itemLink = itemLink
-						item.icon = icon
-						Query.RefreshItem(item)
-					end
-				end
-			end
-		else
-			for ka, itemID in ipairs(v) do
+		for kb, vb in ipairs(v) do
+			for kc, itemID in ipairs(vb) do
 				if ( item_list[itemID] and item_list[itemID][1] ) then
 					-- do nothing
 				else
-					local itemName, itemLink, icon, _
-					itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-					if not itemName then itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID) end
-					local item = {}
-					item.itemID = itemID
-					item.itemName = itemName
-					item.itemLink = itemLink
-					item.icon = icon
-					Query.RefreshItem(item)
+					queryItems(itemID)
 				end
 			end
 		end

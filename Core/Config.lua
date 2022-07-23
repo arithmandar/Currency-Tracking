@@ -63,7 +63,6 @@ local function orderedpairs(t, f)
 	return orderednext, keys
 end
 
-
 -- /////////////////////////////////////////////////////////
 -- Options
 -- /////////////////////////////////////////////////////////
@@ -343,7 +342,7 @@ end
 -- Currencies
 -- /////////////////////////////////////////////////////////
 local currenciesOptions = nil
-local function tokenButton_ToggleTrack(id)
+local function currencyButton_ToggleTrack(id)
 	profile = addon.db.profile
 	if (not profile["currencies"][id]) then 
 		profile["currencies"][id] = true
@@ -355,26 +354,6 @@ local function tokenButton_ToggleTrack(id)
 end
 
 local function getCurrenciesOptions()
-	-- below to force currency category to be displayed in specific order
-	local tCurrencyCategory = {
-		--251, -- Dragon Racing UI (Hidden)
-		--250, -- Dragonflight
-		--248, -- Torghast
-		245, -- Shadowlands
-		143, -- Battle for Azeroth
-		141, -- Legion
-		137, -- Warlords of Draenor
-		133, -- Mists of Pandaria
-		81, -- Cataclysm
-		23, -- Burning Crusade
-		21, -- Wrath of the Lich King
-		2, -- Player vs. Player
-		82, -- Archaeology
-		22, -- Dungeon and Raid
-		144, -- Virtual
-		142, -- Hidden
-		1, -- Miscellaneous
-	}
 	if not profile then profile = addon.db.profile end
 	local lang = GetLocale()
 	if not currenciesOptions then
@@ -387,7 +366,7 @@ local function getCurrenciesOptions()
 		local i = 1
 		
 		--for k,v in orderedpairs(LibCurrencyInfo.data.CurrencyByCategory) do
-		for ki,vi in ipairs(tCurrencyCategory) do
+		for ki,vi in ipairs(addon.constants.currencyCategories) do
 			local k = vi
 			local v = LibCurrencyInfo.data.CurrencyByCategory[k]
 			t["group"..i] = {}
@@ -419,7 +398,7 @@ local function getCurrenciesOptions()
 						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count)
 					end
 					tg["currency"..index].get = (function() return profile["currencies"][id] end)
-					tg["currency"..index].set = (function() tokenButton_ToggleTrack(id) end)
+					tg["currency"..index].set = (function() currencyButton_ToggleTrack(id) end)
 				end
 				j = j + 1
 			end
@@ -449,7 +428,7 @@ local function getItemOptions()
 	if not profile then profile = addon.db.profile end
 	if not item_list then item_list = addon.db.item_list end
 	
-	local function getProfOptions(tp, itemID, n)
+	local function retrieveItems(tp, itemID, n)
 		local itemName, icon, _
 	
 		if (item_list[itemID] and item_list[itemID][1] and item_list[itemID][2]) then
@@ -495,62 +474,32 @@ local function getItemOptions()
 			itemOptions.args["group"..i].name = addon.constants.itemCategories[k]
 			itemOptions.args["group"..i].args = { }
 			local t = itemOptions.args["group"..i].args
-			if k == "professions" then
-				local j = 1
-				for ka, profs in pairs(v) do
-					local spellInfo = GetSpellInfo(ka)
-					local spellTexture = GetSpellTexture(ka)
-					if (spellInfo ~= nil) then
-						t["group"..j] = {}
-						t["group"..j].order = j
-						t["group"..j].type = "group"
-						t["group"..j].name = format("|T%d:16:16:2:0|t |cffffffff%s|r", spellTexture, spellInfo)
-						--t["group"..j].inline = true
-						t["group"..j].args = { }
-						local n = 1
-						local tp = t["group"..j].args
-						for kb, vb in ipairs(profs) do
-							if (type(vb) == "number") then
-								tp, n = getProfOptions(tp, vb, n)
-							end
-						end
+			local j = 1
+			for ka, va in ipairs(v) do
+				if (WoWClassicEra and j > 1) then
+					break
+				elseif (WoWClassicTBC and j > 2) then 
+					break
+				elseif (WoWWOTLKC and j > 3) then
+					break
+				else
+					t["group"..j] = {}
+					t["group"..j].order = j
+					t["group"..j].type = "group"
+					t["group"..j].name = addon.constants.expansions[j]
+					t["group"..j].inline = true
+					t["group"..j].args = { }
 
-						j = j + 1
+					local n = 1
+					local tp = t["group"..j].args
+
+					for kb, vb in ipairs(va) do
+						if (type(vb) == "number") then
+							tp, n = retrieveItems(tp, vb, n)
+						end
 					end
 				end
-			else
-				local j = 1
-				--Query:AddItemInfoList(v)
-				for ka, itemID in ipairs(v) do
---					t, j = getProfOptions(t, itemID, j)
-					local itemName, icon, _
-				
-					if (item_list[itemID] and item_list[itemID][1] and item_list[itemID][2]) then
-						itemName, icon = item_list[itemID][1], item_list[itemID][2]
-					else
-						itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-						if not (itemName) then 
-							itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-						end
-						if ( itemName and icon ) then
-							item_list[itemID] = { itemName, icon, }
-						end
-					end
-					local count = GetItemCount(itemID, true)
-					if icon and itemName then
-						local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, itemName)
-						t["item"..j] = {}
-						t["item"..j].order = j
-						t["item"..j].type = "toggle"
-						t["item"..j].name = displayString
-						t["item"..j].desc = format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
-						t["item"..j].get = (function() return profile["items"][itemID] end)
-						t["item"..j].set = (function() itemButton_ToggleTrack(itemID) end)
-					
-						j = j + 1
-
-					end
-				end
+				j = j + 1
 			end
 			i = i + 1
 		end

@@ -4,7 +4,12 @@
 -----------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
+local string = _G.string
 -- Libraries
+local format = string.format
+-- WoW
+local GetBuildInfo = _G.GetBuildInfo
+local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = _G.GetSpellTexture, _G.GetSpellInfo, _G.GetItemInfo, _G.GetItemCount
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -61,16 +66,89 @@ constants.defaults = {
 	},
 }
 
+local function getProfessionText(spellid)
+	if not spellid then return end
+	return format("|T%d:16:16:2:0|t |cffffffff%s|r", GetSpellTexture(spellid), GetSpellInfo(spellid))
+end
+
+local function getItemText(name, iconID)
+	if not iconID then return end
+	return format("|T%d:16:16:2:0|t |cffffffff%s|r", iconID, name)
+end
+
+
+
 constants.itemCategories = {
-	["relics"] = INVTYPE_RELIC,
-	["world_events"] = BATTLE_PET_SOURCE_7,
-	["pvp"] = PVP,
-	["elemental"] = L["Elemental"],
-	["meat"] = L["Meat"], 
-	["others"] = MISCELLANEOUS,
-	["quest"] = ITEM_BIND_QUEST,
-	["professions"] = TRADE_SKILLS,
+	["relics"] = 		getItemText(INVTYPE_RELIC, 134459),
+	["world_events"] = 	getItemText(BATTLE_PET_SOURCE_7, 133858),
+	["pvp"] = 			getItemText(PVP, 133282),
+	["elemental"] = 	getItemText(L["Elemental"], 136006),
+	["meat"] = 			getItemText(L["Meat"], 134007),
+	["others"] = 		getItemText(MISCELLANEOUS,134503),
+	["quest"] = 		ITEM_BIND_QUEST,
+	["professions"] = 	TRADE_SKILLS,
+	["Tailoring"] = 	getProfessionText(3908),
+	["Mining"] = 		getProfessionText(2575),
+	["Leatherworking"] = getProfessionText(2108),
+	["Enchanting"] = 	getProfessionText(7411),
+	["Herbalism"] = 	getProfessionText(2366),
+	["Jewelcrafting"] = getProfessionText(25229),
+	["Engineering"] = 	getProfessionText(4036),
+	["Alchemy"] = 		getProfessionText(2259),
+	["Blacksmithing"] = getProfessionText(2018),
+	["Fishing"] = 		getProfessionText(7620),
+	["Cooking"] = 		getProfessionText(2550),
 }
+
+-- below to force currency category to be displayed in specific order
+constants.currencyCategories = {
+	--251, -- Dragon Racing UI (Hidden)
+	--250, -- Dragonflight
+	--248, -- Torghast
+	245, -- Shadowlands
+	143, -- Battle for Azeroth
+	141, -- Legion
+	137, -- Warlords of Draenor
+	133, -- Mists of Pandaria
+	81, -- Cataclysm
+	23, -- Burning Crusade
+	21, -- Wrath of the Lich King
+	2, -- Player vs. Player
+	82, -- Archaeology
+	22, -- Dungeon and Raid
+	144, -- Virtual
+	142, -- Hidden
+	1, -- Miscellaneous
+}
+
+if (WoWClassicEra) then
+	constants.expansions = {
+		EXPANSION_NAME0, -- Classic
+	}
+elseif (WoWClassicTBC) then
+	constants.expansions = {
+		EXPANSION_NAME0, -- Classic
+		EXPANSION_NAME1, -- The Burning Crusade
+	}
+elseif (WoWWOTLKC) then
+	constants.expansions = {
+		EXPANSION_NAME0, -- Classic
+		EXPANSION_NAME1, -- The Burning Crusade
+		EXPANSION_NAME2, -- Wrath of the Lich King
+}
+else
+	constants.expansions = {
+		EXPANSION_NAME0, -- Classic
+		EXPANSION_NAME1, -- The Burning Crusade
+		EXPANSION_NAME2, -- Wrath of the Lich King
+		EXPANSION_NAME3, -- Cataclysm
+		EXPANSION_NAME4, -- Mists of Pandaria
+		EXPANSION_NAME5, -- Warlords of Draenor
+		EXPANSION_NAME6, -- Legion
+		EXPANSION_NAME7, -- Battle for Azeroth
+		EXPANSION_NAME8, -- Shadowlands
+	}
+end
 
 if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
 	constants.events = {

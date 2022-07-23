@@ -681,6 +681,7 @@ function addon:OnEnable()
 
 	setupLDB()
 	self.Query.ScanItems() -- pre-scan items so that they will properly showed in option panel
+	self.Query.ScanItems() 
 	currencyUpdate()
 	self:Refresh()
 end

@@ -3,6 +3,13 @@
 Revision History:
 =================
 
+* v7.00 (Jul. 23, 2022)
+-----------------------
+- Re-structur items into per expansion
+- Remove quest items as there are too many of them
+- Added support for Classic WOLTK  
+- BCC ToC update to support WoW 2.5.4
+
 * v6.42 (Jul. 18, 2022)
 -----------------------
 - Development Enhancement:
