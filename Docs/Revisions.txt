@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v7.01 (Aug. 17, 2022)
+-----------------------
+- Retail ToC update to support WoW 9.2.7
+
 * v7.00 (Jul. 23, 2022)
 -----------------------
 - Re-structur items into per expansion

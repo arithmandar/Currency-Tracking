@@ -102,7 +102,7 @@ constants.itemCategories = {
 constants.currencyCategories = {
 	--251, -- Dragon Racing UI (Hidden)
 	--250, -- Dragonflight
-	--248, -- Torghast
+	248, -- Torghast
 	245, -- Shadowlands
 	143, -- Battle for Azeroth
 	141, -- Legion
