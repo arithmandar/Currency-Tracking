@@ -6,6 +6,7 @@ Revision History:
 * v7.02 (Aug. 21, 2022)
 -----------------------
 - Fixed error while in ClassicEra, by removing Jewelcrafting since it's only availabe after TBC
+- Added currency items from WOLTKC
 
 * v7.01 (Aug. 17, 2022)
 -----------------------
