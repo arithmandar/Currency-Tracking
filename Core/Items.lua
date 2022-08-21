@@ -642,190 +642,193 @@ items.Herbalism = {
 		765, -- Silverleaf
 	},
 }
-items.Jewelcrafting = {
-	[9] = { -- Shadowland
-		173173,	 -- Essence of Valor
-		173172,	 -- Essence of Servitude
-		173171,	 -- Essence of Torment
-		173170,	 -- Essence of Rebirth
-		173168,	 -- Laestrite Setting
---		173117,	 -- 9.x Raw Blue
---		173116,	 -- 9.x Raw Red
---		173115,	 -- 9.x Raw Yellow
---		173111,	 -- 9.x Raw Rare
-		173110,	 -- Umbryl
-		173109,	 -- Angerseye
-		173108,	 -- Oriblase
-	},
-	[8] = { -- BfA
-		168635,	 -- Leviathan's Eye
-		168193,	 -- Azsharine
-		168192,	 -- Sand Spinel
-		168191,	 -- Sea Currant
-		168190,	 -- Lava Lazuli
-		168189,	 -- Dark Opal
-		168188,	 -- Sage Agate
-		154125,	 -- Royal Quartz
-		154124,	 -- Laribole
-		154123,	 -- Amberblaze
-		154122,	 -- Tidal Amethyst
-		154121,	 -- Scarlet Diamond
-		154120,	 -- Owlseye
-		153706,	 -- Kraken's Eye
-		153705,	 -- Kyanite
-		153704,	 -- Viridium
-		153703,	 -- Solstone
-		153702,	 -- Kubiline
-		153701,	 -- Rubellite
-		153700,	 -- Golden Beryl
-	},
-	[7] = { 	-- Legion
-		151722,	 -- Florid Malachite
-		151721,	 -- Hesselian
-		151720,	 -- Chemirine
-		151719,	 -- Lightsphene
-		151718,	 -- Argulite
-		151579,	 -- Labradorite
-		130245,	 -- Saber's Eye
-		130183,	 -- Shadowruby
-		130182,	 -- Maelstrom Sapphire
-		130181,	 -- Pandemonite
-		130180,	 -- Dawnlight
-		130179,	 -- Eye of Prophecy
-		130178,	 -- Furystone
-		130177,	 -- Queen's Opal
-		130176,	 -- Skystone
-		130175,	 -- Chaotic Spinel
-		130174,	 -- Azsunite
-		130173,	 -- Deep Amber
-		130172,	 -- Sangrite
-		129100,	 -- Gem Chip
-	},
-	[6] = { 	-- WoD
-		-- n/a
-	},
-	[5] = { 	-- MoP
-		76734,	 -- Serpent's Eye
-		76142,	 -- Sun's Radiance
-		76141,	 -- Imperial Amethyst
-		76140,	 -- Vermilion Onyx
-		76139,	 -- Wild Jade
-		76138,	 -- River's Heart
-		76137,	 -- Alexandrite
-		76136,	 -- Pandarian Garnet
-		76135,	 -- Roguestone
-		76134,	 -- Sunstone
-		76133,	 -- Lapis Lazuli
-		76132,	 -- Primal Diamond
-		76131,	 -- Primordial Ruby
-		76130,	 -- Tiger Opal
-	},
-	[4] = { 	-- Cataclysm
-		77952,	 -- Elementium Gem Cluster
-		77951,	 -- Shadowy Gem
-		71810,	 -- Elven Peridot
-		71809,	 -- Shadow Spinel
-		71808,	 -- Lava Coral
-		71807,	 -- Deepholm Iolite
-		71806,	 -- Lightstone
-		71805,	 -- Queen's Garnet
-		52339,	 -- Flawless Pearl
-		52338,	 -- Darkfathom Pearl
-		52303,	 -- Shadowspirit Diamond
-		52196,	 -- Chimera's Eye
-		52195,	 -- Amberjewel
-		52194,	 -- Demonseye
-		52193,	 -- Ember Topaz
-		52192,	 -- Dream Emerald
-		52191,	 -- Ocean Sapphire
-		52190,	 -- Inferno Ruby
-		52182,	 -- Jasper
-		52181,	 -- Hessonite
-		52180,	 -- Nightstone
-		52179,	 -- Alicite
-		52178,	 -- Zephyrite
-		52177,	 -- Carnelian
-	},
-	[3] = { 	-- WolTK
-		46849,	 -- Titanium Powder
-		45054,	 -- Prismatic Black Diamond
-		42225,	 -- Dragon's Eye
-		41334,	 -- Earthsiege Diamond
-		41266,	 -- Skyflare Diamond
-		36934,	 -- Eye of Zul
-		36933,	 -- Forest Emerald
-		36932,	 -- Dark Jade
-		36931,	 -- Ametrine
-		36930,	 -- Monarch Topaz
-		36929,	 -- Huge Citrine
-		36928,	 -- Dreadstone
-		36927,	 -- Twilight Opal
-		36926,	 -- Shadow Crystal
-		36925,	 -- Majestic Zircon
-		36924,	 -- Sky Sapphire
-		36923,	 -- Chalcedony
-		36922,	 -- King's Amber
-		36921,	 -- Autumn's Glow
-		36920,	 -- Sun Crystal
-		36919,	 -- Cardinal Ruby
-		36918,	 -- Scarlet Ruby
-		36917,	 -- Bloodstone
-		36784,	 -- Siren's Tear
-		36783,	 -- Northsea Pearl
-	},
-	[2] = { 	-- BC
-		32249,	 -- Seaspray Emerald
-		32231,	 -- Pyrestone
-		32230,	 -- Shadowsong Amethyst
-		32229,	 -- Lionseye
-		32228,	 -- Empyrean Sapphire
-		32227,	 -- Crimson Spinel
-		31079,	 -- Mercurial Adamantite
-		25868,	 -- Skyfire Diamond
-		25867,	 -- Earthstorm Diamond
-		24479,	 -- Shadow Pearl
-		24478,	 -- Jaggal Pearl
-		24243,	 -- Adamantite Powder
-		23441,	 -- Nightseye
-		23440,	 -- Dawnstone
-		23439,	 -- Noble Topaz
-		23438,	 -- Star of Elune
-		23437,	 -- Talasite
-		23436,	 -- Living Ruby
-		23117,	 -- Azure Moonstone
-		23112,	 -- Golden Draenite
-		23107,	 -- Shadow Draenite
-		23079,	 -- Deep Peridot
-		23077,	 -- Blood Garnet
-		21929,	 -- Flame Spessarite
-		21752,	 -- Thorium Setting
-		20963,	 -- Mithril Filigree
-		20817,	 -- Bronze Setting
-		20816,	 -- Delicate Copper Wire
-	},
-	[1] = { 	-- Classic
---		19774,	 -- Souldarite
-		13926,	 -- Golden Pearl
-		12800,	 -- Azerothian Diamond
-		12799,	 -- Large Opal
-		12364,	 -- Huge Emerald
-		12363,	 -- Arcane Crystal
-		12361,	 -- Blue Sapphire
-		11382,	 -- Blood of the Mountain
-		7971,	 -- Black Pearl
-		7910,	 -- Star Ruby
-		7909,	 -- Aquamarine
-		5500,	 -- Iridescent Pearl
-		5498,	 -- Small Lustrous Pearl
-		3864,	 -- Citrine
-		1705,	 -- Lesser Moonstone
-		1529,	 -- Jade
-		1210,	 -- Shadowgem
-		1206,	 -- Moss Agate
-		818,	 -- Tigerseye
-		774,	 -- Malachite
-	},
-}
+
+if not (WoWClassicEra) then
+	items.Jewelcrafting = {
+		[9] = { -- Shadowland
+			173173,	 -- Essence of Valor
+			173172,	 -- Essence of Servitude
+			173171,	 -- Essence of Torment
+			173170,	 -- Essence of Rebirth
+			173168,	 -- Laestrite Setting
+	--		173117,	 -- 9.x Raw Blue
+	--		173116,	 -- 9.x Raw Red
+	--		173115,	 -- 9.x Raw Yellow
+	--		173111,	 -- 9.x Raw Rare
+			173110,	 -- Umbryl
+			173109,	 -- Angerseye
+			173108,	 -- Oriblase
+		},
+		[8] = { -- BfA
+			168635,	 -- Leviathan's Eye
+			168193,	 -- Azsharine
+			168192,	 -- Sand Spinel
+			168191,	 -- Sea Currant
+			168190,	 -- Lava Lazuli
+			168189,	 -- Dark Opal
+			168188,	 -- Sage Agate
+			154125,	 -- Royal Quartz
+			154124,	 -- Laribole
+			154123,	 -- Amberblaze
+			154122,	 -- Tidal Amethyst
+			154121,	 -- Scarlet Diamond
+			154120,	 -- Owlseye
+			153706,	 -- Kraken's Eye
+			153705,	 -- Kyanite
+			153704,	 -- Viridium
+			153703,	 -- Solstone
+			153702,	 -- Kubiline
+			153701,	 -- Rubellite
+			153700,	 -- Golden Beryl
+		},
+		[7] = { 	-- Legion
+			151722,	 -- Florid Malachite
+			151721,	 -- Hesselian
+			151720,	 -- Chemirine
+			151719,	 -- Lightsphene
+			151718,	 -- Argulite
+			151579,	 -- Labradorite
+			130245,	 -- Saber's Eye
+			130183,	 -- Shadowruby
+			130182,	 -- Maelstrom Sapphire
+			130181,	 -- Pandemonite
+			130180,	 -- Dawnlight
+			130179,	 -- Eye of Prophecy
+			130178,	 -- Furystone
+			130177,	 -- Queen's Opal
+			130176,	 -- Skystone
+			130175,	 -- Chaotic Spinel
+			130174,	 -- Azsunite
+			130173,	 -- Deep Amber
+			130172,	 -- Sangrite
+			129100,	 -- Gem Chip
+		},
+		[6] = { 	-- WoD
+			-- n/a
+		},
+		[5] = { 	-- MoP
+			76734,	 -- Serpent's Eye
+			76142,	 -- Sun's Radiance
+			76141,	 -- Imperial Amethyst
+			76140,	 -- Vermilion Onyx
+			76139,	 -- Wild Jade
+			76138,	 -- River's Heart
+			76137,	 -- Alexandrite
+			76136,	 -- Pandarian Garnet
+			76135,	 -- Roguestone
+			76134,	 -- Sunstone
+			76133,	 -- Lapis Lazuli
+			76132,	 -- Primal Diamond
+			76131,	 -- Primordial Ruby
+			76130,	 -- Tiger Opal
+		},
+		[4] = { 	-- Cataclysm
+			77952,	 -- Elementium Gem Cluster
+			77951,	 -- Shadowy Gem
+			71810,	 -- Elven Peridot
+			71809,	 -- Shadow Spinel
+			71808,	 -- Lava Coral
+			71807,	 -- Deepholm Iolite
+			71806,	 -- Lightstone
+			71805,	 -- Queen's Garnet
+			52339,	 -- Flawless Pearl
+			52338,	 -- Darkfathom Pearl
+			52303,	 -- Shadowspirit Diamond
+			52196,	 -- Chimera's Eye
+			52195,	 -- Amberjewel
+			52194,	 -- Demonseye
+			52193,	 -- Ember Topaz
+			52192,	 -- Dream Emerald
+			52191,	 -- Ocean Sapphire
+			52190,	 -- Inferno Ruby
+			52182,	 -- Jasper
+			52181,	 -- Hessonite
+			52180,	 -- Nightstone
+			52179,	 -- Alicite
+			52178,	 -- Zephyrite
+			52177,	 -- Carnelian
+		},
+		[3] = { 	-- WolTK
+			46849,	 -- Titanium Powder
+			45054,	 -- Prismatic Black Diamond
+			42225,	 -- Dragon's Eye
+			41334,	 -- Earthsiege Diamond
+			41266,	 -- Skyflare Diamond
+			36934,	 -- Eye of Zul
+			36933,	 -- Forest Emerald
+			36932,	 -- Dark Jade
+			36931,	 -- Ametrine
+			36930,	 -- Monarch Topaz
+			36929,	 -- Huge Citrine
+			36928,	 -- Dreadstone
+			36927,	 -- Twilight Opal
+			36926,	 -- Shadow Crystal
+			36925,	 -- Majestic Zircon
+			36924,	 -- Sky Sapphire
+			36923,	 -- Chalcedony
+			36922,	 -- King's Amber
+			36921,	 -- Autumn's Glow
+			36920,	 -- Sun Crystal
+			36919,	 -- Cardinal Ruby
+			36918,	 -- Scarlet Ruby
+			36917,	 -- Bloodstone
+			36784,	 -- Siren's Tear
+			36783,	 -- Northsea Pearl
+		},
+		[2] = { 	-- BC
+			32249,	 -- Seaspray Emerald
+			32231,	 -- Pyrestone
+			32230,	 -- Shadowsong Amethyst
+			32229,	 -- Lionseye
+			32228,	 -- Empyrean Sapphire
+			32227,	 -- Crimson Spinel
+			31079,	 -- Mercurial Adamantite
+			25868,	 -- Skyfire Diamond
+			25867,	 -- Earthstorm Diamond
+			24479,	 -- Shadow Pearl
+			24478,	 -- Jaggal Pearl
+			24243,	 -- Adamantite Powder
+			23441,	 -- Nightseye
+			23440,	 -- Dawnstone
+			23439,	 -- Noble Topaz
+			23438,	 -- Star of Elune
+			23437,	 -- Talasite
+			23436,	 -- Living Ruby
+			23117,	 -- Azure Moonstone
+			23112,	 -- Golden Draenite
+			23107,	 -- Shadow Draenite
+			23079,	 -- Deep Peridot
+			23077,	 -- Blood Garnet
+			21929,	 -- Flame Spessarite
+			21752,	 -- Thorium Setting
+			20963,	 -- Mithril Filigree
+			20817,	 -- Bronze Setting
+			20816,	 -- Delicate Copper Wire
+		},
+		[1] = { 	-- Classic
+	--		19774,	 -- Souldarite
+			13926,	 -- Golden Pearl
+			12800,	 -- Azerothian Diamond
+			12799,	 -- Large Opal
+			12364,	 -- Huge Emerald
+			12363,	 -- Arcane Crystal
+			12361,	 -- Blue Sapphire
+			11382,	 -- Blood of the Mountain
+			7971,	 -- Black Pearl
+			7910,	 -- Star Ruby
+			7909,	 -- Aquamarine
+			5500,	 -- Iridescent Pearl
+			5498,	 -- Small Lustrous Pearl
+			3864,	 -- Citrine
+			1705,	 -- Lesser Moonstone
+			1529,	 -- Jade
+			1210,	 -- Shadowgem
+			1206,	 -- Moss Agate
+			818,	 -- Tigerseye
+			774,	 -- Malachite
+		},
+	}
+end
 items.Engineering = {
 	[9] = { -- Shadowland
 		183950,	 -- Distilled Death Extract

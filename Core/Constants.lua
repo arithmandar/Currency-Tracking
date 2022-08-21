@@ -10,6 +10,7 @@ local format = string.format
 -- WoW
 local GetBuildInfo = _G.GetBuildInfo
 local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = _G.GetSpellTexture, _G.GetSpellInfo, _G.GetItemInfo, _G.GetItemCount
+
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -77,7 +78,6 @@ local function getItemText(name, iconID)
 end
 
 
-
 constants.itemCategories = {
 	["relics"] = 		getItemText(INVTYPE_RELIC, 134459),
 	["world_events"] = 	getItemText(BATTLE_PET_SOURCE_7, 133858),
@@ -90,13 +90,17 @@ constants.itemCategories = {
 	["Leatherworking"] = getProfessionText(2108),
 	["Enchanting"] = 	getProfessionText(7411),
 	["Herbalism"] = 	getProfessionText(2366),
-	["Jewelcrafting"] = getProfessionText(25229),
+	--["Jewelcrafting"] = getProfessionText(25229),
 	["Engineering"] = 	getProfessionText(4036),
 	["Alchemy"] = 		getProfessionText(2259),
 	["Blacksmithing"] = getProfessionText(2018),
 	["Fishing"] = 		getProfessionText(7620),
 	["Cooking"] = 		getProfessionText(2550),
 }
+
+if (not WoWClassicEra) then
+	constants.itemCategories["Jewelcrafting"] = getProfessionText(25229)
+end
 
 -- below to force currency category to be displayed in specific order
 constants.currencyCategories = {
