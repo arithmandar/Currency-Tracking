@@ -3859,6 +3859,8 @@ items.others = {
 		40919,	 -- Mark of the Orca
 		40916,	 -- Charred Glyph
 		37372,	 -- Harpoon
+		43016, 	 -- Dalaran Cooking Award
+		41596,	 -- Dalaran Jewelcrafter's Token
 	},
 	[2] = { 	-- BC
 		34497,	 -- Paper Flying Machine
@@ -4059,11 +4061,25 @@ items.pvp = {
 		77130,	 -- Balanced Elven Peridot
 	},
 	[3] = { 	-- WolTK
+		49426,	 -- Emblem of Frost
+		47395,	 -- Isle of Conquest Mark of Honor
+		47241,	 -- Emblem of Triumph
+		45624,	 -- Emblem of Conquest
+		44990,	 -- Champion's Seal
+		43589,	 -- Wintergrasp Mark of Honor, only available in WOLTKC
+		43228, 	 -- Stone Keeper's Shard
+		43308,	 -- Honor Points
+		42425,	 -- Strand of the Ancients Mark of Honor
+		40753, 	 -- Emblem of Valor, only available in WOLTKC
+		40752, 	 -- Emblem of Heroism, only available in WOLTKC
+		37836,	 -- Venture Coin
 	},
 	[2] = { 	-- BC
+		29024,	 -- Eye of the Storm Mark of Honor
 		27679, -- Mystic Dawnstone
 		26045, -- HALAA_BATTLE_TOKEN 
 		26044, -- HALAA_RESEARCH_TOKEN 
+		29434,	 -- Badge of Justice
 	},
 	[1] = { 	-- Classic
 		20559, -- Arathi Basin Mark of Honor
