@@ -559,12 +559,12 @@ local function createCurrencyFrame()
 	
 	local nf = _G["CurrencyTrackingFrame"]
 	if not nf then nf = CreateFrame("Frame", "CurrencyTrackingFrame") end
-	nf:SetParent("UIParent")
+	nf:SetParent(UIParent)
 	nf:SetWidth(200)
 	nf:SetHeight(20)
 	nf.Texture = nf:CreateTexture(nil, "BACKGROUND")
 	local point, relativeTo, relativePoint, ofsx, ofsy = unpack(profile.point)
-	nf:SetPoint(point or "TOPLEFT", "UIParent", relativePoint or "TOPLEFT", ofsx or 150, ofsy or -80)
+	nf:SetPoint(point or "TOPLEFT", UIParent, relativePoint or "TOPLEFT", ofsx or 150, ofsy or -80)
 	--nf:SetClampedToScreen(true)
 	nf:SetMovable(true)
 	nf:EnableMouse(true)

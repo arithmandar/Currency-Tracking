@@ -376,6 +376,7 @@ local function getCurrenciesOptions()
 			t["group"..i].args = { }
 			local j = 1
 			local tg = t["group"..i].args
+
 			for index, id in ipairs(v) do
 				-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity, categoryID, categoryName, currencyDesc = lib:GetCurrencyByID(currencyID)
 				local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
@@ -521,7 +522,9 @@ local function openOptions(openItems)
 			InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Currencies)
 		end
 	end
-	InterfaceOptionsFrame:Raise()
+	if InterfaceOptionsFrame then
+		InterfaceOptionsFrame:Raise()
+	end
 end
 
 function addon:OpenOptions(openItems) 
@@ -541,7 +544,7 @@ function addon:SetupOptions()
 	self:RegisterModuleOptions("Options", getOptions, L["Options"])
 	self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
 	--addTokenOptionFrame()
-	if (WoWRetail) then
+	if (WoWRetail or WoWDragonflight) then
 		self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
 	end
 	self:RegisterModuleOptions("Profiles", giveProfiles, L["Profile Options"])

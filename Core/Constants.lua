@@ -25,7 +25,7 @@ private.constants = constants
 
 constants.ldb_icon = "Interface\\Icons\\timelesscoin"
 
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
+local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail, WoWDragonflight
 local wowversion  = select(4, GetBuildInfo())
 if wowversion < 20000 then
 	WoWClassicEra = true
@@ -33,10 +33,10 @@ elseif wowversion < 30000 then
 	WoWClassicTBC = true
 elseif wowversion < 40000 then 
 	WoWWOTLKC = true
-elseif wowversion > 90000 then
+elseif wowversion < 100000 then
 	WoWRetail = true
 else
-	-- n/a
+	WoWDragonflight = true
 end
 
 constants.defaults = {
@@ -105,7 +105,7 @@ end
 -- below to force currency category to be displayed in specific order
 constants.currencyCategories = {
 	--251, -- Dragon Racing UI (Hidden)
-	--250, -- Dragonflight
+	250, -- Dragonflight
 	248, -- Torghast
 	245, -- Shadowlands
 	143, -- Battle for Azeroth
