@@ -513,6 +513,7 @@ local function openOptions(openItems)
 	-- open the profiles tab before, so the menu expands
 	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles)
 	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles) -- yes, run twice to force the tre get expanded
+	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.General)
 	if (openItems) then
 		InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Items)
 	else
