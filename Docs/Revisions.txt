@@ -3,9 +3,10 @@
 Revision History:
 =================
 
-* v7.03 (Nov. XX, 2022)
+* v7.03 (Nov. 05, 2022)
 -----------------------
 - Dragonflight implementation
+- Toc update to support WoW 10.0.0
 
 * v7.02 (Aug. 21, 2022)
 -----------------------
