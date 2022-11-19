@@ -29,6 +29,52 @@ end
 
 items.Tailoring = {
 	[10] = { -- Dragonflight
+		190321, -- Awakened Fire
+		190324, -- Awakened Order
+		190327, -- Awakened Air
+		190329, -- Awakened Frost
+		190331, -- Awakened Decay
+		190450, -- Awakened Ire
+		190453, -- Spark of Ingenuity
+		190454, -- Primal Chaos
+		190456, -- Artisan's Mettle
+		192872, -- Fractured Glass
+		193053, -- Contoured Fowlfeather
+		193360, -- Centaur's Trophy Necklace
+		193919, -- Frosty Soul
+		193921, -- Airy Soul
+		193922, -- Wildercloth
+		194123, -- Chromatic Dust
+		194124, -- Vibrant Shard
+		198397, -- Rainbow Pearl
+		200113, -- Resonant Crystal
+		201401, -- Iridescent Plume
+		201404, -- Tallstrider Sinew
+		201405, -- Tuft of Primal Wool
+		192095, -- Spool of Wilderthread
+		192096, -- Spool of Wilderthread
+		192097, -- Spool of Wilderthread
+		193050, -- Tattered Wildercloth
+		193053, -- Contoured Fowlfeather
+		193922, -- Wildercloth
+		193923, -- Decayed Wildercloth
+		193924, -- Frostbitten Wildercloth
+		193925, -- Singed Wildercloth
+		193926, -- Wildercloth Bolt
+		193927, -- Wildercloth Bolt
+		193928, -- Wildercloth Bolt
+		193929, -- Vibrant Wildercloth Bolt
+		193930, -- Vibrant Wildercloth Bolt
+		193931, -- Vibrant Wildercloth Bolt
+		193932, -- Infurious Wildercloth Bolt
+		193933, -- Infurious Wildercloth Bolt
+		193934, -- Infurious Wildercloth Bolt
+		193935, -- Chronocloth Bolt
+		193936, -- Chronocloth Bolt
+		193937, -- Chronocloth Bolt
+		193938, -- Azureweave Bolt
+		193939, -- Azureweave Bolt
+		193940, -- Azureweave Bolt
 		193898, -- Umbral Bone Needle
 		193899, -- Primalweave Spindle
 		194698, -- Draconic Treatise on Tailoring
@@ -125,6 +171,29 @@ items.Tailoring = {
 }
 items.Mining = {
 	[10] = { -- Dragonflight
+		188658, -- Draconium Ore
+		189143, -- Draconium Ore
+		189541, -- Primal Molten Alloy
+		189542, -- Primal Molten Alloy
+		189543, -- Primal Molten Alloy
+		190311, -- Draconium Ore
+		190312, -- Khaz'gorite Ore
+		190313, -- Khaz'gorite Ore
+		190314, -- Khaz'gorite Ore
+		190394, -- Serevite Ore
+		190395, -- Serevite Ore
+		190396, -- Serevite Ore
+		190452, -- Primal Flux
+		190530, -- Frostfire Alloy
+		190531, -- Frostfire Alloy
+		190532, -- Frostfire Alloy
+		190533, -- Obsidian Seared Alloy
+		190534, -- Obsidian Seared Alloy
+		190535, -- Obsidian Seared Alloy
+		190536, -- Infurious Alloy
+		190537, -- Infurious Alloy
+		190538, -- Infurious Alloy
+		194545, -- Prismatic Ore
 		194039, -- Heated Ore Sample
 		194062, -- Unyielding Stone Chunk
 		194063, -- Glowing Fragment
@@ -279,6 +348,80 @@ items.Mining = {
 }
 items.Leatherworking = {
 	[10] = { -- Dragonflight
+		190316, -- Awakened Earth
+		190321, -- Awakened Fire
+		190327, -- Awakened Air
+		190329, -- Awakened Frost
+		190331, -- Awakened Decay
+		190450, -- Awakened Ire
+		190453, -- Spark of Ingenuity
+		190454, -- Primal Chaos
+		190456, -- Artisan's Mettle
+		193053, -- Contoured Fowlfeather
+		193251, -- Crystalspine Fur
+		193252, -- Salamanther Scales
+		193253, -- Cacophonous Thunderscale
+		193254, -- Rockfang Leather
+		193255, -- Pristine Vorquin Horn
+		193256, -- Windsong Plumage
+		193258, -- Fire-Infused Hide
+		193259, -- Flawless Proto Dragon Scale
+		193360, -- Centaur's Trophy Necklace
+		193362, -- Fiery Soul
+		198615, -- Pentagold Seal
+		201399, -- Primal Bear Spine
+		201400, -- Aquatic Maw
+		201403, -- Mastodon Tusk
+		201404, -- Tallstrider Sinew
+		201405, -- Tuft of Primal Wool
+		193208, -- Resilient Leather
+		193210, -- Resilient Leather
+		193211, -- Resilient Leather
+		193213, -- Adamant Scales
+		193214, -- Adamant Scales
+		193215, -- Adamant Scales
+		193216, -- Dense Hide
+		193217, -- Dense Hide
+		193218, -- Dense Hide
+		193222, -- Lustrous Scaled Hide
+		193223, -- Lustrous Scaled Hide
+		193224, -- Lustrous Scaled Hide
+		193226, -- Stonecrust Hide
+		193227, -- Stonecrust Hide
+		193228, -- Stonecrust Hide
+		193229, -- Mireslush Hide
+		193230, -- Mireslush Hide
+		193231, -- Mireslush Hide
+		193232, -- Deathchill Hide
+		193233, -- Deathchill Hide
+		193234, -- Deathchill Hide
+		193236, -- Infurious Hide
+		193237, -- Infurious Hide
+		193238, -- Infurious Hide
+		193239, -- Drygrate Scales
+		193240, -- Drygrate Scales
+		193241, -- Drygrate Scales
+		193242, -- Earthshine Scales
+		193243, -- Earthshine Scales
+		193244, -- Earthshine Scales
+		193245, -- Frostbite Scales
+		193246, -- Frostbite Scales
+		193247, -- Frostbite Scales
+		193248, -- Infurious Scales
+		193249, -- Infurious Scales
+		193250, -- Infurious Scales
+		193251, -- Crystalspine Fur
+		193252, -- Salamanther Scales
+		193253, -- Cacophonous Thunderscale
+		193254, -- Rockfang Leather
+		193255, -- Pristine Vorquin Horn
+		193256, -- Windsong Plumage
+		193258, -- Fire-Infused Hide
+		193259, -- Flawless Proto Dragon Scale
+		193261, -- Bite-Sized Morsel
+		193262, -- Exceptional Morsel
+		197735, -- Finished Prototype Explorer's Barding
+		197736, -- Finished Prototype Regal Barding
 		193910, -- Molted Dragon Scales
 		193913, -- Preserved Animal Parts
 		194700, -- Draconic Treatise on Leatherworking
@@ -431,6 +574,27 @@ items.Leatherworking = {
 }
 items.Enchanting = {
 	[10] = { -- Dragonflight
+		190315, -- Rousing Earth
+		190316, -- Awakened Earth
+		190320, -- Rousing Fire
+		190321, -- Awakened Fire
+		190322, -- Rousing Order
+		190324, -- Awakened Order
+		190326, -- Rousing Air
+		190327, -- Awakened Air
+		190328, -- Rousing Frost
+		190329, -- Awakened Frost
+		190453, -- Spark of Ingenuity
+		190454, -- Primal Chaos
+		190456, -- Artisan's Mettle
+		194123, -- Chromatic Dust
+		194124, -- Vibrant Shard
+		200113, -- Resonant Crystal
+		201401, -- Iridescent Plume
+		201406, -- Glowing Titan Orb
+		194123, -- Chromatic Dust
+		194124, -- Vibrant Shard
+		200113, -- Resonant Crystal
 		193900, -- Prismatic Focusing Shard
 		193901, -- Primal Dust
 		194702, -- Draconic Treatise on Enchanting
@@ -442,6 +606,20 @@ items.Enchanting = {
 		201709, -- Notebook of Crafting Knowledge
 	},
 	[9] = { -- Shadowland
+		171833, -- Elethium Ore
+		172097, -- Heavy Callous Hide
+		172230, -- Soul Dust
+		172231, -- Sacred Shard
+		172232, -- Eternal Crystal
+		173204, -- Lightless Silk
+		177061, -- Twilight Bark
+		181990, -- Twilight Dust
+		182020, -- Transcendent Dust
+		182042, -- Necrotic Essence
+		182066, -- Sanguine Crystal
+		183951, -- Immortal Shard
+		187700, -- Progenium Ore
+		187703, -- Silken Protofiber
 		172232, -- Eternal Crystal
 		172230, -- Soul Dust
 		172231, -- Sacred Shard
@@ -520,6 +698,18 @@ items.Enchanting = {
 }
 items.Herbalism = {
 	[10] = { -- Dragonflight
+		191460, -- Hochenblume
+		191461, -- Hochenblume
+		191462, -- Hochenblume
+		191464, -- Saxifrage
+		191465, -- Saxifrage
+		191466, -- Saxifrage
+		191467, -- Bubble Poppy
+		191468, -- Bubble Poppy
+		191469, -- Bubble Poppy
+		191470, -- Writhebark
+		191471, -- Writhebark
+		191472, -- Writhebark
 		194041, -- Driftbloom Sprout
 		194054, -- Dredged Seedling
 		194055, -- Primordial Soil
@@ -723,6 +913,47 @@ items.Herbalism = {
 
 items.Engineering = {
 	[10] = { -- Dragonflight
+		190315, -- Rousing Earth
+		190316, -- Awakened Earth
+		190320, -- Rousing Fire
+		190321, -- Awakened Fire
+		190324, -- Awakened Order
+		190326, -- Rousing Air
+		190327, -- Awakened Air
+		190328, -- Rousing Frost
+		190330, -- Rousing Decay
+		190450, -- Awakened Ire
+		190453, -- Spark of Ingenuity
+		190454, -- Primal Chaos
+		190456, -- Artisan's Mettle
+		193053, -- Contoured Fowlfeather
+		193362, -- Fiery Soul
+		193919, -- Frosty Soul
+		193920, -- Earthen Soul
+		193921, -- Airy Soul
+		193922, -- Wildercloth
+		201832, -- Smudged Lens
+		198183, -- Handful of Serevite Bolts
+		198184, -- Handful of Serevite Bolts
+		198185, -- Handful of Serevite Bolts
+		198186, -- Shock-Spring Coil
+		198187, -- Shock-Spring Coil
+		198188, -- Shock-Spring Coil
+		198189, -- Everburning Blasting Powder
+		198190, -- Everburning Blasting Powder
+		198191, -- Everburning Blasting Powder
+		198192, -- Greased-Up Gears
+		198193, -- Greased-Up Gears
+		198194, -- Greased-Up Gears
+		198195, -- Arclight Capacitor
+		198196, -- Arclight Capacitor
+		198197, -- Arclight Capacitor
+		198198, -- Reinforced Machine Chassis
+		198199, -- Reinforced Machine Chassis
+		198200, -- Reinforced Machine Chassis
+		198201, -- Assorted Safety Fuses
+		198202, -- Assorted Safety Fuses
+		198203, -- Assorted Safety Fuses
 		193902, -- Eroded Titan Gizmo
 		193903, -- Watcher Power Core
 		198157, -- I.W.I.N. Button Mk10
@@ -864,7 +1095,77 @@ items.Engineering = {
 	},
 }
 items.Alchemy = {
+	-- https://www.wowhead.com/items?filter=87:194:166;1:1:10;0:1:0
 	[10] = { -- Dragonflight
+		190316, -- Awakened Earth
+		190321, -- Awakened Fire
+		190324, -- Awakened Order
+		190326, -- Rousing Air
+		190327, -- Awakened Air
+		190328, -- Rousing Frost
+		190329, -- Awakened Frost
+		190331, -- Awakened Decay
+		190453, -- Spark of Ingenuity
+		190454, -- Primal Chaos
+		190456, -- Artisan's Mettle
+		191570, -- Dragon's Alchemical Solution
+		201405, -- Tuft of Primal Wool
+		201406, -- Glowing Titan Orb
+		-- https://www.wowhead.com/items/consumables/potions?filter=166;10;0
+		191351, -- Potion of Frozen Fatality
+		191352, -- Potion of Frozen Fatality
+		191353, -- Potion of Frozen Fatality
+		191360, -- Bottled Putrescence
+		191361, -- Bottled Putrescence
+		191362, -- Bottled Putrescence
+		191363, -- Potion of Frozen Focus
+		191364, -- Potion of Frozen Focus
+		191365, -- Potion of Frozen Focus
+		191366, -- Potion of Chilled Clarity
+		191367, -- Potion of Chilled Clarity
+		191368, -- Potion of Chilled Clarity
+		191369, -- Potion of Withering Vitality
+		191370, -- Potion of Withering Vitality
+		191371, -- Potion of Withering Vitality
+		191372, -- Residual Neural Channeling Agent
+		191373, -- Residual Neural Channeling Agent
+		191374, -- Residual Neural Channeling Agent
+		191375, -- Delicate Suspension of Spores
+		191376, -- Delicate Suspension of Spores
+		191377, -- Delicate Suspension of Spores
+		191378, -- Refreshing Healing Potion
+		191379, -- Refreshing Healing Potion
+		191380, -- Refreshing Healing Potion
+		191381, -- Elemental Potion of Ultimate Power
+		191382, -- Elemental Potion of Ultimate Power
+		191383, -- Elemental Potion of Ultimate Power
+		191384, -- Aerated Mana Potion
+		191385, -- Aerated Mana Potion
+		191386, -- Aerated Mana Potion
+		191387, -- Elemental Potion of Power
+		191388, -- Elemental Potion of Power
+		191389, -- Elemental Potion of Power
+		191393, -- Potion of the Hushed Zephyr
+		191394, -- Potion of the Hushed Zephyr
+		191395, -- Potion of the Hushed Zephyr
+		191396, -- Potion of Gusts
+		191397, -- Potion of Gusts
+		191398, -- Potion of Gusts
+		191399, -- Potion of Shocking Disclosure
+		191400, -- Potion of Shocking Disclosure
+		191401, -- Potion of Shocking Disclosure
+		191905, -- Fleeting Elemental Potion of Power
+		191906, -- Fleeting Elemental Potion of Power
+		191907, -- Fleeting Elemental Potion of Power
+		191912, -- Fleeting Elemental Potion of Ultimate Power
+		191913, -- Fleeting Elemental Potion of Ultimate Power
+		191914, -- Fleeting Elemental Potion of Ultimate Power
+		194337, -- Liquid Courage
+		200121, -- Potion of Beginner's Luck
+		201427, -- Fleeting Sands
+		201428, -- Quicksilver Sands
+		201436, -- Temporally-Locked Sands
+		201438, -- Weary Sands
 		193891, -- Experimental Substance
 		193897, -- Reawakened Catalyst
 		194337, -- Liquid Courage
@@ -1353,11 +1654,29 @@ items.Alchemy = {
 }
 items.Blacksmithing = {
 	[10] = { -- Dragonflight
+		190316, -- Awakened Earth
+		190321, -- Awakened Fire
+		190324, -- Awakened Order
+		190329, -- Awakened Frost
+		190450, -- Awakened Ire
+		190452, -- Primal Flux
+		190453, -- Spark of Ingenuity
+		190454, -- Primal Chaos
+		190456, -- Artisan's Mettle
+		193360, -- Centaur's Trophy Necklace
+		193362, -- Fiery Soul
+		193919, -- Frosty Soul
+		193920, -- Earthen Soul
+		201399, -- Primal Bear Spine
+		201400, -- Aquatic Maw
+		201402, -- Large Sturdy Femur
+		201403, -- Mastodon Tusk
+		201406, -- Glowing Titan Orb
 		191256, -- Serevite Skeleton Key
 		191260, -- Serevite Repair Hammer
-		191261, -- zzOldDraconium Repair Hammer
-		191884, -- zzOldDraconium Repair Hammer
-		191885, -- zzOldDraconium Repair Hammer
+		--191261, -- zzOldDraconium Repair Hammer
+		--191884, -- zzOldDraconium Repair Hammer
+		--191885, -- zzOldDraconium Repair Hammer
 		192131, -- Valdrakken Weapon Chain
 		192132, -- Draconium Blade Sharpener
 		194494, -- Reinforced Plating
@@ -2294,7 +2613,48 @@ items.Fishing = {
 	},
 }
 items.Cooking = {
+	-- https://www.wowhead.com/items?filter=87:194:166;3:1:10;0:1:0
 	[10] = { -- Dragonflight
+		194683, -- Buttermilk
+		194691, -- Artisanal Berry Juice
+		194730, -- Scalebelly Mackerel
+		194966, -- Thousandbite Piranha
+		194967, -- Aileron Seamoth
+		194968, -- Cerulean Spinefish
+		194969, -- Temporal Dragonhead
+		194970, -- Islefin Dorado
+		197741, -- Maybe Meat
+		197742, -- Ribbed Mollusk Meat
+		197743, -- Waterfowl Filet
+		197744, -- Hornswog Hunk
+		197745, -- Basilisk Eggs
+		197746, -- Bruffalon Flank
+		197747, -- Mighty Mammoth Ribs
+		197748, -- Burly Bear Haunch
+		197749, -- Ohn'ahran Potato
+		197750, -- Three-Cheese Blend
+		197751, -- Pastry Packets
+		197752, -- Conveniently Packaged Ingredients
+		197753, -- Thaldraszian Cocoa Powder
+		197754, -- Salt Deposit
+		197755, -- Lava Beetle
+		197756, -- Pebbled Rock Salts
+		197757, -- Assorted Exotic Spices
+		197766, -- Snow in a Cone
+		197767, -- Blubbery Muffin
+		197768, -- Celebratory Cake
+		197770, -- Zesty Water
+		197782, -- Feisty Fish Sticks
+		197783, -- Aromatic Seafood Platter
+		197784, -- Sizzling Seafood Medley
+		197785, -- Revenge, Served Cold
+		197786, -- Thousandbone Tongueslicer
+		197787, -- Great Cerulean Sea
+		197788, -- Braised Bruffalon Brisket
+		197789, -- Riverside Picnic
+		197790, -- Roast Duck Delight
+		199344, -- Magma Thresher
+		200061, -- Prismatic Leaper
 	},
 	[9] = { -- Shadowland
 		187648,	 -- Empty Kettle of Stone Soup
@@ -2828,7 +3188,7 @@ items.others = {
 		198603, -- Arcane Rune
 		198604, -- Arcane Gem
 		198651, -- Piece of Scrap
-		198653, -- PH Profession Drop
+		--198653, -- PH Profession Drop
 		198657, -- Forgotten Jewelry Box
 		198666, -- Milky Snapflower
 		198668, -- Blooming Shallowlily
@@ -3988,19 +4348,74 @@ items.others = {
 items.world_events = {
 	[10] = { -- Dragonflight
 		199211, -- Primeval Essence
+		201423, -- Hallowed Helm
 	},
 	[9] = { -- Shadowland
 	},
 	[8] = { -- BfA
-		172219, -- Wild Holly
-		169599, -- Chowdown Champion Token
-		169521, -- Butterhoof Milk Stout
+		167552, -- Luminescent Research Notes
+		168607, -- Bottle of Voidwine
+		169397, -- Admiralty Ale
+		169436, -- Fireblood Stout
+		169439, -- Dark Iron Ale
+		169441, -- Azuremyst Mead
+		169442, -- Exodar Martini
+		169443, -- Shadowmoon Schnapps
 		169458, -- Vol'dunshine
+		169459, -- Saurid Sipper
+		169460, -- Really Really Really Old Fashioned
+		169462, -- Boxed Nightwine
+		169463, -- Nightwine Cooler
+		169464, -- Sparkling Suramar Spritz
+		169466, -- Everbloom IPA
+		169467, -- Doomlager
+		169468, -- Ancestral Ale
+		169469, -- Mag'helada
+		169521, -- Butterhoof Milk Stout
+		169527, -- Thunder Stumbler
+		169599, -- Chowdown Champion Token
+		170202, -- Shwayderbrau
+		172219, -- Wild Holly
 		165657, -- Free T-Shirt
 		155823, -- Icy Snowball
 	},
 	[7] = { 	-- Legion
+		138414, -- Emergency Pirate Outfit
+		138867, -- Shimmer Stout
+		138868, -- Mannoroth's Blood Red Ale
+		138869, -- Gordok Bock
+		138870, -- Spirit Spirits
+		138871, -- Storming Saison
+		139277, -- Historian's Badge
+		143855, -- Twilight Cultist Robe
+		143857, -- Twilight Cultist Mantle
+		143858, -- Twilight Cultist Cowl
+		143865, -- Abyssal Crest
+		143866, -- Twilight Cultist Ring of Lordship
+		143867, -- Twilight Cultist Medallion of Station
+		144073, -- Ship Mast
+		144074, -- Mainsail
+		144075, -- Waxy Reeds
+		144076, -- Rigging Rope
+		144077, -- Submarine Tar
+		144228, -- Dino Mojo
+		144261, -- Sporeggium
+		144262, -- Fungal Lifestalk
+		144263, -- Pungent Truffle
+		144264, -- Pungent Truffle
+		144265, -- Rimecap
+		144276, -- Sack of Healing Spores
+		147374, -- Wooden Toy Shield
+		147377, -- Wooden Toy Shield
 		150735, -- Moonberry
+		151599, -- Blighthead Slack-Jaw Mask
+		151600, -- Blighthead Mohawk Mask
+		151601, -- Blighthead Romero Mask
+		151602, -- Blighthead Electric Beehive Mask
+		151603, -- Blighthead Grim Smile Mask
+		151604, -- Blighthead Bitter Wounds Mask
+		151605, -- Devlynn Styx Mask
+
 		139036, -- Ominous Pet Treat
 	},
 	[6] = { 	-- WoD
@@ -4095,6 +4510,7 @@ items.world_events = {
 }
 items.pvp = {
 	[10] = { -- Dragonflight
+		201836, -- Aspects' Token of Merit
 	},
 	[9] = { -- Shadowland
 	},
@@ -4162,6 +4578,34 @@ items.pvp = {
 }
 items.elemental = {
 	[10] = { -- Dragonflight
+		190315, -- Rousing Earth
+		190316, -- Awakened Earth
+		190318, -- Perception!
+		190319, -- Resourceful!
+		190320, -- Rousing Fire
+		190321, -- Awakened Fire
+		190322, -- Rousing Order
+		190324, -- Awakened Order
+		190326, -- Rousing Air
+		190327, -- Awakened Air
+		190328, -- Rousing Frost
+		190329, -- Awakened Frost
+		190330, -- Rousing Decay
+		190331, -- Awakened Decay
+		190332, -- Sparking Catalyst
+		190450, -- Awakened Ire
+		190451, -- Rousing Ire
+		191784, -- Dragon Shard of Knowledge
+		192887, -- Elemental Harmony
+		193362, -- Fiery Soul
+		193378, -- Elemental Harmony
+		193379, -- Elemental Harmony
+		193919, -- Frosty Soul
+		193920, -- Earthen Soul
+		193921, -- Airy Soul
+		194727, -- Fiery Spirit
+		194728, -- Fiery Spirit
+		194729, -- Fiery Spirit
 	},
 	[9] = { -- Shadowland
 		187707, -- Progenitor Essentia
@@ -4255,6 +4699,50 @@ items.elemental = {
 }
 items.meat = {
 	[10] = { -- Dragonflight
+		194730, -- Scalebelly Mackerel
+		194966, -- Thousandbite Piranha
+		194967, -- Aileron Seamoth
+		194968, -- Cerulean Spinefish
+		194969, -- Temporal Dragonhead
+		194970, -- Islefin Dorado
+		197741, -- Maybe Meat
+		197742, -- Ribbed Mollusk Meat
+		197743, -- Waterfowl Filet
+		197744, -- Hornswog Hunk
+		197745, -- Basilisk Eggs
+		197746, -- Bruffalon Flank
+		197747, -- Mighty Mammoth Ribs
+		197748, -- Burly Bear Haunch
+		197749, -- Ohn'ahran Potato
+		197750, -- Three-Cheese Blend
+		197751, -- Pastry Packets
+		197752, -- Conveniently Packaged Ingredients
+		197753, -- Thaldraszian Cocoa Powder
+		197754, -- Salt Deposit
+		197755, -- Lava Beetle
+		197756, -- Pebbled Rock Salts
+		197757, -- Assorted Exotic Spices
+		199063, -- Salted Fish Scraps
+		199100, -- Peppersmelt
+		199101, -- Dried Wyldermane Kelp
+		199102, -- Hunk o' Blubber
+		199103, -- Nappa's Famous Tea
+		199104, -- Piping-Hot Orca Milk
+		199105, -- Ancheevy
+		199106, -- Tiny Leviathan Bone
+		199205, -- Manasucker
+		199207, -- Iceback Sculpin
+		199208, -- Grungle
+		199212, -- Clubfish
+		199213, -- Lakkamuk Blenny
+		199344, -- Magma Thresher
+		199346, -- Rotten Rimefin Tuna
+		199832, -- Smoked Seaviper
+		199833, -- Dragonhead Eel
+		199834, -- Pulpy Seagrass
+		199835, -- Torga's Braid
+		200061, -- Prismatic Leaper
+		200074, -- Frosted Rimefin Tuna
 	},
 	[9] = { -- Shadowland
 		187812, -- Empty Kettle
@@ -4628,23 +5116,116 @@ items.meat = {
 if not (WoWClassicEra) then
 	items.Jewelcrafting = {
 		[10] = { -- Dragonflight
-		188658, -- Draconium Ore
-		190311, -- Draconium Ore
-		193907, -- Chipped Tyrstone
-		193909, -- Ancient Gem Fragments
-		194703, -- Draconic Treatise on Jewelcrafting
-		198612, -- Jeweler's Cuts
-		198656, -- Painter's Pretty Jewel
-		198660, -- Fragmented Key
-		198664, -- Crystalline Overgrowth
-		198670, -- Lofty Malygite
-		198682, -- Alexstraszite Cluster
-		198687, -- Closely Guarded Shiny
-		198973, -- Incandescent Curio
-		198974, -- Elegantly Engraved Embellishment
-		201016, -- Harmonic Crystal Harmonizer
-		201017, -- Igneous Gem
-		201712, -- Notebook of Crafting Knowledge
+			190315, -- Rousing Earth
+			190316, -- Awakened Earth
+			190320, -- Rousing Fire
+			190321, -- Awakened Fire
+			190324, -- Awakened Order
+			190326, -- Rousing Air
+			190327, -- Awakened Air
+			190328, -- Rousing Frost
+			190329, -- Awakened Frost
+			190450, -- Awakened Ire
+			190451, -- Rousing Ire
+			190453, -- Spark of Ingenuity
+			190454, -- Primal Chaos
+			190456, -- Artisan's Mettle
+			192833, -- Misshapen Filigree
+			192872, -- Fractured Glass
+			192880, -- Crumbled Stone
+			193053, -- Contoured Fowlfeather
+			193362, -- Fiery Soul
+			193919, -- Frosty Soul
+			193920, -- Earthen Soul
+			193921, -- Airy Soul
+			193922, -- Wildercloth
+			194123, -- Chromatic Dust
+			194124, -- Vibrant Shard
+			194730, -- Scalebelly Mackerel
+			200113, -- Resonant Crystal
+			200860, -- Draconic Stopper
+			200863, -- Glimmering Nozdorite Cluster
+			200864, -- Glimmering Alexstraszite Cluster
+			200865, -- Glimmering Ysemerald Cluster
+			200866, -- Glimmering Malygite Cluster
+			200867, -- Glimmering Neltharite Cluster
+			201405, -- Tuft of Primal Wool
+			201406, -- Glowing Titan Orb
+			192833, -- Misshapen Filigree
+			192834, -- Shimmering Clasp
+			192835, -- Shimmering Clasp
+			192836, -- Shimmering Clasp
+			192837, -- Queen's Ruby
+			192838, -- Queen's Ruby
+			192839, -- Queen's Ruby
+			192840, -- Mystic Sapphire
+			192841, -- Mystic Sapphire
+			192842, -- Mystic Sapphire
+			192843, -- Vibrant Emerald
+			192844, -- Vibrant Emerald
+			192845, -- Vibrant Emerald
+			192846, -- Sundered Onyx
+			192847, -- Sundered Onyx
+			192848, -- Sundered Onyx
+			192849, -- Eternity Amber
+			192850, -- Eternity Amber
+			192851, -- Eternity Amber
+			192852, -- Alexstraszite
+			192853, -- Alexstraszite
+			192855, -- Alexstraszite
+			192856, -- Malygite
+			192857, -- Malygite
+			192858, -- Malygite
+			192859, -- Ysemerald
+			192860, -- Ysemerald
+			192861, -- Ysemerald
+			192862, -- Neltharite
+			192863, -- Neltharite
+			192865, -- Neltharite
+			192866, -- Nozdorite
+			192867, -- Nozdorite
+			192868, -- Nozdorite
+			192869, -- Illimited Diamond
+			192870, -- Illimited Diamond
+			192871, -- Illimited Diamond
+			192872, -- Fractured Glass
+			192876, -- Frameless Lens
+			192877, -- Frameless Lens
+			192878, -- Frameless Lens
+			192880, -- Crumbled Stone
+			192883, -- Glossy Stone
+			192884, -- Glossy Stone
+			192885, -- Glossy Stone
+			193029, -- Projection Prism
+			193030, -- Projection Prism
+			193031, -- Projection Prism
+			193368, -- Silken Gemdust
+			193369, -- Silken Gemdust
+			193370, -- Silken Gemdust
+			198397, -- Rainbow Pearl
+			200860, -- Draconic Stopper
+			200863, -- Glimmering Nozdorite Cluster
+			200864, -- Glimmering Alexstraszite Cluster
+			200865, -- Glimmering Ysemerald Cluster
+			200866, -- Glimmering Malygite Cluster
+			200867, -- Glimmering Neltharite Cluster
+			188658, -- Draconium Ore
+			190311, -- Draconium Ore
+			193907, -- Chipped Tyrstone
+			193909, -- Ancient Gem Fragments
+			194703, -- Draconic Treatise on Jewelcrafting
+			198612, -- Jeweler's Cuts
+			198656, -- Painter's Pretty Jewel
+			198660, -- Fragmented Key
+			198664, -- Crystalline Overgrowth
+			198670, -- Lofty Malygite
+			198682, -- Alexstraszite Cluster
+			198687, -- Closely Guarded Shiny
+			198973, -- Incandescent Curio
+			198974, -- Elegantly Engraved Embellishment
+			201016, -- Harmonic Crystal Harmonizer
+			201017, -- Igneous Gem
+			201712, -- Notebook of Crafting Knowledge
 		},
 		[9] = { -- Shadowland
 			173173,	 -- Essence of Valor
@@ -4832,6 +5413,96 @@ if not (WoWClassicEra) then
 	
 	items.Inscription = {
 		[10] = { -- Dragonflight
+			190315, -- Rousing Earth
+			190316, -- Awakened Earth
+			190321, -- Awakened Fire
+			190324, -- Awakened Order
+			190326, -- Rousing Air
+			190327, -- Awakened Air
+			190328, -- Rousing Frost
+			190329, -- Awakened Frost
+			190331, -- Awakened Decay
+			190450, -- Awakened Ire
+			190453, -- Spark of Ingenuity
+			190454, -- Primal Chaos
+			190456, -- Artisan's Mettle
+			193053, -- Contoured Fowlfeather
+			193254, -- Rockfang Leather
+			193259, -- Flawless Proto Dragon Scale
+			193922, -- Wildercloth
+			194784, -- Glittering Parchment
+			197735, -- Finished Prototype Explorer's Barding
+			197736, -- Finished Prototype Regal Barding
+			198487, -- Iridescent Water
+			198615, -- Pentagold Seal
+			194751, -- Blazing Ink
+			194752, -- Blazing Ink
+			194754, -- Cosmic Ink
+			194755, -- Cosmic Ink
+			194756, -- Cosmic Ink
+			194758, -- Flourishing Ink
+			194760, -- Burnished Ink
+			194761, -- Burnished Ink
+			194767, -- Chilled Rune
+			194768, -- Chilled Rune
+			194784, -- Glittering Parchment
+			194785, -- Ace of Fire
+			194786, -- Two of Fire
+			194787, -- Three of Fire
+			194788, -- Four of Fire
+			194789, -- Five of Fire
+			194790, -- Six of Fire
+			194791, -- Seven of Frost
+			194792, -- Eight of Fire
+			194793, -- Ace of Frost
+			194794, -- Two of Frost
+			194795, -- Three of Frost
+			194796, -- Four of Frost
+			194797, -- Five of Frost
+			194798, -- Six of Frost
+			194799, -- Seven of Fire
+			194800, -- Eight of Frost
+			194801, -- Ace of Air
+			194802, -- Two of Air
+			194803, -- Three of Air
+			194804, -- Four of Air
+			194805, -- Five of Air
+			194806, -- Six of Air
+			194807, -- Seven of Air
+			194808, -- Eight of Air
+			194809, -- Ace of Earth
+			194810, -- Two of Earth
+			194811, -- Three of Earth
+			194812, -- Four of Earth
+			194813, -- Five of Earth
+			194814, -- Six of Earth
+			194815, -- Seven of Earth
+			194816, -- Eight of Earth
+			194846, -- Blazing Ink
+			194850, -- Flourishing Ink
+			194852, -- Flourishing Ink
+			194855, -- Burnished Ink
+			194856, -- Serene Ink
+			194857, -- Serene Ink
+			194858, -- Serene Ink
+			194859, -- Chilled Rune
+			194862, -- Runed Writhebark
+			194863, -- Runed Writhebark
+			194864, -- Runed Writhebark
+			198412, -- Serene Pigment
+			198413, -- Serene Pigment
+			198414, -- Serene Pigment
+			198415, -- Flourishing Pigment
+			198416, -- Flourishing Pigment
+			198417, -- Flourishing Pigment
+			198418, -- Blazing Pigment
+			198419, -- Blazing Pigment
+			198420, -- Blazing Pigment
+			198421, -- Shimmering Pigment
+			198422, -- Shimmering Pigment
+			198423, -- Shimmering Pigment
+			198487, -- Iridescent Water
+			198615, -- Pentagold Seal
 			193904, -- Phoenix Feather Quill
 			193905, -- Iskaaran Trading Ledger
 			194699, -- Draconic Treatise on Inscription
@@ -4848,15 +5519,164 @@ if not (WoWClassicEra) then
 			201711, -- Notebook of Crafting Knowledge
 		},
 		[9] = { -- Shadowland
+			173056, -- Umbral Pigment
+			173057, -- Luminous Pigment
+			173058, -- Umbral Ink
+			173059, -- Luminous Ink
+			173070, -- Ace of Putrescence
+			173071, -- Two of Putrescence
+			173072, -- Three of Putrescence
+			173073, -- Four of Putrescence
+			173074, -- Five of Putrescence
+			173075, -- Six of Putrescence
+			173076, -- Seven of Putrescence
+			173077, -- Eight of Putrescence
+			173079, -- Ace of Repose
+			173080, -- Two of Repose
+			173081, -- Three of Repose
+			173082, -- Four of Repose
+			173083, -- Five of Repose
+			173084, -- Six of Repose
+			173085, -- Seven of Repose
+			173086, -- Eight of Repose
+			173088, -- Ace of Voracity
+			173089, -- Two of Voracity
+			173090, -- Three of Voracity
+			173091, -- Four of Voracity
+			173092, -- Five of Voracity
+			173093, -- Six of Voracity
+			173094, -- Seven of Voracity
+			173095, -- Eight of Voracity
+			173097, -- Ace of the Indomitable
+			173098, -- Two of the Indomitable
+			173099, -- Three of the Indomitable
+			173100, -- Four of the Indomitable
+			173101, -- Five of the Indomitable
+			173102, -- Six of the Indomitable
+			173103, -- Seven of the Indomitable
+			173104, -- Eight of the Indomitable
+			175788, -- Tranquil Pigment
+			175970, -- Tranquil Ink
 			173065, -- Writ of Grave Robbing
 			180742, -- Scribe's Journal
 		},
 		[8] = { -- BfA
+			153603, -- Ace of the Tides
+			153604, -- Ace of Squalls
+			153605, -- Ace of Fathoms
+			153606, -- Ace of Blockades
+			153607, -- Two of the Tides
+			153608, -- Three of the Tides
+			153609, -- Four of the Tides
+			153610, -- Five of the Tides
+			153611, -- Six of the Tides
+			153612, -- Seven of the Tides
+			153613, -- Eight of the Tides
+			153614, -- Two of Squalls
+			153615, -- Three of Squalls
+			153616, -- Four of Squalls
+			153617, -- Five of Squalls
+			153618, -- Six of Squalls
+			153619, -- Seven of Squalls
+			153620, -- Eight of Squalls
+			153621, -- Two of Fathoms
+			153622, -- Three of Fathoms
+			153623, -- Four of Fathoms
+			153624, -- Five of Fathoms
+			153625, -- Six of Fathoms
+			153626, -- Seven of Fathoms
+			153627, -- Eight of Fathoms
+			153628, -- Two of Blockades
+			153629, -- Three of Blockades
+			153630, -- Four of Blockades
+			153631, -- Five of Blockades
+			153632, -- Six of Blockades
+			153633, -- Seven of Blockades
+			153634, -- Eight of Blockades
+			153635, -- Ultramarine Pigment
+			153636, -- Crimson Pigment
+			153669, -- Viridescent Pigment
+			158187, -- Ultramarine Ink
+			158188, -- Crimson Ink
+			158189, -- Viridescent Ink
+			167540, -- Ink Sac
+			168662, -- Maroon Pigment
+			168663, -- Maroon Ink
 			159825, -- Scroll of Unlocking
 		},
 		[7] = { 	-- Legion
+			128713, -- Eight of Immortality
+			128714, -- Seven of Immortality
+			128715, -- Six of Immortality
+			128716, -- Four of Immortality
+			128717, -- Five of Immortality
+			128718, -- Three of Immortality
+			128719, -- Two of Immortality
+			128720, -- Ace of Immortality
+			128721, -- Eight of Promises
+			128722, -- Seven of Promises
+			128723, -- Six of Promises
+			128724, -- Five of Promises
+			128725, -- Four of Promises
+			128726, -- Three of Promises
+			128727, -- Two of Promises
+			128728, -- Ace of Promises
+			128729, -- Eight of Dominion
+			128730, -- Seven of Dominion
+			128731, -- Six of Dominion
+			128732, -- Five of Dominion
+			128733, -- Four of Dominion
+			128734, -- Three of Dominion
+			128735, -- Two of Dominion
+			128736, -- Ace of Dominion
+			128737, -- Eight of Hellfire
+			128738, -- Seven of Hellfire
+			128739, -- Six of Hellfire
+			128740, -- Five of Hellfire
+			128741, -- Four of Hellfire
+			128742, -- Three of Hellfire
+			128743, -- Two of Hellfire
+			128744, -- Ace of Hellfire
+			129032, -- Roseate Pigment
+			129034, -- Sallow Pigment
+			136926, -- Nightmare Pod
 		},
 		[6] = { 	-- WoD
+			112271, -- Eight of Iron
+			112272, -- Seven of Iron
+			112273, -- Six of Iron
+			112274, -- Four of Iron
+			112275, -- Five of Iron
+			112276, -- Three of Iron
+			112277, -- Two of Iron
+			112278, -- Ace of Iron
+			112279, -- Eight of Visions
+			112280, -- Seven of Visions
+			112281, -- Six of Visions
+			112282, -- Five of Visions
+			112283, -- Four of Visions
+			112284, -- Three of Visions
+			112285, -- Two of Visions
+			112286, -- Ace of Visions
+			112287, -- Eight of War
+			112288, -- Seven of War
+			112289, -- Six of War
+			112290, -- Five of War
+			112291, -- Four of War
+			112292, -- Three of War
+			112293, -- Two of War
+			112294, -- Ace of War
+			112295, -- Eight of the Moon
+			112296, -- Seven of the Moon
+			112297, -- Six of the Moon
+			112298, -- Five of the Moon
+			112299, -- Four of the Moon
+			112300, -- Three of the Moon
+			112301, -- Two of the Moon
+			112302, -- Ace of the Moon
+			113111, -- Warbinder's Ink
+			113289, -- Volatile Crystal
+			114931, -- Cerulean Pigment
 			113361, -- Tattered Scroll
 			113365, -- Ruined Painting
 			113367, -- Waterlogged Book
@@ -4865,6 +5685,43 @@ if not (WoWClassicEra) then
 			113992, -- Scribe's Research Notes
 		},
 		[5] = { 	-- MoP
+			79251, -- Shadow Pigment
+			79253, -- Misty Pigment
+			79254, -- Ink of Dreams
+			79255, -- Starlight Ink
+			79283, -- Ace of Tigers
+			79284, -- Two of Tigers
+			79285, -- Three of Tigers
+			79286, -- Four of Tigers
+			79287, -- Five of Tigers
+			79288, -- Six of Tigers
+			79289, -- Seven of Tigers
+			79290, -- Eight of Tigers
+			79291, -- Ace of Oxen
+			79292, -- Two of Oxen
+			79293, -- Three of Oxen
+			79294, -- Four of Oxen
+			79295, -- Five of Oxen
+			79296, -- Six of Oxen
+			79297, -- Seven of Oxen
+			79298, -- Eight of Oxen
+			79299, -- Ace of Cranes
+			79300, -- Two of Cranes
+			79301, -- Three of Cranes
+			79302, -- Four of Cranes
+			79303, -- Five of Cranes
+			79304, -- Six of Cranes
+			79305, -- Seven of Cranes
+			79306, -- Eight of Cranes
+			79307, -- Ace of Serpents
+			79308, -- Two of Serpents
+			79309, -- Three of Serpents
+			79310, -- Four of Serpents
+			79311, -- Five of Serpents
+			79312, -- Six of Serpents
+			79313, -- Seven of Serpents
+			79314, -- Eight of Serpents
+			79731, -- Scroll of Wisdom
 			87581, -- Secret Ox Horn Inscription
 			87582, -- Secret Crane Wing Inscription
 			87584, -- Secret Tiger Claw Inscription
@@ -4872,8 +5729,128 @@ if not (WoWClassicEra) then
 			87821, -- Coagulated Tiger's Blood
 		},
 		[4] = { 	-- Cataclysm
+			61978, -- Blackfallow Ink
+			61979, -- Ashen Pigment
+			61980, -- Burning Embers
+			61988, -- Ace of Embers
+			61989, -- Two of Embers
+			61990, -- Three of Embers
+			61991, -- Four of Embers
+			61992, -- Five of Embers
+			61993, -- Six of Embers
+			61994, -- Seven of Embers
+			61995, -- Eight of Embers
+			61996, -- Ace of Stones
+			61997, -- Two of Stones
+			61998, -- Three of Stones
+			61999, -- Four of Stones
+			62000, -- Five of Stones
+			62001, -- Six of Stones
+			62002, -- Seven of Stones
+			62003, -- Eight of Stones
+			62004, -- Ace of the Winds
+			62005, -- Two of the Winds
+			62006, -- Three of the Winds
+			62007, -- Four of the Winds
+			62008, -- Five of the Winds
+			62009, -- Six of the Winds
+			62010, -- Seven of the Winds
+			62011, -- Eight of the Winds
+			62012, -- Ace of Waves
+			62013, -- Two of Waves
+			62014, -- Three of Waves
+			62015, -- Four of Waves
+			62016, -- Five of Waves
+			62017, -- Six of Waves
+			62018, -- Seven of Waves
+			62019, -- Eight of Waves
+			62322, -- Polished Horn
+			62323, -- Deathwing Scale Fragment
+			67319, -- Preserved Ogre Eye
+			67335, -- Silver Charm Bracelet
+			67348, -- Bleached Jawbone
+			68047, -- Scavenged Dragon Horn
 		},
 		[3] = { 	-- WolTK
+			37140, -- Ace of Rogues
+			37143, -- Two of Rogues
+			37145, -- Ace of Swords
+			37147, -- Two of Swords
+			37156, -- Three of Rogues
+			37159, -- Three of Swords
+			37160, -- Four of Swords
+			39151, -- Alabaster Pigment
+			39334, -- Dusky Pigment
+			39338, -- Golden Pigment
+			39339, -- Emerald Pigment
+			39340, -- Violet Pigment
+			39341, -- Silvery Pigment
+			39342, -- Nether Pigment
+			39343, -- Azure Pigment
+			39469, -- Moonglow Ink
+			39774, -- Midnight Ink
+			43103, -- Verdant Pigment
+			43104, -- Burnt Pigment
+			43105, -- Indigo Pigment
+			43106, -- Ruby Pigment
+			43107, -- Sapphire Pigment
+			43108, -- Ebon Pigment
+			43109, -- Icy Pigment
+			43115, -- Hunter's Ink
+			43116, -- Lion's Ink
+			43117, -- Dawnstar Ink
+			43118, -- Jadefire Ink
+			43119, -- Royal Ink
+			43120, -- Celestial Ink
+			43121, -- Fiery Ink
+			43122, -- Shimmering Ink
+			43123, -- Ink of the Sky
+			43124, -- Ethereal Ink
+			43125, -- Darkflame Ink
+			43126, -- Ink of the Sea
+			43127, -- Snowfall Ink
+			44143, -- Ace of Demons
+			44144, -- Two of Mages
+			44145, -- Three of Mages
+			44146, -- Four of Mages
+			44147, -- Five of Mages
+			44154, -- Two of Demons
+			44155, -- Three of Demons
+			44156, -- Four of Demons
+			44157, -- Five of Demons
+			44165, -- Ace of Mages
+			44260, -- Ace of Prisms
+			44261, -- Two of Prisms
+			44262, -- Three of Prisms
+			44263, -- Four of Prisms
+			44264, -- Five of Prisms
+			44265, -- Six of Prisms
+			44266, -- Seven of Prisms
+			44267, -- Eight of Prisms
+			44268, -- Ace of Nobles
+			44269, -- Two of Nobles
+			44270, -- Three of Nobles
+			44271, -- Four of Nobles
+			44272, -- Five of Nobles
+			44273, -- Six of Nobles
+			44274, -- Seven of Nobles
+			44275, -- Eight of Nobles
+			44277, -- Ace of Chaos
+			44278, -- Two of Chaos
+			44279, -- Three of Chaos
+			44280, -- Four of Chaos
+			44281, -- Five of Chaos
+			44282, -- Six of Chaos
+			44284, -- Seven of Chaos
+			44285, -- Eight of Chaos
+			44286, -- Ace of Undeath
+			44287, -- Two of Undeath
+			44288, -- Three of Undeath
+			44289, -- Four of Undeath
+			44290, -- Five of Undeath
+			44291, -- Six of Undeath
+			44292, -- Seven of Undeath
+			44293, -- Eight of Undeath
 			37118, -- Scroll of Recall
 			39969, -- Fire Seed
 			44314, -- Scroll of Recall II

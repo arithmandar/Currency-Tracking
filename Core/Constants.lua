@@ -90,7 +90,6 @@ constants.itemCategories = {
 	["Leatherworking"] = getProfessionText(2108),
 	["Enchanting"] = 	getProfessionText(7411),
 	["Herbalism"] = 	getProfessionText(2366),
-	--["Jewelcrafting"] = getProfessionText(25229),
 	["Engineering"] = 	getProfessionText(4036),
 	["Alchemy"] = 		getProfessionText(2259),
 	["Blacksmithing"] = getProfessionText(2018),
@@ -98,13 +97,14 @@ constants.itemCategories = {
 	["Cooking"] = 		getProfessionText(2550),
 }
 
-if (not WoWClassicEra) then
+if (WoWWOTLKC or WoWRetail) then
 	constants.itemCategories["Jewelcrafting"] = getProfessionText(25229)
 	constants.itemCategories["Inscription"] = 	getProfessionText(86008)
 end
 
 -- below to force currency category to be displayed in specific order
 constants.currencyCategories = {
+	--252, --Tuskarr - Fishing Nets (Hidden)
 	--251, -- Dragon Racing UI (Hidden)
 	250, -- Dragonflight
 	248, -- Torghast
@@ -154,7 +154,25 @@ else
 	}
 end
 
-if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
+if (WoWClassicEra or WoWClassicTBC) then
+	constants.events = {
+		"PLAYER_REGEN_ENABLED",
+		"PLAYER_REGEN_DISABLED",
+		"BATTLEFIELDS_SHOW",
+		"BATTLEFIELDS_CLOSED",
+		"BAG_UPDATE",
+		"TRADE_PLAYER_ITEM_CHANGED",
+--		"CHAT_MSG_CURRENCY",
+		-- Money
+		"PLAYER_MONEY",
+		"PLAYER_TRADE_MONEY",
+		"TRADE_MONEY_CHANGED",
+		"SEND_MAIL_MONEY_CHANGED",
+		"SEND_MAIL_COD_CHANGED",
+		"TRIAL_STATUS_UPDATE",
+		"CHAT_MSG_MONEY",
+	}
+elseif (WoWWOTLKC) then
 	constants.events = {
 		"PLAYER_REGEN_ENABLED",
 		"PLAYER_REGEN_DISABLED",
@@ -163,14 +181,14 @@ if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
 		"BATTLEFIELDS_SHOW",
 		"BATTLEFIELDS_CLOSED",
 		"BAG_UPDATE",
---		"TRADE_CURRENCY_CHANGED",
+		"TRADE_CURRENCY_CHANGED",
 --		"ARTIFACT_UPDATE",
 --		"ARTIFACT_XP_UPDATE",
 		"TRADE_PLAYER_ITEM_CHANGED",
---		"PLAYER_TRADE_CURRENCY",
+		"PLAYER_TRADE_CURRENCY",
 		"CHAT_MSG_CURRENCY",
 --		"SHIPMENT_CRAFTER_REAGENT_UPDATE",
---		"CURRENCY_DISPLAY_UPDATE",
+		"CURRENCY_DISPLAY_UPDATE",
 		-- Money
 		"PLAYER_MONEY",
 		"PLAYER_TRADE_MONEY",
