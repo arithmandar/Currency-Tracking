@@ -3,6 +3,12 @@
 Revision History:
 =================
 
+* v7.04 (Nov. 19, 2022)
+-----------------------
+- Toc update to support WoW 10.0.2
+- Added Primeval Essence under World Event
+- Added Inscription
+
 * v7.03 (Nov. 05, 2022)
 -----------------------
 - Dragonflight implementation

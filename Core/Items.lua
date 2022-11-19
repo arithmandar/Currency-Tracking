@@ -28,6 +28,23 @@ else
 end
 
 items.Tailoring = {
+	[10] = { -- Dragonflight
+		193898, -- Umbral Bone Needle
+		193899, -- Primalweave Spindle
+		194698, -- Draconic Treatise on Tailoring
+		198609, -- Tailoring Examples
+		198662, -- Intriguing Bolt of Blue Cloth
+		198680, -- Decaying Brackenhide Blanket
+		198684, -- Miniature Bronze Dragonflight Banner
+		198692, -- Noteworthy Scrap of Carpet
+		198699, -- Mysterious Banner
+		198702, -- Itinerant Singed Fabric
+		198977, -- Ohn'arhan Weave
+		198978, -- Stupidly Effective Stitchery
+		201019, -- Ancient Dragonweave Bolt
+		201020, -- Silky Surprise
+		201715, -- Notebook of Crafting Knowledge
+	},
 	[9] = { -- Shadowland
 		-- 9.2.5 Eternity's End
 
@@ -107,6 +124,21 @@ items.Tailoring = {
 	},
 }
 items.Mining = {
+	[10] = { -- Dragonflight
+		194039, -- Heated Ore Sample
+		194062, -- Unyielding Stone Chunk
+		194063, -- Glowing Fragment
+		194064, -- Intricate Geode
+		194078, -- Perfect Draconium Scale
+		194079, -- Pure Serevite Nugget
+		194708, -- Draconic Treatise on Mining
+		199122, -- Mining Field Notes
+		201300, -- Iridescent Ore Fragments
+		201301, -- Iridescent Ore
+		201700, -- Notebook of Crafting Knowledge
+		201716, -- Notebook of Crafting Knowledge
+		202011, -- Elementally-Charged Stone
+	},
 	[9] = { -- Shadowland
 		180733, -- Luminous Flux
 		171428, -- Shadowghast Ingot
@@ -246,6 +278,22 @@ items.Mining = {
 	},
 }
 items.Leatherworking = {
+	[10] = { -- Dragonflight
+		193910, -- Molted Dragon Scales
+		193913, -- Preserved Animal Parts
+		194700, -- Draconic Treatise on Leatherworking
+		198613, -- Leatherworking Designs
+		198658, -- Decay-Infused Tanning Oil
+		198667, -- Spare Djaradin Tools
+		198683, -- Treated Hides
+		198690, -- Decayed Scales
+		198696, -- Wind-Blessed Hide
+		198711, -- Poacher's Pack
+		198975, -- Ossified Hide
+		198976, -- Exceedingly Soft Skin
+		201018, -- Well-Danced Drum
+		201713, -- Notebook of Crafting Knowledge
+	},
 	[9] = { -- Shadowland
 		187701, -- Protogenic Pelt
 --			177281, --  Heavy Sorrowscale
@@ -382,6 +430,17 @@ items.Leatherworking = {
 	},
 }
 items.Enchanting = {
+	[10] = { -- Dragonflight
+		193900, -- Prismatic Focusing Shard
+		193901, -- Primal Dust
+		194702, -- Draconic Treatise on Enchanting
+		198610, -- Enchanter's Script
+		198967, -- Primordial Aether
+		198968, -- Primalist Charm
+		201012, -- Enchanted Debris
+		201013, -- Faintly Enchanted Remains
+		201709, -- Notebook of Crafting Knowledge
+	},
 	[9] = { -- Shadowland
 		172232, -- Eternal Crystal
 		172230, -- Soul Dust
@@ -460,6 +519,25 @@ items.Enchanting = {
 	},
 }
 items.Herbalism = {
+	[10] = { -- Dragonflight
+		194041, -- Driftbloom Sprout
+		194054, -- Dredged Seedling
+		194055, -- Primordial Soil
+		194061, -- Suffocating Spores
+		194080, -- Peculiar Bud
+		194081, -- Mutated Root
+		194704, -- Draconic Treatise on Herbalism
+		199115, -- Herbalism Field Notes
+		200506, -- Roused Seedling
+		200507, -- Decayed Roused Seedling
+		200508, -- Propagating Roused Seedling
+		200509, -- Agitated Roused Seedling
+		200677, -- Dreambloom Petal
+		200678, -- Dreambloom
+		201705, -- Notebook of Crafting Knowledge
+		201717, -- Notebook of Crafting Knowledge
+		202014, -- Infused Pollen
+	},
 	[9] = { -- Shadowland
 		187699, -- First Flower
 		170554, -- Vigil's Torch
@@ -643,193 +721,45 @@ items.Herbalism = {
 	},
 }
 
-if not (WoWClassicEra) then
-	items.Jewelcrafting = {
-		[9] = { -- Shadowland
-			173173,	 -- Essence of Valor
-			173172,	 -- Essence of Servitude
-			173171,	 -- Essence of Torment
-			173170,	 -- Essence of Rebirth
-			173168,	 -- Laestrite Setting
-	--		173117,	 -- 9.x Raw Blue
-	--		173116,	 -- 9.x Raw Red
-	--		173115,	 -- 9.x Raw Yellow
-	--		173111,	 -- 9.x Raw Rare
-			173110,	 -- Umbryl
-			173109,	 -- Angerseye
-			173108,	 -- Oriblase
-		},
-		[8] = { -- BfA
-			168635,	 -- Leviathan's Eye
-			168193,	 -- Azsharine
-			168192,	 -- Sand Spinel
-			168191,	 -- Sea Currant
-			168190,	 -- Lava Lazuli
-			168189,	 -- Dark Opal
-			168188,	 -- Sage Agate
-			154125,	 -- Royal Quartz
-			154124,	 -- Laribole
-			154123,	 -- Amberblaze
-			154122,	 -- Tidal Amethyst
-			154121,	 -- Scarlet Diamond
-			154120,	 -- Owlseye
-			153706,	 -- Kraken's Eye
-			153705,	 -- Kyanite
-			153704,	 -- Viridium
-			153703,	 -- Solstone
-			153702,	 -- Kubiline
-			153701,	 -- Rubellite
-			153700,	 -- Golden Beryl
-		},
-		[7] = { 	-- Legion
-			151722,	 -- Florid Malachite
-			151721,	 -- Hesselian
-			151720,	 -- Chemirine
-			151719,	 -- Lightsphene
-			151718,	 -- Argulite
-			151579,	 -- Labradorite
-			130245,	 -- Saber's Eye
-			130183,	 -- Shadowruby
-			130182,	 -- Maelstrom Sapphire
-			130181,	 -- Pandemonite
-			130180,	 -- Dawnlight
-			130179,	 -- Eye of Prophecy
-			130178,	 -- Furystone
-			130177,	 -- Queen's Opal
-			130176,	 -- Skystone
-			130175,	 -- Chaotic Spinel
-			130174,	 -- Azsunite
-			130173,	 -- Deep Amber
-			130172,	 -- Sangrite
-			129100,	 -- Gem Chip
-		},
-		[6] = { 	-- WoD
-			-- n/a
-		},
-		[5] = { 	-- MoP
-			76734,	 -- Serpent's Eye
-			76142,	 -- Sun's Radiance
-			76141,	 -- Imperial Amethyst
-			76140,	 -- Vermilion Onyx
-			76139,	 -- Wild Jade
-			76138,	 -- River's Heart
-			76137,	 -- Alexandrite
-			76136,	 -- Pandarian Garnet
-			76135,	 -- Roguestone
-			76134,	 -- Sunstone
-			76133,	 -- Lapis Lazuli
-			76132,	 -- Primal Diamond
-			76131,	 -- Primordial Ruby
-			76130,	 -- Tiger Opal
-		},
-		[4] = { 	-- Cataclysm
-			77952,	 -- Elementium Gem Cluster
-			77951,	 -- Shadowy Gem
-			71810,	 -- Elven Peridot
-			71809,	 -- Shadow Spinel
-			71808,	 -- Lava Coral
-			71807,	 -- Deepholm Iolite
-			71806,	 -- Lightstone
-			71805,	 -- Queen's Garnet
-			52339,	 -- Flawless Pearl
-			52338,	 -- Darkfathom Pearl
-			52303,	 -- Shadowspirit Diamond
-			52196,	 -- Chimera's Eye
-			52195,	 -- Amberjewel
-			52194,	 -- Demonseye
-			52193,	 -- Ember Topaz
-			52192,	 -- Dream Emerald
-			52191,	 -- Ocean Sapphire
-			52190,	 -- Inferno Ruby
-			52182,	 -- Jasper
-			52181,	 -- Hessonite
-			52180,	 -- Nightstone
-			52179,	 -- Alicite
-			52178,	 -- Zephyrite
-			52177,	 -- Carnelian
-		},
-		[3] = { 	-- WolTK
-			46849,	 -- Titanium Powder
-			45054,	 -- Prismatic Black Diamond
-			42225,	 -- Dragon's Eye
-			41334,	 -- Earthsiege Diamond
-			41266,	 -- Skyflare Diamond
-			36934,	 -- Eye of Zul
-			36933,	 -- Forest Emerald
-			36932,	 -- Dark Jade
-			36931,	 -- Ametrine
-			36930,	 -- Monarch Topaz
-			36929,	 -- Huge Citrine
-			36928,	 -- Dreadstone
-			36927,	 -- Twilight Opal
-			36926,	 -- Shadow Crystal
-			36925,	 -- Majestic Zircon
-			36924,	 -- Sky Sapphire
-			36923,	 -- Chalcedony
-			36922,	 -- King's Amber
-			36921,	 -- Autumn's Glow
-			36920,	 -- Sun Crystal
-			36919,	 -- Cardinal Ruby
-			36918,	 -- Scarlet Ruby
-			36917,	 -- Bloodstone
-			36784,	 -- Siren's Tear
-			36783,	 -- Northsea Pearl
-		},
-		[2] = { 	-- BC
-			32249,	 -- Seaspray Emerald
-			32231,	 -- Pyrestone
-			32230,	 -- Shadowsong Amethyst
-			32229,	 -- Lionseye
-			32228,	 -- Empyrean Sapphire
-			32227,	 -- Crimson Spinel
-			31079,	 -- Mercurial Adamantite
-			25868,	 -- Skyfire Diamond
-			25867,	 -- Earthstorm Diamond
-			24479,	 -- Shadow Pearl
-			24478,	 -- Jaggal Pearl
-			24243,	 -- Adamantite Powder
-			23441,	 -- Nightseye
-			23440,	 -- Dawnstone
-			23439,	 -- Noble Topaz
-			23438,	 -- Star of Elune
-			23437,	 -- Talasite
-			23436,	 -- Living Ruby
-			23117,	 -- Azure Moonstone
-			23112,	 -- Golden Draenite
-			23107,	 -- Shadow Draenite
-			23079,	 -- Deep Peridot
-			23077,	 -- Blood Garnet
-			21929,	 -- Flame Spessarite
-			21752,	 -- Thorium Setting
-			20963,	 -- Mithril Filigree
-			20817,	 -- Bronze Setting
-			20816,	 -- Delicate Copper Wire
-		},
-		[1] = { 	-- Classic
-	--		19774,	 -- Souldarite
-			13926,	 -- Golden Pearl
-			12800,	 -- Azerothian Diamond
-			12799,	 -- Large Opal
-			12364,	 -- Huge Emerald
-			12363,	 -- Arcane Crystal
-			12361,	 -- Blue Sapphire
-			11382,	 -- Blood of the Mountain
-			7971,	 -- Black Pearl
-			7910,	 -- Star Ruby
-			7909,	 -- Aquamarine
-			5500,	 -- Iridescent Pearl
-			5498,	 -- Small Lustrous Pearl
-			3864,	 -- Citrine
-			1705,	 -- Lesser Moonstone
-			1529,	 -- Jade
-			1210,	 -- Shadowgem
-			1206,	 -- Moss Agate
-			818,	 -- Tigerseye
-			774,	 -- Malachite
-		},
-	}
-end
 items.Engineering = {
+	[10] = { -- Dragonflight
+		193902, -- Eroded Titan Gizmo
+		193903, -- Watcher Power Core
+		198157, -- I.W.I.N. Button Mk10
+		198158, -- I.W.I.N. Button Mk10
+		198159, -- I.W.I.N. Button Mk10
+		198180, -- D.U.C.K.O.Y.
+		198181, -- D.U.C.K.O.Y.
+		198182, -- D.U.C.K.O.Y.
+		198228, -- Gravitational Displacer
+		198229, -- Gravitational Displacer
+		198230, -- Gravitational Displacer
+		198239, -- Creature Combustion Canister
+		198240, -- Creature Combustion Canister
+		198241, -- Creature Combustion Canister
+		198275, -- S.A.V.I.O.R.
+		198276, -- S.A.V.I.O.R.
+		198277, -- S.A.V.I.O.R.
+		198278, -- Primal Deconstruction Charge
+		198279, -- Primal Deconstruction Charge
+		198280, -- Primal Deconstruction Charge
+		198281, -- Sticky Warp Grenade
+		198282, -- Sticky Warp Grenade
+		198283, -- Sticky Warp Grenade
+		198292, -- Grease Grenade
+		198293, -- Grease Grenade
+		198294, -- Grease Grenade
+		198301, -- Tinker: Supercollide-O-Tron
+		198302, -- Tinker: Supercollide-O-Tron
+		198303, -- Tinker: Supercollide-O-Tron
+		198510, -- Draconic Treatise on Engineering
+		198611, -- Engineering Details
+		198789, -- Intact Coil Capacitor
+		198969, -- Keeper's Mark
+		198970, -- Infinitely Attachable Pair o' Docks
+		201014, -- Boomthyr Rocket
+		201710, -- Notebook of Crafting Knowledge
+	},
 	[9] = { -- Shadowland
 		183950,	 -- Distilled Death Extract
 --		176448,	 -- [DNT] [REUSE ME]
@@ -934,7 +864,25 @@ items.Engineering = {
 	},
 }
 items.Alchemy = {
+	[10] = { -- Dragonflight
+		193891, -- Experimental Substance
+		193897, -- Reawakened Catalyst
+		194337, -- Liquid Courage
+		194697, -- Draconic Treatise on Alchemy
+		198599, -- Experimental Decay Sample
+		198608, -- Alchemy Notes
+		198663, -- Frostforged Potion
+		198685, -- Well Insulated Mug
+		198697, -- Contraband Concoction
+		198710, -- Canteen of Suspicious Water
+		198712, -- Firewater Powder Sample
+		198963, -- Decaying Phlegm
+		198964, -- Elementious Splinter
+		201003, -- Furry Gloop
+		201706, -- Notebook of Crafting Knowledge
+	},
 	[9] = { -- Shadowland
+		180734, -- Alchemist's Journal
 		187850,	 -- Sustaining Armor Polish
 		187827,	 -- Infusion: Corpse Purification
 		187802,	 -- Cosmic Healing Potion
@@ -1404,6 +1352,30 @@ items.Alchemy = {
 	},
 }
 items.Blacksmithing = {
+	[10] = { -- Dragonflight
+		191256, -- Serevite Skeleton Key
+		191260, -- Serevite Repair Hammer
+		191261, -- zzOldDraconium Repair Hammer
+		191884, -- zzOldDraconium Repair Hammer
+		191885, -- zzOldDraconium Repair Hammer
+		192131, -- Valdrakken Weapon Chain
+		192132, -- Draconium Blade Sharpener
+		194494, -- Reinforced Plating
+		198454, -- Draconic Treatise on Blacksmithing
+		198606, -- Blacksmith's Writ
+		198791, -- Glimmer of Blacksmithing Wisdom
+		198965, -- Primeval Earth Fragment
+		198966, -- Molten Globule
+		201004, -- Ancient Spear Shards
+		201005, -- Curious Ingots
+		201006, -- Draconic Flux
+		201007, -- Ancient Monument
+		201008, -- Molten Ingot
+		201009, -- Falconer Gauntlet Drawings
+		201010, -- Qalashi Weapon Diagram
+		201011, -- Spelltouched Tongs
+		201708, -- Notebook of Crafting Knowledge
+	},
 	[9] = { -- Shadowland
 		187784,	 -- Vestige of the Eternal
 		187742,	 -- Crafter's Mark of the First Ones
@@ -1561,6 +1533,10 @@ items.Blacksmithing = {
 	},
 }
 items.Fishing = {
+	[10] = { -- Dragonflight
+		199340, -- Gold Coin of the Isles
+		199338, -- Copper Coin of the Isles
+	},
 	[9] = { -- Shadowland
 		187712,	 -- Precursor Placoderm Bait
 		187707,	 -- Progenitor Essentia
@@ -2318,6 +2294,8 @@ items.Fishing = {
 	},
 }
 items.Cooking = {
+	[10] = { -- Dragonflight
+	},
 	[9] = { -- Shadowland
 		187648,	 -- Empty Kettle of Stone Soup
 		186726,	 -- Porous Rock Candy
@@ -2727,6 +2705,8 @@ items.Cooking = {
 	},
 }
 items.relics = {
+	[10] = { -- Dragonflight
+	},
 	[9] = { -- Shadowland
 		190189,	 -- Sandworn Relic
 		187996,	 -- Sacred Relic
@@ -2806,6 +2786,94 @@ items.relics = {
 	},
 }
 items.others = {
+	[10] = { -- Dragonflight
+		187617, -- Tempered Djaradin Steel
+		187621, -- Writ of Construction
+		190340, -- Plainshunter's Supplies
+		191211, -- Wurmling Bones
+		191251, -- Key Fragments
+		191552, -- Expedition Metal Detector
+		191667, -- Aged Key
+		191848, -- Draconium Angle Iron
+		191849, -- Serevite Angle Iron
+		191850, -- Broken Serevite Blade Tip
+		191851, -- Dull Draconium Weapon Head
+		192055, -- Dragon Isles Artifact
+		193201, -- Key Framing
+		193476, -- Gnoll Tent
+		193478, -- Tuskarr Beanbag
+		194040, -- Slateskin Hide
+		194066, -- Frigid Frostfur Pelt
+		194067, -- Festering Carcass
+		194068, -- Progenitor Scales
+		194076, -- Exotic Resilient Leather
+		194077, -- Pristine Adamant Scales
+		194097, -- Hunter's Fabulous Treasure
+		194122, -- Sour Apple
+		194696, -- Recycled Crawler Mine
+		194731, -- Illusion Parchment: Magma Missile
+		194732, -- Illusion Parchment: Love Charm
+		194733, -- Illusion Parchment: Aqua Torrent
+		194734, -- Illusion Parchment: Whirling Breeze
+		194735, -- Illusion Parchment: Arcane Burst
+		194736, -- Illusion Parchment: Chilling Wind
+		194737, -- Illusion Parchment: Spell Shield
+		194738, -- Illusion Parchment: Shadow Orb
+		195884, -- Crystalline Petals
+		197708, -- Unstable Matrix Core
+		197733, -- Unsustainable Containment Core
+		198436, -- Hunting Horseshoe
+		198437, -- Caravan Horseshoe
+		198563, -- Arcane Spark
+		198603, -- Arcane Rune
+		198604, -- Arcane Gem
+		198651, -- Piece of Scrap
+		198653, -- PH Profession Drop
+		198657, -- Forgotten Jewelry Box
+		198666, -- Milky Snapflower
+		198668, -- Blooming Shallowlily
+		198727, -- Expedition Explosives
+		198837, -- Curious Hide Scraps
+		198841, -- Large Sample of Curious Hide
+		199128, -- Skinning Field Notes
+		199211, -- Primeval Essence
+		199216, -- A Box of Rocks
+		199338, -- Copper Coin of the Isles
+		199339, -- Silver Coin of the Isles
+		199340, -- Gold Coin of the Isles
+		199646, -- Imbu Tuskarr Bandages
+		199906, -- Titan Relic
+		200071, -- Sacred Tuskarr Totem
+		200093, -- Centaur Hunting Trophy
+		200295, -- Makko's Complete Journal
+		200443, -- Dragon Isles Artifact
+		200447, -- Centaur Hunting Trophy
+		200449, -- Sacred Tuskarr Totem
+		200450, -- Titan Relic
+		200636, -- Primal Invocation Quintessence
+		200640, -- Obsidian Egg Clutch
+		200944, -- Djaradin's Trophy Mask
+		200951, -- Valdrakken Critter Snacks
+		201023, -- Draconic Treatise on Skinning
+		201411, -- Ancient Vault Artifact
+		201412, -- Ancient Vault Artifact
+		201418, -- Orb of the Obsidian Scale
+		201421, -- Tuskarr Jerky
+		201437, -- Slumbering Dream Fragment
+		201714, -- Notebook of Crafting Knowledge
+		201718, -- Notebook of Crafting Knowledge
+		201729, -- Spiked Horseshoe
+		201836, -- Aspects' Token of Merit
+		202016, -- Saturated Bone
+		202034, -- Flame of Remembrance
+		202062, -- Ash Feather
+		202072, -- Frigid Floe Fish
+		202073, -- Calamitous Carp
+		202074, -- Kingfin, the Wise Whiskerfish
+		202105, -- Rusted Coin of the Isles
+		202107, -- Shadowscrawled Coin
+		202173, -- Magmote
+	},
 	[9] = { -- Shadowland
 		191031,	 -- Packaged Soul Cinders
 		190740,	 -- Automa Integration
@@ -3918,6 +3986,9 @@ items.others = {
 
 }
 items.world_events = {
+	[10] = { -- Dragonflight
+		199211, -- Primeval Essence
+	},
 	[9] = { -- Shadowland
 	},
 	[8] = { -- BfA
@@ -4023,6 +4094,8 @@ items.world_events = {
 	},
 }
 items.pvp = {
+	[10] = { -- Dragonflight
+	},
 	[9] = { -- Shadowland
 	},
 	[8] = { -- BfA
@@ -4088,6 +4161,8 @@ items.pvp = {
 	},
 }
 items.elemental = {
+	[10] = { -- Dragonflight
+	},
 	[9] = { -- Shadowland
 		187707, -- Progenitor Essentia
 		186017, -- Korthite Crystal
@@ -4179,6 +4254,8 @@ items.elemental = {
 	},
 }
 items.meat = {
+	[10] = { -- Dragonflight
+	},
 	[9] = { -- Shadowland
 		187812, -- Empty Kettle
 		187704, -- Protoflesh
@@ -4548,8 +4625,273 @@ items.meat = {
 		723, --  Goretusk Liver
 	},
 }
+if not (WoWClassicEra) then
+	items.Jewelcrafting = {
+		[10] = { -- Dragonflight
+		188658, -- Draconium Ore
+		190311, -- Draconium Ore
+		193907, -- Chipped Tyrstone
+		193909, -- Ancient Gem Fragments
+		194703, -- Draconic Treatise on Jewelcrafting
+		198612, -- Jeweler's Cuts
+		198656, -- Painter's Pretty Jewel
+		198660, -- Fragmented Key
+		198664, -- Crystalline Overgrowth
+		198670, -- Lofty Malygite
+		198682, -- Alexstraszite Cluster
+		198687, -- Closely Guarded Shiny
+		198973, -- Incandescent Curio
+		198974, -- Elegantly Engraved Embellishment
+		201016, -- Harmonic Crystal Harmonizer
+		201017, -- Igneous Gem
+		201712, -- Notebook of Crafting Knowledge
+		},
+		[9] = { -- Shadowland
+			173173,	 -- Essence of Valor
+			173172,	 -- Essence of Servitude
+			173171,	 -- Essence of Torment
+			173170,	 -- Essence of Rebirth
+			173168,	 -- Laestrite Setting
+	--		173117,	 -- 9.x Raw Blue
+	--		173116,	 -- 9.x Raw Red
+	--		173115,	 -- 9.x Raw Yellow
+	--		173111,	 -- 9.x Raw Rare
+			173110,	 -- Umbryl
+			173109,	 -- Angerseye
+			173108,	 -- Oriblase
+		},
+		[8] = { -- BfA
+			168635,	 -- Leviathan's Eye
+			168193,	 -- Azsharine
+			168192,	 -- Sand Spinel
+			168191,	 -- Sea Currant
+			168190,	 -- Lava Lazuli
+			168189,	 -- Dark Opal
+			168188,	 -- Sage Agate
+			154125,	 -- Royal Quartz
+			154124,	 -- Laribole
+			154123,	 -- Amberblaze
+			154122,	 -- Tidal Amethyst
+			154121,	 -- Scarlet Diamond
+			154120,	 -- Owlseye
+			153706,	 -- Kraken's Eye
+			153705,	 -- Kyanite
+			153704,	 -- Viridium
+			153703,	 -- Solstone
+			153702,	 -- Kubiline
+			153701,	 -- Rubellite
+			153700,	 -- Golden Beryl
+		},
+		[7] = { 	-- Legion
+			151722,	 -- Florid Malachite
+			151721,	 -- Hesselian
+			151720,	 -- Chemirine
+			151719,	 -- Lightsphene
+			151718,	 -- Argulite
+			151579,	 -- Labradorite
+			130245,	 -- Saber's Eye
+			130183,	 -- Shadowruby
+			130182,	 -- Maelstrom Sapphire
+			130181,	 -- Pandemonite
+			130180,	 -- Dawnlight
+			130179,	 -- Eye of Prophecy
+			130178,	 -- Furystone
+			130177,	 -- Queen's Opal
+			130176,	 -- Skystone
+			130175,	 -- Chaotic Spinel
+			130174,	 -- Azsunite
+			130173,	 -- Deep Amber
+			130172,	 -- Sangrite
+			129100,	 -- Gem Chip
+		},
+		[6] = { 	-- WoD
+			-- n/a
+		},
+		[5] = { 	-- MoP
+			76734,	 -- Serpent's Eye
+			76142,	 -- Sun's Radiance
+			76141,	 -- Imperial Amethyst
+			76140,	 -- Vermilion Onyx
+			76139,	 -- Wild Jade
+			76138,	 -- River's Heart
+			76137,	 -- Alexandrite
+			76136,	 -- Pandarian Garnet
+			76135,	 -- Roguestone
+			76134,	 -- Sunstone
+			76133,	 -- Lapis Lazuli
+			76132,	 -- Primal Diamond
+			76131,	 -- Primordial Ruby
+			76130,	 -- Tiger Opal
+		},
+		[4] = { 	-- Cataclysm
+			77952,	 -- Elementium Gem Cluster
+			77951,	 -- Shadowy Gem
+			71810,	 -- Elven Peridot
+			71809,	 -- Shadow Spinel
+			71808,	 -- Lava Coral
+			71807,	 -- Deepholm Iolite
+			71806,	 -- Lightstone
+			71805,	 -- Queen's Garnet
+			52339,	 -- Flawless Pearl
+			52338,	 -- Darkfathom Pearl
+			52303,	 -- Shadowspirit Diamond
+			52196,	 -- Chimera's Eye
+			52195,	 -- Amberjewel
+			52194,	 -- Demonseye
+			52193,	 -- Ember Topaz
+			52192,	 -- Dream Emerald
+			52191,	 -- Ocean Sapphire
+			52190,	 -- Inferno Ruby
+			52182,	 -- Jasper
+			52181,	 -- Hessonite
+			52180,	 -- Nightstone
+			52179,	 -- Alicite
+			52178,	 -- Zephyrite
+			52177,	 -- Carnelian
+		},
+		[3] = { 	-- WolTK
+			46849,	 -- Titanium Powder
+			45054,	 -- Prismatic Black Diamond
+			42225,	 -- Dragon's Eye
+			41334,	 -- Earthsiege Diamond
+			41266,	 -- Skyflare Diamond
+			36934,	 -- Eye of Zul
+			36933,	 -- Forest Emerald
+			36932,	 -- Dark Jade
+			36931,	 -- Ametrine
+			36930,	 -- Monarch Topaz
+			36929,	 -- Huge Citrine
+			36928,	 -- Dreadstone
+			36927,	 -- Twilight Opal
+			36926,	 -- Shadow Crystal
+			36925,	 -- Majestic Zircon
+			36924,	 -- Sky Sapphire
+			36923,	 -- Chalcedony
+			36922,	 -- King's Amber
+			36921,	 -- Autumn's Glow
+			36920,	 -- Sun Crystal
+			36919,	 -- Cardinal Ruby
+			36918,	 -- Scarlet Ruby
+			36917,	 -- Bloodstone
+			36784,	 -- Siren's Tear
+			36783,	 -- Northsea Pearl
+		},
+		[2] = { 	-- BC
+			32249,	 -- Seaspray Emerald
+			32231,	 -- Pyrestone
+			32230,	 -- Shadowsong Amethyst
+			32229,	 -- Lionseye
+			32228,	 -- Empyrean Sapphire
+			32227,	 -- Crimson Spinel
+			31079,	 -- Mercurial Adamantite
+			25868,	 -- Skyfire Diamond
+			25867,	 -- Earthstorm Diamond
+			24479,	 -- Shadow Pearl
+			24478,	 -- Jaggal Pearl
+			24243,	 -- Adamantite Powder
+			23441,	 -- Nightseye
+			23440,	 -- Dawnstone
+			23439,	 -- Noble Topaz
+			23438,	 -- Star of Elune
+			23437,	 -- Talasite
+			23436,	 -- Living Ruby
+			23117,	 -- Azure Moonstone
+			23112,	 -- Golden Draenite
+			23107,	 -- Shadow Draenite
+			23079,	 -- Deep Peridot
+			23077,	 -- Blood Garnet
+			21929,	 -- Flame Spessarite
+			21752,	 -- Thorium Setting
+			20963,	 -- Mithril Filigree
+			20817,	 -- Bronze Setting
+			20816,	 -- Delicate Copper Wire
+		},
+		[1] = { 	-- Classic
+	--		19774,	 -- Souldarite
+			13926,	 -- Golden Pearl
+			12800,	 -- Azerothian Diamond
+			12799,	 -- Large Opal
+			12364,	 -- Huge Emerald
+			12363,	 -- Arcane Crystal
+			12361,	 -- Blue Sapphire
+			11382,	 -- Blood of the Mountain
+			7971,	 -- Black Pearl
+			7910,	 -- Star Ruby
+			7909,	 -- Aquamarine
+			5500,	 -- Iridescent Pearl
+			5498,	 -- Small Lustrous Pearl
+			3864,	 -- Citrine
+			1705,	 -- Lesser Moonstone
+			1529,	 -- Jade
+			1210,	 -- Shadowgem
+			1206,	 -- Moss Agate
+			818,	 -- Tigerseye
+			774,	 -- Malachite
+		},
+	}
+	
+	items.Inscription = {
+		[10] = { -- Dragonflight
+			193904, -- Phoenix Feather Quill
+			193905, -- Iskaaran Trading Ledger
+			194699, -- Draconic Treatise on Inscription
+			198607, -- Scribe's Glyphs
+			198659, -- Forgetful Apprentice's Tome
+			198669, -- How to Train Your Whelpling
+			198686, -- Frosted Parchment
+			198693, -- Dusty Darkmoon Card
+			198703, -- Sign Language Reference Sheet
+			198704, -- Pulsing Earth Rune
+			198971, -- Curious Djaradin Rune
+			198972, -- Draconic Glamour
+			201015, -- Counterfeit Darkmoon Deck
+			201711, -- Notebook of Crafting Knowledge
+		},
+		[9] = { -- Shadowland
+			173065, -- Writ of Grave Robbing
+			180742, -- Scribe's Journal
+		},
+		[8] = { -- BfA
+			159825, -- Scroll of Unlocking
+		},
+		[7] = { 	-- Legion
+		},
+		[6] = { 	-- WoD
+			113361, -- Tattered Scroll
+			113365, -- Ruined Painting
+			113367, -- Waterlogged Book
+			113371, -- Torn Card
+			113376, -- Faintly Magical Vellum
+			113992, -- Scribe's Research Notes
+		},
+		[5] = { 	-- MoP
+			87581, -- Secret Ox Horn Inscription
+			87582, -- Secret Crane Wing Inscription
+			87584, -- Secret Tiger Claw Inscription
+			87585, -- Secret Tiger Fang Inscription
+			87821, -- Coagulated Tiger's Blood
+		},
+		[4] = { 	-- Cataclysm
+		},
+		[3] = { 	-- WolTK
+			37118, -- Scroll of Recall
+			39969, -- Fire Seed
+			44314, -- Scroll of Recall II
+			44315, -- Scroll of Recall III
+			45912, -- Book of Glyph Mastery
+		},
+		[2] = { 	-- BC
+		},
+		[1] = { 	-- Classic
+		},
+	}
+end
+
+
 --[[
 items.quest = { -- quest item which is stable
+	[10] = { -- Dragonflight
+	},
 	[9] = { -- Shadowland
 	},
 	[8] = { -- BfA

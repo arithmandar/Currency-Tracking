@@ -100,6 +100,7 @@ constants.itemCategories = {
 
 if (not WoWClassicEra) then
 	constants.itemCategories["Jewelcrafting"] = getProfessionText(25229)
+	constants.itemCategories["Inscription"] = 	getProfessionText(86008)
 end
 
 -- below to force currency category to be displayed in specific order
@@ -149,6 +150,7 @@ else
 		EXPANSION_NAME6, -- Legion
 		EXPANSION_NAME7, -- Battle for Azeroth
 		EXPANSION_NAME8, -- Shadowlands
+		EXPANSION_NAME9, -- Dragonflight
 	}
 end
 
