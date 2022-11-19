@@ -99,7 +99,7 @@ constants.itemCategories = {
 
 if (WoWWOTLKC or WoWRetail) then
 	constants.itemCategories["Jewelcrafting"] = getProfessionText(25229)
-	constants.itemCategories["Inscription"] = 	getProfessionText(86008)
+	constants.itemCategories["Inscription"] = 	getProfessionText(45357)
 end
 
 -- below to force currency category to be displayed in specific order
@@ -181,11 +181,11 @@ elseif (WoWWOTLKC) then
 		"BATTLEFIELDS_SHOW",
 		"BATTLEFIELDS_CLOSED",
 		"BAG_UPDATE",
-		"TRADE_CURRENCY_CHANGED",
+--		"TRADE_CURRENCY_CHANGED",
 --		"ARTIFACT_UPDATE",
 --		"ARTIFACT_XP_UPDATE",
 		"TRADE_PLAYER_ITEM_CHANGED",
-		"PLAYER_TRADE_CURRENCY",
+--		"PLAYER_TRADE_CURRENCY",
 		"CHAT_MSG_CURRENCY",
 --		"SHIPMENT_CRAFTER_REAGENT_UPDATE",
 		"CURRENCY_DISPLAY_UPDATE",
