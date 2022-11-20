@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v7.06 (Nov. 20, 2022)
+-----------------------
+- Fixed issue that option panel can't be opened
+
 * v7.05 (Nov. 19, 2022)
 -----------------------
 - Added more Dragonflight items

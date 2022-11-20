@@ -97,7 +97,7 @@ constants.itemCategories = {
 	["Cooking"] = 		getProfessionText(2550),
 }
 
-if (WoWWOTLKC or WoWRetail) then
+if (WoWWOTLKC or WoWRetail or WoWDragonflight) then
 	constants.itemCategories["Jewelcrafting"] = getProfessionText(25229)
 	constants.itemCategories["Inscription"] = 	getProfessionText(45357)
 end
