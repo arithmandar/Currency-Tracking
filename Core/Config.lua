@@ -380,14 +380,14 @@ local function getCurrenciesOptions()
 			for index, id in ipairs(v) do
 				-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity, categoryID, categoryName, currencyDesc = lib:GetCurrencyByID(currencyID)
 				local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
-				if not count then count = 0 end
-				if not currencyDesc then 
-					currencyDesc = ""
-				else
-					currencyDesc = currencyDesc.."\n\n"
-				end
-				
-				if icon and name then
+				if icon and name ~= "" then
+					if not count then count = 0 end
+					if not currencyDesc then 
+						currencyDesc = ""
+					else
+						currencyDesc = currencyDesc.."\n\n"
+					end
+					
 					local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon or 0, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, name or "")
 					tg["currency"..index] = {}
 					tg["currency"..index].order = index
@@ -545,7 +545,7 @@ function addon:SetupOptions()
 	self:RegisterModuleOptions("Options", getOptions, L["Options"])
 	self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
 	--addTokenOptionFrame()
-	if (WoWRetail or WoWDragonflight) then
+	if (WoWWOTLKC or WoWRetail or WoWDragonflight) then
 		self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
 	end
 	self:RegisterModuleOptions("Profiles", giveProfiles, L["Profile Options"])

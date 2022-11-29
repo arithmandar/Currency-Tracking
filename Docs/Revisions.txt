@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v7.07 (Nov. 29, 2022)
+-----------------------
+- WOLTKC issue fixed
+
 * v7.06 (Nov. 20, 2022)
 -----------------------
 - Fixed issue that option panel can't be opened

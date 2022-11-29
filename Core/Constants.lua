@@ -102,27 +102,37 @@ if (WoWWOTLKC or WoWRetail or WoWDragonflight) then
 	constants.itemCategories["Inscription"] = 	getProfessionText(45357)
 end
 
--- below to force currency category to be displayed in specific order
-constants.currencyCategories = {
-	--252, --Tuskarr - Fishing Nets (Hidden)
-	--251, -- Dragon Racing UI (Hidden)
-	250, -- Dragonflight
-	248, -- Torghast
-	245, -- Shadowlands
-	143, -- Battle for Azeroth
-	141, -- Legion
-	137, -- Warlords of Draenor
-	133, -- Mists of Pandaria
-	81, -- Cataclysm
-	23, -- Burning Crusade
-	21, -- Wrath of the Lich King
-	2, -- Player vs. Player
-	82, -- Archaeology
-	22, -- Dungeon and Raid
-	144, -- Virtual
-	142, -- Hidden
-	1, -- Miscellaneous
-}
+if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
+	-- below to force currency category to be displayed in specific order
+	constants.currencyCategories = {
+		2, -- Player vs. Player
+		22, -- Dungeon and Raid
+		1, -- Miscellaneous
+	}
+
+else
+	-- below to force currency category to be displayed in specific order
+	constants.currencyCategories = {
+		--252, --Tuskarr - Fishing Nets (Hidden)
+		--251, -- Dragon Racing UI (Hidden)
+		250, -- Dragonflight
+		248, -- Torghast
+		245, -- Shadowlands
+		143, -- Battle for Azeroth
+		141, -- Legion
+		137, -- Warlords of Draenor
+		133, -- Mists of Pandaria
+		81, -- Cataclysm
+		23, -- Burning Crusade
+		21, -- Wrath of the Lich King
+		2, -- Player vs. Player
+		82, -- Archaeology
+		22, -- Dungeon and Raid
+		144, -- Virtual
+		142, -- Hidden
+		1, -- Miscellaneous
+	}
+end
 
 if (WoWClassicEra) then
 	constants.expansions = {
