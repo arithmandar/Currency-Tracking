@@ -4511,6 +4511,7 @@ items.world_events = {
 items.pvp = {
 	[10] = { -- Dragonflight
 		201836, -- Aspects' Token of Merit
+		202184, -- Trophy of Strife
 	},
 	[9] = { -- Shadowland
 	},
