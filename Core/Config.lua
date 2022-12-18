@@ -207,7 +207,7 @@ local function getOptions()
 							desc = L["Reset on-screen currency frame's position."],
 							func = function()
 								addon.frame:SetPoint("TOPLEFT", nil, "TOPLEFT", 150, -80)
-								profile.point = { "TOPLEFT", "UIParent", "TOPLEFT", 150, -80 }
+								profile.latestpoint = { "TOPLEFT", "TOPLEFT", 150, -80 }
 							end,
 							disabled = function() return not addon.db.profile.show_currency end,
 						},
@@ -427,7 +427,7 @@ end
 
 local function getItemOptions()
 	if not profile then profile = addon.db.profile end
-	if not item_list then item_list = addon.db.item_list end
+	if not item_list then item_list = CurrencyTrackingDB.item_list end
 	
 	local function retrieveItems(tp, itemID, n)
 		local itemName, icon, _

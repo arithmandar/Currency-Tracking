@@ -19,16 +19,14 @@ local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local Query = addon:NewModule("Query", "AceEvent-3.0")
 addon.Query = Query
 
-local db
 local item_list
 local SPAM_PROTECT = 0.5
 
 -- codes adopted from AtlasLoot ItemQuery
 
 function Query:OnInitialize()
-	db = addon.db
-	if (db.item_list == nil) then db.item_list = {} end
-	item_list = db.item_list
+	if (CurrencyTrackingDB.item_list == nil) then CurrencyTrackingDB.item_list = {} end
+	item_list = CurrencyTrackingDB.item_list
 end
 
 function Query:OnEnable()

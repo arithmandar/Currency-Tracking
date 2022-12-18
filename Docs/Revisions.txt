@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v7.09 (Dec. 18, 2022)
+-----------------------
+- Enhanced UI position's treatment to prevent from UIParent's object being stored to database
+- Enhanced item's caching storage
+
 * v7.08 (Dec. 15, 2022)
 -----------------------
 - Added PvP item: Trophy of Strife

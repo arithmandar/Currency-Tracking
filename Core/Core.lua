@@ -219,7 +219,7 @@ local function button_OnMouseUp(self, buttonName)
 	if(addon.frame:IsVisible()) then
 		addon.frame:StopMovingOrSizing()
 		local point, relativeTo, relativePoint, xOfs, yOfs = addon.frame:GetPoint()
-		profile.point = { point, relativeTo, relativePoint, xOfs, yOfs }
+		profile.latestpoint = { point, relativePoint, xOfs, yOfs }
 	end
 end
 
@@ -251,7 +251,7 @@ local function button_OnLeave(self)
 end
 
 local function handleTrackedButtons(button, currencyID, itemID)
-	item_list = addon.db.item_list
+	--item_list = addon.db.item_list
 	if not button then return end
 	local buttonName = button:GetName()
 	local bi = tonumber(strsub(buttonName, strlen("CurrencyTrackingButton")+1))
@@ -563,7 +563,7 @@ local function createCurrencyFrame()
 	nf:SetWidth(200)
 	nf:SetHeight(20)
 	nf.Texture = nf:CreateTexture(nil, "BACKGROUND")
-	local point, relativeTo, relativePoint, ofsx, ofsy = unpack(profile.point)
+	local point, relativePoint, ofsx, ofsy = unpack(profile.latestpoint)
 	nf:SetPoint(point or "TOPLEFT", UIParent, relativePoint or "TOPLEFT", ofsx or 150, ofsy or -80)
 	nf:SetClampedToScreen(true)
 	nf:SetMovable(true)
@@ -662,7 +662,10 @@ end
 function addon:OnInitialize()
 	self.db = AceDB:New(addon.Name.."DB", addon.constants.defaults)
 	profile = self.db.profile
-	item_list = self.db.item_list
+	if (CurrencyTrackingDB.item_list == nil) then CurrencyTrackingDB.item_list = {} end
+	item_list = CurrencyTrackingDB.item_list
+	
+	if profile.point then profile.point = nil end
 
 	self.db.RegisterCallback(self, "OnProfileChanged", "Refresh")
 	self.db.RegisterCallback(self, "OnProfileCopied", "Refresh")
