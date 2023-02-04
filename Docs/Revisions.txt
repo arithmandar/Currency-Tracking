@@ -3,6 +3,11 @@
 Revision History:
 =================
 
+* v7.10 (Feb. 04, 2023)
+-----------------------
+- Toc update to support WoW 10.0.2
+- Added new currencies
+
 * v7.09 (Dec. 18, 2022)
 -----------------------
 - Enhanced UI position's treatment to prevent from UIParent's object being stored to database
