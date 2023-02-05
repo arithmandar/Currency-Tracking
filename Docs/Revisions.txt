@@ -3,9 +3,14 @@
 Revision History:
 =================
 
+* v7.11 (Feb. 05, 2023)
+-----------------------
+- Toc update to support WoW 3.4.1
+- Added Champion's Seal to WolTKC
+
 * v7.10 (Feb. 04, 2023)
 -----------------------
-- Toc update to support WoW 10.0.2
+- Toc update to support WoW 10.0.5
 - Added new currencies
 
 * v7.09 (Dec. 18, 2022)
