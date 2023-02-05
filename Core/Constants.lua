@@ -23,7 +23,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local constants = {}
 private.constants = constants
 
-constants.ldb_icon = "Interface\\Icons\\timelesscoin"
 
 local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail, WoWDragonflight
 local wowversion  = select(4, GetBuildInfo())
@@ -37,6 +36,12 @@ elseif wowversion < 100000 then
 	WoWRetail = true
 else
 	WoWDragonflight = true
+end
+
+if (WoWRetail or WoWDragonflight) then
+	constants.ldb_icon = "Interface\\Icons\\timelesscoin"
+else
+	constants.ldb_icon = 237547
 end
 
 constants.defaults = {

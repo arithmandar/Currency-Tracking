@@ -7,6 +7,7 @@ Revision History:
 -----------------------
 - Toc update to support WoW 3.4.1
 - Added Champion's Seal to WolTKC
+- Fixed icon was missing in LDB while in WolTKC
 
 * v7.10 (Feb. 04, 2023)
 -----------------------
