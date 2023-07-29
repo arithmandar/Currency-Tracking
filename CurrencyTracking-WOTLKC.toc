@@ -1,4 +1,4 @@
-## Interface: 30401
+## Interface: 30402
 #@non-debug@
 ## Title: @localization(locale="enUS", key="Title", namespace="ToC")@
 ## Title-deDE: @localization(locale="deDE", key="Title", namespace="ToC")@
@@ -48,6 +48,7 @@
 ## X-License: GPLv2
 ## X-Category: Information
 ## X-Localizations: enUS, zhTW, deDE, zhCN, koKR, ruRU
+## IconTexture: Interface\Icons\timelesscoin
 
 Libs\Libs.xml
 
