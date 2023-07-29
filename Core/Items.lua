@@ -910,7 +910,6 @@ items.Herbalism = {
 		765, -- Silverleaf
 	},
 }
-
 items.Engineering = {
 	[10] = { -- Dragonflight
 		190315, -- Rousing Earth
@@ -1097,6 +1096,7 @@ items.Engineering = {
 items.Alchemy = {
 	-- https://www.wowhead.com/items?filter=87:194:166;1:1:10;0:1:0
 	[10] = { -- Dragonflight
+		189143, -- Draconium Ore
 		190316, -- Awakened Earth
 		190321, -- Awakened Fire
 		190324, -- Awakened Order
@@ -1104,13 +1104,28 @@ items.Alchemy = {
 		190327, -- Awakened Air
 		190328, -- Rousing Frost
 		190329, -- Awakened Frost
+		190330, -- Rousing Decay
 		190331, -- Awakened Decay
-		190453, -- Spark of Ingenuity
-		190454, -- Primal Chaos
 		190456, -- Artisan's Mettle
+		191339, -- Phial of Tepid Versatility
+		191357, -- Phial of Elemental Chaos
+		191363, -- Potion of Frozen Focus
+		191387, -- Elemental Potion of Power
+		191460, -- Hochenblume
+		191464, -- Saxifrage
+		191467, -- Bubble Poppy
+		191470, -- Writhebark
+		191474, -- Draconic Vial
+		191493, -- Primal Convergent
+		191496, -- Omnium Draconis
 		191570, -- Dragon's Alchemical Solution
+		193368, -- Silken Gemdust
+		194727, -- Fiery Spirit
 		201405, -- Tuft of Primal Wool
-		201406, -- Glowing Titan Orb
+		203398, -- Dampening Powder
+		204460, -- Zaralek Glowspores
+		204463, -- Dracothyst
+		-- potions
 		-- https://www.wowhead.com/items/consumables/potions?filter=166;10;0
 		191351, -- Potion of Frozen Fatality
 		191352, -- Potion of Frozen Fatality
