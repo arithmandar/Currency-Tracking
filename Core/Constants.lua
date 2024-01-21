@@ -140,6 +140,7 @@ else
 	}
 end
 
+-- Expansion List
 if (WoWClassicEra) then
 	constants.expansions = {
 		EXPANSION_NAME0, -- Classic
@@ -157,19 +158,20 @@ elseif (WoWWOTLKC) then
 }
 else
 	constants.expansions = {
-		EXPANSION_NAME0, -- Classic
-		EXPANSION_NAME1, -- The Burning Crusade
-		EXPANSION_NAME2, -- Wrath of the Lich King
-		EXPANSION_NAME3, -- Cataclysm
-		EXPANSION_NAME4, -- Mists of Pandaria
-		EXPANSION_NAME5, -- Warlords of Draenor
-		EXPANSION_NAME6, -- Legion
-		EXPANSION_NAME7, -- Battle for Azeroth
-		EXPANSION_NAME8, -- Shadowlands
 		EXPANSION_NAME9, -- Dragonflight
+		EXPANSION_NAME8, -- Shadowlands
+		EXPANSION_NAME7, -- Battle for Azeroth
+		EXPANSION_NAME6, -- Legion
+		EXPANSION_NAME5, -- Warlords of Draenor
+		EXPANSION_NAME4, -- Mists of Pandaria
+		EXPANSION_NAME3, -- Cataclysm
+		EXPANSION_NAME2, -- Wrath of the Lich King
+		EXPANSION_NAME1, -- The Burning Crusade
+		EXPANSION_NAME0, -- Classic
 	}
 end
 
+-- Events
 if (WoWClassicEra or WoWClassicTBC) then
 	constants.events = {
 		"PLAYER_REGEN_ENABLED",
@@ -192,20 +194,12 @@ elseif (WoWWOTLKC) then
 	constants.events = {
 		"PLAYER_REGEN_ENABLED",
 		"PLAYER_REGEN_DISABLED",
---		"PET_BATTLE_OPENING_START",
---		"PET_BATTLE_CLOSE",
 		"BATTLEFIELDS_SHOW",
 		"BATTLEFIELDS_CLOSED",
 		"BAG_UPDATE",
---		"TRADE_CURRENCY_CHANGED",
---		"ARTIFACT_UPDATE",
---		"ARTIFACT_XP_UPDATE",
 		"TRADE_PLAYER_ITEM_CHANGED",
---		"PLAYER_TRADE_CURRENCY",
 		"CHAT_MSG_CURRENCY",
---		"SHIPMENT_CRAFTER_REAGENT_UPDATE",
 		"CURRENCY_DISPLAY_UPDATE",
-		-- Money
 		"PLAYER_MONEY",
 		"PLAYER_TRADE_MONEY",
 		"TRADE_MONEY_CHANGED",

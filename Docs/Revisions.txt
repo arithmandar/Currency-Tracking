@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v7.15 (Jan. 21, 2024)
+-----------------------
+- Toc update to support WoW 10.2.5 / 3.4.3 / 1.15.0
+
 * v7.14 (Jul. 29, 2023)
 -----------------------
 - Added more Alchemy items
