@@ -29,6 +29,9 @@ end
 
 items.Tailoring = {
 	[10] = { -- Dragonflight
+		-- Reagent for tailoring 
+		-- https://www.wowhead.com/items?filter=87:194:82;10:1:2;0:1:100000
+		-- and more
 		190321, -- Awakened Fire
 		190324, -- Awakened Order
 		190327, -- Awakened Air
@@ -38,24 +41,24 @@ items.Tailoring = {
 		190453, -- Spark of Ingenuity
 		190454, -- Primal Chaos
 		190456, -- Artisan's Mettle
-		192872, -- Fractured Glass
-		193053, -- Contoured Fowlfeather
-		193360, -- Centaur's Trophy Necklace
-		193919, -- Frosty Soul
-		193921, -- Airy Soul
-		193922, -- Wildercloth
-		194123, -- Chromatic Dust
-		194124, -- Vibrant Shard
-		198397, -- Rainbow Pearl
-		200113, -- Resonant Crystal
-		201401, -- Iridescent Plume
-		201404, -- Tallstrider Sinew
-		201405, -- Tuft of Primal Wool
+		191460, -- Hochenblume
+		191496, -- Omnium Draconis
 		192095, -- Spool of Wilderthread
 		192096, -- Spool of Wilderthread
 		192097, -- Spool of Wilderthread
+		192872, -- Fractured Glass
+		192887, -- Elemental Harmony
 		193050, -- Tattered Wildercloth
 		193053, -- Contoured Fowlfeather
+		193053, -- Contoured Fowlfeather
+		193216, -- Dense Hide
+		193360, -- Centaur's Trophy Necklace
+		193898, -- Umbral Bone Needle
+		193899, -- Primalweave Spindle
+		193368, -- Silken Gemdust
+		193919, -- Frosty Soul
+		193921, -- Airy Soul
+		193922, -- Wildercloth
 		193922, -- Wildercloth
 		193923, -- Decayed Wildercloth
 		193924, -- Frostbitten Wildercloth
@@ -75,9 +78,14 @@ items.Tailoring = {
 		193938, -- Azureweave Bolt
 		193939, -- Azureweave Bolt
 		193940, -- Azureweave Bolt
-		193898, -- Umbral Bone Needle
-		193899, -- Primalweave Spindle
+		194008, -- Vibrant Spellthread
+		194011, -- Frozen Spellthread
+		194014, -- Temporal Spellthread
+		194123, -- Chromatic Dust
+		194124, -- Vibrant Shard
 		194698, -- Draconic Treatise on Tailoring
+		194727, -- Fiery Spirit
+		198397, -- Rainbow Pearl
 		198609, -- Tailoring Examples
 		198662, -- Intriguing Bolt of Blue Cloth
 		198680, -- Decaying Brackenhide Blanket
@@ -87,9 +95,18 @@ items.Tailoring = {
 		198702, -- Itinerant Singed Fabric
 		198977, -- Ohn'arhan Weave
 		198978, -- Stupidly Effective Stitchery
+		200113, -- Resonant Crystal
 		201019, -- Ancient Dragonweave Bolt
 		201020, -- Silky Surprise
+		201401, -- Iridescent Plume
+		201404, -- Tallstrider Sinew
+		201405, -- Tuft of Primal Wool
 		201715, -- Notebook of Crafting Knowledge
+		203406, -- Torn Morqut Kite
+		204460, -- Zaralek Glowspores
+		207702, -- Wartorn Scrap
+		208212, -- Dreaming Essence
+
 	},
 	[9] = { -- Shadowland
 		-- 9.2.5 Eternity's End
@@ -1196,6 +1213,21 @@ items.Alchemy = {
 		198964, -- Elementious Splinter
 		201003, -- Furry Gloop
 		201706, -- Notebook of Crafting Knowledge
+		207021, -- Dreamwalker's Healing Potion
+		207022, -- Dreamwalker's Healing Potion
+		207023, -- Dreamwalker's Healing Potion
+		207039, -- Potion of Withering Dreams
+		207040, -- Potion of Withering Dreams
+		207041, -- Potion of Withering Dreams
+		210982, -- Draught of Power
+		210983, -- Draught of Stamina
+		210984, -- Draught of Critical Strike
+		210985, -- Draught of Haste
+		210986, -- Draught of Speed
+		210987, -- Draught of Leech
+		210988, -- Draught of Regeneration
+		210989, -- Draught of Mastery
+		210990, -- Draught of Versatility
 	},
 	[9] = { -- Shadowland
 		180734, -- Alchemist's Journal
@@ -1870,6 +1902,7 @@ items.Fishing = {
 	[10] = { -- Dragonflight
 		199340, -- Gold Coin of the Isles
 		199338, -- Copper Coin of the Isles
+		210470, -- Echoed Ephemera
 	},
 	[9] = { -- Shadowland
 		187712,	 -- Precursor Placoderm Bait
@@ -3248,6 +3281,10 @@ items.others = {
 		202105, -- Rusted Coin of the Isles
 		202107, -- Shadowscrawled Coin
 		202173, -- Magmote
+		210014, -- Mysterious Ageless Seeds
+		210791, -- Fragment of Emberscar
+		210792, -- Fragment of Emberscar
+		210793, -- Fragment of Emberscar
 	},
 	[9] = { -- Shadowland
 		191031,	 -- Packaged Soul Cinders
@@ -4364,6 +4401,12 @@ items.world_events = {
 	[10] = { -- Dragonflight
 		199211, -- Primeval Essence
 		201423, -- Hallowed Helm
+		202162, -- Rumble Coin
+		202395, -- Rumble Foil
+		202398, -- Gold Rumble Foil
+		203683, -- Ward of Fyrakk
+		203430, -- Ward of Igira
+		203710, -- Everburning Key
 	},
 	[9] = { -- Shadowland
 	},
