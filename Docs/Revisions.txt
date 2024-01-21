@@ -3,6 +3,15 @@
 Revision History:
 =================
 
+* v7.16 (Jan. 21, 2024)
+-----------------------
+- Fixed items' expansion order
+- Added items:
+  - Ward of Fyrakk, Ward of Igira, Everburning Key, Echoed Ephemera, Rumble Foil, Rumble Coin,
+  - Fragment of Emberscar, Mysterious Ageless Seeds, Gold Rumble Foil
+- Added more potions
+- Added more reagents for tailoring
+
 * v7.15 (Jan. 21, 2024)
 -----------------------
 - Toc update to support WoW 10.2.5 / 3.4.3 / 1.15.0
