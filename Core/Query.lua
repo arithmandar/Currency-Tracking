@@ -7,7 +7,8 @@ local _G = getfenv(0)
 -- Libraries
 local format = string.format
 -- WoW
-local GetItemCount, GetItemInfo = _G.GetItemCount, _G.GetItemInfo
+local C_Item = _G.C_Item
+local GetItemCount, GetItemInfo = C_Item.GetItemCount, C_Item.GetItemInfo
 local GetTime, CreateFrame = _G.GetTime, _G.CreateFrame
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -74,7 +75,7 @@ function Query.ScanItems()
 		item.itemName = itemName
 		item.itemLink = itemLink
 		item.icon = icon
-		Query.RefreshItem(item)	
+		Query.RefreshItem(item)
 	end
 
 	for k, v in pairs(addon.items) do

@@ -11,23 +11,35 @@ local tsort = table.sort
 local string = _G.string
 -- Libraries
 local format = string.format
+
+-- Determine WoW client family
+local _, _, _, interfaceVersion = GetBuildInfo()
+local projectID = WOW_PROJECT_ID
+
+local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
+local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
+local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
+
+-- Beta-only fallback:
+-- Replace these bounds with values verified from the actual Forever client.
+local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+
+local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
+local isClassicEra = projectID == PROJECT_CLASSIC
+local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
+local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
+local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
+local isProgressionClassic = isCataclysmClassic or isMistsClassic
+local isClassicForever = isForeverBeta
+local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic or isClassicForever
+
 -- WoW
-local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = _G.GetSpellTexture, _G.GetSpellInfo, _G.GetItemInfo, _G.GetItemCount
+local C_Item, C_Spell = _G.C_Item, _G.C_Spell
+local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = C_Spell.GetSpellTexture, C_Spell.GetSpellInfo, C_Item.GetItemInfo, C_Item.GetItemCount
 local GetLocale = _G.GetLocale
 
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail, WoWDragonflight
-local wowversion  = select(4, GetBuildInfo())
-if wowversion < 20000 then
-	WoWClassicEra = true
-elseif wowversion < 30000 then 
-	WoWClassicTBC = true
-elseif wowversion < 40000 then 
-	WoWWOTLKC = true
-elseif wowversion < 100000 then
-	WoWRetail = true
-else
-	WoWDragonflight = true
-end
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
@@ -37,6 +49,7 @@ local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local LibCurrencyInfo = LibStub:GetLibrary("LibCurrencyInfo")
 
+local OpenSettingsPanel = C_SettingsUtil and C_SettingsUtil.OpenSettingsPanel
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 local AceDBOptions = LibStub("AceDBOptions-3.0")
@@ -369,41 +382,43 @@ local function getCurrenciesOptions()
 		for ki,vi in ipairs(addon.constants.currencyCategories) do
 			local k = vi
 			local v = LibCurrencyInfo.data.CurrencyByCategory[k]
-			t["group"..i] = {}
-			t["group"..i].order = i
-			t["group"..i].type = "group"
-			t["group"..i].name = LibCurrencyInfo:GetCurrencyCategoryNameByCategoryID(k, lang)
-			t["group"..i].args = { }
-			local j = 1
-			local tg = t["group"..i].args
+			if v then
+				t["group"..i] = {}
+				t["group"..i].order = i
+				t["group"..i].type = "group"
+				t["group"..i].name = LibCurrencyInfo:GetCurrencyCategoryNameByCategoryID(k, lang)
+				t["group"..i].args = { }
+				local j = 1
+				local tg = t["group"..i].args
 
-			for index, id in ipairs(v) do
-				-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity, categoryID, categoryName, currencyDesc = lib:GetCurrencyByID(currencyID)
-				local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
-				if icon and name ~= "" then
-					if not count then count = 0 end
-					if not currencyDesc then 
-						currencyDesc = ""
-					else
-						currencyDesc = currencyDesc.."\n\n"
+				for index, id in ipairs(v) do
+					-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity, categoryID, categoryName, currencyDesc = lib:GetCurrencyByID(currencyID)
+					local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
+					if icon and name ~= "" then
+						if not count then count = 0 end
+						if not currencyDesc then 
+							currencyDesc = ""
+						else
+							currencyDesc = currencyDesc.."\n\n"
+						end
+						
+						local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon or 0, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, name or "")
+						tg["currency"..index] = {}
+						tg["currency"..index].order = index
+						tg["currency"..index].type = "toggle"
+						tg["currency"..index].name = displayString
+						if (totalMax and totalMax > 0) then
+							tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL_CAP, HIGHLIGHT_FONT_COLOR_CODE, count, totalMax)
+						else
+							tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count)
+						end
+						tg["currency"..index].get = (function() return profile["currencies"][id] end)
+						tg["currency"..index].set = (function() currencyButton_ToggleTrack(id) end)
 					end
-					
-					local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon or 0, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, name or "")
-					tg["currency"..index] = {}
-					tg["currency"..index].order = index
-					tg["currency"..index].type = "toggle"
-					tg["currency"..index].name = displayString
-					if (totalMax and totalMax > 0) then
-						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL_CAP, HIGHLIGHT_FONT_COLOR_CODE, count, totalMax)
-					else
-						tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count)
-					end
-					tg["currency"..index].get = (function() return profile["currencies"][id] end)
-					tg["currency"..index].set = (function() currencyButton_ToggleTrack(id) end)
+					j = j + 1
 				end
-				j = j + 1
+				i = i + 1
 			end
-			i = i + 1
 		end
 	end
 	
@@ -510,19 +525,29 @@ local function getItemOptions()
 end
 
 local function openOptions(openItems)
-	-- open the profiles tab before, so the menu expands
-	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles)
-	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Profiles) -- yes, run twice to force the tre get expanded
-	InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.General)
+	local frames = addon.optionsFrames or {}
+	local frameRefs = addon.optionsFrameRefs or {}
+
 	if (openItems) then
-		InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Items)
-	else
-		if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
-			InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.General)
-		else
-			InterfaceOptionsFrame_OpenToCategory(addon.optionsFrames.Currencies)
+		InterfaceOptionsFrame_OpenToCategory(frames.Items)
+	elseif OpenSettingsPanel then
+		if frames.Profiles then
+			OpenSettingsPanel(frames.Profiles)
 		end
+		if frames.General then
+			OpenSettingsPanel(frames.General)
+		end
+	elseif InterfaceOptionsFrame_OpenToCategory then
+		if frameRefs.Profiles then
+			InterfaceOptionsFrame_OpenToCategory(frameRefs.Profiles)
+		end
+		if frameRefs.General then
+			InterfaceOptionsFrame_OpenToCategory(frameRefs.General)
+		end
+	else
+		
 	end
+
 	if InterfaceOptionsFrame then
 		InterfaceOptionsFrame:Raise()
 	end
@@ -538,14 +563,17 @@ end
 
 function addon:SetupOptions()
 	self.optionsFrames = {}
+	self.optionsFrameRefs = {}
 
-	-- setup options table
+	-- setup options table (root table must expose "general" plus one arg key per registered module, see getAboutPanel)
 	AceConfigReg:RegisterOptionsTable(addon.LocName, getAboutPanel)
-	self.optionsFrames.General = AceConfigDialog:AddToBlizOptions(addon.LocName, nil, nil, "general")
+	local generalFrame, generalCategoryID = AceConfigDialog:AddToBlizOptions(addon.LocName, nil, nil, "general")
+	self.optionsFrames.General = generalCategoryID
+	self.optionsFrameRefs.General = generalFrame
 	self:RegisterModuleOptions("Options", getOptions, L["Options"])
 	self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
 	--addTokenOptionFrame()
-	if (WoWWOTLKC or WoWRetail or WoWDragonflight) then
+	if (isRetail or isProgressionClassic) then
 		self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
 	end
 	self:RegisterModuleOptions("Profiles", giveProfiles, L["Profile Options"])
@@ -560,6 +588,8 @@ end
 -- Output: None.
 function addon:RegisterModuleOptions(name, optionTbl, displayName)
 	moduleOptions[name] = optionTbl
-	self.optionsFrames[name] = AceConfigDialog:AddToBlizOptions(addon.LocName, displayName, addon.LocName, name)
+	local frame, categoryID = AceConfigDialog:AddToBlizOptions(addon.LocName, displayName, addon.LocName, name)
+	self.optionsFrames[name] = categoryID
+	self.optionsFrameRefs[name] = frame
 end
 

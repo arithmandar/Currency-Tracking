@@ -10,33 +10,43 @@ local string, tonumber = _G.string, _G.tonumber
 local format, strsub, strlen, strgmatch = string.format, string.sub, string.len, string.gmatch
 local floor, fmod = math.floor, math.fmod
 -- WoW
-local GetAddOnInfo, GetAddOnMetadata = _G.GetAddOnInfo, _G.GetAddOnMetadata
+local C_AddOns = _G.C_AddOns
+local GetAddOnInfo, GetAddOnMetadata = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnMetadata
 local GameTooltip = _G.GameTooltip
 local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
-local GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
-local GetItemInfoInstant, GetItemCount, GetItemInfo, GetItemIcon = _G.GetItemInfoInstant, _G.GetItemCount, _G.GetItemInfo, _G.GetItemIcon
-local UnitName, GetRealmName = _G.UnitName, _G.GetRealmName
+local C_Item = _G.C_Item
+local GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo
+local  GetItemCount, GetItemInfo, GetItemIcon = C_Item.GetItemCount, C_Item.GetItemInfo, C_Item.GetItemIcon
 local GetMoney = _G.GetMoney
 local GetLocale = _G.GetLocale
 
 local GetBuildInfo = _G.GetBuildInfo
+-- Determine WoW client family
+local _, _, _, interfaceVersion = GetBuildInfo()
+local projectID = WOW_PROJECT_ID
 
--- Determine WoW TOC Version
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
-local wowversion  = select(4, GetBuildInfo())
-if wowversion < 20000 then
-	WoWClassicEra = true
-elseif wowversion < 30000 then 
-	WoWClassicTBC = true
-elseif wowversion < 40000 then 
-	WoWWOTLKC = true
-elseif wowversion > 90000 then
-	WoWRetail = true
-else
-	-- n/a
-end
+local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
+local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
+local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
 
-if (WoWRetail) then
+-- Beta-only fallback:
+-- Replace these bounds with values verified from the actual Forever client.
+local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+
+local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
+local isClassicEra = projectID == PROJECT_CLASSIC
+local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
+local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
+local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
+local isProgressionClassic = isCataclysmClassic or isMistsClassic
+local isClassicForever = isForeverBeta
+-- For API calls, Classic Forever is using same APIs with the mainline client.
+local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic
+
+if (isRetail) then
+	local C_CurrencyInfo = _G.C_CurrencyInfo
 	GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = C_CurrencyInfo.GetCurrencyListSize, C_CurrencyInfo.GetCurrencyListInfo, C_CurrencyInfo.GetCurrencyInfo
 else
 	GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
@@ -61,8 +71,8 @@ addon.constants = private.constants
 addon.items = private.items
 addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
-local _
-_, addon.LocName, addon.Notes = GetAddOnInfo(addon.Name)
+addon.LocName = select(2, GetAddOnInfo(addon.Name))
+addon.Notes = select(3, GetAddOnInfo(addon.Name))
 -- ToC Metadata
 addon.Version 		= GetAddOnMetadata(addon.Name, "Version")
 addon.UpdateDate 	= GetAddOnMetadata(addon.Name, "X-Date")
@@ -164,7 +174,7 @@ local function getTooltipText()
 		-- // GetCurrencyListInfo() syntax:
 		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index)
 		local name, isHeader, isUnused, count, icon, _
-		if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
+		if (isAnyClassic) then
 			name, isHeader, _, isUnused, _, count, icon = GetCurrencyListInfo(i)
 		else
 			local curr = GetCurrencyListInfo(i)
@@ -232,7 +242,7 @@ local function button_OnEnter(self)
 		if (not GameTooltip:IsShown()) then
 			GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -10, 0)
 			GameTooltip.NineSlice:SetCenterColor(0, 0, 0, profile.tooltip_alpha)
-			GameTooltip:SetText("|cFFFFFFFF"..L["CT_TITLE"], 1, 1, 1, nil, 1)
+			GameTooltip:SetText("|cFFFFFFFF"..L["CT_TITLE"], 1, 1, 1, nil, true)
 			local tooltip = getTooltipText()
 			if (tooltip) then
 				addTooltipText(tooltip)
@@ -270,7 +280,7 @@ local function handleTrackedButtons(button, currencyID, itemID)
 	local itemName, itemLink, count, icon, _
 	local width = 15
 	if (currencyID) then 
-		if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
+		if (isAnyClassic) then
 			_, count, icon = GetCurrencyInfo(currencyID) 
 		else
 			local curr = GetCurrencyInfo(currencyID)
@@ -385,7 +395,7 @@ local function currencyButton_Update()
 	for currencyID, v in pairs(profile["currencies"]) do
 		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
 			local _, count
-			if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
+			if (isAnyClassic) then
 				_, count = GetCurrencyInfo(currencyID)
 			else
 				local curr = GetCurrencyInfo(currencyID)
@@ -465,7 +475,7 @@ local function currencyString_Update()
 	for currencyID, v in pairs(profile["currencies"]) do
 		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
 			local _, count, icon
-			if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
+			if (isAnyClassic) then
 				_, count, icon = GetCurrencyInfo(currencyID)
 			else
 				local curr = GetCurrencyInfo(currencyID)
@@ -586,7 +596,7 @@ local function setupLDB()
 		if not tooltip or not tooltip.AddLine then return end
 		local tooltiptxt = getTooltipText()
 		GameTooltip.NineSlice:SetCenterColor(0, 0, 0, profile.tooltip_alpha)
-		GameTooltip:SetText(L["CT_TITLE"], 1, 1, 1, nil, 1)
+		GameTooltip:SetText(L["CT_TITLE"], 1, 1, 1, nil, true)
 		if (tooltiptxt) then
 			addTooltipText(tooltiptxt)
 		end

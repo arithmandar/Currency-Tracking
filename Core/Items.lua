@@ -13,19 +13,28 @@ local FOLDER_NAME, private = ...
 local items = {}
 private.items = items
 
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail
-local wowversion  = select(4, GetBuildInfo())
-if wowversion < 20000 then
-	WoWClassicEra = true
-elseif wowversion < 30000 then 
-	WoWClassicTBC = true
-elseif wowversion < 40000 then 
-	WoWWOTLKC = true
-elseif wowversion > 90000 then
-	WoWRetail = true
-else
-	-- n/a
-end
+-- Determine WoW client family
+local GetBuildInfo = _G.GetBuildInfo
+local _, _, _, interfaceVersion = GetBuildInfo()
+local projectID = WOW_PROJECT_ID
+
+local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
+local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
+local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
+
+-- Beta-only fallback:
+-- Replace these bounds with values verified from the actual Forever client.
+local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+
+local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
+local isClassicEra = projectID == PROJECT_CLASSIC
+local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
+local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
+local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
+local isProgressionClassic = isCataclysmClassic or isMistsClassic
+local isClassicForever = isForeverBeta
 
 items.Tailoring = {
 	[10] = { -- Dragonflight
@@ -363,6 +372,7 @@ items.Mining = {
 		2770, -- Copper Ore
 	},
 }
+
 items.Leatherworking = {
 	[10] = { -- Dragonflight
 		190316, -- Awakened Earth
@@ -589,6 +599,7 @@ items.Leatherworking = {
 		783, --  Light Hide
 	},
 }
+
 items.Enchanting = {
 	[10] = { -- Dragonflight
 		190315, -- Rousing Earth
@@ -713,6 +724,7 @@ items.Enchanting = {
 		10938, -- Lesser Magic Essence
 	},
 }
+
 items.Herbalism = {
 	[10] = { -- Dragonflight
 		191460, -- Hochenblume
@@ -927,6 +939,7 @@ items.Herbalism = {
 		765, -- Silverleaf
 	},
 }
+
 items.Engineering = {
 	[10] = { -- Dragonflight
 		190315, -- Rousing Earth
@@ -1110,6 +1123,7 @@ items.Engineering = {
 		814,	 -- Flask of Oil
 	},
 }
+
 items.Alchemy = {
 	-- https://www.wowhead.com/items?filter=87:194:166;1:1:10;0:1:0
 	[10] = { -- Dragonflight
@@ -1699,6 +1713,7 @@ items.Alchemy = {
 		118,	 -- Minor Healing Potion
 	},
 }
+
 items.Blacksmithing = {
 	[10] = { -- Dragonflight
 		190316, -- Awakened Earth
@@ -1898,6 +1913,7 @@ items.Blacksmithing = {
 		2862,	 -- Rough Sharpening Stone
 	},
 }
+
 items.Fishing = {
 	[10] = { -- Dragonflight
 		199340, -- Gold Coin of the Isles
@@ -2660,6 +2676,7 @@ items.Fishing = {
 		117,	 -- Tough Jerky
 	},
 }
+
 items.Cooking = {
 	-- https://www.wowhead.com/items?filter=87:194:166;3:1:10;0:1:0
 	[10] = { -- Dragonflight
@@ -3112,6 +3129,7 @@ items.Cooking = {
 		724,	 -- Goretusk Liver Pie
 	},
 }
+
 items.relics = {
 	[10] = { -- Dragonflight
 	},
@@ -3193,6 +3211,7 @@ items.relics = {
 		5273,	 -- Mathystra Relic
 	},
 }
+
 items.others = {
 	[10] = { -- Dragonflight
 		187617, -- Tempered Djaradin Steel
@@ -4397,6 +4416,7 @@ items.others = {
 	},
 
 }
+
 items.world_events = {
 	[10] = { -- Dragonflight
 		199211, -- Primeval Essence
@@ -4566,6 +4586,7 @@ items.world_events = {
 		17194,	 -- Holiday Spices
 	},
 }
+
 items.pvp = {
 	[10] = { -- Dragonflight
 		201836, -- Aspects' Token of Merit
@@ -4635,6 +4656,7 @@ items.pvp = {
 		20560, -- Alterac Valley Mark of Honor
 	},
 }
+
 items.elemental = {
 	[10] = { -- Dragonflight
 		190315, -- Rousing Earth
@@ -4756,6 +4778,7 @@ items.elemental = {
 		7067, -- Elemental Earth
 	},
 }
+
 items.meat = {
 	[10] = { -- Dragonflight
 		194730, -- Scalebelly Mackerel
@@ -5172,7 +5195,7 @@ items.meat = {
 		723, --  Goretusk Liver
 	},
 }
-if not (WoWClassicEra) then
+if not (isRetail or isProgressionClassic) then
 	items.Jewelcrafting = {
 		[10] = { -- Dragonflight
 			190315, -- Rousing Earth

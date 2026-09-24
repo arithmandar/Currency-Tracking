@@ -9,7 +9,33 @@ local string = _G.string
 local format = string.format
 -- WoW
 local GetBuildInfo = _G.GetBuildInfo
-local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = _G.GetSpellTexture, _G.GetSpellInfo, _G.GetItemInfo, _G.GetItemCount
+local C_Item, C_Spell = _G.C_Item, _G.C_Spell
+local GetSpellInfo  =  C_Spell.GetSpellInfo
+local GetItemInfoInstant, GetItemCount, GetItemInfo, GetItemIcon = C_Item.GetItemInfoInstant, C_Item.GetItemCount, C_Item.GetItemInfo, C_Item.GetItemIcon
+
+-- Determine WoW client family
+local _, _, _, interfaceVersion = GetBuildInfo()
+local projectID = WOW_PROJECT_ID
+
+local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
+local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
+local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
+
+-- Beta-only fallback:
+-- Replace these bounds with values verified from the actual Forever client.
+local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+
+local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
+local isClassicEra = projectID == PROJECT_CLASSIC
+local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
+local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
+local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
+local isProgressionClassic = isCataclysmClassic or isMistsClassic
+local isClassicForever = isForeverBeta
+-- For API calls, Classic Forever is using same APIs with the mainline client.
+local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -23,25 +49,12 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local constants = {}
 private.constants = constants
 
-
-local WoWClassicEra, WoWClassicTBC, WoWWOTLKC, WoWRetail, WoWDragonflight
-local wowversion  = select(4, GetBuildInfo())
-if wowversion < 20000 then
-	WoWClassicEra = true
-elseif wowversion < 30000 then 
-	WoWClassicTBC = true
-elseif wowversion < 40000 then 
-	WoWWOTLKC = true
-elseif wowversion < 100000 then
-	WoWRetail = true
+if (isRetail or isProgressionClassic) then
+	constants.ldb_icon = "Interface\\Icons\\wow-token01"
+	--constants.ldb_icon = "Interface\\Icons\\timelesscoin"
 else
-	WoWDragonflight = true
-end
-
-if (WoWRetail or WoWDragonflight) then
-	constants.ldb_icon = "Interface\\Icons\\timelesscoin"
-else
-	constants.ldb_icon = 237547
+	constants.ldb_icon = "Interface\\Icons\\wow-token01"
+	--constants.ldb_icon = 237547
 end
 
 constants.defaults = {
@@ -75,7 +88,12 @@ constants.defaults = {
 
 local function getProfessionText(spellid)
 	if not spellid then return end
-	return format("|T%d:16:16:2:0|t |cffffffff%s|r", GetSpellTexture(spellid), GetSpellInfo(spellid))
+	local spellInfo = GetSpellInfo(spellid)
+	if spellInfo then
+		return format("|T%d:16:16:2:0|t |cffffffff%s|r", spellInfo.iconID, spellInfo.name)
+	else
+		return ""
+	end
 end
 
 local function getItemText(name, iconID)
@@ -85,7 +103,6 @@ end
 
 
 constants.itemCategories = {
-	["relics"] = 		getItemText(INVTYPE_RELIC, 134459),
 	["world_events"] = 	getItemText(BATTLE_PET_SOURCE_7, 133858),
 	["pvp"] = 			getItemText(PVP, 133282),
 	["elemental"] = 	getItemText(L["Elemental"], 136006),
@@ -103,77 +120,26 @@ constants.itemCategories = {
 	["Cooking"] = 		getProfessionText(2550),
 }
 
-if (WoWWOTLKC or WoWRetail or WoWDragonflight) then
+if (isRetail or isProgressionClassic) then
 	constants.itemCategories["Jewelcrafting"] = getProfessionText(25229)
 	constants.itemCategories["Inscription"] = 	getProfessionText(45357)
 end
-
-if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC) then
-	-- below to force currency category to be displayed in specific order
-	constants.currencyCategories = {
-		2, -- Player vs. Player
-		22, -- Dungeon and Raid
-		1, -- Miscellaneous
-	}
-
-else
-	-- below to force currency category to be displayed in specific order
-	constants.currencyCategories = {
-		--252, --Tuskarr - Fishing Nets (Hidden)
-		--251, -- Dragon Racing UI (Hidden)
-		250, -- Dragonflight
-		248, -- Torghast
-		245, -- Shadowlands
-		143, -- Battle for Azeroth
-		141, -- Legion
-		137, -- Warlords of Draenor
-		133, -- Mists of Pandaria
-		81, -- Cataclysm
-		23, -- Burning Crusade
-		21, -- Wrath of the Lich King
-		2, -- Player vs. Player
-		82, -- Archaeology
-		22, -- Dungeon and Raid
-		144, -- Virtual
-		142, -- Hidden
-		1, -- Miscellaneous
-	}
+if (isRetail) then
+	constants.itemCategories["relics"] = 		getItemText(INVTYPE_RELIC, 134459)
 end
 
--- Expansion List
-if (WoWClassicEra) then
-	constants.expansions = {
+-- below to force currency category to be displayed in specific order
+local currencyCategories = {}
+local expansions = {}
+local events = {}
+if (isClassicEra) then
+	currencyCategories = {
+		-- Classic Era doesn't have any currency supported
+	}
+	expansions = {
 		EXPANSION_NAME0, -- Classic
 	}
-elseif (WoWClassicTBC) then
-	constants.expansions = {
-		EXPANSION_NAME0, -- Classic
-		EXPANSION_NAME1, -- The Burning Crusade
-	}
-elseif (WoWWOTLKC) then
-	constants.expansions = {
-		EXPANSION_NAME0, -- Classic
-		EXPANSION_NAME1, -- The Burning Crusade
-		EXPANSION_NAME2, -- Wrath of the Lich King
-}
-else
-	constants.expansions = {
-		EXPANSION_NAME0, -- Classic
-		EXPANSION_NAME1, -- The Burning Crusade
-		EXPANSION_NAME2, -- Wrath of the Lich King
-		EXPANSION_NAME3, -- Cataclysm
-		EXPANSION_NAME4, -- Mists of Pandaria
-		EXPANSION_NAME5, -- Warlords of Draenor
-		EXPANSION_NAME6, -- Legion
-		EXPANSION_NAME7, -- Battle for Azeroth
-		EXPANSION_NAME8, -- Shadowlands
-		EXPANSION_NAME9, -- Dragonflight
-	}
-end
-
--- Events
-if (WoWClassicEra or WoWClassicTBC) then
-	constants.events = {
+	events = {
 		"PLAYER_REGEN_ENABLED",
 		"PLAYER_REGEN_DISABLED",
 		"BATTLEFIELDS_SHOW",
@@ -190,8 +156,54 @@ if (WoWClassicEra or WoWClassicTBC) then
 		"TRIAL_STATUS_UPDATE",
 		"CHAT_MSG_MONEY",
 	}
-elseif (WoWWOTLKC) then
-	constants.events = {
+elseif(isAnniversaryTBC) then
+	currencyCategories = {
+		247, -- Player vs. Player
+	}
+	expansions = {
+		EXPANSION_NAME0, -- Classic
+		EXPANSION_NAME1, -- The Burning Crusade
+	}
+	events = {
+		"PLAYER_REGEN_ENABLED",
+		"PLAYER_REGEN_DISABLED",
+		"BATTLEFIELDS_SHOW",
+		"BATTLEFIELDS_CLOSED",
+		"BAG_UPDATE",
+		"TRADE_PLAYER_ITEM_CHANGED",
+--		"CHAT_MSG_CURRENCY",
+		-- Money
+		"PLAYER_MONEY",
+		"PLAYER_TRADE_MONEY",
+		"TRADE_MONEY_CHANGED",
+		"SEND_MAIL_MONEY_CHANGED",
+		"SEND_MAIL_COD_CHANGED",
+		"TRIAL_STATUS_UPDATE",
+		"CHAT_MSG_MONEY",
+	}
+elseif(isProgressionClassic) then
+	currencyCategories = {
+		133, -- Mists of Pandaria
+		81, -- Cataclysm
+	--	23, -- Burning Crusade
+	--	21, -- Wrath of the Lich King
+	--	4, -- Classic
+		22, -- Dungeon and Raid
+		2, -- Player vs. Player
+		1, -- Miscellaneous
+	--	3, -- Unused
+	--	41, -- Test
+	--	82, -- Archaeology
+	--	89, -- Meta
+	}
+	expansions = {
+		EXPANSION_NAME0, -- Classic
+		EXPANSION_NAME1, -- The Burning Crusade
+		EXPANSION_NAME2, -- Wrath of the Lich King
+		EXPANSION_NAME3, -- Cataclysm
+		EXPANSION_NAME4, -- Mists of Pandaria
+	}
+	events = {
 		"PLAYER_REGEN_ENABLED",
 		"PLAYER_REGEN_DISABLED",
 		"BATTLEFIELDS_SHOW",
@@ -208,9 +220,93 @@ elseif (WoWWOTLKC) then
 		"TRIAL_STATUS_UPDATE",
 		"CHAT_MSG_MONEY",
 	}
-
+elseif (isClassicForever) then
+	currencyCategories = {
+		273, -- Professions & Tradeskills
+		22, -- Dungeon and Raid
+		2, -- Player vs. Player
+		1, -- Miscellaneous
+	}
+	expansions = {
+		EXPANSION_NAME0, -- Classic
+	}
+	events = {
+		"PLAYER_REGEN_ENABLED",
+		"PLAYER_REGEN_DISABLED",
+		"BATTLEFIELDS_SHOW",
+		"BATTLEFIELDS_CLOSED",
+		"BAG_UPDATE",
+		"TRADE_PLAYER_ITEM_CHANGED",
+--		"CHAT_MSG_CURRENCY",
+		-- Money
+		"PLAYER_MONEY",
+		"PLAYER_TRADE_MONEY",
+		"TRADE_MONEY_CHANGED",
+		"SEND_MAIL_MONEY_CHANGED",
+		"SEND_MAIL_COD_CHANGED",
+		"TRIAL_STATUS_UPDATE",
+		"CHAT_MSG_MONEY",
+	}
 else
-	constants.events = {
+	-- below to force currency category to be displayed in specific order
+	currencyCategories = {
+		264, -- Midnight
+		250, -- Dragonflight
+		245, -- Shadowlands
+		143, -- Battle for Azeroth
+		141, -- Legion
+		137, -- Warlords of Draenor
+		133, -- Mists of Pandaria
+		81, -- Cataclysm
+		21, -- Wrath of the Lich King
+		23, -- Burning Crusade
+		4, -- Classic
+	--	278, -- Sites Score UI (Hidden)
+		280, -- Professions
+		281, -- Delves
+		282, -- Crests
+		283, -- Zones
+		284, -- Features
+		268, -- Season 1
+		277, -- Season 2
+		263, -- Season 2
+		265, -- Season 3
+		260, -- War Within
+		266, -- Timerunning
+	--	251, -- Dragon Racing UI (Hidden)
+	--	252, -- Tuskarr - Fishing Nets (Hidden)
+	--	248, -- Torghast UI (Hidden)
+	--	253, -- Test Subcategory 1
+	--	254, -- Test Subcategory 2
+	--	255, -- Test Subcategory 3
+	--	256, -- Test Subcategory 4
+	--	41, -- Test
+	--	246, -- Debug
+		82, -- Archaeology
+		89, -- Meta
+		142, -- Hidden
+		144, -- Virtual
+		2, -- Player vs. Player
+		22, -- Dungeon and Raid
+		1, -- Miscellaneous
+		257, -- Legacy
+	--	3, -- Unused
+	}
+	expansions = {
+		EXPANSION_NAME0, -- Classic
+		EXPANSION_NAME1, -- The Burning Crusade
+		EXPANSION_NAME2, -- Wrath of the Lich King
+		EXPANSION_NAME3, -- Cataclysm
+		EXPANSION_NAME4, -- Mists of Pandaria
+		EXPANSION_NAME5, -- Warlords of Draenor
+		EXPANSION_NAME6, -- Legion
+		EXPANSION_NAME7, -- Battle for Azeroth
+		EXPANSION_NAME8, -- Shadowlands
+		EXPANSION_NAME9, -- Dragonflight
+		EXPANSION_NAME10, -- The War Within
+		EXPANSION_NAME11, -- Midnight
+	}
+	events = {
 		"PLAYER_REGEN_ENABLED",
 		"PLAYER_REGEN_DISABLED",
 		"PET_BATTLE_OPENING_START",
@@ -236,3 +332,7 @@ else
 		"CHAT_MSG_MONEY",
 	}
 end
+
+constants.currencyCategories = currencyCategories
+constants.expansions = expansions
+constants.events = events
