@@ -97,8 +97,11 @@ local function getProfessionText(spellid)
 end
 
 local function getItemText(name, iconID)
-	if not iconID then return end
-	return format("|T%d:16:16:2:0|t |cffffffff%s|r", iconID, name)
+    if not name or not iconID then
+        return ""
+    end
+
+    return format("|T%d:16:16:2:0|t |cffffffff%s|r", iconID, name)
 end
 
 
@@ -112,9 +115,10 @@ constants.itemCategories = {
 	["Mining"] = 		getProfessionText(2575),
 	["Leatherworking"] = getProfessionText(2108),
 	["Enchanting"] = 	getProfessionText(7411),
-	["Herbalism"] = 	getProfessionText(2366),
 	["Engineering"] = 	getProfessionText(4036),
+	["Herbalism"] = 	getProfessionText(2366),
 	["Alchemy"] = 		getProfessionText(2259),
+	["potion"] =        getItemText(L["Potion"], 134743),
 	["Blacksmithing"] = getProfessionText(2018),
 	["Fishing"] = 		getProfessionText(7620),
 	["Cooking"] = 		getProfessionText(2550),

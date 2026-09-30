@@ -1,17 +1,6 @@
 -- $Id$
------------------------------------------------------------------------
--- Upvalued Lua API.
------------------------------------------------------------------------
--- Functions
 local _G = getfenv(0)
--- Libraries
--- ----------------------------------------------------------------------------
--- AddOn namespace.
--- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
-
-local items = {}
-private.items = items
+local _, private = ...
 
 -- Determine WoW client family
 local GetBuildInfo = _G.GetBuildInfo
@@ -35,6 +24,12 @@ local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
 local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
 local isProgressionClassic = isCataclysmClassic or isMistsClassic
 local isClassicForever = isForeverBeta
+
+if not isRetail then return end
+
+local items = {}
+private.items = items
+
 
 items.Tailoring = {
 	[10] = { -- Dragonflight
@@ -1125,594 +1120,1363 @@ items.Engineering = {
 }
 
 items.Alchemy = {
-	-- https://www.wowhead.com/items?filter=87:194:166;1:1:10;0:1:0
-	[10] = { -- Dragonflight
-		189143, -- Draconium Ore
-		190316, -- Awakened Earth
-		190321, -- Awakened Fire
-		190324, -- Awakened Order
-		190326, -- Rousing Air
-		190327, -- Awakened Air
-		190328, -- Rousing Frost
-		190329, -- Awakened Frost
-		190330, -- Rousing Decay
-		190331, -- Awakened Decay
-		190456, -- Artisan's Mettle
-		191339, -- Phial of Tepid Versatility
-		191357, -- Phial of Elemental Chaos
-		191363, -- Potion of Frozen Focus
-		191387, -- Elemental Potion of Power
-		191460, -- Hochenblume
-		191464, -- Saxifrage
-		191467, -- Bubble Poppy
-		191470, -- Writhebark
-		191474, -- Draconic Vial
-		191493, -- Primal Convergent
-		191496, -- Omnium Draconis
-		191570, -- Dragon's Alchemical Solution
-		193368, -- Silken Gemdust
-		194727, -- Fiery Spirit
-		201405, -- Tuft of Primal Wool
-		203398, -- Dampening Powder
-		204460, -- Zaralek Glowspores
-		204463, -- Dracothyst
-		-- potions
-		-- https://www.wowhead.com/items/consumables/potions?filter=166;10;0
-		191351, -- Potion of Frozen Fatality
-		191352, -- Potion of Frozen Fatality
-		191353, -- Potion of Frozen Fatality
-		191360, -- Bottled Putrescence
-		191361, -- Bottled Putrescence
-		191362, -- Bottled Putrescence
-		191363, -- Potion of Frozen Focus
-		191364, -- Potion of Frozen Focus
-		191365, -- Potion of Frozen Focus
-		191366, -- Potion of Chilled Clarity
-		191367, -- Potion of Chilled Clarity
-		191368, -- Potion of Chilled Clarity
-		191369, -- Potion of Withering Vitality
-		191370, -- Potion of Withering Vitality
-		191371, -- Potion of Withering Vitality
-		191372, -- Residual Neural Channeling Agent
-		191373, -- Residual Neural Channeling Agent
-		191374, -- Residual Neural Channeling Agent
-		191375, -- Delicate Suspension of Spores
-		191376, -- Delicate Suspension of Spores
-		191377, -- Delicate Suspension of Spores
-		191378, -- Refreshing Healing Potion
-		191379, -- Refreshing Healing Potion
-		191380, -- Refreshing Healing Potion
-		191381, -- Elemental Potion of Ultimate Power
-		191382, -- Elemental Potion of Ultimate Power
-		191383, -- Elemental Potion of Ultimate Power
-		191384, -- Aerated Mana Potion
-		191385, -- Aerated Mana Potion
-		191386, -- Aerated Mana Potion
-		191387, -- Elemental Potion of Power
-		191388, -- Elemental Potion of Power
-		191389, -- Elemental Potion of Power
-		191393, -- Potion of the Hushed Zephyr
-		191394, -- Potion of the Hushed Zephyr
-		191395, -- Potion of the Hushed Zephyr
-		191396, -- Potion of Gusts
-		191397, -- Potion of Gusts
-		191398, -- Potion of Gusts
-		191399, -- Potion of Shocking Disclosure
-		191400, -- Potion of Shocking Disclosure
-		191401, -- Potion of Shocking Disclosure
-		191905, -- Fleeting Elemental Potion of Power
-		191906, -- Fleeting Elemental Potion of Power
-		191907, -- Fleeting Elemental Potion of Power
-		191912, -- Fleeting Elemental Potion of Ultimate Power
-		191913, -- Fleeting Elemental Potion of Ultimate Power
-		191914, -- Fleeting Elemental Potion of Ultimate Power
-		194337, -- Liquid Courage
-		200121, -- Potion of Beginner's Luck
-		201427, -- Fleeting Sands
-		201428, -- Quicksilver Sands
-		201436, -- Temporally-Locked Sands
-		201438, -- Weary Sands
-		193891, -- Experimental Substance
-		193897, -- Reawakened Catalyst
-		194337, -- Liquid Courage
-		194697, -- Draconic Treatise on Alchemy
-		198599, -- Experimental Decay Sample
-		198608, -- Alchemy Notes
-		198663, -- Frostforged Potion
-		198685, -- Well Insulated Mug
-		198697, -- Contraband Concoction
-		198710, -- Canteen of Suspicious Water
-		198712, -- Firewater Powder Sample
-		198963, -- Decaying Phlegm
-		198964, -- Elementious Splinter
-		201003, -- Furry Gloop
-		201706, -- Notebook of Crafting Knowledge
-		207021, -- Dreamwalker's Healing Potion
-		207022, -- Dreamwalker's Healing Potion
-		207023, -- Dreamwalker's Healing Potion
-		207039, -- Potion of Withering Dreams
-		207040, -- Potion of Withering Dreams
-		207041, -- Potion of Withering Dreams
-		210982, -- Draught of Power
-		210983, -- Draught of Stamina
-		210984, -- Draught of Critical Strike
-		210985, -- Draught of Haste
-		210986, -- Draught of Speed
-		210987, -- Draught of Leech
-		210988, -- Draught of Regeneration
-		210989, -- Draught of Mastery
-		210990, -- Draught of Versatility
-	},
-	[9] = { -- Shadowland
-		180734, -- Alchemist's Journal
-		187850,	 -- Sustaining Armor Polish
-		187827,	 -- Infusion: Corpse Purification
-		187802,	 -- Cosmic Healing Potion
-		187742,	 -- Crafter's Mark of the First Ones
-		187741,	 -- Crafter's Mark IV
-		184090,	 -- Potion of the Psychopomp's Speed
-		183942,	 -- Novice Crafter's Mark
-		183823,	 -- Potion of Unhindered Passing
-		182072,	 -- Bramblethorn Juice
-		182071,	 -- Refined Submission
-		182048,	 -- Crushed Bones
-		182047,	 -- Brutal Oil
-		182026,	 -- Pulverized Breezebloom
-		182025,	 -- Distilled Resolve
-		181984,	 -- Powdered Dreamroot
-		181983,	 -- Liquid Sleep
-		181859,	 -- Flask of Measured Discipline
-		181858,	 -- Draught of Grotesque Strength
-		181857,	 -- Elixir of Humility
-		181375,	 -- Potion of Hibernal Rest
-		180457,	 -- Shadestone
-		176811,	 -- Potion of Sacrificial Anima
-		173384,	 -- Crafter's Mark of the Chained Isle
-		173383,	 -- Crafter's Mark III
-		173382,	 -- Crafter's Mark II
-		173381,	 -- Crafter's Mark I
-		171428,	 -- Shadowghast Ingot
-		171370,	 -- Potion of Specter Swiftness
-		171352,	 -- Potion of Empowered Exorcisms
-		171351,	 -- Potion of Deathly Fixation
-		171350,	 -- Potion of Divine Awakening
-		171349,	 -- Potion of Phantom Fire
-		171301,	 -- Spiritual Anti-Venom
-		171292,	 -- Ground Nightshade
-		171291,	 -- Ground Rising Glory
-		171290,	 -- Ground Marrowroot
-		171289,	 -- Ground Widowbloom
-		171288,	 -- Ground Vigil's Torch
-		171287,	 -- Ground Death Blossom
-		171286,	 -- Embalmer's Oil
-		171285,	 -- Shadowcore Oil
-		171284,	 -- Eternal Cauldron
-		171278,	 -- Spectral Flask of Stamina
-		171276,	 -- Spectral Flask of Power
-		171275,	 -- Potion of Spectral Strength
-		171274,	 -- Potion of Spectral Stamina
-		171273,	 -- Potion of Spectral Intellect
-		171272,	 -- Potion of Spiritual Clarity
-		171271,	 -- Potion of Hardened Shadows
-		171270,	 -- Potion of Spectral Agility
-		171269,	 -- Spiritual Rejuvenation Potion
-		171268,	 -- Spiritual Mana Potion
-		171267,	 -- Spiritual Healing Potion
-		171266,	 -- Potion of the Hidden Spirit
-		171264,	 -- Potion of Shaded Sight
-		171263,	 -- Potion of Soul Purity
-	},
-	[8] = { -- BfA
-		169451,	 -- Abyssal Healing Potion
-		169300,	 -- Potion of Wild Mending
-		169299,	 -- Potion of Unbridled Fury
-		168656,	 -- Greater Mystical Cauldron
-		168654,	 -- Greater Flask of the Undertow
-		168653,	 -- Greater Flask of the Vast Horizon
-		168652,	 -- Greater Flask of Endless Fathoms
-		168651,	 -- Greater Flask of the Currents
-		168529,	 -- Potion of Empowered Proximity
-		168506,	 -- Potion of Focused Resolve
-		168501,	 -- Superior Steelskin Potion
-		168500,	 -- Superior Battle Potion of Strength
-		168499,	 -- Superior Battle Potion of Stamina
-		168498,	 -- Superior Battle Potion of Intellect
-		168489,	 -- Superior Battle Potion of Agility
-		166270,	 -- Potion of the Unveiling Eye
-		163225,	 -- Battle Potion of Stamina
-		163224,	 -- Battle Potion of Strength
-		163223,	 -- Battle Potion of Agility
-		163222,	 -- Battle Potion of Intellect
-		163082,	 -- Coastal Rejuvenation Potion
-		162519,	 -- Mystical Cauldron
-		162461,	 -- Sanguicell
-		162460,	 -- Hydrocore
-		152668,	 -- Expulsom
-		152641,	 -- Flask of the Undertow
-		152640,	 -- Flask of the Vast Horizon
-		152639,	 -- Flask of Endless Fathoms
-		152638,	 -- Flask of the Currents
-		152561,	 -- Potion of Replenishment
-		152560,	 -- Potion of Bursting Blood
-		152559,	 -- Potion of Rising Death
-		152557,	 -- Steelskin Potion
-		152550,	 -- Sea Mist Potion
-		152503,	 -- Potion of Concealment
-		152497,	 -- Lightfoot Potion
-		152496,	 -- Demitri's Draught of Deception
-		152495,	 -- Coastal Mana Potion
-		152494,	 -- Coastal Healing Potion
-	},
-	[7] = { 	-- Legion
-		152615,	 -- Astral Healing Potion
-		151609,	 -- Tears of the Naaru
-		151608,	 -- Lightblood Elixir
-		151568,	 -- Primal Sargerite
-		142117,	 -- Potion of Prolonged Power
-		141323,	 -- Wild Transmutation
-		136653,	 -- Silvery Salve
-		127851,	 -- Spirit Cauldron
-		127850,	 -- Flask of Ten Thousand Scars
-		127849,	 -- Flask of the Countless Armies
-		127848,	 -- Flask of the Seventh Demon
-		127847,	 -- Flask of the Whispered Pact
-		127846,	 -- Leytorrent Potion
-		127845,	 -- Unbending Potion
-		127844,	 -- Potion of the Old War
-		127843,	 -- Potion of Deadly Grace
-		127841,	 -- Skystep Potion
-		127840,	 -- Skaggldrynk
-		127839,	 -- Avalanche Elixir
-		127838,	 -- Sylvan Elixir
-		127837,	 -- Draught of Raw Magic
-		127836,	 -- Ancient Rejuvenation Potion
-		127835,	 -- Ancient Mana Potion
-		127834,	 -- Ancient Healing Potion
-		124124,	 -- Blood of Sargeras
-	},
-	[6] = { 	-- WoD
-		118711,	 -- Draenic Water Walking Elixir
-		118704,	 -- Pure Rage Potion
-		118700,	 -- Secret of Draenor Alchemy
-		118472,	 -- Savage Blood
-		116981,	 -- Fire Ammonite Oil
-		116979,	 -- Blackwater Anti-Venom
-		116276,	 -- Draenic Living Action Potion
-		116271,	 -- Draenic Water Breathing Elixir
-		116268,	 -- Draenic Invisibility Potion
-		116266,	 -- Draenic Swiftness Potion
-		113264,	 -- Sorcerous Air
-		113263,	 -- Sorcerous Earth
-		113262,	 -- Sorcerous Water
-		113261,	 -- Sorcerous Fire
-		112090,	 -- Transmorphic Tincture
-		109226,	 -- Draenic Rejuvenation Potion
-		109223,	 -- Healing Tonic
-		109222,	 -- Draenic Mana Potion
-		109221,	 -- Draenic Channeled Mana Potion
-		109220,	 -- Draenic Versatility Potion
-		109219,	 -- Draenic Strength Potion
-		109218,	 -- Draenic Intellect Potion
-		109217,	 -- Draenic Agility Potion
-		109160,	 -- Greater Draenic Stamina Flask
-		109156,	 -- Greater Draenic Strength Flask
-		109155,	 -- Greater Draenic Intellect Flask
-		109153,	 -- Greater Draenic Agility Flask
-		109152,	 -- Draenic Stamina Flask
-		109148,	 -- Draenic Strength Flask
-		109147,	 -- Draenic Intellect Flask
-		109145,	 -- Draenic Agility Flask
-		109123,	 -- Crescent Oil
-		108996,	 -- Alchemical Catalyst
-	},
-	[5] = { 	-- MoP
-		93351,	 -- Potion of Luck
-		87872,	 -- Desecrated Oil
-		76142,	 -- Sun's Radiance
-		76141,	 -- Imperial Amethyst
-		76140,	 -- Vermilion Onyx
-		76139,	 -- Wild Jade
-		76138,	 -- River's Heart
-		76132,	 -- Primal Diamond
-		76131,	 -- Primordial Ruby
-		76098,	 -- Master Mana Potion
-		76097,	 -- Master Healing Potion
-		76096,	 -- Darkwater Potion
-		76095,	 -- Potion of Mogu Power
-		76094,	 -- Alchemist's Rejuvenation
-		76093,	 -- Potion of the Jade Serpent
-		76092,	 -- Potion of Focus
-		76090,	 -- Potion of the Mountains
-		76089,	 -- Virmen's Bite
-		76088,	 -- Flask of Winter's Bite
-		76087,	 -- Flask of the Earth
-		76086,	 -- Flask of Falling Leaves
-		76085,	 -- Flask of the Warm Sun
-		76084,	 -- Flask of Spring Blossoms
-		76083,	 -- Monk's Elixir
-		76081,	 -- Elixir of Mirrors
-		76080,	 -- Elixir of Perfection
-		76079,	 -- Elixir of Peace
-		76078,	 -- Elixir of the Rapids
-		76077,	 -- Elixir of Weaponry
-		76076,	 -- Mad Hozen Elixir
-		76075,	 -- Mantid Elixir
-		72104,	 -- Living Steel
-		72095,	 -- Trillium Bar
-	},
-	[4] = { 	-- Cataclysm
-		67438,	 -- Flask of Flowing Water
-		67415,	 -- Draught of War
-		65460,	 -- Big Cauldron of Battle
-		62288,	 -- Cauldron of Battle
-		58489,	 -- Potion of Illusion
-		58488,	 -- Potion of Treasure Finding
-		58487,	 -- Potion of Deepholm
-		58480,	 -- Truegold
-		58148,	 -- Elixir of the Master
-		58146,	 -- Golemblood Potion
-		58145,	 -- Potion of the Tol'vir
-		58144,	 -- Elixir of Mighty Speed
-		58143,	 -- Prismatic Elixir
-		58142,	 -- Deathblood Venom
-		58094,	 -- Elixir of Impossible Accuracy
-		58093,	 -- Elixir of Deep Earth
-		58092,	 -- Elixir of the Cobra
-		58091,	 -- Volcanic Potion
-		58090,	 -- Earthen Potion
-		58089,	 -- Elixir of the Naga
-		58088,	 -- Flask of Titanic Strength
-		58087,	 -- Flask of the Winds
-		58086,	 -- Flask of the Draconic Mind
-		58085,	 -- Flask of Steelskin
-		58084,	 -- Ghost Elixir
-		57194,	 -- Potion of Concentration
-		57193,	 -- Mighty Rejuvenation Potion
-		57192,	 -- Mythical Mana Potion
-		57191,	 -- Mythical Healing Potion
-		57099,	 -- Mysterious Potion
-		56850,	 -- Deepstone Oil
-		54464,	 -- Random Volatile Element
-		52303,	 -- Shadowspirit Diamond
-		52195,	 -- Amberjewel
-		52194,	 -- Demonseye
-		52193,	 -- Ember Topaz
-		52192,	 -- Dream Emerald
-		52191,	 -- Ocean Sapphire
-		52190,	 -- Inferno Ruby
-		51950,	 -- Pyrium Bar
-	},
-	[3] = { 	-- WolTK
-		46379,	 -- Flask of Stoneblood
-		46378,	 -- Flask of Pure Mojo
-		46377,	 -- Flask of Endless Rage
-		46376,	 -- Flask of the Frost Wyrm
-		45621,	 -- Elixir of Minor Accuracy
-		44958,	 -- Ethereal Oil
-		44332,	 -- Elixir of Mighty Thoughts
-		44331,	 -- Elixir of Lightning Speed
-		44330,	 -- Elixir of Armor Piercing
-		44329,	 -- Elixir of Expertise
-		44328,	 -- Elixir of Mighty Defense
-		44327,	 -- Elixir of Deadly Strikes
-		44325,	 -- Elixir of Accuracy
-		41334,	 -- Earthsiege Diamond
-		41266,	 -- Skyflare Diamond
-		41163,	 -- Titanium Bar
-		40217,	 -- Mighty Shadow Protection Potion
-		40216,	 -- Mighty Nature Protection Potion
-		40215,	 -- Mighty Frost Protection Potion
-		40214,	 -- Mighty Fire Protection Potion
-		40213,	 -- Mighty Arcane Protection Potion
-		40212,	 -- Potion of Wild Magic
-		40211,	 -- Potion of Speed
-		40195,	 -- Pygmy Oil
-		40109,	 -- Elixir of Mighty Mageblood
-		40097,	 -- Elixir of Protection
-		40093,	 -- Indestructible Potion
-		40087,	 -- Powerful Rejuvenation Potion
-		40081,	 -- Potion of Nightmares
-		40079,	 -- Lesser Flask of Toughness
-		40078,	 -- Elixir of Mighty Fortitude
-		40077,	 -- Crazy Alchemist's Potion
-		40076,	 -- Guru's Elixir
-		40073,	 -- Elixir of Mighty Strength
-		40072,	 -- Elixir of Versatility
-		40070,	 -- Spellpower Elixir
-		40068,	 -- Wrath Elixir
-		40067,	 -- Icy Mana Potion
-		39671,	 -- Resurgent Healing Potion
-		39666,	 -- Elixir of Mighty Agility
-		36934,	 -- Eye of Zul
-		36931,	 -- Ametrine
-		36928,	 -- Dreadstone
-		36925,	 -- Majestic Zircon
-		36922,	 -- King's Amber
-		36919,	 -- Cardinal Ruby
-		36860,	 -- Eternal Fire
-		35627,	 -- Eternal Shadow
-		35625,	 -- Eternal Life
-		35624,	 -- Eternal Earth
-		35623,	 -- Eternal Air
-		35622,	 -- Eternal Water
-		33448,	 -- Runic Mana Potion
-		33447,	 -- Runic Healing Potion
-	},
-	[2] = { 	-- BC
-		34440,	 -- Mad Alchemist's Potion
-		32852,	 -- Cauldron of Major Shadow Protection
-		32851,	 -- Cauldron of Major Nature Protection
-		32850,	 -- Cauldron of Major Frost Protection
-		32849,	 -- Cauldron of Major Fire Protection
-		32839,	 -- Cauldron of Major Arcane Protection
-		32068,	 -- Elixir of Ironskin
-		32067,	 -- Elixir of Draenic Wisdom
-		32063,	 -- Earthen Elixir
-		32062,	 -- Elixir of Major Fortitude
-		31679,	 -- Fel Strength Elixir
-		31677,	 -- Fel Mana Potion
-		31676,	 -- Fel Regeneration Potion
-		28104,	 -- Elixir of Mastery
-		28103,	 -- Adept's Elixir
-		28102,	 -- Onslaught Elixir
-		28101,	 -- Unstable Mana Potion
-		28100,	 -- Volatile Healing Potion
-		25868,	 -- Skyfire Diamond
-		25867,	 -- Earthstorm Diamond
-		23571,	 -- Primal Might
-		22871,	 -- Shrouding Potion
-		22866,	 -- Flask of Pure Death
-		22861,	 -- Flask of Blinding Light
-		22854,	 -- Flask of Relentless Assault
-		22853,	 -- Flask of Mighty Versatility
-		22851,	 -- Flask of Fortification
-		22850,	 -- Super Rejuvenation Potion
-		22849,	 -- Ironshield Potion
-		22848,	 -- Elixir of Empowerment
-		22847,	 -- Major Holy Protection Potion
-		22846,	 -- Major Shadow Protection Potion
-		22845,	 -- Major Arcane Protection Potion
-		22844,	 -- Major Nature Protection Potion
-		22842,	 -- Major Frost Protection Potion
-		22841,	 -- Major Fire Protection Potion
-		22840,	 -- Elixir of Major Mageblood
-		22839,	 -- Destruction Potion
-		22838,	 -- Haste Potion
-		22837,	 -- Heroic Potion
-		22836,	 -- Major Dreamless Sleep Potion
-		22835,	 -- Elixir of Major Shadow Power
-		22834,	 -- Elixir of Major Defense
-		22833,	 -- Elixir of Major Firepower
-		22832,	 -- Super Mana Potion
-		22831,	 -- Elixir of Major Agility
-		22830,	 -- Elixir of the Searching Eye
-		22829,	 -- Super Healing Potion
-		22828,	 -- Insane Strength Potion
-		22827,	 -- Elixir of Major Frost Power
-		22826,	 -- Sneaking Potion
-		22825,	 -- Elixir of Healing Power
-		22824,	 -- Elixir of Major Strength
-		22823,	 -- Elixir of Camouflage
-		22457,	 -- Primal Mana
-		22456,	 -- Primal Shadow
-		22452,	 -- Primal Earth
-		22451,	 -- Primal Air
-		21886,	 -- Primal Life
-		21885,	 -- Primal Water
-		21884,	 -- Primal Fire
-	},
-	[1] = { 	-- Classic
-		21546,	 -- Elixir of Greater Firepower
-		20008,	 -- Living Action Potion
-		20007,	 -- Mageblood Elixir
-		20004,	 -- Mighty Troll's Blood Elixir
-		20002,	 -- Greater Dreamless Sleep Potion
-		19931,	 -- Gurubashi Mojo Madness
-		19440,	 -- Powerful Anti-Venom
-		18294,	 -- Elixir of Greater Water Breathing
-		18253,	 -- Major Rejuvenation Potion
-		17708,	 -- Elixir of Frost Power
-		13512,	 -- Flask of Supreme Power
-		13511,	 -- Flask of Distilled Wisdom
-		13510,	 -- Flask of the Titans
-		13506,	 -- Potion of Petrification
-		13462,	 -- Purification Potion
-		13461,	 -- Greater Arcane Protection Potion
-		13459,	 -- Greater Shadow Protection Potion
-		13458,	 -- Greater Nature Protection Potion
-		13457,	 -- Greater Fire Protection Potion
-		13456,	 -- Greater Frost Protection Potion
-		13455,	 -- Greater Stoneshield Potion
-		13454,	 -- Greater Arcane Elixir
-		13453,	 -- Elixir of Brute Force
-		13452,	 -- Elixir of the Mongoose
-		13447,	 -- Elixir of the Sages
-		13446,	 -- Major Healing Potion
-		13445,	 -- Elixir of Superior Defense
-		13444,	 -- Major Mana Potion
-		13443,	 -- Superior Mana Potion
-		13442,	 -- Mighty Rage Potion
-		13423,	 -- Stonescale Oil
-		12808,	 -- Essence of Undeath
-		12803,	 -- Living Essence
-		12360,	 -- Arcanite Bar
-		12190,	 -- Dreamless Sleep Potion
-		10592,	 -- Catseye Elixir
-		9264,	 -- Elixir of Shadow Power
-		9233,	 -- Elixir of Detect Demon
-		9224,	 -- Elixir of Demonslaying
-		9210,	 -- Ghost Dye
-		9206,	 -- Elixir of Giants
-		9197,	 -- Elixir of Dream Vision
-		9187,	 -- Elixir of Greater Agility
-		9179,	 -- Elixir of Greater Intellect
-		9172,	 -- Invisibility Potion
-		9155,	 -- Arcane Elixir
-		9154,	 -- Elixir of Detect Undead
-		9144,	 -- Wildvine Potion
-		9088,	 -- Gift of Arthas
-		9061,	 -- Goblin Rocket Fuel
-		9030,	 -- Restorative Potion
-		8956,	 -- Oil of Immolation
-		8951,	 -- Elixir of Greater Defense
-		8949,	 -- Elixir of Agility
-		8827,	 -- Elixir of Water Walking
-		7082,	 -- Essence of Air
-		7080,	 -- Essence of Water
-		7078,	 -- Essence of Fire
-		7076,	 -- Essence of Earth
-		7068,	 -- Elemental Fire
-		6662,	 -- Elixir of Giant Growth
-		6453,	 -- Strong Anti-Venom
-		6452,	 -- Anti-Venom
-		6373,	 -- Elixir of Firepower
-		6372,	 -- Swim Speed Potion
-		6371,	 -- Fire Oil
-		6370,	 -- Blackmouth Oil
-		6149,	 -- Greater Mana Potion
-		6052,	 -- Nature Protection Potion
-		6051,	 -- Holy Protection Potion
-		6050,	 -- Frost Protection Potion
-		6049,	 -- Fire Protection Potion
-		6048,	 -- Shadow Protection Potion
-		6037,	 -- Truesilver Bar
-		5997,	 -- Elixir of Minor Defense
-		5996,	 -- Elixir of Water Breathing
-		5634,	 -- Free Action Potion
-		5633,	 -- Great Rage Potion
-		5631,	 -- Rage Potion
-		4623,	 -- Lesser Stoneshield Potion
-		4596,	 -- Discolored Healing Potion
-		3928,	 -- Superior Healing Potion
-		3829,	 -- Frost Oil
-		3828,	 -- Elixir of Detect Lesser Invisibility
-		3827,	 -- Mana Potion
-		3826,	 -- Major Troll's Blood Elixir
-		3825,	 -- Elixir of Fortitude
-		3824,	 -- Shadow Oil
-		3823,	 -- Lesser Invisibility Potion
-		3577,	 -- Gold Bar
-		3391,	 -- Elixir of Ogre's Strength
-		3390,	 -- Elixir of Lesser Agility
-		3389,	 -- Elixir of Defense
-		3388,	 -- Strong Troll's Blood Elixir
-		3387,	 -- Limited Invulnerability Potion
-		3386,	 -- Potion of Curing
-		3385,	 -- Lesser Mana Potion
-		3383,	 -- Elixir of Wisdom
-		3382,	 -- Weak Troll's Blood Elixir
-		2459,	 -- Swiftness Potion
-		2458,	 -- Elixir of Minor Fortitude
-		2457,	 -- Elixir of Minor Agility
-		2456,	 -- Minor Rejuvenation Potion
-		2455,	 -- Minor Mana Potion
-		2454,	 -- Elixir of Lion's Strength
-		1710,	 -- Greater Healing Potion
-		929,	 -- Healing Potion
-		858,	 -- Lesser Healing Potion
-		118,	 -- Minor Healing Potion
-	},
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:12;0:1:0
+    [12] = { -- Midnight
+        236761, -- Tranquility Bloom
+        236770, -- Sanguithorn
+        236774, -- Azeroot
+        236776, -- Argentleaf
+        236778, -- Mana Lily
+        236780, -- Nocturnal Lotus
+        236949, -- Mote of Light
+        236950, -- Mote of Primal Energy
+        236951, -- Mote of Wild Magic
+        236952, -- Mote of Pure Void
+        238365, -- Sin'dorei Swarmer
+        238369, -- Bloomtail Minnow
+        238383, -- Eversong Trout
+        238518, -- Void-Tempered Hide
+        238520, -- Void-Tempered Plating
+        238525, -- Fantastic Fur
+        240991, -- Sunglass Vial
+        241281, -- Composite Flora
+        241283, -- Wondrous Synergist
+        241305, -- Silvermoon Health Potion
+        241307, -- Refreshing Serum
+        242651, -- Stabilized Derivate
+        243599, -- Eversinging Dust
+        243602, -- Radiant Shard
+        247811, -- Oil of Heartwood
+        251283, -- Tormented Tantalum
+        251285, -- Petrified Root
+        274777, -- Neutralized Venom Clot
+        274781, -- Cursebound Globe
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:11;0:1:0
+    [11] = { -- The War Within
+        210796, -- Mycobloom
+        210799, -- Luredrop
+        210802, -- Orbinid
+        210805, -- Blessing Blossom
+        210808, -- Arathor's Spear
+        210814, -- Artisan's Acuity
+        210815, -- Coreway Catalyst
+        210828, -- Dilution Solution
+        211802, -- Ominous Transmutagen
+        211803, -- Mercurial Transmutagen
+        211804, -- Volatile Transmutagen
+        211805, -- Gleaming Transmutagen
+        211806, -- Gilded Vial
+        212245, -- Slumbering Soul Serum
+        212292, -- Vicious Flask of Honor
+        212563, -- Harmonious Horticulture
+        212754, -- Crystalforged Cauldron
+        213197, -- Null Lotus
+        213610, -- Crystalline Powder
+        213611, -- Writhing Sample
+        213612, -- Viridescent Spores
+        213613, -- Leyline Residue
+        213759, -- Inverted Prism
+        221756, -- Vial of Kaheti Oils
+        221758, -- Profaned Tinderbox
+        221763, -- Viridian Charmcap
+        226205, -- Distilled Algari Freshwater
+        242691, -- Olemba Lumber
+        245586, -- Ironwood Lumber
+        248012, -- Dornic Fir Lumber
+        251762, -- Coldwind Lumber
+        251763, -- Bamboo Lumber
+        251764, -- Ashwood Lumber
+        251766, -- Shadowmoon Lumber
+        251767, -- Fel-Touched Lumber
+        251768, -- Darkpine Lumber
+        251772, -- Arden Lumber
+        251773, -- Dragonpine Lumber
+        256963, -- Thalassian Lumber
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:10;0:1:0
+    [10] = { -- Dragonflight
+        189143, -- Draconium Ore
+        190312, -- Khaz'gorite Ore
+        190316, -- Awakened Earth
+        190321, -- Awakened Fire
+        190324, -- Awakened Order
+        190326, -- Rousing Air
+        190327, -- Awakened Air
+        190328, -- Rousing Frost
+        190329, -- Awakened Frost
+        190330, -- Rousing Decay
+        190331, -- Awakened Decay
+        190456, -- Artisan's Mettle
+        191339, -- Phial of Tepid Versatility
+        191357, -- Phial of Elemental Chaos
+        191363, -- Potion of Frozen Focus
+        191369, -- Potion of Withering Vitality
+        191378, -- Refreshing Healing Potion
+        191384, -- Aerated Mana Potion
+        191387, -- Elemental Potion of Power
+        191460, -- Hochenblume
+        191464, -- Saxifrage
+        191467, -- Bubble Poppy
+        191470, -- Writhebark
+        191474, -- Draconic Vial
+        191493, -- Primal Convergent
+        191496, -- Omnium Draconis
+        191570, -- Dragon's Alchemical Solution
+        192883, -- Glossy Stone
+        193368, -- Silken Gemdust
+        194727, -- Fiery Spirit
+        201405, -- Tuft of Primal Wool
+        201406, -- Glowing Titan Orb
+        203398, -- Dampening Powder
+        204460, -- Zaralek Glowspores
+        204463, -- Dracothyst
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:9;0:1:0
+    [9] = { -- Shadowland
+        170554, -- Vigil's Torch
+        171267, -- Spiritual Healing Potion
+        171268, -- Spiritual Mana Potion
+        171276, -- Spectral Flask of Power
+        171285, -- Shadowcore Oil
+        171286, -- Embalmer's Oil
+        171287, -- Ground Death Blossom
+        171288, -- Ground Vigil's Torch
+        171289, -- Ground Widowbloom
+        171290, -- Ground Marrowroot
+        171291, -- Ground Rising Glory
+        171292, -- Ground Nightshade
+        171840, -- Porous Stone
+        171841, -- Shaded Stone
+        173170, -- Essence of Rebirth
+        173202, -- Shrouded Cloth
+        177061, -- Twilight Bark
+        178787, -- Orboreal Shard
+        180457, -- Shadestone
+        180732, -- Rune Etched Vial
+        181983, -- Liquid Sleep
+        181984, -- Powdered Dreamroot
+        181985, -- Fresh Dreamroot Trimmings
+        182025, -- Distilled Resolve
+        182026, -- Pulverized Breezebloom
+        182027, -- Fresh Breezebloom Trimmings
+        182047, -- Brutal Oil
+        182048, -- Crushed Bones
+        182049, -- Bones of Defeated Enemies
+        182071, -- Refined Submission
+        182072, -- Bramblethorn Juice
+        182073, -- Fresh Bramblethorn Trimmings
+        183950, -- Distilled Death Extract
+        183953, -- Sealing Wax
+        187699, -- First Flower
+        187707, -- Progenitor Essentia
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:8;0:1:0
+    [8] = { -- BfA
+        152494, -- Coastal Healing Potion
+        152495, -- Coastal Mana Potion
+        152505, -- Riverbud
+        152506, -- Star Moss
+        152507, -- Akunda's Bite
+        152508, -- Winter's Kiss
+        152509, -- Siren's Pollen
+        152510, -- Anchor Weed
+        152511, -- Sea Stalk
+        152512, -- Monelite Ore
+        152543, -- Sand Shifter
+        152547, -- Great Sea Catfish
+        152576, -- Tidespray Linen
+        152577, -- Deep Sea Satin
+        152579, -- Storm Silver Ore
+        152638, -- Flask of the Currents
+        152639, -- Flask of Endless Fathoms
+        152640, -- Flask of the Vast Horizon
+        152641, -- Flask of the Undertow
+        152668, -- Expulsom
+        154164, -- Blood-Stained Bone
+        154897, -- Stringy Loins
+        154898, -- Meaty Haunch
+        158186, -- Distilled Water
+        162460, -- Hydrocore
+        162461, -- Sanguicell
+        162519, -- Mystical Cauldron
+        165703, -- Breath of Bwonsamdi
+        165948, -- Tidalcore
+        166371, -- Dried Star Moss Leaves
+        166372, -- Sand Shifter Scales
+        166373, -- Storm Silver Shards
+        166374, -- Test Vial
+        168487, -- Zin'anthid
+        168583, -- Widowbloom
+        168586, -- Rising Glory
+        168589, -- Marrowroot
+        168651, -- Greater Flask of the Currents
+        168652, -- Greater Flask of Endless Fathoms
+        168653, -- Greater Flask of the Vast Horizon
+        168654, -- Greater Flask of the Undertow
+        169701, -- Death Blossom
+        170553, -- Void Focus Splinter
+        171315, -- Nightshade
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:7;0:1:0
+    [7] = { -- Legion
+        123918, -- Leystone Ore
+        123919, -- Felslate
+        124101, -- Aethril
+        124102, -- Dreamleaf
+        124103, -- Foxflower
+        124104, -- Fjarnskaggl
+        124105, -- Starlight Rose
+        124106, -- Felwort
+        124107, -- Cursed Queenfish
+        124108, -- Mossgill Perch
+        124109, -- Highmountain Salmon
+        124110, -- Stormray
+        124111, -- Runescale Koi
+        124112, -- Black Barracuda
+        124113, -- Stonehide Leather
+        124115, -- Stormscale
+        124117, -- Lean Shank
+        124118, -- Fatty Bearsteak
+        124119, -- Big Gamy Ribs
+        124120, -- Leyblood
+        124121, -- Wildfowl Egg
+        124124, -- Blood of Sargeras
+        124437, -- Shal'dorei Silk
+        124438, -- Unbroken Claw
+        124439, -- Unbroken Tooth
+        124440, -- Arkhana
+        124444, -- Infernal Brimstone
+        124461, -- Demonsteel Bar
+        127834, -- Ancient Healing Potion
+        127835, -- Ancient Mana Potion
+        127836, -- Ancient Rejuvenation Potion
+        127838, -- Sylvan Elixir
+        127847, -- Flask of the Whispered Pact
+        127848, -- Flask of the Seventh Demon
+        127849, -- Flask of the Countless Armies
+        127850, -- Flask of Ten Thousand Scars
+        128304, -- Yseralline Seed
+        133607, -- Silver Mackerel
+        137595, -- Viscous Transmutagen
+        137596, -- Black Transmutagen
+        137597, -- Oily Transmutagen
+        151565, -- Astral Glory
+        151568, -- Primal Sargerite
+        156930, -- Rich Illusion Dust
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:6;0:1:0
+    [6] = { -- WoD
+        108996, -- Alchemical Catalyst
+        109118, -- Blackrock Ore
+        109119, -- True Iron Ore
+        109123, -- Crescent Oil
+        109124, -- Frostweed
+        109125, -- Fireweed
+        109126, -- Gorgrond Flytrap
+        109127, -- Starflower
+        109128, -- Nagrand Arrowbloom
+        109129, -- Talador Orchid
+        109137, -- Crescent Saberfish Flesh
+        109138, -- Jawless Skulker Flesh
+        109139, -- Fat Sleeper Flesh
+        109140, -- Blind Lake Sturgeon Flesh
+        109141, -- Fire Ammonite Tentacle
+        109142, -- Sea Scorpion Segment
+        109143, -- Abyssal Gulper Eel Flesh
+        109144, -- Blackwater Whiptail Flesh
+        109145, -- Draenic Agility Flask
+        109147, -- Draenic Intellect Flask
+        109148, -- Draenic Strength Flask
+        109152, -- Draenic Stamina Flask
+        109222, -- Draenic Mana Potion
+        109223, -- Healing Tonic
+        113261, -- Sorcerous Fire
+        113262, -- Sorcerous Water
+        113263, -- Sorcerous Earth
+        113264, -- Sorcerous Air
+        117454, -- Gorgrond Grapes
+        118472, -- Savage Blood
+        127759, -- Felblight
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:5;0:1:0
+    [5] = { -- MoP
+        72095, -- Trillium Bar
+        72096, -- Ghost Iron Bar
+        72234, -- Green Tea Leaf
+        72235, -- Silkweed
+        72237, -- Rain Poppy
+        72238, -- Golden Lotus
+        76061, -- Spirit of Harmony
+        76098, -- Master Mana Potion
+        76130, -- Tiger Opal
+        76133, -- Lapis Lazuli
+        76134, -- Sunstone
+        76135, -- Roguestone
+        76136, -- Pandarian Garnet
+        76137, -- Alexandrite
+        76139, -- Wild Jade
+        76140, -- Vermilion Onyx
+        76141, -- Imperial Amethyst
+        79010, -- Snow Lily
+        79011, -- Fool's Cap
+        83064, -- Spinefish
+        87872, -- Desecrated Oil
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:4;0:1:0
+    [4] = { -- Cataclysm
+        51950, -- Pyrium Bar
+        52177, -- Carnelian
+        52178, -- Zephyrite
+        52179, -- Alicite
+        52180, -- Nightstone
+        52181, -- Hessonite
+        52182, -- Jasper
+        52186, -- Elementium Bar
+        52325, -- Volatile Fire
+        52326, -- Volatile Water
+        52327, -- Volatile Earth
+        52328, -- Volatile Air
+        52329, -- Volatile Life
+        52983, -- Cinderbloom
+        52984, -- Stormvine
+        52985, -- Azshara's Veil
+        52986, -- Heartblossom
+        52987, -- Twilight Jasmine
+        52988, -- Whiptail
+        53065, -- Albino Cavefish
+        54849, -- Obsidium Bar
+        56850, -- Deepstone Oil
+        58085, -- Flask of Steelskin
+        58086, -- Flask of the Draconic Mind
+        58087, -- Flask of the Winds
+        58088, -- Flask of Titanic Strength
+        58142, -- Deathblood Venom
+        58480, -- Truegold
+        65892, -- Pyrium-Laced Crystalline Vial
+        65893, -- Sands of Time
+        69237, -- Living Ember
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:3;0:1:0
+    [3] = { -- WolTK
+        33447, -- Runic Healing Potion
+        33448, -- Runic Mana Potion
+        35622, -- Eternal Water
+        35623, -- Eternal Air
+        35624, -- Eternal Earth
+        35625, -- Eternal Life
+        35627, -- Eternal Shadow
+        36860, -- Eternal Fire
+        36901, -- Goldclover
+        36903, -- Adder's Tongue
+        36904, -- Tiger Lily
+        36905, -- Lichbloom
+        36906, -- Icethorn
+        36907, -- Talandra's Rose
+        36908, -- Frost Lotus
+        36913, -- Saronite Bar
+        36917, -- Bloodstone
+        36918, -- Scarlet Ruby
+        36921, -- Autumn's Glow
+        36923, -- Chalcedony
+        36924, -- Sky Sapphire
+        36927, -- Twilight Opal
+        36929, -- Huge Citrine
+        36930, -- Monarch Topaz
+        36932, -- Dark Jade
+        36933, -- Forest Emerald
+        37701, -- Crystallized Earth
+        37702, -- Crystallized Fire
+        37703, -- Crystallized Shadow
+        37704, -- Crystallized Life
+        37705, -- Crystallized Water
+        37921, -- Deadnettle
+        40077, -- Crazy Alchemist's Potion
+        40195, -- Pygmy Oil
+        40199, -- Pygmy Suckerfish
+        41814, -- Glassfin Minnow
+        43102, -- Frozen Orb
+        44958, -- Ethereal Oil
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:2;0:1:0
+    [2] = { -- TBC
+        21840, -- Bolt of Netherweave
+        21884, -- Primal Fire
+        21885, -- Primal Water
+        21886, -- Primal Life
+        21929, -- Flame Spessarite
+        22451, -- Primal Air
+        22452, -- Primal Earth
+        22456, -- Primal Shadow
+        22457, -- Primal Mana
+        22573, -- Mote of Earth
+        22574, -- Mote of Fire
+        22578, -- Mote of Water
+        22785, -- Felweed
+        22786, -- Dreaming Glory
+        22787, -- Ragveil
+        22789, -- Terocone
+        22790, -- Ancient Lichen
+        22791, -- Netherbloom
+        22792, -- Nightmare Vine
+        22793, -- Mana Thistle
+        22794, -- Fel Lotus
+        22861, -- Flask of Blinding Light
+        23077, -- Blood Garnet
+        23079, -- Deep Peridot
+        23107, -- Shadow Draenite
+        23112, -- Golden Draenite
+        23117, -- Azure Moonstone
+        23449, -- Khorium Bar
+        23571, -- Primal Might
+        23573, -- Hardened Adamantite Bar
+        23782, -- Fel Iron Casing
+        25867, -- Earthstorm Diamond
+        25868, -- Skyfire Diamond
+        30183, -- Nether Vortex
+        34440, -- Mad Alchemist's Potion
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;1:1:1;0:1:0
+    [1] = { -- Classic
+        118, -- Minor Healing Potion
+        765, -- Silverleaf
+        785, -- Mageroyal
+        1288, -- Large Venom Sac
+        1475, -- Small Venom Sac
+        2325, -- Black Dye
+        2447, -- Peacebloom
+        2449, -- Earthroot
+        2450, -- Briarthorn
+        2452, -- Swiftthistle
+        2453, -- Bruiseweed
+        3164, -- Discolored Worg Heart
+        3355, -- Wild Steelbloom
+        3356, -- Kingsblood
+        3357, -- Liferoot
+        3358, -- Khadgar's Whisker
+        3369, -- Grave Moss
+        3371, -- Crystal Vial
+        3575, -- Iron Bar
+        3818, -- Fadeleaf
+        3819, -- Dragon's Teeth
+        3820, -- Stranglekelp
+        3821, -- Goldthorn
+        3824, -- Shadow Oil
+        3858, -- Mithril Ore
+        3860, -- Mithril Bar
+        4342, -- Purple Dye
+        4402, -- Small Flame Sac
+        4625, -- Firebloom
+        5635, -- Sharp Claw
+        5637, -- Large Fang
+        6358, -- Oily Blackmouth
+        6359, -- Firefin Snapper
+        6370, -- Blackmouth Oil
+        6371, -- Fire Oil
+        6522, -- Deviate Fish
+        7067, -- Elemental Earth
+        7068, -- Elemental Fire
+        7070, -- Elemental Water
+        7076, -- Essence of Earth
+        7077, -- Heart of Fire
+        7078, -- Essence of Fire
+        7080, -- Essence of Water
+        7082, -- Essence of Air
+        7972, -- Ichor of Undeath
+        8153, -- Wildvine
+        8831, -- Purple Lotus
+        8838, -- Sungrass
+        8839, -- Blindweed
+        8845, -- Ghost Mushroom
+        8846, -- Gromsblood
+        9260, -- Volatile Rum
+        9262, -- Black Vitriol
+        10286, -- Heart of the Wild
+        10620, -- Thorium Ore
+        12359, -- Thorium Bar
+        12360, -- Arcanite Bar
+        12363, -- Arcane Crystal
+        12803, -- Living Essence
+        12804, -- Powerful Mojo
+        12808, -- Essence of Undeath
+        13422, -- Stonescale Eel
+        13423, -- Stonescale Oil
+        13463, -- Dreamfoil
+        13464, -- Golden Sansam
+        13465, -- Mountain Silversage
+        13466, -- Sorrowmoss
+        13467, -- Icecap
+        13468, -- Black Lotus
+        19441, -- Huge Venom Sac
+        19943, -- Massive Mojo
+        20520, -- Dark Rune
+    },
 }
+
+items.potion = {
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;12;0
+    [12] = { -- Midnight
+        241286, -- Light's Preservation
+        241287, -- Light's Preservation
+        241288, -- Potion of Recklessness
+        241289, -- Potion of Recklessness
+        241292, -- Draught of Rampant Abandon
+        241293, -- Draught of Rampant Abandon
+        241294, -- Potion of Devoured Dreams
+        241295, -- Potion of Devoured Dreams
+        241296, -- Potion of Zealotry
+        241297, -- Potion of Zealotry
+        241298, -- Amani Extract
+        241299, -- Amani Extract
+        241300, -- Lightfused Mana Potion
+        241301, -- Lightfused Mana Potion
+        241302, -- Void-Shrouded Tincture
+        241303, -- Void-Shrouded Tincture
+        241304, -- Silvermoon Health Potion
+        241305, -- Silvermoon Health Potion
+        241306, -- Refreshing Serum
+        241307, -- Refreshing Serum
+        241308, -- Light's Potential
+        241309, -- Light's Potential
+        241338, -- Enlightenment Tonic
+        241339, -- Enlightenment Tonic
+        245897, -- Fleeting Light's Potential
+        245898, -- Fleeting Light's Potential
+        245900, -- Fleeting Potion of Zealotry
+        245901, -- Fleeting Potion of Zealotry
+        245902, -- Fleeting Potion of Recklessness
+        245903, -- Fleeting Potion of Recklessness
+        245904, -- Fleeting Potion of Devoured Dreams
+        245905, -- Fleeting Potion of Devoured Dreams
+        245910, -- Fleeting Draught of Rampant Abandon
+        245911, -- Fleeting Draught of Rampant Abandon
+        245916, -- Fleeting Lightfused Mana Potion
+        245917, -- Fleeting Lightfused Mana Potion
+        245918, -- Fleeting Silvermoon Health Potion
+        245919, -- Fleeting Silvermoon Health Potion
+        258138, -- Potent Healing Potion
+        259092, -- Void-Tinged Free Action Potion
+        259245, -- Void Phase Potion
+        268954, -- Entropic Extract
+        268955, -- Entropic Extract
+        271883, -- Concentrated Silvermoon Health Potion
+        271884, -- Concentrated Silvermoon Health Potion
+        271886, -- Liquid Luster
+        271887, -- Liquid Luster
+        271889, -- Alluring Nostrum
+        271890, -- Alluring Nostrum
+        274763, -- Fleeting Liquid Luster
+        274764, -- Fleeting Liquid Luster
+        274765, -- Fleeting Alluring Nostrum
+        274766, -- Fleeting Alluring Nostrum
+        274774, -- Frost-Injected Vapor
+        274775, -- Void Hungerer's Vapor
+        274780, -- Fungal Spore Vapor
+        274782, -- Tether-Severing Vapor
+        274793, -- Mana Barrier Projector
+        274794, -- Shockwave Amplifier
+        278035, -- Ornate Healing Potion
+        279550, -- Potion of Venomous Return
+        280409, -- Potion of Liquid Undeath
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;11;0
+    [11] = { -- The War Within
+        211878, -- Algari Healing Potion
+        211879, -- Algari Healing Potion
+        211880, -- Algari Healing Potion
+        212239, -- Algari Mana Potion
+        212240, -- Algari Mana Potion
+        212241, -- Algari Mana Potion
+        212242, -- Cavedweller's Delight
+        212243, -- Cavedweller's Delight
+        212244, -- Cavedweller's Delight
+        212245, -- Slumbering Soul Serum
+        212246, -- Slumbering Soul Serum
+        212247, -- Slumbering Soul Serum
+        212248, -- Draught of Silent Footfalls
+        212249, -- Draught of Silent Footfalls
+        212250, -- Draught of Silent Footfalls
+        212251, -- Draught of Shocking Revelations
+        212252, -- Draught of Shocking Revelations
+        212253, -- Draught of Shocking Revelations
+        212254, -- Grotesque Vial
+        212255, -- Grotesque Vial
+        212256, -- Grotesque Vial
+        212257, -- Potion of Unwavering Focus
+        212258, -- Potion of Unwavering Focus
+        212259, -- Potion of Unwavering Focus
+        212260, -- Frontline Potion
+        212261, -- Frontline Potion
+        212262, -- Frontline Potion
+        212263, -- Tempered Potion
+        212264, -- Tempered Potion
+        212265, -- Tempered Potion
+        212266, -- Potion of the Reborn Cheetah
+        212267, -- Potion of the Reborn Cheetah
+        212268, -- Potion of the Reborn Cheetah
+        212318, -- QA Algari Healing Potion
+        212319, -- QA Algari Mana Potion
+        212320, -- QA Cavedweller's Delight
+        212321, -- QA Slumbering Soul Serum
+        212322, -- QA Draught of Silent Footfalls
+        212323, -- QA Draught of Shocking Revelations
+        212324, -- QA Grotesque Vial
+        212325, -- QA Potion of Unwavering Focus
+        212326, -- QA Frontline Potion
+        212327, -- QA Tempered Potion
+        212328, -- QA Potion of the Reborn Cheetah
+        212781, -- Formulated Courage
+        212942, -- Fleeting Algari Healing Potion
+        212943, -- Fleeting Algari Healing Potion
+        212944, -- Fleeting Algari Healing Potion
+        212945, -- Fleeting Algari Mana Potion
+        212946, -- Fleeting Algari Mana Potion
+        212947, -- Fleeting Algari Mana Potion
+        212948, -- Fleeting Cavedweller's Delight
+        212949, -- Fleeting Cavedweller's Delight
+        212950, -- Fleeting Cavedweller's Delight
+        212951, -- Fleeting Slumbering Soul Serum
+        212952, -- Fleeting Slumbering Soul Serum
+        212953, -- Fleeting Slumbering Soul Serum
+        212954, -- Fleeting Draught of Silent Footfalls
+        212955, -- Fleeting Draught of Silent Footfalls
+        212956, -- Fleeting Draught of Silent Footfalls
+        212957, -- Fleeting Draught of Shocking Revelations
+        212958, -- Fleeting Draught of Shocking Revelations
+        212959, -- Fleeting Draught of Shocking Revelations
+        212960, -- Fleeting Grotesque Vial
+        212961, -- Fleeting Grotesque Vial
+        212962, -- Fleeting Grotesque Vial
+        212963, -- Fleeting Potion of Unwavering Focus
+        212964, -- Fleeting Potion of Unwavering Focus
+        212965, -- Fleeting Potion of Unwavering Focus
+        212966, -- Fleeting Frontline Potion
+        212967, -- Fleeting Frontline Potion
+        212968, -- Fleeting Frontline Potion
+        212969, -- Fleeting Tempered Potion
+        212970, -- Fleeting Tempered Potion
+        212971, -- Fleeting Tempered Potion
+        212972, -- Fleeting Potion of the Reborn Cheetah
+        212973, -- Fleeting Potion of the Reborn Cheetah
+        212974, -- Fleeting Potion of the Reborn Cheetah
+        218107, -- Sparkbug Jar
+        220756, -- Flickering Torch
+        223287, -- Atomized Salien Slime
+        224811, -- Sugar Shrooms
+        224813, -- Big Cat Whistle
+        224815, -- Charm of the Flame
+        225770, -- Algari Anglerthread
+        225771, -- Algari Seekerthread
+        225784, -- Potion of Polymorphic Translation: Nerubian
+        228756, -- Bonus Snuffling Experience
+        228913, -- Dubious Vial of Vigor
+        233205, -- Go-Go Juice
+        236412, -- "Fireproof" Punch
+        236413, -- "Shockproof" Soda
+        238726, -- Drake Treat
+        239142, -- Bottle of Mysterious Wisdom
+        239247, -- Bonus Experience
+        242371, -- Untethered Xy'bucha
+        242529, -- Shadowtrade Imports
+        243147, -- Ethereal Defense Pylon
+        243219, -- Phased Ethereal Bow
+        244835, -- Invigorating Healing Potion
+        244838, -- Invigorating Healing Potion
+        244839, -- Invigorating Healing Potion
+        244849, -- Fleeting Invigorating Healing Potion
+        248331, -- Umbral Essentia
+        248585, -- Umbral Essentia
+        248586, -- Umbral Essentia
+        251562, -- Tome of Combat Training
+        251631, -- Bottled Time
+        253011, -- Brawler's Healing Brute Punch
+        253014, -- Brawler's Fight Tonic of Strength
+        253015, -- Brawler's Fight Tonic of Agility
+        253016, -- Brawler's Fight Tonic of Intellect
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;10;0
+    [10] = { -- Dragonflight
+        191351, -- Potion of Frozen Fatality
+        191352, -- Potion of Frozen Fatality
+        191353, -- Potion of Frozen Fatality
+        191360, -- Bottled Putrescence
+        191361, -- Bottled Putrescence
+        191362, -- Bottled Putrescence
+        191363, -- Potion of Frozen Focus
+        191364, -- Potion of Frozen Focus
+        191365, -- Potion of Frozen Focus
+        191366, -- Potion of Chilled Clarity
+        191367, -- Potion of Chilled Clarity
+        191368, -- Potion of Chilled Clarity
+        191369, -- Potion of Withering Vitality
+        191370, -- Potion of Withering Vitality
+        191371, -- Potion of Withering Vitality
+        191372, -- Residual Neural Channeling Agent
+        191373, -- Residual Neural Channeling Agent
+        191374, -- Residual Neural Channeling Agent
+        191375, -- Delicate Suspension of Spores
+        191376, -- Delicate Suspension of Spores
+        191377, -- Delicate Suspension of Spores
+        191378, -- Refreshing Healing Potion
+        191379, -- Refreshing Healing Potion
+        191380, -- Refreshing Healing Potion
+        191381, -- Elemental Potion of Ultimate Power
+        191382, -- Elemental Potion of Ultimate Power
+        191383, -- Elemental Potion of Ultimate Power
+        191384, -- Aerated Mana Potion
+        191385, -- Aerated Mana Potion
+        191386, -- Aerated Mana Potion
+        191387, -- Elemental Potion of Power
+        191388, -- Elemental Potion of Power
+        191389, -- Elemental Potion of Power
+        191393, -- Potion of the Hushed Zephyr
+        191394, -- Potion of the Hushed Zephyr
+        191395, -- Potion of the Hushed Zephyr
+        191396, -- Potion of Gusts
+        191397, -- Potion of Gusts
+        191398, -- Potion of Gusts
+        191399, -- Potion of Shocking Disclosure
+        191400, -- Potion of Shocking Disclosure
+        191401, -- Potion of Shocking Disclosure
+        191905, -- Fleeting Elemental Potion of Power
+        191906, -- Fleeting Elemental Potion of Power
+        191907, -- Fleeting Elemental Potion of Power
+        191912, -- Fleeting Elemental Potion of Ultimate Power
+        191913, -- Fleeting Elemental Potion of Ultimate Power
+        191914, -- Fleeting Elemental Potion of Ultimate Power
+        194337, -- Liquid Courage
+        200121, -- Potion of Beginner's Luck
+        201427, -- Fleeting Sands
+        201428, -- Quicksilver Sands
+        201436, -- Temporally-Locked Sands
+        201438, -- Weary Sands
+        203657, -- Toxin Antidote
+        204370, -- Stinky Bright Potion
+        207021, -- Dreamwalker's Healing Potion
+        207022, -- Dreamwalker's Healing Potion
+        207023, -- Dreamwalker's Healing Potion
+        207039, -- Potion of Withering Dreams
+        207040, -- Potion of Withering Dreams
+        207041, -- Potion of Withering Dreams
+        210988, -- Thread of Regeneration
+        217904, -- Timerunner's Draught of Power
+        217905, -- Timerunner's Draught of Health
+        217906, -- Drake Treat
+        217925, -- Bottle of Bees
+        217926, -- Bottle of Dead Bees
+        219220, -- Catch Up Thread
+        220763, -- Bonus Experience
+        220764, -- Bonus Experience
+        224021, -- Survivalist's Healing Potion
+        224022, -- Survivalist's Mana Potion
+        224407, -- Bonus Experience
+        224408, -- Bonus Experience
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;9;0
+    [9] = { -- Shadowland
+        168207, -- Plundered Anima Cell
+        170540, -- Ravenous Anima Cell
+        171263, -- Potion of Soul Purity
+        171264, -- Potion of Shaded Sight
+        171265, -- REUSE ME
+        171266, -- Potion of the Hidden Spirit
+        171267, -- Spiritual Healing Potion
+        171268, -- Spiritual Mana Potion
+        171269, -- Spiritual Rejuvenation Potion
+        171270, -- Potion of Spectral Agility
+        171271, -- Potion of Hardened Shadows
+        171272, -- Potion of Spiritual Clarity
+        171273, -- Potion of Spectral Intellect
+        171274, -- Potion of Spectral Stamina
+        171275, -- Potion of Spectral Strength
+        171349, -- Potion of Phantom Fire
+        171350, -- Potion of Divine Awakening
+        171351, -- Potion of Deathly Fixation
+        171352, -- Potion of Empowered Exorcisms
+        171370, -- Potion of Specter Swiftness
+        174042, -- Pinch of Faerie Dust
+        175241, -- Expedition Healing Potion
+        176331, -- Obscuring Essence Potion
+        176409, -- Rejuvenating Siphoned Essence
+        176442, -- Ratwhisker Brew
+        176443, -- Fleeting Frenzy Potion
+        176811, -- Potion of Sacrificial Anima
+        177278, -- Phial of Serenity
+        179000, -- [PH] Potency Conduit - Death Knight - Blood - Potency Trait 1
+        179027, -- [PH] Potency Conduit - Death Knight - Blood - Potency Trait 2
+        179028, -- [PH] Flex Conduit - Death Knight - Blood - Flex Trait 1
+        179029, -- [PH] Flex Conduit - Death Knight - Blood - Flex Trait 2
+        179030, -- [PH] Potency Conduit - Death Knight - All - Potency Trait - Covenant
+        179031, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 1
+        179032, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 2
+        179033, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 3
+        179034, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 1
+        179035, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 2
+        179036, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 3
+        179037, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 4
+        179038, -- [PH] Potency Conduit - Death Knight - Frost - Potency Trait 1
+        179039, -- [PH] Potency Conduit - Death Knight - Frost - Potency Trait 2
+        179040, -- [PH] Flex Conduit - Death Knight - Frost - Flex Trait 1
+        179041, -- [PH] Flex Conduit - Death Knight - Frost - Flex Trait 2
+        179042, -- [PH] Potency Conduit - Death Knight - Unholy - Potency Trait 1
+        179043, -- [PH] Potency Conduit - Death Knight - Unholy - Potency Trait 2
+        179044, -- [PH] Flex Conduit - Death Knight - Unholy - Flex Trait 1
+        179045, -- [PH] Flex Conduit - Death Knight - Unholy - Flex Trait 2
+        179046, -- [PH] Potency Conduit - Demon Hunter - Vengeance - Potency Trait 1
+        179047, -- [PH] Potency Conduit - Demon Hunter - Vengeance - Potency Trait 2
+        179048, -- [PH] Flex Conduit - Demon Hunter - Vengeance - Flex Trait 1
+        179049, -- [PH] Flex Conduit - Demon Hunter - Vengeance - Flex Trait 2
+        179050, -- [PH] Potency Conduit - Demon Hunter - All - Potency Trait - Covenant
+        179051, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 1
+        179052, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 2
+        179053, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 3
+        179054, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 1
+        179055, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 2
+        179056, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 3
+        179057, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 4
+        179058, -- [PH] Potency Conduit - Demon Hunter - Havoc - Potency Trait 1
+        179059, -- [PH] Potency Conduit - Demon Hunter - Havoc - Potency Trait 2
+        179060, -- [PH] Flex Conduit - Demon Hunter - Havoc - Flex Trait 1
+        179061, -- [PH] Flex Conduit - Demon Hunter - Havoc - Flex Trait 2
+        179062, -- [PH] Potency Conduit - Druid - Balance - Potency Trait 1
+        179063, -- [PH] Potency Conduit - Druid - Balance - Potency Trait 2
+        179064, -- [PH] Flex Conduit - Druid - Balance - Flex Trait 1
+        179065, -- [PH] Flex Conduit - Druid - Balance - Flex Trait 2
+        179066, -- [PH] Potency Conduit - Druid - All - Potency Trait - Covenant
+        179067, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 1
+        179068, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 2
+        179069, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 3
+        179070, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 1
+        179071, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 2
+        179072, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 3
+        179073, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 4
+        179074, -- [PH] Potency Conduit - Druid - Feral - Potency Trait 1
+        179075, -- [PH] Potency Conduit - Druid - Feral - Potency Trait 2
+        179076, -- [PH] Flex Conduit - Druid - Feral - Flex Trait 1
+        179077, -- [PH] Flex Conduit - Druid - Feral - Flex Trait 2
+        179078, -- [PH] Potency Conduit - Druid - Guardian - Potency Trait 1
+        179079, -- [PH] Potency Conduit - Druid - Guardian - Potency Trait 2
+        179080, -- [PH] Flex Conduit - Druid - Guardian - Flex Trait 1
+        179081, -- [PH] Flex Conduit - Druid - Guardian - Flex Trait 2
+        179082, -- [PH] Potency Conduit - Druid - Restoration - Potency Trait 1
+        179083, -- [PH] Potency Conduit - Druid - Restoration - Potency Trait 2
+        179084, -- [PH] Flex Conduit - Druid - Restoration - Flex Trait 1
+        179085, -- [PH] Flex Conduit - Druid - Restoration - Flex Trait 2
+        179086, -- [PH] Potency Conduit - Hunter - Beast Mastery - Potency Trait 1
+        179087, -- [PH] Potency Conduit - Hunter - Beast Mastery - Potency Trait 2
+        179088, -- [PH] Flex Conduit - Hunter - Beast Mastery - Flex Trait 1
+        179089, -- [PH] Flex Conduit - Hunter - Beast Mastery - Flex Trait 2
+        179090, -- [PH] Potency Conduit - Hunter - All - Potency Trait - Covenant
+        179091, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 1
+        179092, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 2
+        179093, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 3
+        179094, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 1
+        179095, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 2
+        179096, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 3
+        179097, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 4
+        179098, -- [PH] Potency Conduit - Hunter - Marksmanship - Potency Trait 1
+        179099, -- [PH] Potency Conduit - Hunter - Marksmanship - Potency Trait 2
+        179100, -- [PH] Flex Conduit - Hunter - Marksmanship - Flex Trait 1
+        179101, -- [PH] Flex Conduit - Hunter - Marksmanship - Flex Trait 2
+        179102, -- [PH] Potency Conduit - Hunter - Survival - Potency Trait 1
+        179103, -- [PH] Potency Conduit - Hunter - Survival - Potency Trait 2
+        179104, -- [PH] Flex Conduit - Hunter - Survival - Flex Trait 1
+        179105, -- [PH] Flex Conduit - Hunter - Survival - Flex Trait 2
+        179106, -- [PH] Potency Conduit - Mage - Arcane - Potency Trait 1
+        179107, -- [PH] Potency Conduit - Mage - Arcane - Potency Trait 2
+        179108, -- [PH] Flex Conduit - Mage - Arcane - Flex Trait 1
+        179109, -- [PH] Flex Conduit - Mage - Arcane - Flex Trait 2
+        179110, -- [PH] Potency Conduit - Mage - All - Potency Trait - Covenant
+        179111, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 1
+        179112, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 2
+        179113, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 3
+        179114, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 1
+        179115, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 2
+        179116, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 3
+        179117, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 4
+        179118, -- [PH] Potency Conduit - Mage - Fire - Potency Trait 1
+        179119, -- [PH] Potency Conduit - Mage - Fire - Potency Trait 2
+        179120, -- [PH] Flex Conduit - Mage - Fire - Flex Trait 1
+        179121, -- [PH] Flex Conduit - Mage - Fire - Flex Trait 2
+        179122, -- [PH] Potency Conduit - Mage - Frost - Potency Trait 1
+        179123, -- [PH] Potency Conduit - Mage - Frost - Potency Trait 2
+        179124, -- [PH] Flex Conduit - Mage - Frost - Flex Trait 1
+        179125, -- [PH] Flex Conduit - Mage - Frost - Flex Trait 2
+        179126, -- [PH] Potency Conduit - Monk - Brewmaster - Potency Trait 1
+        179127, -- [PH] Potency Conduit - Monk - Brewmaster - Potency Trait 2
+        179128, -- [PH] Flex Conduit - Monk - Brewmaster - Flex Trait 1
+        179129, -- [PH] Flex Conduit - Monk - Brewmaster - Flex Trait 2
+        179130, -- [PH] Potency Conduit - Monk - All - Potency Trait - Covenant
+        179131, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 1
+        179132, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 2
+        179133, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 3
+        179134, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 1
+        179135, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 2
+        179136, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 3
+        179137, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 4
+        179138, -- [PH] Potency Conduit - Monk - Mistweaver - Potency Trait 1
+        179139, -- [PH] Potency Conduit - Monk - Mistweaver - Potency Trait 2
+        179140, -- [PH] Flex Conduit - Monk - Mistweaver - Flex Trait 1
+        179141, -- [PH] Flex Conduit - Monk - Mistweaver - Flex Trait 2
+        179142, -- [PH] Potency Conduit - Monk - Windwalker - Potency Trait 1
+        179143, -- [PH] Potency Conduit - Monk - Windwalker - Potency Trait 2
+        179144, -- [PH] Flex Conduit - Monk - Windwalker - Flex Trait 1
+        179145, -- [PH] Flex Conduit - Monk - Windwalker - Flex Trait 2
+        179146, -- [PH] Potency Conduit - Paladin - Holy - Potency Trait 1
+        179147, -- [PH] Potency Conduit - Paladin - Holy - Potency Trait 2
+        179148, -- [PH] Flex Conduit - Paladin - Holy - Flex Trait 1
+        179149, -- [PH] Flex Conduit - Paladin - Holy - Flex Trait 2
+        179150, -- [PH] Potency Conduit - Paladin - All - Potency Trait - Covenant
+        179151, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 1
+        179152, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 2
+        179153, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 3
+        179154, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 1
+        179155, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 2
+        179156, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 3
+        179157, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 4
+        179158, -- [PH] Potency Conduit - Paladin - Protection - Potency Trait 1
+        179159, -- [PH] Potency Conduit - Paladin - Protection - Potency Trait 2
+        179160, -- [PH] Flex Conduit - Paladin - Protection - Flex Trait 1
+        179161, -- [PH] Flex Conduit - Paladin - Protection - Flex Trait 2
+        179162, -- [PH] Potency Conduit - Paladin - Retribution - Potency Trait 1
+        179163, -- [PH] Potency Conduit - Paladin - Retribution - Potency Trait 2
+        179164, -- [PH] Flex Conduit - Paladin - Retribution - Flex Trait 1
+        179165, -- [PH] Flex Conduit - Paladin - Retribution - Flex Trait 2
+        179167, -- [PH] Potency Conduit - Priest - Discipline - Potency Trait 1
+        179168, -- [PH] Potency Conduit - Priest - Discipline - Potency Trait 2
+        179169, -- [PH] Flex Conduit - Priest - Discipline - Flex Trait 1
+        179170, -- [PH] Flex Conduit - Priest - Discipline - Flex Trait 2
+        179171, -- [PH] Potency Conduit - Priest - All - Potency Trait - Covenant
+        179172, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 1
+        179173, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 2
+        179174, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 3
+        179175, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 1
+        179176, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 2
+        179177, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 3
+        179178, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 4
+        179179, -- [PH] Potency Conduit - Priest - Holy - Potency Trait 1
+        179180, -- [PH] Potency Conduit - Priest - Holy - Potency Trait 2
+        179181, -- [PH] Flex Conduit - Priest - Holy - Flex Trait 1
+        179182, -- [PH] Flex Conduit - Priest - Holy - Flex Trait 2
+        179183, -- [PH] Potency Conduit - Priest - Shadow - Potency Trait 1
+        179184, -- [PH] Potency Conduit - Priest - Shadow - Potency Trait 2
+        179185, -- [PH] Flex Conduit - Priest - Shadow - Flex Trait 1
+        179186, -- [PH] Flex Conduit - Priest - Shadow - Flex Trait 2
+        179187, -- [PH] Potency Conduit - Rogue - Assassination - Potency Trait 1
+        179188, -- [PH] Potency Conduit - Rogue - Assassination - Potency Trait 2
+        179189, -- [PH] Flex Conduit - Rogue - Assassination - Flex Trait 1
+        179190, -- [PH] Flex Conduit - Rogue - Assassination - Flex Trait 2
+        179191, -- [PH] Potency Conduit - Rogue - All - Potency Trait - Covenant
+        179192, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 1
+        179193, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 2
+        179194, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 3
+        179195, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 1
+        179196, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 2
+        179197, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 3
+        179198, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 4
+        179199, -- [PH] Potency Conduit - Rogue - Outlaw - Potency Trait 1
+        179200, -- [PH] Potency Conduit - Rogue - Outlaw - Potency Trait 2
+        179202, -- [PH] Flex Conduit - Rogue - Outlaw - Flex Trait 2
+        179203, -- [PH] Potency Conduit - Rogue - Subtlety - Potency Trait 1
+        179204, -- [PH] Potency Conduit - Rogue - Subtlety - Potency Trait 2
+        179205, -- [PH] Flex Conduit - Rogue - Subtlety - Flex Trait 1
+        179206, -- [PH] Flex Conduit - Rogue - Subtlety - Flex Trait 2
+        179207, -- [PH] Potency Conduit - Shaman - Elemental - Potency Trait 1
+        179208, -- [PH] Potency Conduit - Shaman - Elemental - Potency Trait 2
+        179209, -- [PH] Flex Conduit - Shaman - Elemental - Flex Trait 1
+        179210, -- [PH] Flex Conduit - Shaman - Elemental - Flex Trait 2
+        179211, -- [PH] Potency Conduit - Shaman - All - Potency Trait - Covenant
+        179212, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 1
+        179213, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 2
+        179214, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 3
+        179215, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 1
+        179216, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 2
+        179217, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 3
+        179218, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 4
+        179219, -- [PH] Potency Conduit - Shaman - Enhancement - Potency Trait 1
+        179220, -- [PH] Potency Conduit - Shaman - Enhancement - Potency Trait 2
+        179221, -- [PH] Flex Conduit - Shaman - Enhancement - Flex Trait 1
+        179222, -- [PH] Flex Conduit - Shaman - Enhancement - Flex Trait 2
+        179223, -- [PH] Potency Conduit - Shaman - Restoration - Potency Trait 1
+        179224, -- [PH] Potency Conduit - Shaman - Restoration - Potency Trait 2
+        179225, -- [PH] Flex Conduit - Shaman - Restoration - Flex Trait 1
+        179226, -- [PH] Flex Conduit - Shaman - Restoration - Flex Trait 2
+        179227, -- [PH] Potency Conduit - Warrior - Arms - Potency Trait 1
+        179228, -- [PH] Potency Conduit - Warrior - Arms - Potency Trait 2
+        179229, -- [PH] Flex Conduit - Warrior - Arms - Flex Trait 1
+        179230, -- [PH] Flex Conduit - Warrior - Arms - Flex Trait 2
+        179231, -- [PH] Potency Conduit - Warrior - All - Potency Trait - Covenant
+        179232, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 1
+        179233, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 2
+        179234, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 3
+        179235, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 1
+        179236, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 2
+        179237, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 3
+        179238, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 4
+        179239, -- [PH] Potency Conduit - Warrior - Fury - Potency Trait 1
+        179240, -- [PH] Potency Conduit - Warrior - Fury - Potency Trait 2
+        179241, -- [PH] Flex Conduit - Warrior - Fury - Flex Trait 1
+        179242, -- [PH] Flex Conduit - Warrior - Fury - Flex Trait 2
+        179243, -- [PH] Potency Conduit - Warrior - Protection - Potency Trait 1
+        179244, -- [PH] Potency Conduit - Warrior - Protection - Potency Trait 2
+        179245, -- [PH] Flex Conduit - Warrior - Protection - Flex Trait 1
+        179246, -- [PH] Flex Conduit - Warrior - Protection - Flex Trait 2
+        179247, -- [PH] Potency Conduit - Warlock - Affliction - Potency Trait 1
+        179248, -- [PH] Potency Conduit - Warlock - Affliction - Potency Trait 2
+        179249, -- [PH] Flex Conduit - Warlock - Affliction - Flex Trait 1
+        179250, -- [PH] Flex Conduit - Warlock - Affliction - Flex Trait 2
+        179251, -- [PH] Potency Conduit - Warlock - All - Potency Trait - Covenant
+        179252, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 1
+        179253, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 2
+        179254, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 3
+        179255, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 1
+        179256, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 2
+        179257, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 3
+        179258, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 4
+        179259, -- [PH] Potency Conduit - Warlock - Demonology - Potency Trait 1
+        179260, -- [PH] Potency Conduit - Warlock - Demonology - Potency Trait 2
+        179261, -- [PH] Flex Conduit - Warlock - Demonology - Flex Trait 1
+        179262, -- [PH] Flex Conduit - Warlock - Demonology - Flex Trait 2
+        179263, -- [PH] Potency Conduit - Warlock - Destruction - Potency Trait 1
+        179264, -- [PH] Potency Conduit - Warlock - Destruction - Potency Trait 2
+        179265, -- [PH] Flex Conduit - Warlock - Destruction - Flex Trait 1
+        179266, -- [PH] Flex Conduit - Warlock - Destruction - Flex Trait 2
+        180317, -- Soulful Healing Potion
+        180318, -- Soulful Mana Potion
+        180404, -- Embertone Lotion
+        180467, -- Potency Conduit
+        180468, -- Finesse Conduit
+        180469, -- Endurance Conduit
+        180771, -- Potion of Unusual Strength
+        181620, -- Hard Boiled Gorm Egg
+        182163, -- Strength of Blood
+        182298, -- Kaja'Extreme
+        182382, -- Flask of Vile Resistance
+        183823, -- Potion of Unhindered Passing
+        183857, -- Strength of Fire
+        184090, -- Potion of the Psychopomp's Speed
+        184227, -- Angelic Feather
+        184662, -- Requisitioned Anima Cell
+        186043, -- Torghast Portal Manipulator
+        186614, -- Soul Jar
+        186615, -- Mirror of the Conjured Twin
+        186636, -- Cage of Mawrats
+        186678, -- Mawforged Weapons Cache
+        186679, -- Scroll of Domination
+        187802, -- Cosmic Healing Potion
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;8;0
+    [8] = { -- BfA
+        152494, -- Coastal Healing Potion
+        152495, -- Coastal Mana Potion
+        152497, -- Lightfoot Potion
+        152503, -- Potion of Concealment
+        152550, -- Sea Mist Potion
+        152557, -- Steelskin Potion
+        152559, -- Potion of Rising Death
+        152560, -- Potion of Bursting Blood
+        152561, -- Potion of Replenishment
+        155821, -- Vial of Viscous Goo
+        155822, -- Sedative Quill
+        156627, -- M.O.J.O.
+        156634, -- Silas' Vial of Continuous Curing
+        156646, -- Bottled Azerite
+        157798, -- Bilewing "Honey"
+        163082, -- Coastal Rejuvenation Potion
+        163222, -- Battle Potion of Intellect
+        163223, -- Battle Potion of Agility
+        163224, -- Battle Potion of Strength
+        163225, -- Battle Potion of Stamina
+        166750, -- Draught of Ten Lands
+        166751, -- Draught of Ten Lands
+        167917, -- Brawler's Coastal Healing Potion
+        167918, -- Brawler's Battle Potion of Strength
+        167919, -- Brawler's Battle Potion of Agility
+        167920, -- Brawler's Battle Potion of Intellect
+        168489, -- Superior Battle Potion of Agility
+        168498, -- Superior Battle Potion of Intellect
+        168499, -- Superior Battle Potion of Stamina
+        168500, -- Superior Battle Potion of Strength
+        168501, -- Superior Steelskin Potion
+        168502, -- Potion of Reconstitution
+        168506, -- Potion of Focused Resolve
+        168529, -- Potion of Empowered Proximity
+        169299, -- Potion of Unbridled Fury
+        169300, -- Potion of Wild Mending
+        169451, -- Abyssal Healing Potion
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;7;0
+    [7] = { -- Legion
+        127834, -- Ancient Healing Potion
+        127835, -- Ancient Mana Potion
+        127836, -- Ancient Rejuvenation Potion
+        127843, -- Potion of Deadly Grace
+        127844, -- Potion of the Old War
+        127845, -- Unbending Potion
+        127846, -- Leytorrent Potion
+        128814, -- Potion of Cowardly Flight
+        129192, -- Inquisitor's Menacing Eye
+        129196, -- Legion Healthstone
+        130258, -- Pocket Friend
+        131729, -- Zanzil's Slow Poison
+        136569, -- Aged Health Potion
+        138486, -- "Third Wind" Potion
+        138488, -- Saltwater Potion
+        138727, -- Potion of Defiance
+        138728, -- Potion of Trivial Invisibility
+        138729, -- Potion of Heightened Senses
+        140347, -- Spirit Berries
+        140351, -- Sunfruit
+        142117, -- Potion of Prolonged Power
+        142325, -- Brawler's Ancient Healing Potion
+        142326, -- Brawler's Potion of Prolonged Power
+        143542, -- Crown Co. "Kure-Everything" Tonic
+        143660, -- Mrgrglhjorn
+        144228, -- Dino Mojo
+        144396, -- Valorous Healing Potion
+        144397, -- Valorous Potion of Armor
+        144398, -- Valorous Rage Potion
+        147445, -- Ancient Draught of Regeneration
+        147707, -- Repurposed Fel Focuser
+        152615, -- Astral Healing Potion
+        152619, -- Astral Mana Potion
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;6;0
+    [6] = { -- WoD
+        107640, -- Potion of Slow Fall
+        109217, -- Draenic Agility Potion
+        109218, -- Draenic Intellect Potion
+        109219, -- Draenic Strength Potion
+        109220, -- Draenic Versatility Potion
+        109221, -- Draenic Channeled Mana Potion
+        109222, -- Draenic Mana Potion
+        109223, -- Healing Tonic
+        109226, -- Draenic Rejuvenation Potion
+        113585, -- Iron Horde Rejuvenation Potion
+        114124, -- Phantom Potion
+        115498, -- Ashran Healing Tonic
+        115531, -- Swirling Ashran Potion
+        116266, -- Draenic Swiftness Potion
+        116267, -- Free Action Potion
+        116268, -- Draenic Invisibility Potion
+        116275, -- Mighty Rage Potion
+        116276, -- Draenic Living Action Potion
+        116277, -- Potion of Petrification
+        116925, -- Vintage Free Action Potion
+        117415, -- Smuggled Tonic
+        118006, -- Shieldtronic Shield
+        118262, -- Brilliant Dreampetal
+        118278, -- Pale Vision Potion
+        118704, -- Pure Rage Potion
+        118910, -- Brawler's Draenic Agility Potion
+        118911, -- Brawler's Draenic Intellect Potion
+        118912, -- Brawler's Draenic Strength Potion
+        118913, -- Brawler's Bottomless Draenic Agility Potion
+        118914, -- Brawler's Bottomless Draenic Intellect Potion
+        118915, -- Brawler's Bottomless Draenic Strength Potion
+        118916, -- Brawler's Healing Tonic
+        118917, -- Brawler's Bottomless Healing Tonic
+        118922, -- Oralius' Whispering Crystal
+        122451, -- Commander's Draenic Invisibility Potion
+        122452, -- Commander's Draenic Swiftness Potion
+        122453, -- Commander's Draenic Agility Potion
+        122454, -- Commander's Draenic Intellect Potion
+        122455, -- Commander's Draenic Strength Potion
+        122456, -- Commander's Draenic Versatility Potion
+        124660, -- Darkmoon Healing Tonic
+        124661, -- Gladiator's Healing Potion
+        124671, -- Darkmoon Firewater
+        128647, -- Fizzy Apple Cider
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;5;0
+    [5] = { -- MoP
+        76089, -- Virmen's Bite
+        76090, -- Potion of the Mountains
+        76091, -- Greater Potion of Luck
+        76092, -- Potion of Focus
+        76093, -- Potion of the Jade Serpent
+        76094, -- Alchemist's Rejuvenation
+        76095, -- Potion of Mogu Power
+        76096, -- Darkwater Potion
+        76097, -- Master Healing Potion
+        76098, -- Master Mana Potion
+        86569, -- Crystal of Insanity
+        92941, -- Potion of Brawler's Might
+        92942, -- Potion of Brawler's Cunning
+        92943, -- Potion of Brawler's Deftness
+        92954, -- Brawler's Healing Potion
+        93351, -- Potion of Luck
+        93742, -- Healing Potion
+        95054, -- Potion of Light Steps
+        95055, -- Frost Rune Trap
+        97156, -- Frost Rune Trap
+        97157, -- Potion of Light Steps
+        98061, -- Bottomless Potion of Brawler's Deftness
+        98062, -- Bottomless Potion of Brawler's Cunning
+        98063, -- Bottomless Potion of Brawler's Might
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;4;0
+    [4] = { -- Cataclysm
+        54213, -- Molotov Cocktail
+        57099, -- Mysterious Potion
+        57191, -- Mythical Healing Potion
+        57192, -- Mythical Mana Potion
+        57193, -- Mighty Rejuvenation Potion
+        57194, -- Potion of Concentration
+        58090, -- Earthen Potion
+        58091, -- Volcanic Potion
+        58145, -- Potion of the Tol'vir
+        58146, -- Golemblood Potion
+        58487, -- Potion of Deepholm
+        58488, -- Potion of Treasure Finding
+        58489, -- Potion of Illusion
+        63144, -- Baradin's Wardens Healing Potion
+        63145, -- Baradin's Wardens Mana Potion
+        63300, -- Rogue's Draught
+        64993, -- Hellscream's Reach Mana Potion
+        64994, -- Hellscream's Reach Healing Potion
+        67415, -- Draught of War
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;3;0
+    [3] = { -- WolTK
+        33447, -- Runic Healing Potion
+        33448, -- Runic Mana Potion
+        36770, -- Zort's Protective Elixir
+        38351, -- Murliver Oil
+        39327, -- Noth's Special Brew
+        39671, -- Resurgent Healing Potion
+        40067, -- Icy Mana Potion
+        40077, -- Crazy Alchemist's Potion
+        40081, -- Potion of Nightmares
+        40087, -- Powerful Rejuvenation Potion
+        40093, -- Indestructible Potion
+        40211, -- Potion of Speed
+        40212, -- Potion of Wild Magic
+        40213, -- Mighty Arcane Protection Potion
+        40214, -- Mighty Fire Protection Potion
+        40215, -- Mighty Frost Protection Potion
+        40216, -- Mighty Nature Protection Potion
+        40217, -- Mighty Shadow Protection Potion
+        41166, -- Runic Healing Injector
+        42545, -- Runic Mana Injector
+        43530, -- Argent Mana Potion
+        43531, -- Argent Healing Potion
+        43569, -- Endless Healing Potion
+        43570, -- Endless Mana Potion
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;2;0
+    [2] = { -- TBC
+        22826, -- Sneaking Potion
+        22828, -- Insane Strength Potion
+        22829, -- Super Healing Potion
+        22832, -- Super Mana Potion
+        22836, -- Major Dreamless Sleep Potion
+        22837, -- Heroic Potion
+        22838, -- Haste Potion
+        22839, -- Destruction Potion
+        22841, -- Major Fire Protection Potion
+        22842, -- Major Frost Protection Potion
+        22844, -- Major Nature Protection Potion
+        22845, -- Major Arcane Protection Potion
+        22846, -- Major Shadow Protection Potion
+        22847, -- Major Holy Protection Potion
+        22849, -- Ironshield Potion
+        22850, -- Super Rejuvenation Potion
+        22871, -- Shrouding Potion
+        23822, -- Healing Potion Injector
+        23823, -- Mana Potion Injector
+        28100, -- Volatile Healing Potion
+        28101, -- Unstable Mana Potion
+        31676, -- Fel Regeneration Potion
+        31677, -- Fel Mana Potion
+        31838, -- Major Combat Healing Potion
+        31839, -- Major Combat Healing Potion
+        31840, -- Major Combat Mana Potion
+        31841, -- Major Combat Mana Potion
+        31852, -- Major Combat Healing Potion
+        31853, -- Major Combat Healing Potion
+        31854, -- Major Combat Mana Potion
+        31855, -- Major Combat Mana Potion
+        32783, -- Blue Ogre Brew
+        32784, -- Red Ogre Brew
+        32840, -- Major Arcane Protection Potion
+        32844, -- Major Nature Protection Potion
+        32845, -- Major Shadow Protection Potion
+        32846, -- Major Fire Protection Potion
+        32847, -- Major Frost Protection Potion
+        32902, -- Bottled Nethergon Energy
+        32903, -- Cenarion Mana Salve
+        32904, -- Cenarion Healing Salve
+        32905, -- Bottled Nethergon Vapor
+        32909, -- Blue Ogre Brew Special
+        32910, -- Red Ogre Brew Special
+        32947, -- Auchenai Healing Potion
+        32948, -- Auchenai Mana Potion
+        33092, -- Healing Potion Injector
+        33093, -- Mana Potion Injector
+        33934, -- Crystal Healing Potion
+        33935, -- Crystal Mana Potion
+        34440, -- Mad Alchemist's Potion
+        35287, -- Luminous Bluetail
+    },
+    -- https://www.wowhead.com/items/consumables/potions?filter=166;1;0
+    [1] = { -- Classic
+        118, -- Minor Healing Potion
+        858, -- Lesser Healing Potion
+        929, -- Healing Potion
+        1710, -- Greater Healing Potion
+        2455, -- Minor Mana Potion
+        2456, -- Minor Rejuvenation Potion
+        2459, -- Swiftness Potion
+        3087, -- Mug of Shimmer Stout
+        3385, -- Lesser Mana Potion
+        3386, -- Potion of Curing
+        3387, -- Limited Invulnerability Potion
+        3823, -- Lesser Invisibility Potion
+        3827, -- Mana Potion
+        3928, -- Superior Healing Potion
+        4596, -- Discolored Healing Potion
+        4623, -- Lesser Stoneshield Potion
+        5631, -- Rage Potion
+        5633, -- Great Rage Potion
+        5634, -- Free Action Potion
+        5816, -- Light of Elune
+        6048, -- Shadow Protection Potion
+        6049, -- Fire Protection Potion
+        6050, -- Frost Protection Potion
+        6051, -- Holy Protection Potion
+        6052, -- Nature Protection Potion
+        6149, -- Greater Mana Potion
+        6372, -- Swim Speed Potion
+        9030, -- Restorative Potion
+        9144, -- Wildvine Potion
+        9172, -- Invisibility Potion
+        12190, -- Dreamless Sleep Potion
+        13442, -- Mighty Rage Potion
+        13443, -- Superior Mana Potion
+        13444, -- Major Mana Potion
+        13446, -- Major Healing Potion
+        13455, -- Greater Stoneshield Potion
+        13456, -- Greater Frost Protection Potion
+        13457, -- Greater Fire Protection Potion
+        13458, -- Greater Nature Protection Potion
+        13459, -- Greater Shadow Protection Potion
+        13460, -- Greater Holy Protection Potion
+        13461, -- Greater Arcane Protection Potion
+        13462, -- Purification Potion
+        13506, -- Potion of Petrification
+        17348, -- Major Healing Draught
+        17349, -- Superior Healing Draught
+        17351, -- Major Mana Draught
+        17352, -- Superior Mana Draught
+        18253, -- Major Rejuvenation Potion
+        18839, -- Combat Healing Potion
+        18841, -- Combat Mana Potion
+        20002, -- Greater Dreamless Sleep Potion
+        20008, -- Living Action Potion
+    },
+}
+
 
 items.Blacksmithing = {
 	[10] = { -- Dragonflight
@@ -5195,7 +5959,7 @@ items.meat = {
 		723, --  Goretusk Liver
 	},
 }
-if not (isRetail or isProgressionClassic) then
+if (isRetail or isProgressionClassic) then
 	items.Jewelcrafting = {
 		[10] = { -- Dragonflight
 			190315, -- Rousing Earth

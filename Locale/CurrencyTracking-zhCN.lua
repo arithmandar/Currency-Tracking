@@ -1,4 +1,4 @@
-﻿-- $Id$
+-- $Id$
 
 local _G = getfenv(0)
 local LibStub = _G.LibStub
@@ -7,10 +7,9 @@ local L = LibStub("AceLocale-3.0"):NewLocale("CurrencyTracking", "zhCN", false)
 if not L then return end
 
 if L then
---@do-not-package@
-L["CT_TITLE"] = "通货追踪";
-L["CT_ADDON_NOTES"] = "追踪所有获取的通货，并显示在游戏画面上";
-L["Options"] = "选项";
+L["CT_TITLE"] = "通货追踪"
+L["CT_ADDON_NOTES"] = "追踪所有获取的通货，并显示在游戏画面上"
+L["Options"] = "选项"
 L["About"] = "关于"
 L["Author"] = "作者"
 L["Addon Info"] = "插件信息"
@@ -18,6 +17,7 @@ L["Addon Info"] = "插件信息"
 -- Trading goods
 L["Elemental"] = "元素"
 L["Meat"] = "肉"
+L["Potion"] = "药水"
 -- Display Settings
 L["Display Settings"] = "显示设置"
 L["Show currency info on screen"] = "在游戏画面上显示通货信息"
@@ -60,6 +60,4 @@ L["Currencies to be tracked on screen:"] = "在游戏画面上要追踪的通货
 L["Tracked Currencies"] = "追踪的通货"
 L["Tracked Items"] = "追踪的物品"
 L["Profile Options"] = "配置文件选项"
---@end-do-not-package@
---@localization(locale="zhCN", format="lua_additive_table")@
 end

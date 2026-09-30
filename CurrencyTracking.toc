@@ -49,10 +49,10 @@ Libs\Libs.xml
 Locale\Locales.xml
 
 Core\Constants.lua
-Core\Items.lua
+Data\Data.xml
 Core\Core.lua
 Core\Query.lua
-Core\Templates.xml
+Core\Templates.lua
 Core\Config.lua
 #Core\TokenOptions.xml
 

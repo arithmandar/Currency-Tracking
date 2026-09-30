@@ -136,7 +136,9 @@ end
 -- WoW's item cache are skipped and can be collected during a later scan.
 function Query:ScanItems()
     local changed = false
-
+	if not addon.items then
+        return false
+    end
     for _, category in pairs(addon.items) do
         for _, expansionItems in ipairs(category) do
             for _, itemID in ipairs(expansionItems) do

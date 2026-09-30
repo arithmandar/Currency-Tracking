@@ -79,6 +79,8 @@ addon.Version 		= GetAddOnMetadata(addon.Name, "Version")
 addon.UpdateDate 	= GetAddOnMetadata(addon.Name, "X-Date")
 addon.Author 		= GetAddOnMetadata(addon.Name, "Author")
 
+addon.Templates = private.Templates
+
 _G.CurrencyTracking = addon
 local profile
 --local item_list
@@ -413,7 +415,7 @@ local function currencyButton_Update()
 	local bi = 1
 
 	-- tracked currencies
-	for currencyID, v in pairs(profile["currencies"]) do
+	for currencyID in pairs(profile["currencies"]) do
 		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
 			local info = BlizzardGetCurrencyInfo(currencyID)
 			local count = info and info.quantity or 0
@@ -422,8 +424,12 @@ local function currencyButton_Update()
 				if (profile.hide_zero and count == 0) then
 					-- do nothing
 				else
-					button = _G["CurrencyTrackingButton"..bi]
-					if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+					local fname = "CurrencyTrackingButton"..bi
+					button = _G[fname]
+					if not button then
+						--button = CreateFrame("Button", fname, nf, "CurrencyTrackingButtonTemplate")
+						button = addon.Templates.CreateTrackingButton(fname, nf)
+					end
 					handleTrackedButtons(button, currencyID)
 					gwidth = gwidth + button:GetWidth()
 					bi = bi + 1
@@ -438,8 +444,9 @@ local function currencyButton_Update()
 			if (profile.hide_zero and count == 0) then
 				-- do nothing
 			else
-				button = _G["CurrencyTrackingButton"..bi]
-				if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+				local fname = "CurrencyTrackingButton"..bi
+				button = _G[fname]
+				if not button then button = addon.Templates.CreateTrackingButton(fname, nf) end
 				handleTrackedButtons(button, nil, itemID)
 				gwidth = gwidth + button:GetWidth()
 				bi = bi + 1
@@ -448,8 +455,9 @@ local function currencyButton_Update()
 	end
 	-- handle money
 	if (profile.show_money) then
-		button = _G["CurrencyTrackingButton"..bi]
-		if not button then button = CreateFrame("Button", "CurrencyTrackingButton"..bi, nf, "CurrencyTrackingButtonTemplate") end
+		local fname = "CurrencyTrackingButton"..bi
+		button = _G[fname]
+		if not button then button = addon.Templates.CreateTrackingButton(fname, nf) end
 		handleTrackedButtons(button)
 		gwidth = gwidth + button:GetWidth()
 		bi = bi + 1
