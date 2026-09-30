@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local pairs, ipairs, select, unpack, type = _G.pairs, _G.ipairs, _G.select, _G.unpack, _G.type
+local pairs, ipairs, unpack, type = _G.pairs, _G.ipairs, _G.unpack, _G.type
 local string, tonumber = _G.string, _G.tonumber
 -- Libraries
 local format, strsub, strlen, strgmatch = string.format, string.sub, string.len, string.gmatch
@@ -15,10 +15,12 @@ local GetAddOnInfo, GetAddOnMetadata = C_AddOns.GetAddOnInfo, C_AddOns.GetAddOnM
 local GameTooltip = _G.GameTooltip
 local BreakUpLargeNumbers = _G.BreakUpLargeNumbers
 local C_Item = _G.C_Item
-local GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo
-local  GetItemCount, GetItemInfo, GetItemIcon = C_Item.GetItemCount, C_Item.GetItemInfo, C_Item.GetItemIcon
+local GetItemCount, GetItemInfo, GetItemIconByID = C_Item.GetItemCount, C_Item.GetItemInfo, C_Item.GetItemIconByID
+local BlizzardGetCurrencyListSize, BlizzardGetCurrencyListInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo
+local C_CurrencyInfo = _G.C_CurrencyInfo
+-- All clasisc clients now use C_CurrencyInfo.GetCurrencyInfo
+local BlizzardGetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
 local GetMoney = _G.GetMoney
-local GetLocale = _G.GetLocale
 
 local GetBuildInfo = _G.GetBuildInfo
 -- Determine WoW client family
@@ -43,13 +45,11 @@ local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
 local isProgressionClassic = isCataclysmClassic or isMistsClassic
 local isClassicForever = isForeverBeta
 -- For API calls, Classic Forever is using same APIs with the mainline client.
+-- So for functional wise (API calls), we consider Forever is not part of AnyClassic
 local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic
 
-if (isRetail) then
-	local C_CurrencyInfo = _G.C_CurrencyInfo
-	GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = C_CurrencyInfo.GetCurrencyListSize, C_CurrencyInfo.GetCurrencyListInfo, C_CurrencyInfo.GetCurrencyInfo
-else
-	GetCurrencyListSize, GetCurrencyListInfo, GetCurrencyInfo = _G.GetCurrencyListSize, _G.GetCurrencyListInfo, _G.GetCurrencyInfo
+if (isRetail or isClassicForever) then
+	BlizzardGetCurrencyListSize, BlizzardGetCurrencyListInfo = C_CurrencyInfo.GetCurrencyListSize, C_CurrencyInfo.GetCurrencyListInfo
 end
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -71,8 +71,9 @@ addon.constants = private.constants
 addon.items = private.items
 addon.constants.addon_name = private.addon_name
 addon.Name = FOLDER_NAME
-addon.LocName = select(2, GetAddOnInfo(addon.Name))
-addon.Notes = select(3, GetAddOnInfo(addon.Name))
+local _, locname, notes = GetAddOnInfo(addon.Name)
+addon.LocName = locname
+addon.Notes = notes
 -- ToC Metadata
 addon.Version 		= GetAddOnMetadata(addon.Name, "Version")
 addon.UpdateDate 	= GetAddOnMetadata(addon.Name, "X-Date")
@@ -80,7 +81,7 @@ addon.Author 		= GetAddOnMetadata(addon.Name, "Author")
 
 _G.CurrencyTracking = addon
 local profile
-local item_list
+--local item_list
 
 -- local booleans, constants, and arrays
 local isInLockdown = false		-- boolean to check if player is in combat
@@ -164,47 +165,62 @@ local function addTooltipText(text)
 	end
 end
 
+-- local function to handle the currency list information between different versions of the game
+local function getCurrencyListInfo(index)
+	if (isAnyClassic) then
+		local name, isHeader, _, isUnused, _, count, icon = BlizzardGetCurrencyListInfo(index)
+		if not name then return nil end
+		return {
+			name = name,
+			isHeader = isHeader,
+			isUnused = isUnused,
+			count = count,
+			icon = icon,
+		}
+	else
+		local curr = BlizzardGetCurrencyListInfo(index)
+		if not curr then return nil end
+		return {
+			name = curr.name,
+			isHeader = curr.isHeader,
+			isUnused = curr.isTypeUnused,
+			count = curr.quantity,
+			icon = curr.iconFileID
+		}
+	end
+end
+
 -- Codes adopted from TitanCurrency and revised by arith
 local function getTooltipText()
 	local display = ""
 	local tooltip = ""
-	local cCount
-	cCount = GetCurrencyListSize()
-	for i = 1, cCount do 
-		-- // GetCurrencyListInfo() syntax:
-		-- // name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(index)
-		local name, isHeader, isUnused, count, icon, _
-		if (isAnyClassic) then
-			name, isHeader, _, isUnused, _, count, icon = GetCurrencyListInfo(i)
-		else
-			local curr = GetCurrencyListInfo(i)
-			name = curr.name
-			isHeader = curr.isHeader
-			isUnused = curr.isTypeUnused
-			count = curr.quantity
-			icon = curr.iconFileID
-		end
-		if ( isHeader ) then
-			tooltip = tooltip..name.."\n"
-		elseif ( (count >= 0) and not isUnused ) then
-			if (icon ~= nil) then
-				local icount = profile.breakupnumbers and BreakUpLargeNumbers(count) or count
-				if (count == 0) then
+
+	for i = 1, BlizzardGetCurrencyListSize() do
+		local curr = getCurrencyListInfo(i)
+		if ( curr and curr.isHeader ) then
+			tooltip = tooltip..curr.name.."\n"
+		elseif ( curr and
+			curr.count and
+			(curr.count >= 0) and
+			not curr.isUnused ) then
+			if (curr.icon ~= nil) then
+				local icount = profile.breakupnumbers and BreakUpLargeNumbers(curr.count) or curr.count
+				if (curr.count == 0) then
 					if (not profile.hide_zero) then
-						display = " - "..name.."\t|cffff0000"..icount.." |r|T"..icon..":16|t"
+						display = " - "..curr.name.."\t|cffff0000"..icount.." |r|T"..curr.icon..":16|t"
 					end
 				else
-					display = " - "..name.."\t|cffffffff"..icount.." |r|T"..icon..":16|t"
+					display = " - "..curr.name.."\t|cffffffff"..icount.." |r|T"..curr.icon..":16|t"
 				end
 			end
 			-- trace(display)
 			tooltip = strconcat(tooltip, display, "|r\n")
 		end
-	end 
-	return tooltip    
+	end
+	return tooltip
 end
 
-local function button_OnMouseDown(self, buttonName)    
+local function button_OnMouseDown(self, buttonName)
 	-- Prevent activation when in combat or when lock is set to true
 	if (isInLockdown or profile.always_lock) then
 		return
@@ -228,7 +244,7 @@ local function button_OnMouseUp(self, buttonName)
 	end
 	if(addon.frame:IsVisible()) then
 		addon.frame:StopMovingOrSizing()
-		local point, relativeTo, relativePoint, xOfs, yOfs = addon.frame:GetPoint()
+		local point, _, relativePoint, xOfs, yOfs = addon.frame:GetPoint()
 		profile.latestpoint = { point, relativePoint, xOfs, yOfs }
 	end
 end
@@ -262,14 +278,17 @@ end
 
 local function handleTrackedButtons(button, currencyID, itemID)
 	--item_list = addon.db.item_list
-	if not button then return end
+	if not button then 
+		return
+	end
+
 	local buttonName = button:GetName()
 	local bi = tonumber(strsub(buttonName, strlen("CurrencyTrackingButton")+1))
 	local maxItems = profile.maxItems or 0
 	local nRow, nRowItem
 	local rowHeight = 20
 	
-	if (maxItems == 0) then 
+	if (maxItems == 0) then
 		nRow = 1
 	else
 		nRow = ( (bi - (bi % maxItems) ) / maxItems ) + 1
@@ -280,24 +299,26 @@ local function handleTrackedButtons(button, currencyID, itemID)
 	local itemName, itemLink, count, icon, _
 	local width = 15
 	if (currencyID) then 
-		if (isAnyClassic) then
-			_, count, icon = GetCurrencyInfo(currencyID) 
-		else
-			local curr = GetCurrencyInfo(currencyID)
-			count = curr.quantity
-			icon = curr.iconFileID
-		end
+		local info = BlizzardGetCurrencyInfo(currencyID)
+		count = info and info.quantity or 0
+		icon = info and info.iconFileID or 0
 	elseif (itemID) then
-		if (item_list[itemID] and item_list[itemID][1] and item_list[itemID][2] and item_list[itemID][3]) then
-			itemName, icon, itemLink = item_list[itemID][1], item_list[itemID][2], item_list[itemID][3]
-		else
+		local cached = addon.Query:GetCachedItem(itemID)
+		if cached then
+			itemName = cached.name
+			icon = cached.icon
+			itemLink = cached.link
+		else -- if not cached
 			itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-			if not itemName then itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID) end
-			local t = {}
-			t.itemID = itemID
-			t.itemName = itemName
-			t.itemLink = itemLink
-			addon.Query.RefreshItem(t)
+
+			if itemName and icon then
+				addon.Query:RefreshItem({
+					itemID = itemID,
+					itemName = itemName,
+					itemLink = itemLink,
+					icon = icon,
+				})
+			end
 		end
 		count = GetItemCount(itemID, true)
 	end
@@ -394,13 +415,8 @@ local function currencyButton_Update()
 	-- tracked currencies
 	for currencyID, v in pairs(profile["currencies"]) do
 		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
-			local _, count
-			if (isAnyClassic) then
-				_, count = GetCurrencyInfo(currencyID)
-			else
-				local curr = GetCurrencyInfo(currencyID)
-				count = curr.quantity
-			end
+			local info = BlizzardGetCurrencyInfo(currencyID)
+			local count = info and info.quantity or 0
 
 			if (count >= 0) then
 				if (profile.hide_zero and count == 0) then
@@ -474,15 +490,10 @@ local function currencyString_Update()
 	-- tracked currencies
 	for currencyID, v in pairs(profile["currencies"]) do
 		if (currencyID and type(currencyID) == "number" and profile["currencies"][currencyID] == true) then
-			local _, count, icon
-			if (isAnyClassic) then
-				_, count, icon = GetCurrencyInfo(currencyID)
-			else
-				local curr = GetCurrencyInfo(currencyID)
-				count = curr.quantity
-				icon = curr.iconFileID
-			end
-			if not icon then icon = 0 end -- somehow Legionfall War Supplies' icon is not available in 7.2.5.23959, this should temporary resolve the blocking issue
+			local count, icon
+			local info = BlizzardGetCurrencyInfo(currencyID)
+			count = info and info.quantity or 0
+			icon = info and info.iconFileID or 0
 			
 			if (count >= 0) then
 				if (profile.hide_zero and count == 0) then
@@ -516,7 +527,7 @@ local function currencyString_Update()
 		if (itemID and profile["items"][itemID] == true) then
 			local count = GetItemCount(itemID, true)
 			--local icon = select(10, GetItemInfo(itemID))
-			local icon = GetItemIcon(itemID)
+			local icon = GetItemIconByID(itemID)
 
 			if (profile.hide_zero and count == 0) then
 				-- do nothing
@@ -574,7 +585,9 @@ local function createCurrencyFrame()
 	nf:SetHeight(20)
 	nf.Texture = nf:CreateTexture(nil, "BACKGROUND")
 	local point, relativePoint, ofsx, ofsy = unpack(profile.latestpoint)
-	nf:SetPoint(point or "TOPLEFT", UIParent, relativePoint or "TOPLEFT", ofsx or 150, ofsy or -80)
+	if not ofsx then ofsx = 150 end
+	if not ofsy then ofsy = -80 end
+	nf:SetPoint(point or "TOPLEFT", UIParent, relativePoint or "TOPLEFT", ofsx, ofsy)
 	nf:SetClampedToScreen(true)
 	nf:SetMovable(true)
 	nf:EnableMouse(true)
@@ -641,7 +654,7 @@ end
 
 local function getNumberOfCurrencies()
 	local n = 0
-	for k,v in pairs(LibCurrencyInfo.data.CurrencyByCategory) do
+	for _,v in pairs(LibCurrencyInfo.data.CurrencyByCategory) do
 		n = n + 1 + #v
 	end
 	
@@ -658,11 +671,10 @@ local function populateCurrencyList()
 	--}
 
 	local i = 1
-	local lang = GetLocale()
 	for k,v in pairs(LibCurrencyInfo.data.CurrencyByCategory) do
 		CURRENCIESLIST[i] = { isHeader = true, headerKey = k }
 		i = i + 1
-		for ka,id in ipairs(v) do
+		for _,id in ipairs(v) do
 			CURRENCIESLIST[i] = { id = id }
 			i = i + 1
 		end
@@ -672,9 +684,10 @@ end
 function addon:OnInitialize()
 	self.db = AceDB:New(addon.Name.."DB", addon.constants.defaults)
 	profile = self.db.profile
+--[[
 	if (CurrencyTrackingDB.item_list == nil) then CurrencyTrackingDB.item_list = {} end
 	item_list = CurrencyTrackingDB.item_list
-	
+]]
 	if profile.point then profile.point = nil end
 
 	self.db.RegisterCallback(self, "OnProfileChanged", "Refresh")
@@ -688,13 +701,12 @@ function addon:OnInitialize()
 end
 
 function addon:OnEnable()
-	for key, value in pairs( addon.constants.events ) do
+	for _, value in pairs( addon.constants.events ) do
 		self:RegisterEvent( value )
 	end
 
 	setupLDB()
-	self.Query.ScanItems() -- pre-scan items so that they will properly showed in option panel
-	self.Query.ScanItems() 
+	self.Query:ScanItems()
 	currencyUpdate()
 	self:Refresh()
 end

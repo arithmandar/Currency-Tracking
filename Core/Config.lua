@@ -5,7 +5,6 @@
 -- Functions
 local _G = getfenv(0)
 local pairs, ipairs, type = _G.pairs, _G.ipairs, _G.type
-local math = _G.math
 local table = _G.table
 local tsort = table.sort
 local string = _G.string
@@ -36,14 +35,14 @@ local isClassicForever = isForeverBeta
 local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic or isClassicForever
 
 -- WoW
-local C_Item, C_Spell = _G.C_Item, _G.C_Spell
-local GetSpellTexture, GetSpellInfo, GetItemInfo, GetItemCount = C_Spell.GetSpellTexture, C_Spell.GetSpellInfo, C_Item.GetItemInfo, C_Item.GetItemCount
+local C_Item = _G.C_Item
+local GetItemInfo, GetItemCount = C_Item.GetItemInfo, C_Item.GetItemCount
 local GetLocale = _G.GetLocale
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 local LibStub = _G.LibStub
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
@@ -55,7 +54,7 @@ local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 local AceDBOptions = LibStub("AceDBOptions-3.0")
 
 local profile
-local item_list
+--local item_list
 
 
 local function orderednext(t, n)
@@ -379,7 +378,7 @@ local function getCurrenciesOptions()
 		local i = 1
 		
 		--for k,v in orderedpairs(LibCurrencyInfo.data.CurrencyByCategory) do
-		for ki,vi in ipairs(addon.constants.currencyCategories) do
+		for _, vi in ipairs(addon.constants.currencyCategories) do
 			local k = vi
 			local v = LibCurrencyInfo.data.CurrencyByCategory[k]
 			if v then
@@ -393,27 +392,54 @@ local function getCurrenciesOptions()
 
 				for index, id in ipairs(v) do
 					-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity, categoryID, categoryName, currencyDesc = lib:GetCurrencyByID(currencyID)
-					local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
-					if icon and name ~= "" then
-						if not count then count = 0 end
-						if not currencyDesc then 
-							currencyDesc = ""
-						else
-							currencyDesc = currencyDesc.."\n\n"
+					--local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
+					local curr = LibCurrencyInfo:GetCurrencyInfo(id)
+
+					if curr and curr.iconFileID and curr.name and curr.name ~= "" then
+						local name = curr.name
+						local count = curr.quantity or 0
+						local icon = curr.iconFileID
+						local totalMax = curr.maxQuantity
+						local currencyDesc = curr.description or ""
+
+						if currencyDesc ~= "" then
+							currencyDesc = currencyDesc .. "\n\n"
 						end
 						
 						local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon or 0, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, name or "")
-						tg["currency"..index] = {}
-						tg["currency"..index].order = index
-						tg["currency"..index].type = "toggle"
-						tg["currency"..index].name = displayString
-						if (totalMax and totalMax > 0) then
-							tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL_CAP, HIGHLIGHT_FONT_COLOR_CODE, count, totalMax)
+
+						local optionKey = "currency" .. index
+
+						tg[optionKey] = {
+							order = index,
+							type = "toggle",
+							name = displayString,
+							get = function()
+								return profile.currencies[id]
+							end,
+							set = function()
+								currencyButton_ToggleTrack(id)
+							end,
+						}
+
+						if totalMax and totalMax > 0 then
+							tg[optionKey].desc = NORMAL_FONT_COLOR_CODE
+								.. currencyDesc
+								.. format(
+									CURRENCY_TOTAL_CAP,
+									HIGHLIGHT_FONT_COLOR_CODE,
+									count,
+									totalMax
+								)
 						else
-							tg["currency"..index].desc = NORMAL_FONT_COLOR_CODE..currencyDesc..format(CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count)
+							tg[optionKey].desc = NORMAL_FONT_COLOR_CODE
+								.. currencyDesc
+								.. format(
+									CURRENCY_TOTAL,
+									HIGHLIGHT_FONT_COLOR_CODE,
+									count
+								)
 						end
-						tg["currency"..index].get = (function() return profile["currencies"][id] end)
-						tg["currency"..index].set = (function() currencyButton_ToggleTrack(id) end)
 					end
 					j = j + 1
 				end
@@ -429,6 +455,10 @@ end
 -- Items
 -- /////////////////////////////////////////////////////////
 local itemOptions = nil
+function addon:InvalidateItemOptions()
+    itemOptions = nil
+    AceConfigReg:NotifyChange(addon.LocName)
+end
 local function itemButton_ToggleTrack(itemID)
 	if not profile then profile = addon.db.profile end
 	if (not profile["items"][itemID]) then 
@@ -440,42 +470,71 @@ local function itemButton_ToggleTrack(itemID)
 	addon:Refresh()
 end
 
+local function retrieveItems(optionTable, itemID, order)
+	local itemName
+	local itemLink
+	local icon
+
+	local cached = addon.Query:GetCachedItem(itemID)
+
+	if cached then
+		itemName = cached.name
+		itemLink = cached.link
+		icon = cached.icon
+	else
+		itemName, itemLink, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
+
+		if itemName and icon then
+			addon.Query:RefreshItem({
+				itemID = itemID,
+				itemName = itemName,
+				itemLink = itemLink,
+				icon = icon,
+			})
+		end
+	end
+
+	local count = GetItemCount(itemID, true)
+
+	if not itemName or not icon then
+		return optionTable, order
+	end
+
+	local displayString = format(
+		"|T%d:16:16:2:0|t %s%s|r",
+		icon,
+		count > 0 and HIGHLIGHT_FONT_COLOR_CODE
+			or GRAY_FONT_COLOR_CODE,
+		itemName
+	)
+
+	local optionKey = "item" .. order
+
+	optionTable[optionKey] = {
+		order = order,
+		type = "toggle",
+		name = displayString,
+		desc = format(
+			NORMAL_FONT_COLOR_CODE .. CURRENCY_TOTAL,
+			HIGHLIGHT_FONT_COLOR_CODE,
+			count or 0
+		),
+		get = function()
+			return profile.items and profile.items[itemID] or false
+		end,
+		set = function()
+			itemButton_ToggleTrack(itemID)
+		end,
+	}
+
+	return optionTable, order + 1
+end
+
 local function getItemOptions()
 	if not profile then profile = addon.db.profile end
-	if not item_list then item_list = CurrencyTrackingDB.item_list end
+	--if not item_list then item_list = CurrencyTrackingDB.item_list end
 	
-	local function retrieveItems(tp, itemID, n)
-		local itemName, icon, _
-	
-		if (item_list[itemID] and item_list[itemID][1] and item_list[itemID][2]) then
-			itemName, icon = item_list[itemID][1], item_list[itemID][2]
-		else
-			itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-			if not (itemName) then 
-				itemName, _, _, _, _, _, _, _, _, icon = GetItemInfo(itemID)
-			end
-			if ( itemName and icon ) then
-				item_list[itemID] = { itemName, icon, }
-			end
-		end
-		local count = GetItemCount(itemID, true)
-		
-		if icon and itemName then
-			local displayString = format("|T%d:16:16:2:0|t %s%s|r", icon, count > 0 and HIGHLIGHT_FONT_COLOR_CODE or GRAY_FONT_COLOR_CODE, itemName)
-			tp["item"..n] = {}
-			tp["item"..n].order = n
-			tp["item"..n].type = "toggle"
-			tp["item"..n].name = displayString
-			tp["item"..n].desc = format(NORMAL_FONT_COLOR_CODE..CURRENCY_TOTAL, HIGHLIGHT_FONT_COLOR_CODE, count or 0)
-			tp["item"..n].get = (function() return profile["items"][itemID] end)
-			tp["item"..n].set = (function() itemButton_ToggleTrack(itemID) end)
-		
-			n = n + 1
-		end
-		
-		return tp, n
-	end
-	
+
 	if not itemOptions then
 		itemOptions = {
 			type = "group",
@@ -525,32 +584,25 @@ local function getItemOptions()
 end
 
 local function openOptions(openItems)
-	local frames = addon.optionsFrames or {}
-	local frameRefs = addon.optionsFrameRefs or {}
+    local categoryIDs = addon.optionsFrames or {}
+    local legacyFrames = addon.optionsFrameRefs or {}
 
-	if (openItems) then
-		InterfaceOptionsFrame_OpenToCategory(frames.Items)
-	elseif OpenSettingsPanel then
-		if frames.Profiles then
-			OpenSettingsPanel(frames.Profiles)
-		end
-		if frames.General then
-			OpenSettingsPanel(frames.General)
-		end
-	elseif InterfaceOptionsFrame_OpenToCategory then
-		if frameRefs.Profiles then
-			InterfaceOptionsFrame_OpenToCategory(frameRefs.Profiles)
-		end
-		if frameRefs.General then
-			InterfaceOptionsFrame_OpenToCategory(frameRefs.General)
-		end
-	else
-		
-	end
+    local categoryName = openItems and "Items" or "General"
 
-	if InterfaceOptionsFrame then
-		InterfaceOptionsFrame:Raise()
-	end
+    if OpenSettingsPanel and categoryIDs[categoryName] then
+        OpenSettingsPanel(categoryIDs[categoryName])
+
+    elseif InterfaceOptionsFrame_OpenToCategory
+        and legacyFrames[categoryName]
+    then
+        InterfaceOptionsFrame_OpenToCategory(
+            legacyFrames[categoryName]
+        )
+    end
+
+    if InterfaceOptionsFrame then
+        InterfaceOptionsFrame:Raise()
+    end
 end
 
 function addon:OpenOptions(openItems) 
