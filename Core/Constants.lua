@@ -40,7 +40,7 @@ local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 private.addon_name = "CurrencyTracking"
 
 local LibStub = _G.LibStub
@@ -86,10 +86,17 @@ constants.defaults = {
 	},
 }
 
+constants.ITEM_CACHE_MIGRATION_VERSION = 2
+constants.ITEM_CACHE_KEY = "localized_item_cache"
+constants.CURRENCY_CACHE_MIGRATION_VERSION = 2
+constants.CURRENCY_CACHE_KEY = "localized_currency_cache"
+
 local function getProfessionText(spellid)
-	if not spellid then return end
+	if not spellid then 
+		return ""
+	end
 	local spellInfo = GetSpellInfo(spellid)
-	if spellInfo then
+	if spellInfo and spellInfo.iconID and spellInfo.name then
 		return format("|T%d:16:16:2:0|t |cffffffff%s|r", spellInfo.iconID, spellInfo.name)
 	else
 		return ""
@@ -104,13 +111,13 @@ local function getItemText(name, iconID)
     return format("|T%d:16:16:2:0|t |cffffffff%s|r", iconID, name)
 end
 
-
+-- Item categories with icons and names
 constants.itemCategories = {
-	["world_events"] = 	getItemText(BATTLE_PET_SOURCE_7, 133858),
-	["pvp"] = 			getItemText(PVP, 133282),
-	["elemental"] = 	getItemText(L["Elemental"], 136006),
-	["meat"] = 			getItemText(L["Meat"], 134007),
-	["others"] = 		getItemText(MISCELLANEOUS,134503),
+	["World_Events"] = 	getItemText(BATTLE_PET_SOURCE_7, 133858),
+	["PvP"] = 			getItemText(PVP, 133282),
+	["Elemental"] = 	getItemText(L["Elemental"], 136006),
+	["Meat"] = 			getItemText(L["Meat"], 134007),
+	["Others"] = 		getItemText(MISCELLANEOUS,134503),
 	["Tailoring"] = 	getProfessionText(3908),
 	["Mining"] = 		getProfessionText(2575),
 	["Leatherworking"] = getProfessionText(2108),
@@ -118,18 +125,16 @@ constants.itemCategories = {
 	["Engineering"] = 	getProfessionText(4036),
 	["Herbalism"] = 	getProfessionText(2366),
 	["Alchemy"] = 		getProfessionText(2259),
-	["potion"] =        getItemText(L["Potion"], 134743),
+	["Potion"] =        getItemText(L["Potion"], 134743),
 	["Blacksmithing"] = getProfessionText(2018),
 	["Fishing"] = 		getProfessionText(7620),
 	["Cooking"] = 		getProfessionText(2550),
+	["Relics"] = 		getItemText(INVTYPE_RELIC, 134459),
 }
 
 if (isRetail or isProgressionClassic) then
 	constants.itemCategories["Jewelcrafting"] = getProfessionText(25229)
 	constants.itemCategories["Inscription"] = 	getProfessionText(45357)
-end
-if (isRetail) then
-	constants.itemCategories["relics"] = 		getItemText(INVTYPE_RELIC, 134459)
 end
 
 -- below to force currency category to be displayed in specific order
@@ -197,8 +202,8 @@ elseif(isProgressionClassic) then
 		1, -- Miscellaneous
 	--	3, -- Unused
 	--	41, -- Test
-	--	82, -- Archaeology
-	--	89, -- Meta
+		82, -- Archaeology
+		89, -- Meta
 	}
 	expansions = {
 		EXPANSION_NAME0, -- Classic
@@ -271,7 +276,7 @@ else
 		282, -- Crests
 		283, -- Zones
 		284, -- Features
-		268, -- Season 1
+	--	268, -- Season 1
 		277, -- Season 2
 		263, -- Season 2
 		265, -- Season 3

@@ -67,6 +67,7 @@ end
 
 local function LinkButton_OnEnter(self)
     local parent = self:GetParent()
+    parent:LockHighlight()
 
     self.orig_tooltipScale = GameTooltip:GetScale()
 
@@ -91,12 +92,34 @@ local function LinkButton_OnEnter(self)
 end
 
 local function LinkButton_OnLeave(self)
+    self:GetParent():UnlockHighlight()
+
     if self.orig_tooltipScale then
         GameTooltip:SetScale(self.orig_tooltipScale)
         self.orig_tooltipScale = nil
     end
 
     GameTooltip:Hide()
+end
+
+local function LinkButton_OnMouseDown(self, button)
+    if button == "LeftButton" then
+        local parent = self:GetParent()
+        local handler = parent:GetScript("OnMouseDown")
+        if handler then
+            handler(parent, button)
+        end
+    end
+end
+
+local function LinkButton_OnMouseUp(self, button)
+    if button == "LeftButton" then
+        local parent = self:GetParent()
+        local handler = parent:GetScript("OnMouseUp")
+        if handler then
+            handler(parent, button)
+        end
+    end
 end
 
 local function LinkButton_OnClick(self, button)
@@ -141,6 +164,8 @@ function Templates.CreateLinkButton(name, parent)
 
     button:SetScript("OnEnter", LinkButton_OnEnter)
     button:SetScript("OnLeave", LinkButton_OnLeave)
+    button:SetScript("OnMouseDown", LinkButton_OnMouseDown)
+    button:SetScript("OnMouseUp", LinkButton_OnMouseUp)
     button:SetScript("OnClick", LinkButton_OnClick)
 
     return button

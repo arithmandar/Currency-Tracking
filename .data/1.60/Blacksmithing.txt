@@ -1,0 +1,6 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Blacksmithing" becomes items.Blacksmithing
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Blacksmithing | 1  | Vanilla                | https://www.wowhead.com/forever/items?filter=87:194;2:1;0:1

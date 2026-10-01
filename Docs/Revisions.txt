@@ -3,13 +3,16 @@
 Revision History:
 =================
 
-* v7.17 (Oct. xx, 2026)
+* v8.00 (Oct. 01, 2026)
 -----------------------
 - Update to support WoW 1.15.9, 1.60.1, 2.5.6, 5.5.4, 12.1.0
 - Deprecated GetItemIcon in favor of GetItemIconByID
 - Migrate Templates.xml to Templates.lua
 - Fixing right-click on item to option panel's issue
-- TBD: Items from recent expansions are yet to be added
+- Items / currencies from all expansions have been added
+- Added currency's cache mechanism
+- Improved option panel's performance by moving each of the item categories to individual option items
+  A single option item which is too large, can cause performance issues when leaving this option item.
 
 * v7.16 (Jan. 21, 2024)
 -----------------------

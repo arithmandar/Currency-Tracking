@@ -354,6 +354,11 @@ end
 -- Currencies
 -- /////////////////////////////////////////////////////////
 local currenciesOptions = nil
+function addon:InvalidateCurrencyOptions()
+	currenciesOptions = nil
+	AceConfigReg:NotifyChange(addon.LocName)
+end
+
 local function currencyButton_ToggleTrack(id)
 	profile = addon.db.profile
 	if (not profile["currencies"][id]) then 
@@ -382,25 +387,32 @@ local function getCurrenciesOptions()
 			local k = vi
 			local v = LibCurrencyInfo.data.CurrencyByCategory[k]
 			if v then
-				t["group"..i] = {}
-				t["group"..i].order = i
-				t["group"..i].type = "group"
-				t["group"..i].name = LibCurrencyInfo:GetCurrencyCategoryNameByCategoryID(k, lang)
-				t["group"..i].args = { }
+				local gi = "group"..i
+				t[gi] = {}
+				t[gi].order = i
+				t[gi].type = "group"
+				t[gi].name = LibCurrencyInfo:GetCurrencyCategoryNameByCategoryID(k, lang)
+				t[gi].args = { }
 				local j = 1
-				local tg = t["group"..i].args
+				local tg = t[gi].args
 
 				for index, id in ipairs(v) do
 					-- name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, rarity, categoryID, categoryName, currencyDesc = lib:GetCurrencyByID(currencyID)
 					--local name, count, icon, _, _, totalMax, _, _, _, _, currencyDesc = LibCurrencyInfo:GetCurrencyByID(id)
-					local curr = LibCurrencyInfo:GetCurrencyInfo(id)
+					local info = LibCurrencyInfo:GetCurrencyInfo(id)
+					local cached = addon.Query:GetCachedCurrency(id)
 
-					if curr and curr.iconFileID and curr.name and curr.name ~= "" then
-						local name = curr.name
-						local count = curr.quantity or 0
-						local icon = curr.iconFileID
-						local totalMax = curr.maxQuantity
-						local currencyDesc = curr.description or ""
+					if cached or (info and info.iconFileID and info.name and info.name ~= "") then
+						if not cached then
+							addon.Query:RefreshCurrency(id)
+						end
+
+						local metadata = cached or info
+						local name = metadata.name
+						local count = info and info.quantity or 0
+						local icon = metadata.icon
+						local totalMax = metadata.totalMax
+						local currencyDesc = metadata.description or ""
 
 						if currencyDesc ~= "" then
 							currencyDesc = currencyDesc .. "\n\n"
@@ -455,14 +467,16 @@ end
 -- Items
 -- /////////////////////////////////////////////////////////
 local itemOptions = nil
+local itemCategoryOptions = {}
 function addon:InvalidateItemOptions()
     itemOptions = nil
+	itemCategoryOptions = {}
     AceConfigReg:NotifyChange(addon.LocName)
 end
 local function itemButton_ToggleTrack(itemID)
 	if not profile then profile = addon.db.profile end
-	if (not profile["items"][itemID]) then 
-		profile["items"][itemID] = true 
+	if (not profile["items"][itemID]) then
+		profile["items"][itemID] = true
 	else
 		profile["items"][itemID] = nil
 	end
@@ -534,6 +548,7 @@ local function getItemOptions()
 	if not profile then profile = addon.db.profile end
 	--if not item_list then item_list = CurrencyTrackingDB.item_list end
 	
+	local constants = addon.constants
 
 	if not itemOptions then
 		itemOptions = {
@@ -542,36 +557,31 @@ local function getItemOptions()
 			args = { },
 		}
 		local i = 1
+		local go = itemOptions.args
 		for k, v in pairs(addon.items) do
-			itemOptions.args["group"..i] = {}
-			itemOptions.args["group"..i].order = i
-			itemOptions.args["group"..i].type = "group"
-			itemOptions.args["group"..i].name = addon.constants.itemCategories[k]
-			itemOptions.args["group"..i].args = { }
-			local t = itemOptions.args["group"..i].args
+			local gi = "group"..i
+			go[gi] = {}
+			go[gi].order = i
+			go[gi].type = "group"
+			go[gi].name = constants.itemCategories[k]
+			go[gi].args = { }
+			local t = go[gi].args
 			local j = 1
-			for ka, va in ipairs(v) do
-				if (WoWClassicEra and j > 1) then
-					break
-				elseif (WoWClassicTBC and j > 2) then 
-					break
-				elseif (WoWWOTLKC and j > 3) then
-					break
-				else
-					t["group"..j] = {}
-					t["group"..j].order = j
-					t["group"..j].type = "group"
-					t["group"..j].name = addon.constants.expansions[j]
-					t["group"..j].inline = true
-					t["group"..j].args = { }
+			for _, va in ipairs(v) do
+				local gj = "group"..j
+				t[gj] = {}
+				t[gj].order = j
+				t[gj].type = "group"
+				t[gj].name = constants.expansions[j]
+				t[gj].inline = true
+				t[gj].args = { }
 
-					local n = 1
-					local tp = t["group"..j].args
+				local n = 1
+				local tp = t[gj].args
 
-					for kb, vb in ipairs(va) do
-						if (type(vb) == "number") then
-							tp, n = retrieveItems(tp, vb, n)
-						end
+				for _, vb in ipairs(va) do
+					if (type(vb) == "number") then
+						tp, n = retrieveItems(tp, vb, n)
 					end
 				end
 				j = j + 1
@@ -581,6 +591,49 @@ local function getItemOptions()
 	end
 	
 	return itemOptions
+end
+
+local function getItemCategoryOptions(categoryName)
+	if not profile then profile = addon.db.profile end
+
+	local categoryOptions = itemCategoryOptions[categoryName]
+	if not categoryOptions then
+		categoryOptions = {
+			type = "group",
+			name = addon.constants.itemCategories[categoryName],
+			args = { },
+		}
+
+		local categoryItems = addon.items[categoryName]
+		if categoryItems then
+			for expansionIndex, expansionItems in ipairs(categoryItems) do
+				local expansionOptions = {
+					order = expansionIndex,
+					type = "group",
+					name = addon.constants.expansions[expansionIndex],
+					inline = false,
+					args = { },
+				}
+
+				local order = 1
+				for _, itemID in ipairs(expansionItems) do
+					if type(itemID) == "number" then
+						expansionOptions.args, order = retrieveItems(
+							expansionOptions.args,
+							itemID,
+							order
+						)
+					end
+				end
+
+				categoryOptions.args["group" .. expansionIndex] = expansionOptions
+			end
+		end
+
+		itemCategoryOptions[categoryName] = categoryOptions
+	end
+
+	return categoryOptions
 end
 
 local function openOptions(openItems)
@@ -623,10 +676,28 @@ function addon:SetupOptions()
 	self.optionsFrames.General = generalCategoryID
 	self.optionsFrameRefs.General = generalFrame
 	self:RegisterModuleOptions("Options", getOptions, L["Options"])
-	self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
 	--addTokenOptionFrame()
-	if (isRetail or isProgressionClassic) then
-		self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
+	self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
+	--self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
+	local firstItemCategory
+	for categoryName in pairs(addon.constants.itemCategories) do
+		local categoryItems = addon.items[categoryName]
+		if categoryItems and #categoryItems > 0 then
+			local itemCategoryName = categoryName
+			local optionName = "Items_" .. itemCategoryName
+			self:RegisterModuleOptions(
+				optionName,
+				function()
+					return getItemCategoryOptions(itemCategoryName)
+				end,
+				addon.constants.itemCategories[itemCategoryName]
+			)
+			firstItemCategory = firstItemCategory or optionName
+		end
+	end
+	if firstItemCategory then
+		self.optionsFrames.Items = self.optionsFrames[firstItemCategory]
+		self.optionsFrameRefs.Items = self.optionsFrameRefs[firstItemCategory]
 	end
 	self:RegisterModuleOptions("Profiles", giveProfiles, L["Profile Options"])
 end

@@ -1,0 +1,6 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Elemental" becomes items.Elemental
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Elemental | 1  | Vanilla                | https://www.wowhead.com/classic/items/trade-goods/elemental?filter=194;1;1

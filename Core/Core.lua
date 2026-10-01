@@ -714,6 +714,7 @@ function addon:OnEnable()
 	end
 
 	setupLDB()
+	self.Query:ScanCurrencies()
 	self.Query:ScanItems()
 	currencyUpdate()
 	self:Refresh()

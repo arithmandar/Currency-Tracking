@@ -1,0 +1,17 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Alchemy" becomes items.Alchemy
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Blacksmithing | 12 | Midnight               | https://www.wowhead.com/items?filter=87:194:166;2:1:12;0:1:0
+Blacksmithing | 11 | The War Within         | https://www.wowhead.com/items?filter=87:194:166;2:1:11;0:1:0
+Blacksmithing | 10 | Dragonflight           | https://www.wowhead.com/items?filter=87:194:166;2:1:10;0:1:0
+Blacksmithing | 9  | Shadowlands            | https://www.wowhead.com/items?filter=87:194:166;2:1:9;0:1:0
+Blacksmithing | 8  | Battle for Azeroth     | https://www.wowhead.com/items?filter=87:194:166;2:1:8;0:1:0
+Blacksmithing | 7  | Legion                 | https://www.wowhead.com/items?filter=87:194:166;2:1:7;0:1:0
+Blacksmithing | 6  | Warlords of Draenor    | https://www.wowhead.com/items?filter=87:194:166;2:1:6;0:1:0
+Blacksmithing | 5  | Mists of Pandaria      | https://www.wowhead.com/items?filter=87:194:166;2:1:5;0:1:0
+Blacksmithing | 4  | Cataclysm              | https://www.wowhead.com/items?filter=87:194:166;2:1:4;0:1:0
+Blacksmithing | 3  | Wrath of the Lich King | https://www.wowhead.com/items?filter=87:194:166;2:1:3;0:1:0
+Blacksmithing | 2  | Burning Crusade        | https://www.wowhead.com/items?filter=87:194:166;2:1:2;0:1:0
+Blacksmithing | 1  | Vanilla                | https://www.wowhead.com/items?filter=87:194:166;2:1:1;0:1:0

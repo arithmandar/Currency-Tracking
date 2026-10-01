@@ -1,0 +1,5 @@
+# One non-comment entry per block.
+# Format:
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+
+Alchemy | 10 | Dragonflight | https://www.wowhead.com/items?filter=87:194:166;1:1:10;0:1:0

@@ -1,0 +1,17 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Alchemy" becomes items.Alchemy
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Elemental | 12 | Midnight               | https://www.wowhead.com/items/trade-goods/elemental?filter=166;12;0
+Elemental | 11 | The War Within         | https://www.wowhead.com/items/trade-goods/elemental?filter=166;11;0
+Elemental | 10 | Dragonflight           | https://www.wowhead.com/items/trade-goods/elemental?filter=166;10;0
+Elemental | 9  | Shadowlands            | https://www.wowhead.com/items/trade-goods/elemental?filter=166;9;0
+Elemental | 8  | Battle for Azeroth     | https://www.wowhead.com/items/trade-goods/elemental?filter=166;8;0
+Elemental | 7  | Legion                 | https://www.wowhead.com/items/trade-goods/elemental?filter=166;7;0
+Elemental | 6  | Warlords of Draenor    | https://www.wowhead.com/items/trade-goods/elemental?filter=166;6;0
+Elemental | 5  | Mists of Pandaria      | https://www.wowhead.com/items/trade-goods/elemental?filter=166;5;0
+Elemental | 4  | Cataclysm              | https://www.wowhead.com/items/trade-goods/elemental?filter=166;4;0
+Elemental | 3  | Wrath of the Lich King | https://www.wowhead.com/items/trade-goods/elemental?filter=166;3;0
+Elemental | 2  | Burning Crusade        | https://www.wowhead.com/items/trade-goods/elemental?filter=166;2;0
+Elemental | 1  | Vanilla                | https://www.wowhead.com/items/trade-goods/elemental?filter=166;1;0

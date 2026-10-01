@@ -1,0 +1,17 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Alchemy" becomes items.Alchemy
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Mining | 12 | Midnight               | https://www.wowhead.com/items?filter=87:166:194;9:12:1;0:0:1
+Mining | 11 | The War Within         | https://www.wowhead.com/items?filter=87:166:194;9:11:1;0:0:1
+Mining | 10 | Dragonflight           | https://www.wowhead.com/items?filter=87:166:194;9:10:1;0:0:1
+Mining | 9  | Shadowlands            | https://www.wowhead.com/items?filter=87:166:194;9:9:1;0:0:1
+Mining | 8  | Battle for Azeroth     | https://www.wowhead.com/items?filter=87:166:194;9:8:1;0:0:1
+Mining | 7  | Legion                 | https://www.wowhead.com/items?filter=87:166:194;9:7:1;0:0:1
+Mining | 6  | Warlords of Draenor    | https://www.wowhead.com/items?filter=87:166:194;9:6:1;0:0:1
+Mining | 5  | Mists of Pandaria      | https://www.wowhead.com/items?filter=87:166:194;9:5:1;0:0:1
+Mining | 4  | Cataclysm              | https://www.wowhead.com/items?filter=87:166:194;9:4:1;0:0:1
+Mining | 3  | Wrath of the Lich King | https://www.wowhead.com/items?filter=87:166:194;9:3:1;0:0:1
+Mining | 2  | Burning Crusade        | https://www.wowhead.com/items?filter=87:166:194;9:2:1;0:0:1
+Mining | 1  | Vanilla                | https://www.wowhead.com/items?filter=87:166:194;9:1:1;0:0:1

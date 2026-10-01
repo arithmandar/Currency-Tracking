@@ -1,0 +1,10 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Alchemy" becomes items.Alchemy
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Tailoring | 5  | Mists of Pandaria      | https://www.wowhead.com/mop-classic/items?filter=87:194:166;10:1:5;0:1:0
+Tailoring | 4  | Cataclysm              | https://www.wowhead.com/mop-classic/items?filter=87:194:166;10:1:4;0:1:0
+Tailoring | 3  | Wrath of the Lich King | https://www.wowhead.com/mop-classic/items?filter=87:194:166;10:1:3;0:1:0
+Tailoring | 2  | Burning Crusade        | https://www.wowhead.com/mop-classic/items?filter=87:194:166;10:1:2;0:1:0
+Tailoring | 1  | Vanilla                | https://www.wowhead.com/mop-classic/items?filter=87:194:166;10:1:1;0:1:0

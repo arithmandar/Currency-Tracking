@@ -30,1590 +30,4895 @@ if not isRetail then return end
 local items = {}
 private.items = items
 
-
+-- Criteria: Reagent for Tailoring & stacks up to > 1
 items.Tailoring = {
-	[10] = { -- Dragonflight
-		-- Reagent for tailoring 
-		-- https://www.wowhead.com/items?filter=87:194:82;10:1:2;0:1:100000
-		-- and more
-		190321, -- Awakened Fire
-		190324, -- Awakened Order
-		190327, -- Awakened Air
-		190329, -- Awakened Frost
-		190331, -- Awakened Decay
-		190450, -- Awakened Ire
-		190453, -- Spark of Ingenuity
-		190454, -- Primal Chaos
-		190456, -- Artisan's Mettle
-		191460, -- Hochenblume
-		191496, -- Omnium Draconis
-		192095, -- Spool of Wilderthread
-		192096, -- Spool of Wilderthread
-		192097, -- Spool of Wilderthread
-		192872, -- Fractured Glass
-		192887, -- Elemental Harmony
-		193050, -- Tattered Wildercloth
-		193053, -- Contoured Fowlfeather
-		193053, -- Contoured Fowlfeather
-		193216, -- Dense Hide
-		193360, -- Centaur's Trophy Necklace
-		193898, -- Umbral Bone Needle
-		193899, -- Primalweave Spindle
-		193368, -- Silken Gemdust
-		193919, -- Frosty Soul
-		193921, -- Airy Soul
-		193922, -- Wildercloth
-		193922, -- Wildercloth
-		193923, -- Decayed Wildercloth
-		193924, -- Frostbitten Wildercloth
-		193925, -- Singed Wildercloth
-		193926, -- Wildercloth Bolt
-		193927, -- Wildercloth Bolt
-		193928, -- Wildercloth Bolt
-		193929, -- Vibrant Wildercloth Bolt
-		193930, -- Vibrant Wildercloth Bolt
-		193931, -- Vibrant Wildercloth Bolt
-		193932, -- Infurious Wildercloth Bolt
-		193933, -- Infurious Wildercloth Bolt
-		193934, -- Infurious Wildercloth Bolt
-		193935, -- Chronocloth Bolt
-		193936, -- Chronocloth Bolt
-		193937, -- Chronocloth Bolt
-		193938, -- Azureweave Bolt
-		193939, -- Azureweave Bolt
-		193940, -- Azureweave Bolt
-		194008, -- Vibrant Spellthread
-		194011, -- Frozen Spellthread
-		194014, -- Temporal Spellthread
-		194123, -- Chromatic Dust
-		194124, -- Vibrant Shard
-		194698, -- Draconic Treatise on Tailoring
-		194727, -- Fiery Spirit
-		198397, -- Rainbow Pearl
-		198609, -- Tailoring Examples
-		198662, -- Intriguing Bolt of Blue Cloth
-		198680, -- Decaying Brackenhide Blanket
-		198684, -- Miniature Bronze Dragonflight Banner
-		198692, -- Noteworthy Scrap of Carpet
-		198699, -- Mysterious Banner
-		198702, -- Itinerant Singed Fabric
-		198977, -- Ohn'arhan Weave
-		198978, -- Stupidly Effective Stitchery
-		200113, -- Resonant Crystal
-		201019, -- Ancient Dragonweave Bolt
-		201020, -- Silky Surprise
-		201401, -- Iridescent Plume
-		201404, -- Tallstrider Sinew
-		201405, -- Tuft of Primal Wool
-		201715, -- Notebook of Crafting Knowledge
-		203406, -- Torn Morqut Kite
-		204460, -- Zaralek Glowspores
-		207702, -- Wartorn Scrap
-		208212, -- Dreaming Essence
-
-	},
-	[9] = { -- Shadowland
-		-- 9.2.5 Eternity's End
-
-		-- Shadowland
-		187703, -- Silken Protofiber, 9.2.0.42423
-		173202, -- Shrouded Cloth
-		173204, -- Lightless Silk
-		172439, -- Enchanted Lightless Silk
-	},
-	[8] = { -- BfA
-		167738, -- Gilded Seaweave	
-		158378, -- Embroidered Deep Sea Satin
-		152577, -- Deep Sea Satin
-		152576, -- Tidespray Linen	
-	},
-	[7] = { 	-- Legion
-		151567, -- Lightweave Cloth
-		146711, -- Bolt of Starweave
-		146710, -- Bolt of Shadowcloth
-		127681, -- Sharp Spritethorn
-		127037, -- Runic Catgut
-		127004, -- Imbued Silkweave
-		124437, -- Shal'dorei Silk	
-	},
-	[6] = { 	-- WoD
-		111557, -- Sumptuous Fur
-		111556, -- Hexweave Cloth
-	},
-	[5] = { 	-- MoP
-		98619, -- Celestial Cloth
-		92960, -- Silkworm Cocoon
-		82447, -- Imperial Silk
-		82441, -- Bolt of Windwool Cloth
-		72988, -- Windwool Cloth
-	},
-	[4] = { 	-- Cataclysm
-		54440, -- Dreamcloth
-		53643, -- Bolt of Embersilk Cloth
-		53010, -- Embersilk Cloth
-	},
-	[3] = { 	-- WolTK
-		42253, -- Iceweb Spider Silk
-		41595, -- Spellweave
-		41594, -- Moonshroud
-		41593, -- Ebonweave
-		41511, -- Bolt of Imbued Frostweave
-		41510, -- Bolt of Frostweave
-		33470, -- Frostweave Cloth
-	},
-	[2] = { 	-- BC
-		24272, -- Shadowcloth
-		24271, -- Spellcloth
-		21881, -- Netherweb Spider Silk
-		21877, -- Netherweave Cloth
-		21845, -- Primal Mooncloth
-		21844, -- Bolt of Soulcloth
-		21842, -- Bolt of Imbued Netherweave
-		21840, -- Bolt of Netherweave
-	},
-	[1] = { 	-- Classic
-		14342, -- Mooncloth
-		14256, -- Felcloth
-		14227, -- Ironweb Spider Silk
-		14048, -- Bolt of Runecloth
-		14047, -- Runecloth
-		10285, -- Shadow Silk
-		4339, -- Bolt of Mageweave
-		4338, -- Mageweave Cloth
-		4337, -- Thick Spider's Silk
-		4306, -- Silk Cloth
-		4305, -- Bolt of Silk Cloth
-		3182, -- Spider's Silk
-		2997, -- Bolt of Woolen Cloth
-		2996, -- Bolt of Linen Cloth
-		2592, -- Wool Cloth
-		2589, -- Linen Cloth
-	},
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:12;0:1:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        274777, -- Neutralized Venom Clot
+        251691, -- Embroidery Floss
+        251665, -- Silverleaf Thread
+        251285, -- Petrified Root
+        251283, -- Tormented Tantalum
+        245345, -- Fused Vitality
+        243602, -- Radiant Shard
+        243599, -- Eversinging Dust
+        239702, -- Imbued Bright Linen Bolt
+        239700, -- Bright Linen Bolt
+        239201, -- Sunfire Silk Bolt
+        239198, -- Arcanoweave Bolt
+        238525, -- Fantastic Fur
+        238523, -- Carving Canine
+        238522, -- Peerless Plumage
+        237018, -- Arcanoweave
+        237015, -- Sunfire Silk
+        236963, -- Bright Linen
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:11;0:1:0
+    [11] = { -- The War Within
+        256963, -- Thalassian Lumber
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251767, -- Fel-Touched Lumber
+        251766, -- Shadowmoon Lumber
+        251764, -- Ashwood Lumber
+        251763, -- Bamboo Lumber
+        251762, -- Coldwind Lumber
+        248012, -- Dornic Fir Lumber
+        245586, -- Ironwood Lumber
+        242691, -- Olemba Lumber
+        228930, -- Adorning Ribbon
+        224832, -- Exquisite Weavercloth Bolt
+        224828, -- Weavercloth
+        224824, -- Duskweave
+        224764, -- Mosswool Thread
+        222804, -- Weavercloth Bolt
+        222801, -- Dawnweave Bolt
+        222798, -- Duskweave Bolt
+        222795, -- Spool of Weaverthread
+        222792, -- Spool of Dawnthread
+        222789, -- Spool of Duskthread
+        222615, -- Apricate Ink
+        222609, -- Shadow Ink
+        222423, -- Sanctified Alloy
+        221865, -- Chaos Circuit
+        221862, -- Safety Switch
+        219952, -- Refulgent Crystal
+        219949, -- Gleaming Shard
+        219946, -- Storm Dust
+        213759, -- Inverted Prism
+        213613, -- Leyline Residue
+        213611, -- Writhing Sample
+        213197, -- Null Lotus
+        212674, -- Sunless Carapace
+        212670, -- Thunderous Hide
+        212563, -- Harmonious Horticulture
+        210939, -- Null Stone
+        210814, -- Artisan's Acuity
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:10;0:1:0
+    [10] = { -- Dragonflight
+        208212, -- Dreaming Essence
+        207702, -- Wartorn Scrap
+        204460, -- Zaralek Glowspores
+        203406, -- Torn Morqut Kite
+        201405, -- Tuft of Primal Wool
+        201404, -- Tallstrider Sinew
+        201401, -- Iridescent Plume
+        200113, -- Resonant Crystal
+        198397, -- Rainbow Pearl
+        194751, -- Blazing Ink
+        194727, -- Fiery Spirit
+        194124, -- Vibrant Shard
+        194123, -- Chromatic Dust
+        194014, -- Temporal Spellthread
+        194011, -- Frozen Spellthread
+        194008, -- Vibrant Spellthread
+        193938, -- Azureweave Bolt
+        193935, -- Chronocloth Bolt
+        193932, -- Infurious Wildercloth Bolt
+        193929, -- Vibrant Wildercloth Bolt
+        193926, -- Wildercloth Bolt
+        193922, -- Wildercloth
+        193921, -- Airy Soul
+        193919, -- Frosty Soul
+        193368, -- Silken Gemdust
+        193360, -- Centaur's Trophy Necklace
+        193216, -- Dense Hide
+        193053, -- Contoured Fowlfeather
+        192887, -- Elemental Harmony
+        192872, -- Fractured Glass
+        192095, -- Spool of Wilderthread
+        191496, -- Omnium Draconis
+        191460, -- Hochenblume
+        190456, -- Artisan's Mettle
+        190450, -- Awakened Ire
+        190395, -- Serevite Ore
+        190331, -- Awakened Decay
+        190329, -- Awakened Frost
+        190327, -- Awakened Air
+        190324, -- Awakened Order
+        190321, -- Awakened Fire
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:9;0:1:0
+    [9] = { -- Shadowlands
+        187707, -- Progenitor Essentia
+        187703, -- Silken Protofiber
+        186017, -- Korthite Crystal
+        182117, -- Bleakcloth
+        182116, -- Bolt of Bleakcloth
+        182104, -- Gossamer Thread
+        182103, -- Gossamer Cloth
+        182102, -- Bolt of Woven Gossamer
+        182052, -- Thread of Pride
+        182051, -- Bolt of Prideweave
+        182050, -- Prideweave Cloth
+        182028, -- Bleakthread
+        182006, -- Spool of Ardensilk
+        182005, -- Ardensilk Cloth
+        182004, -- Bolt of Ardensilk Cloth
+        178787, -- Orboreal Shard
+        177062, -- Penumbra Thread
+        177061, -- Twilight Bark
+        173204, -- Lightless Silk
+        173202, -- Shrouded Cloth
+        173173, -- Essence of Valor
+        173170, -- Essence of Rebirth
+        172439, -- Enchanted Lightless Silk
+        171828, -- Laestrite Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:8;0:1:0
+    [8] = { -- Battle for Azeroth
+        170553, -- Void Focus Splinter
+        168649, -- Dredged Leather
+        167738, -- Gilded Seaweave
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        162461, -- Sanguicell
+        162460, -- Hydrocore
+        159959, -- Nylon Thread
+        158378, -- Embroidered Deep Sea Satin
+        158188, -- Crimson Ink
+        152668, -- Expulsom
+        152577, -- Deep Sea Satin
+        152576, -- Tidespray Linen
+        152513, -- Platinum Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:7;0:1:0
+    [7] = { -- Legion
+        156930, -- Rich Illusion Dust
+        151568, -- Primal Sargerite
+        151567, -- Lightweave Cloth
+        142335, -- Pristine Falcosaur Feather
+        135538, -- Bear Fur
+        130183, -- Shadowruby
+        130175, -- Chaotic Spinel
+        129032, -- Roseate Pigment
+        127681, -- Sharp Spritethorn
+        127382, -- Tanithria's Sharpened Spritethorn
+        127372, -- Silkweave Bracer Lining
+        127370, -- Silkweave Bracer: Outer Layer
+        127368, -- Bolt of Brimstone-Soaked Silkweave
+        127364, -- Silkweave Hood Lining
+        127363, -- Silkweave Hood: Outer Layer
+        127359, -- Basic Silkweave Robe
+        127343, -- Lyndras' Runic Catgut
+        127292, -- Tanithria's Green Dye
+        127291, -- Tanithria's Red Dye
+        127290, -- Tanithria's Blue Dye
+        127289, -- Tanithria's Purple Dye
+        127287, -- Tanithria's Thread
+        127286, -- Tanithria's Silkweave
+        127037, -- Runic Catgut
+        127004, -- Imbued Silkweave
+        124461, -- Demonsteel Bar
+        124440, -- Arkhana
+        124439, -- Unbroken Tooth
+        124438, -- Unbroken Claw
+        124437, -- Shal'dorei Silk
+        124124, -- Blood of Sargeras
+        124115, -- Stormscale
+        124113, -- Stonehide Leather
+        124106, -- Felwort
+        123918, -- Leystone Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:6;0:1:0
+    [6] = { -- Warlords of Draenor
+        127759, -- Felblight
+        120945, -- Primal Spirit
+        118472, -- Savage Blood
+        114931, -- Cerulean Pigment
+        113588, -- Temporal Crystal
+        113264, -- Sorcerous Air
+        113263, -- Sorcerous Earth
+        111557, -- Sumptuous Fur
+        111556, -- Hexweave Cloth
+        110609, -- Raw Beast Hide
+        109219, -- Draenic Strength Potion
+        109218, -- Draenic Intellect Potion
+        109217, -- Draenic Agility Potion
+        109126, -- Gorgrond Flytrap
+        109119, -- True Iron Ore
+        109118, -- Blackrock Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:5;0:1:0
+    [5] = { -- Mists of Pandaria
+        102218, -- Spirit of War
+        98619, -- Celestial Cloth
+        94289, -- Haunting Spirit
+        82447, -- Imperial Silk
+        82444, -- Greater Pearlescent Spellthread
+        82441, -- Bolt of Windwool Cloth
+        80433, -- Blood Spirit
+        76061, -- Spirit of Harmony
+        74866, -- Golden Carp
+        72988, -- Windwool Cloth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:4;0:1:0
+    [4] = { -- Cataclysm
+        71998, -- Essence of Destruction
+        69237, -- Living Ember
+        61981, -- Inferno Ink
+        54849, -- Obsidium Bar
+        54450, -- Powerful Ghostly Spellthread
+        54440, -- Dreamcloth
+        53643, -- Bolt of Embersilk Cloth
+        53050, -- Heavy Embersilk Bandage
+        53010, -- Embersilk Cloth
+        52555, -- Hypnotic Dust
+        52329, -- Volatile Life
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+        52078, -- Chaos Orb
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:3;0:1:0
+    [3] = { -- Wrath of the Lich King
+        49908, -- Primordial Saronite
+        47556, -- Crusader Orb
+        45087, -- Runed Orb
+        43102, -- Frozen Orb
+        42253, -- Iceweb Spider Silk
+        41595, -- Spellweave
+        41594, -- Moonshroud
+        41593, -- Ebonweave
+        41511, -- Bolt of Imbued Frostweave
+        41510, -- Bolt of Frostweave
+        38426, -- Eternium Thread
+        38425, -- Heavy Borean Leather
+        37704, -- Crystallized Life
+        37702, -- Crystallized Fire
+        37701, -- Crystallized Earth
+        36934, -- Eye of Zul
+        36930, -- Monarch Topaz
+        36925, -- Majestic Zircon
+        36922, -- King's Amber
+        36919, -- Cardinal Ruby
+        36908, -- Frost Lotus
+        36860, -- Eternal Fire
+        36784, -- Siren's Tear
+        36783, -- Northsea Pearl
+        35627, -- Eternal Shadow
+        35625, -- Eternal Life
+        35624, -- Eternal Earth
+        35622, -- Eternal Water
+        34055, -- Greater Cosmic Essence
+        34054, -- Infinite Dust
+        34052, -- Dream Shard
+        33470, -- Frostweave Cloth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:2;0:1:0
+    [2] = { -- Burning Crusade
+        34664, -- Sunmote
+        32428, -- Heart of Darkness
+        30183, -- Nether Vortex
+        24272, -- Shadowcloth
+        24271, -- Spellcloth
+        23572, -- Primal Nether
+        23571, -- Primal Might
+        22794, -- Fel Lotus
+        22457, -- Primal Mana
+        22456, -- Primal Shadow
+        22452, -- Primal Earth
+        22451, -- Primal Air
+        22450, -- Void Crystal
+        22446, -- Greater Planar Essence
+        22445, -- Arcane Dust
+        21887, -- Knothide Leather
+        21886, -- Primal Life
+        21885, -- Primal Water
+        21884, -- Primal Fire
+        21882, -- Soul Essence
+        21881, -- Netherweb Spider Silk
+        21877, -- Netherweave Cloth
+        21845, -- Primal Mooncloth
+        21844, -- Bolt of Soulcloth
+        21842, -- Bolt of Imbued Netherweave
+        21840, -- Bolt of Netherweave
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;10:1:1;0:1:0
+    [1] = { -- Vanilla
+        22682, -- Frozen Rune
+        20520, -- Dark Rune
+        19768, -- Primal Tiger Leather
+        19767, -- Primal Bat Leather
+        18335, -- Pristine Black Diamond
+        18240, -- Ogre Tannin
+        17056, -- Light Feather
+        17012, -- Core Leather
+        17011, -- Lava Core
+        17010, -- Fiery Core
+        16203, -- Greater Eternal Essence
+        14344, -- Large Brilliant Shard
+        14342, -- Mooncloth
+        14341, -- Rune Thread
+        14256, -- Felcloth
+        14227, -- Ironweb Spider Silk
+        14048, -- Bolt of Runecloth
+        14047, -- Runecloth
+        13926, -- Golden Pearl
+        13468, -- Black Lotus
+        12811, -- Righteous Orb
+        12810, -- Enchanted Leather
+        12809, -- Guardian Stone
+        12808, -- Essence of Undeath
+        12804, -- Powerful Mojo
+        12803, -- Living Essence
+        12800, -- Azerothian Diamond
+        12662, -- Demonic Rune
+        12364, -- Huge Emerald
+        12360, -- Arcanite Bar
+        10290, -- Pink Dye
+        10286, -- Heart of the Wild
+        10285, -- Shadow Silk
+        9210, -- Ghost Dye
+        8831, -- Purple Lotus
+        8343, -- Heavy Silken Thread
+        8170, -- Rugged Leather
+        8153, -- Wildvine
+        7972, -- Ichor of Undeath
+        7971, -- Black Pearl
+        7910, -- Star Ruby
+        7082, -- Essence of Air
+        7080, -- Essence of Water
+        7079, -- Globe of Water
+        7078, -- Essence of Fire
+        7077, -- Heart of Fire
+        7076, -- Essence of Earth
+        7072, -- Naga Scale
+        7071, -- Iron Buckle
+        7070, -- Elemental Water
+        7069, -- Elemental Air
+        7068, -- Elemental Fire
+        7067, -- Elemental Earth
+        6371, -- Fire Oil
+        6261, -- Orange Dye
+        6260, -- Blue Dye
+        6048, -- Shadow Protection Potion
+        6037, -- Truesilver Bar
+        5500, -- Iridescent Pearl
+        5498, -- Small Lustrous Pearl
+        4625, -- Firebloom
+        4342, -- Purple Dye
+        4341, -- Yellow Dye
+        4340, -- Gray Dye
+        4339, -- Bolt of Mageweave
+        4338, -- Mageweave Cloth
+        4337, -- Thick Spider's Silk
+        4306, -- Silk Cloth
+        4305, -- Bolt of Silk Cloth
+        4304, -- Thick Leather
+        4291, -- Silken Thread
+        4234, -- Heavy Leather
+        3864, -- Citrine
+        3829, -- Frost Oil
+        3827, -- Mana Potion
+        3824, -- Shadow Oil
+        3577, -- Gold Bar
+        3383, -- Elixir of Wisdom
+        3182, -- Spider's Silk
+        2997, -- Bolt of Woolen Cloth
+        2996, -- Bolt of Linen Cloth
+        2605, -- Green Dye
+        2604, -- Red Dye
+        2592, -- Wool Cloth
+        2589, -- Linen Cloth
+        2325, -- Black Dye
+        2324, -- Bleach
+        2321, -- Fine Thread
+        2320, -- Coarse Thread
+        2319, -- Medium Leather
+        2318, -- Light Leather
+        1529, -- Jade
+        929, -- Healing Potion
+    },
 }
-items.Mining = {
-	[10] = { -- Dragonflight
-		188658, -- Draconium Ore
-		189143, -- Draconium Ore
-		189541, -- Primal Molten Alloy
-		189542, -- Primal Molten Alloy
-		189543, -- Primal Molten Alloy
-		190311, -- Draconium Ore
-		190312, -- Khaz'gorite Ore
-		190313, -- Khaz'gorite Ore
-		190314, -- Khaz'gorite Ore
-		190394, -- Serevite Ore
-		190395, -- Serevite Ore
-		190396, -- Serevite Ore
-		190452, -- Primal Flux
-		190530, -- Frostfire Alloy
-		190531, -- Frostfire Alloy
-		190532, -- Frostfire Alloy
-		190533, -- Obsidian Seared Alloy
-		190534, -- Obsidian Seared Alloy
-		190535, -- Obsidian Seared Alloy
-		190536, -- Infurious Alloy
-		190537, -- Infurious Alloy
-		190538, -- Infurious Alloy
-		194545, -- Prismatic Ore
-		194039, -- Heated Ore Sample
-		194062, -- Unyielding Stone Chunk
-		194063, -- Glowing Fragment
-		194064, -- Intricate Geode
-		194078, -- Perfect Draconium Scale
-		194079, -- Pure Serevite Nugget
-		194708, -- Draconic Treatise on Mining
-		199122, -- Mining Field Notes
-		201300, -- Iridescent Ore Fragments
-		201301, -- Iridescent Ore
-		201700, -- Notebook of Crafting Knowledge
-		201716, -- Notebook of Crafting Knowledge
-		202011, -- Elementally-Charged Stone
-	},
-	[9] = { -- Shadowland
-		180733, -- Luminous Flux
-		171428, -- Shadowghast Ingot
-		171828, -- Laestrite Ore
-		171829, -- Solenium Ore
-		171830, -- Oxxein Ore
-		171831, -- Phaedrum Ore
-		171832, -- Sinvyr Ore
-		171833, -- Elethium Ore
-		171834, -- Laestrite Nugget
-		171835, -- Solenium Nugget
-		171836, -- Oxxein Nugget
-		171837, -- Phaedrum Nugget
-		171838, -- Sinvyr Nugget
-		171839, -- Elethium Nugget
-		171840, -- Porous Stone
-		171841, -- Shaded Stone
-	},
-	[8] = { -- BfA
-		168185, -- Osmenite Ore
-		152513, -- Platinum Ore
-		152512, -- Monelite Ore
-		152579, -- Storm Silver Ore
-	},
-	[7] = { 	-- Legion
-		151564, -- Empyrium
-		124461, -- Demonsteel Bar
-		124444, -- Infernal Brimstone
-		123919, -- Felslate
-		123918, -- Leystone Ore
-	},
-	[6] = { 	-- WoD
-		115508, -- Draenic Stone
-		109992, -- Blackrock Fragment
-		109991, -- True Iron Nugget
-		109119, -- True Iron Ore
-		109118, -- Blackrock Ore
-		108445, -- Draenic Coal
-		108391, -- Titanium Ore Nugget
-		108309, -- Pyrite Ore Nugget
-		108308, -- Elementium Ore Nugget
-		108307, -- Obsidium Ore Nugget
-		108306, -- Saronite Ore Nugget
-		108305, -- Cobalt Ore Nugget
-		108304, -- Khorium Ore Nugget
-		108303, -- Eternium Ore Nugget
-		108302, -- Adamantite Ore Nugget
-		108301, -- Fel Iron Ore Nugget
-		108300, -- Mithril Ore Nugget
-		108299, -- Truesilver Ore Nugget
-		108298, -- Thorium Ore Nugget
-		108297, -- Iron Ore Nugget
-		108296, -- Gold Ore Nugget
-		108295, -- Tin Ore Nugget
-		108294, -- Silver Ore Nugget
-		108257, -- Truesteel Ingot
-	},
-	[5] = { 	-- MoP
-		97546, -- Kyparite Fragment
-		97512, -- Ghost Iron Nugget
-		72104, -- Living Steel, Alchemy
-		72103, -- White Trillium Ore
-		72096, -- Ghost Iron Bar
-		72095, -- Trillium Bar, Alchemy
-		72094, -- Black Trillium Ore
-		72093, -- Kyparite
-		72092, -- Ghost Iron Ore
-	},
-	[4] = { 	-- Cataclysm
-		65365, -- Folded Obsidium
-		58480, -- Truegold, Alchemy
-		54849, -- Obsidium Bar
-		53039, -- Hardened Elementium Bar
-		53038, -- Obsidium Ore
-		52186, -- Elementium Bar
-		52185, -- Elementium Ore
-		52183, -- Pyrite Ore
-		51950, -- Pyrium Bar, Alchemy
-	},
-	[3] = { 	-- WolTK
-		41163, -- Titanium Bar, Alchemy
-		37663, -- Titansteel Bar
-		36916, -- Cobalt Bar
-		36913, -- Saronite Bar
-		36912, -- Saronite Ore
-		36910, -- Titanium Ore
-		36909, -- Cobalt Ore
-	},
-	[2] = { 	-- BC
-		35128, -- Hardened Khorium
-		23573, -- Hardened Adamantite Bar
-		23449, -- Khorium Bar
-		23448, -- Felsteel Bar
-		23447, -- Eternium Bar
-		23446, -- Adamantite Bar
-		23445, -- Fel Iron Bar
-		23427, -- Eternium Ore
-		23426, -- Khorium Ore
-		23425, -- Adamantite Ore
-		23424, -- Fel Iron Ore
-	},
-	[1] = { 	-- Classic
-		22203, -- Large Obsidian Shard
-		22202, -- Small Obsidian Shard
-		18567, -- Elemental Flux
-		18562, -- Elementium Ingot
-		17771, -- Enchanted Elementium Bar
-		17203, -- Sulfuron Ingot
-		12809, -- Guardian Stone
-		12655, -- Enchanted Thorium Bar
-		12365, -- Dense Stone
-		12359, -- Thorium Bar
-		11371, -- Dark Iron Bar
-		11370, -- Dark Iron Ore
-		10620, -- Thorium Ore
-		7912, -- Solid Stone
-		7911, -- Truesilver Ore
-		6037, -- Truesilver Bar
-		3857, -- Coal
-		3577, -- Gold Bar
-		3576, -- Tin Bar
-		3575, -- Iron Bar
-		3860, -- Mithril Bar
-		3859, -- Steel Bar
-		3858, -- Mithril Ore
-		2842, -- Silver Bar
-		2841, -- Bronze Bar
-		2840, -- Copper Bar
-		2838, -- Heavy Stone
-		2836, -- Coarse Stone
-		2835, -- Rough Stone
-		2776, -- Gold Ore
-		2775, -- Silver Ore
-		2772, -- Iron Ore
-		2771, -- Tin Ore
-		2770, -- Copper Ore
-	},
-}
 
+-- Criteria: Reagent for Leatherworking & stacks up to > 1
 items.Leatherworking = {
-	[10] = { -- Dragonflight
-		190316, -- Awakened Earth
-		190321, -- Awakened Fire
-		190327, -- Awakened Air
-		190329, -- Awakened Frost
-		190331, -- Awakened Decay
-		190450, -- Awakened Ire
-		190453, -- Spark of Ingenuity
-		190454, -- Primal Chaos
-		190456, -- Artisan's Mettle
-		193053, -- Contoured Fowlfeather
-		193251, -- Crystalspine Fur
-		193252, -- Salamanther Scales
-		193253, -- Cacophonous Thunderscale
-		193254, -- Rockfang Leather
-		193255, -- Pristine Vorquin Horn
-		193256, -- Windsong Plumage
-		193258, -- Fire-Infused Hide
-		193259, -- Flawless Proto Dragon Scale
-		193360, -- Centaur's Trophy Necklace
-		193362, -- Fiery Soul
-		198615, -- Pentagold Seal
-		201399, -- Primal Bear Spine
-		201400, -- Aquatic Maw
-		201403, -- Mastodon Tusk
-		201404, -- Tallstrider Sinew
-		201405, -- Tuft of Primal Wool
-		193208, -- Resilient Leather
-		193210, -- Resilient Leather
-		193211, -- Resilient Leather
-		193213, -- Adamant Scales
-		193214, -- Adamant Scales
-		193215, -- Adamant Scales
-		193216, -- Dense Hide
-		193217, -- Dense Hide
-		193218, -- Dense Hide
-		193222, -- Lustrous Scaled Hide
-		193223, -- Lustrous Scaled Hide
-		193224, -- Lustrous Scaled Hide
-		193226, -- Stonecrust Hide
-		193227, -- Stonecrust Hide
-		193228, -- Stonecrust Hide
-		193229, -- Mireslush Hide
-		193230, -- Mireslush Hide
-		193231, -- Mireslush Hide
-		193232, -- Deathchill Hide
-		193233, -- Deathchill Hide
-		193234, -- Deathchill Hide
-		193236, -- Infurious Hide
-		193237, -- Infurious Hide
-		193238, -- Infurious Hide
-		193239, -- Drygrate Scales
-		193240, -- Drygrate Scales
-		193241, -- Drygrate Scales
-		193242, -- Earthshine Scales
-		193243, -- Earthshine Scales
-		193244, -- Earthshine Scales
-		193245, -- Frostbite Scales
-		193246, -- Frostbite Scales
-		193247, -- Frostbite Scales
-		193248, -- Infurious Scales
-		193249, -- Infurious Scales
-		193250, -- Infurious Scales
-		193251, -- Crystalspine Fur
-		193252, -- Salamanther Scales
-		193253, -- Cacophonous Thunderscale
-		193254, -- Rockfang Leather
-		193255, -- Pristine Vorquin Horn
-		193256, -- Windsong Plumage
-		193258, -- Fire-Infused Hide
-		193259, -- Flawless Proto Dragon Scale
-		193261, -- Bite-Sized Morsel
-		193262, -- Exceptional Morsel
-		197735, -- Finished Prototype Explorer's Barding
-		197736, -- Finished Prototype Regal Barding
-		193910, -- Molted Dragon Scales
-		193913, -- Preserved Animal Parts
-		194700, -- Draconic Treatise on Leatherworking
-		198613, -- Leatherworking Designs
-		198658, -- Decay-Infused Tanning Oil
-		198667, -- Spare Djaradin Tools
-		198683, -- Treated Hides
-		198690, -- Decayed Scales
-		198696, -- Wind-Blessed Hide
-		198711, -- Poacher's Pack
-		198975, -- Ossified Hide
-		198976, -- Exceedingly Soft Skin
-		201018, -- Well-Danced Drum
-		201713, -- Notebook of Crafting Knowledge
-	},
-	[9] = { -- Shadowland
-		187701, -- Protogenic Pelt
---			177281, --  Heavy Sorrowscale
-		177279, --  Gaunt Sinew
-		172438, --  Enchanted Heavy Desolate Hide
-		172333, --  Purified Leather
-		172332, --  Necrotic Leather
-		172331, --  Sinful Leather
-		172330, --  Unseelie Leather
-		172097, --  Heavy Desolate Hide
-		172096, --  Heavy Desolate Leather
-		172095, --  Desolate Hide Scraps
-		172094, --  Desolate Hide
-		172093, --  Desolate Leather Scraps
-		172092, --  Pallid Bone
-		172090, --  Sorrowscale Fragment
-		172089, --  Desolate Leather
-	},
-	[8] = { -- BfA
-		168649, -- Dredged Leather
-		168650, -- Cragscale
---			164978, -- Mallet of Thunderous Skins, not quite a "gathered" item to be tracked
-		152542, -- Hardened Tempest Hide
-		153051, -- Mistscale
-		154165, -- Calcified Bone
-		154722, -- Tempest Hide
-		152541, -- Coarse Leather
-		153050, -- Shimmerscale
-		154164, -- Blood-Stained Bone
-	},
-	[7] = { 	-- Legion
-		151566, -- Fiendish Leather
-		124116, -- Felhide
-		124115, -- Stormscale
-		124113, -- Stonehide Leather
-	},
-	[6] = { 	-- WoD
-		112185, --  Wind Scale Fragment
-		112184, --  Cobra Scale Fragment
-		112183, --  Nether Dragonscale Fragment
-		112182, --  Patch of Fel Hide
-		112181, --  Fel Scale Fragment
-		112180, --  Patch of Crystal Infused Leather
-		112179, --  Patch of Thick Clefthoof Leather
-		112178, --  Jormungar Scale Fragment
-		112177, --  Nerubian Chitin Fragment
-		112158, --  Icy Dragonscale Fragment
-		112157, --  Prismatic Scale Fragment
-		112156, --  Blackened Dragonscale Fragment
-		112155, --  Deepsea Scale Fragment
-		110611, --  Burnished Leather
-		110610, --  Raw Beast Hide Scraps
-		110609, --  Raw Beast Hide
-	},
-	[5] = { 	-- MoP
-		79101, -- Prismatic Scale
-		72163, -- Magnificent Hide
-		72162, -- Sha-Touched Leather
-		72120, -- Exotic Leather
-	},
-	[4] = { 	-- Cataclysm
-		56516, --  Heavy Savage Leather
-		52982, --  Deepsea Scale
-		52980, --  Pristine Hide
-		52979, --  Blackened Dragonscale
-		52977, --  Savage Leather Scraps
-		52976, --  Savage Leather
-	},
-	[3] = { 	-- WolTK
-		44128, --  Arctic Fur
-		38425, --  Heavy Borean Leather
-		33568, --  Borean Leather
-		38557, --  Icy Dragonscale
-		38558, --  Nerubian Chitin
-		38561, --  Jormungar Scale
-		33567, --  Borean Leather Scraps
-	},
-	[2] = { 	-- BC
-		29548, --  Nether Dragonscales
-		29547, --  Wind Scales
-		29539, --  Cobra Scales
-		25708, --  Thick Clefthoof Leather
-		25707, --  Fel Hide
-		25700, --  Fel Scales
-		25699, --  Crystal Infused Leather
-		25649, --  Knothide Leather Scraps
-		23793, --  Heavy Knothide Leather
-		21887, --  Knothide Leather
-	},
-	[1] = { 	-- Classic
-		20381, --  Dreamscale
-		19768, --  Primal Tiger Leather
-		19767, --  Primal Bat Leather
-		17967, --  Refined Scale of Onyxia
-		17012, --  Core Leather
-		15419, --  Warbear Leather
-		15417, --  Devilsaur Leather
-		15416, --  Black Dragonscale
-		15415, --  Blue Dragonscale
-		15414, --  Red Dragonscale
-		15412, --  Green Dragonscale
-		15410, --  Scale of Onyxia
-		15408, --  Heavy Scorpid Scale
-		15407, --  Cured Rugged Hide
-		12810, --  Enchanted Leather
-		8172, --  Cured Thick Hide
-		8171, --  Rugged Hide
-		8170, --  Rugged Leather
-		8169, --  Thick Hide
-		8168, --  Jet Black Feather
-		8167, --  Turtle Scale
-		8165, --  Worn Dragonscale
-		8154, --  Scorpid Scale
-		7392, --  Green Whelp Scale
-		7286, --  Black Whelp Scale
-		6471, --  Perfect Deviate Scale
-		6470, --  Deviate Scale
-		5785, --  Thick Murloc Scale
-		5784, --  Slimy Murloc Scale
-		5116, --  Long Tail Feather
-		5082, --  Thin Kodo Leather
-		4461, --  Raptor Hide
-		4304, --  Thick Leather
-		4236, --  Cured Heavy Hide
-		4235, --  Heavy Hide
-		4234, --  Heavy Leather
-		4233, --  Cured Medium Hide
-		4232, --  Medium Hide
-		4231, --  Cured Light Hide
-		2934, --  Ruined Leather Scraps
-		2319, --  Medium Leather
-		2318, --  Light Leather
-		783, --  Light Hide
-	},
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:12;0:1:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        274777, -- Neutralized Venom Clot
+        274589, -- Ula'tek Snakehead
+        251665, -- Silverleaf Thread
+        251285, -- Petrified Root
+        251283, -- Tormented Tantalum
+        245345, -- Fused Vitality
+        244636, -- Sin'dorei Armor Banding
+        244635, -- Sin'dorei Armor Banding
+        244634, -- Infused Scalewoven Hide
+        244633, -- Infused Scalewoven Hide
+        244631, -- Scalewoven Hide
+        243737, -- Smuggler's Enchanted Edge
+        243578, -- Aetherlume
+        242788, -- Dusk-Shrouded Stone
+        242620, -- Glimmering Gemdust
+        241281, -- Composite Flora
+        238530, -- Majestic Fin
+        238529, -- Majestic Hide
+        238528, -- Majestic Claw
+        238525, -- Fantastic Fur
+        238523, -- Carving Canine
+        238522, -- Peerless Plumage
+        238520, -- Void-Tempered Plating
+        238518, -- Void-Tempered Hide
+        238513, -- Void-Tempered Scales
+        238511, -- Void-Tempered Leather
+        238204, -- Sterling Alloy
+        238202, -- Gloaming Alloy
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+        236780, -- Nocturnal Lotus
+        236761, -- Tranquility Bloom
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:11;0:1:0
+    [11] = { -- The War Within
+        256963, -- Thalassian Lumber
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251767, -- Fel-Touched Lumber
+        251766, -- Shadowmoon Lumber
+        251764, -- Ashwood Lumber
+        251763, -- Bamboo Lumber
+        251762, -- Coldwind Lumber
+        248012, -- Dornic Fir Lumber
+        245586, -- Ironwood Lumber
+        242691, -- Olemba Lumber
+        224764, -- Mosswool Thread
+        221856, -- Whimsical Wiring
+        221853, -- Handful of Bismuth Bolts
+        221758, -- Profaned Tinderbox
+        221757, -- Gloomfathom Hide
+        221756, -- Vial of Kaheti Oils
+        221754, -- Ringing Deeps Ingot
+        219901, -- Storm-Touched Weapon Wrap
+        219898, -- Chitin Armor Banding
+        219892, -- Leyfused Hide
+        219889, -- Sporecoated Hide
+        219886, -- Writhing Hide
+        219883, -- Crystalfused Hide
+        219880, -- Carapace-Backed Hide
+        219013, -- Superb Beast Fang
+        218339, -- Burning Cinderbee Setae
+        218338, -- Bottled Storm
+        218337, -- Honed Bone Shards
+        218336, -- Kaheti Swarm Chitin
+        213613, -- Leyline Residue
+        213612, -- Viridescent Spores
+        213611, -- Writhing Sample
+        213610, -- Crystalline Powder
+        212674, -- Sunless Carapace
+        212670, -- Thunderous Hide
+        212667, -- Gloom Chitin
+        212664, -- Stormcharged Leather
+        212563, -- Harmonious Horticulture
+        210814, -- Artisan's Acuity
+        210796, -- Mycobloom
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:10;0:1:0
+    [10] = { -- Dragonflight
+        210456, -- Dreaming Antler Fragment
+        208212, -- Dreaming Essence
+        207702, -- Wartorn Scrap
+        205413, -- Obsidian Cobraskin
+        204464, -- Shadowflame Essence
+        204463, -- Dracothyst
+        204460, -- Zaralek Glowspores
+        203405, -- Pristine Pelt
+        201405, -- Tuft of Primal Wool
+        201404, -- Tallstrider Sinew
+        201403, -- Mastodon Tusk
+        201400, -- Aquatic Maw
+        201399, -- Primal Bear Spine
+        198615, -- Pentagold Seal
+        194862, -- Runed Writhebark
+        194727, -- Fiery Spirit
+        194542, -- Prototype Explorer's Barding Framework
+        194541, -- Prototype Regal Barding Framework
+        193922, -- Wildercloth
+        193362, -- Fiery Soul
+        193360, -- Centaur's Trophy Necklace
+        193259, -- Flawless Proto Dragon Scale
+        193258, -- Fire-Infused Hide
+        193256, -- Windsong Plumage
+        193255, -- Pristine Vorquin Horn
+        193254, -- Rockfang Leather
+        193253, -- Cacophonous Thunderscale
+        193252, -- Salamanther Scales
+        193251, -- Crystalspine Fur
+        193248, -- Infurious Scales
+        193245, -- Frostbite Scales
+        193242, -- Earthshine Scales
+        193236, -- Infurious Hide
+        193229, -- Mireslush Hide
+        193226, -- Stonecrust Hide
+        193222, -- Lustrous Scaled Hide
+        193216, -- Dense Hide
+        193213, -- Adamant Scales
+        193208, -- Resilient Leather
+        193053, -- Contoured Fowlfeather
+        192869, -- Illimited Diamond
+        191496, -- Omnium Draconis
+        191460, -- Hochenblume
+        190456, -- Artisan's Mettle
+        190450, -- Awakened Ire
+        190331, -- Awakened Decay
+        190329, -- Awakened Frost
+        190327, -- Awakened Air
+        190321, -- Awakened Fire
+        190316, -- Awakened Earth
+        190312, -- Khaz'gorite Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:9;0:1:0
+    [9] = { -- Shadowlands
+        187707, -- Progenitor Essentia
+        187701, -- Protogenic Pelt
+        186017, -- Korthite Crystal
+        183955, -- Curing Salt
+        183951, -- Immortal Shard
+        182290, -- Bottle of Leather Dye
+        182194, -- Steelhide Sinew
+        182193, -- Thick Steelhide Leather
+        182055, -- Ragged Sinrunner Leather
+        182054, -- Softened Leather
+        182053, -- Tortured Sole
+        182031, -- Unused Flesh
+        182030, -- Cleaned Hide
+        182029, -- Corpsestitch Thread
+        182008, -- Steelhide Leather Strap
+        182007, -- Steelhide Leather Belt
+        182003, -- Runestag Leather
+        182002, -- Dyed Runestag Leather
+        182001, -- Runestag Leather Strap
+        178787, -- Orboreal Shard
+        177062, -- Penumbra Thread
+        177061, -- Twilight Bark
+        173204, -- Lightless Silk
+        172438, -- Enchanted Heavy Callous Hide
+        172097, -- Heavy Callous Hide
+        172096, -- Heavy Desolate Leather
+        172094, -- Callous Hide
+        172092, -- Pallid Bone
+        172089, -- Desolate Leather
+        171830, -- Oxxein Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:8;0:1:0
+    [8] = { -- Battle for Azeroth
+        170553, -- Void Focus Splinter
+        169456, -- Seabreeze Saddle Blanket
+        168650, -- Cragscale
+        168649, -- Dredged Leather
+        168139, -- Long Regal Sinew
+        168138, -- Spirit of the Bested
+        167560, -- Cleaned Brilliant Scales
+        167559, -- Supple Hides
+        167558, -- Etched Bones
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        162461, -- Sanguicell
+        162460, -- Hydrocore
+        160059, -- Amber Tanning Oil
+        159959, -- Nylon Thread
+        154722, -- Tempest Hide
+        154166, -- Coarse Leather Barding
+        154165, -- Calcified Bone
+        154164, -- Blood-Stained Bone
+        153051, -- Mistscale
+        153050, -- Shimmerscale
+        152668, -- Expulsom
+        152579, -- Storm Silver Ore
+        152542, -- Hardened Tempest Hide
+        152541, -- Coarse Leather
+        152513, -- Platinum Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:7;0:1:0
+    [7] = { -- Legion
+        151568, -- Primal Sargerite
+        151567, -- Lightweave Cloth
+        151566, -- Fiendish Leather
+        136539, -- Tanned Stonehide Leather
+        136538, -- Namha's Stonehide Leather
+        130937, -- Fel Leather Cuff
+        130892, -- Stalriss' Tanning Mixture
+        130891, -- Namha's Tanning Mixture
+        130880, -- Fel Leather Strap
+        130879, -- Tanned Fel Leather
+        130878, -- Shaved Felhide
+        130877, -- Fresh Felhide
+        130875, -- Stonehide Leather Strip
+        130874, -- Stonehide Leather Toe Cap
+        130873, -- Stonehide Boot Exterior
+        130872, -- Stonehide Leather Lining
+        130870, -- Tanned Stonehide Leather
+        130869, -- Shaved Stonehide Pelt
+        130868, -- Fresh Stonehide Pelt
+        130182, -- Maelstrom Sapphire
+        130180, -- Dawnlight
+        124440, -- Arkhana
+        124439, -- Unbroken Tooth
+        124438, -- Unbroken Claw
+        124437, -- Shal'dorei Silk
+        124124, -- Blood of Sargeras
+        124116, -- Felhide
+        124115, -- Stormscale
+        124113, -- Stonehide Leather
+        123918, -- Leystone Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:6;0:1:0
+    [6] = { -- Warlords of Draenor
+        127759, -- Felblight
+        120945, -- Primal Spirit
+        118472, -- Savage Blood
+        113264, -- Sorcerous Air
+        113263, -- Sorcerous Earth
+        112185, -- Wind Scale Fragment
+        112184, -- Cobra Scale Fragment
+        112183, -- Nether Dragonscale Fragment
+        112182, -- Patch of Fel Hide
+        112181, -- Fel Scale Fragment
+        112180, -- Patch of Crystal-Infused Leather
+        112179, -- Patch of Thick Clefthoof Leather
+        112178, -- Jormungar Scale Fragment
+        112177, -- Nerubian Chitin Fragment
+        112158, -- Icy Dragonscale Fragment
+        112157, -- Prismatic Scale Fragment
+        112156, -- Blackened Dragonscale Fragment
+        112155, -- Deepsea Scale Fragment
+        111557, -- Sumptuous Fur
+        110611, -- Burnished Leather
+        110609, -- Raw Beast Hide
+        109219, -- Draenic Strength Potion
+        109218, -- Draenic Intellect Potion
+        109217, -- Draenic Agility Potion
+        109126, -- Gorgrond Flytrap
+        109119, -- True Iron Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:5;0:1:0
+    [5] = { -- Mists of Pandaria
+        102218, -- Spirit of War
+        98617, -- Hardened Magnificent Hide
+        94289, -- Haunting Spirit
+        80433, -- Blood Spirit
+        79255, -- Starlight Ink
+        79254, -- Ink of Dreams
+        79101, -- Prismatic Scale
+        76061, -- Spirit of Harmony
+        72163, -- Magnificent Hide
+        72162, -- Sha-Touched Leather
+        72120, -- Mist-Touched Leather
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:4;0:1:0
+    [4] = { -- Cataclysm
+        71998, -- Essence of Destruction
+        69237, -- Living Ember
+        61981, -- Inferno Ink
+        56516, -- Heavy Savage Leather
+        54849, -- Obsidium Bar
+        52982, -- Deepsea Scale
+        52980, -- Pristine Hide
+        52979, -- Blackened Dragonscale
+        52977, -- Savage Leather Scraps
+        52976, -- Savage Leather
+        52329, -- Volatile Life
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+        52190, -- Inferno Ruby
+        52078, -- Chaos Orb
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:3;0:1:0
+    [3] = { -- Wrath of the Lich King
+        49908, -- Primordial Saronite
+        47556, -- Crusader Orb
+        45087, -- Runed Orb
+        44128, -- Arctic Fur
+        43102, -- Frozen Orb
+        38561, -- Jormungar Scale
+        38558, -- Nerubian Chitin
+        38557, -- Icy Dragonscale
+        38426, -- Eternium Thread
+        38425, -- Heavy Borean Leather
+        37705, -- Crystallized Water
+        37703, -- Crystallized Shadow
+        37700, -- Crystallized Air
+        36860, -- Eternal Fire
+        35627, -- Eternal Shadow
+        35625, -- Eternal Life
+        35624, -- Eternal Earth
+        35623, -- Eternal Air
+        35622, -- Eternal Water
+        34057, -- Abyss Crystal
+        34055, -- Greater Cosmic Essence
+        33568, -- Borean Leather
+        33567, -- Borean Leather Scraps
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:2;0:1:0
+    [2] = { -- Burning Crusade
+        34664, -- Sunmote
+        32428, -- Heart of Darkness
+        30183, -- Nether Vortex
+        29548, -- Nether Dragonscales
+        29547, -- Wind Scales
+        29539, -- Cobra Scales
+        25708, -- Thick Clefthoof Leather
+        25707, -- Fel Hide
+        25700, -- Fel Scales
+        25699, -- Crystal-Infused Leather
+        25649, -- Knothide Leather Scraps
+        23793, -- Heavy Knothide Leather
+        23572, -- Primal Nether
+        23571, -- Primal Might
+        22457, -- Primal Mana
+        22456, -- Primal Shadow
+        22452, -- Primal Earth
+        22451, -- Primal Air
+        22450, -- Void Crystal
+        22448, -- Small Prismatic Shard
+        22445, -- Arcane Dust
+        21887, -- Knothide Leather
+        21886, -- Primal Life
+        21885, -- Primal Water
+        21884, -- Primal Fire
+        21844, -- Bolt of Soulcloth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;8:1:1;0:1:0
+    [1] = { -- Vanilla
+        22682, -- Frozen Rune
+        20520, -- Dark Rune
+        20381, -- Dreamscale
+        20004, -- Mighty Troll's Blood Elixir
+        20002, -- Greater Dreamless Sleep Potion
+        19943, -- Massive Mojo
+        19931, -- Gurubashi Mojo Madness
+        19768, -- Primal Tiger Leather
+        19767, -- Primal Bat Leather
+        18240, -- Ogre Tannin
+        17056, -- Light Feather
+        17012, -- Core Leather
+        17011, -- Lava Core
+        17010, -- Fiery Core
+        15419, -- Warbear Leather
+        15417, -- Devilsaur Leather
+        15416, -- Black Dragonscale
+        15415, -- Blue Dragonscale
+        15414, -- Red Dragonscale
+        15412, -- Green Dragonscale
+        15410, -- Scale of Onyxia
+        15408, -- Heavy Scorpid Scale
+        15407, -- Cured Rugged Hide
+        14342, -- Mooncloth
+        14341, -- Rune Thread
+        14256, -- Felcloth
+        14227, -- Ironweb Spider Silk
+        14048, -- Bolt of Runecloth
+        14047, -- Runecloth
+        12810, -- Enchanted Leather
+        12809, -- Guardian Stone
+        12808, -- Essence of Undeath
+        12804, -- Powerful Mojo
+        12803, -- Living Essence
+        12655, -- Enchanted Thorium Bar
+        12607, -- Brilliant Chromatic Scale
+        12364, -- Huge Emerald
+        12361, -- Blue Sapphire
+        12360, -- Arcanite Bar
+        11754, -- Black Diamond
+        11291, -- Star Wood
+        10285, -- Shadow Silk
+        8343, -- Heavy Silken Thread
+        8172, -- Cured Thick Hide
+        8171, -- Rugged Hide
+        8170, -- Rugged Leather
+        8169, -- Thick Hide
+        8167, -- Turtle Scale
+        8165, -- Worn Dragonscale
+        8154, -- Scorpid Scale
+        8153, -- Wildvine
+        8150, -- Deeprock Salt
+        7971, -- Black Pearl
+        7910, -- Star Ruby
+        7392, -- Green Whelp Scale
+        7286, -- Black Whelp Scale
+        7082, -- Essence of Air
+        7081, -- Breath of Wind
+        7080, -- Essence of Water
+        7079, -- Globe of Water
+        7078, -- Essence of Fire
+        7077, -- Heart of Fire
+        7076, -- Essence of Earth
+        7075, -- Core of Earth
+        7071, -- Iron Buckle
+        7070, -- Elemental Water
+        7067, -- Elemental Earth
+        6471, -- Perfect Deviate Scale
+        6470, -- Deviate Scale
+        6260, -- Blue Dye
+        5785, -- Thick Murloc Scale
+        5784, -- Slimy Murloc Scale
+        5637, -- Large Fang
+        5633, -- Great Rage Potion
+        5500, -- Iridescent Pearl
+        5498, -- Small Lustrous Pearl
+        5373, -- Lucky Charm
+        5082, -- Thin Kodo Leather
+        4461, -- Raptor Hide
+        4342, -- Purple Dye
+        4340, -- Gray Dye
+        4338, -- Mageweave Cloth
+        4337, -- Thick Spider's Silk
+        4305, -- Bolt of Silk Cloth
+        4304, -- Thick Leather
+        4291, -- Silken Thread
+        4289, -- Salt
+        4236, -- Cured Heavy Hide
+        4235, -- Heavy Hide
+        4234, -- Heavy Leather
+        4233, -- Cured Medium Hide
+        4232, -- Medium Hide
+        4231, -- Cured Light Hide
+        3864, -- Citrine
+        3824, -- Shadow Oil
+        3390, -- Elixir of Lesser Agility
+        3389, -- Elixir of Defense
+        3383, -- Elixir of Wisdom
+        3356, -- Kingsblood
+        3182, -- Spider's Silk
+        2997, -- Bolt of Woolen Cloth
+        2934, -- Ruined Leather Scraps
+        2840, -- Copper Bar
+        2605, -- Green Dye
+        2604, -- Red Dye
+        2459, -- Swiftness Potion
+        2457, -- Elixir of Minor Agility
+        2325, -- Black Dye
+        2324, -- Bleach
+        2321, -- Fine Thread
+        2320, -- Coarse Thread
+        2319, -- Medium Leather
+        2318, -- Light Leather
+        1529, -- Jade
+        1206, -- Moss Agate
+        783, -- Light Hide
+    },
 }
 
-items.Enchanting = {
-	[10] = { -- Dragonflight
-		190315, -- Rousing Earth
-		190316, -- Awakened Earth
-		190320, -- Rousing Fire
-		190321, -- Awakened Fire
-		190322, -- Rousing Order
-		190324, -- Awakened Order
-		190326, -- Rousing Air
-		190327, -- Awakened Air
-		190328, -- Rousing Frost
-		190329, -- Awakened Frost
-		190453, -- Spark of Ingenuity
-		190454, -- Primal Chaos
-		190456, -- Artisan's Mettle
-		194123, -- Chromatic Dust
-		194124, -- Vibrant Shard
-		200113, -- Resonant Crystal
-		201401, -- Iridescent Plume
-		201406, -- Glowing Titan Orb
-		194123, -- Chromatic Dust
-		194124, -- Vibrant Shard
-		200113, -- Resonant Crystal
-		193900, -- Prismatic Focusing Shard
-		193901, -- Primal Dust
-		194702, -- Draconic Treatise on Enchanting
-		198610, -- Enchanter's Script
-		198967, -- Primordial Aether
-		198968, -- Primalist Charm
-		201012, -- Enchanted Debris
-		201013, -- Faintly Enchanted Remains
-		201709, -- Notebook of Crafting Knowledge
-	},
-	[9] = { -- Shadowland
-		171833, -- Elethium Ore
-		172097, -- Heavy Callous Hide
-		172230, -- Soul Dust
-		172231, -- Sacred Shard
-		172232, -- Eternal Crystal
-		173204, -- Lightless Silk
-		177061, -- Twilight Bark
-		181990, -- Twilight Dust
-		182020, -- Transcendent Dust
-		182042, -- Necrotic Essence
-		182066, -- Sanguine Crystal
-		183951, -- Immortal Shard
-		187700, -- Progenium Ore
-		187703, -- Silken Protofiber
-		172232, -- Eternal Crystal
-		172230, -- Soul Dust
-		172231, -- Sacred Shard
-	},
-	[8] = { -- BfA
-		164766, -- Iwen's Enchanting Rod
---			152882, -- Runed Norgal Rod
-		152877, -- Veiled Crystal
-		152876, -- Umbra Shard
-		152875, -- Gloom Dust
-	},
-	[7] = { 	-- Legion
-		156930, -- Rich Illusion Dust
-		124442, -- Chaos Crystal
-		124441, -- Leylight Shard
-		124440, -- Arkhana
-	},
-	[6] = { 	-- WoD
-		115504, -- Fractured Temporal Crystal
-		115502, -- Small Luminous Shard
-		113588, -- Temporal Crystal
-		111245, -- Luminous Shard
-		109693, -- Draenic Dust
-	},
-	[5] = { 	-- MoP
-		105718, -- Sha Crystal Fragment
-		102218, -- Spirit of War
-		94289, -- Haunting Spirit
-		89738, -- Essence or Dust
-		80433, -- Blood Spirit
-		74252, -- Small Ethereal Shard
-		74250, -- Mysterious Essence
-		74249, -- Spirit Dust
-		74248, -- Sha Crystal
-		74247, -- Ethereal Shard
-	},
-	[4] = { 	-- Cataclysm
-		52722, -- Maelstrom Crystal
-		52721, -- Heavenly Shard
-		52720, -- Small Heavenly Shard
-		52719, -- Greater Celestial Essence
-		52718, -- Lesser Celestial Essence
-		52555, -- Hypnotic Dust
-	},
-	[3] = { 	-- WolTK
-		34057, -- Abyss Crystal
-		34056, -- Lesser Cosmic Essence
-		34055, -- Greater Cosmic Essence
-		34054, -- Infinite Dust
-		34053, -- Small Dream Shard
-		34052, -- Dream Shard
-	},
-	[2] = { 	-- BC
-		22450, -- Void Crystal
-		22449, -- Large Prismatic Shard
-		22448, -- Small Prismatic Shard
-		22447, -- Lesser Planar Essence
-		22446, -- Greater Planar Essence
-		22445, -- Arcane Dust
-	},
-	[1] = { 	-- Classic
-		20725, -- Nexus Crystal
-		16204, -- Light Illusion Dust
-		16203, -- Greater Eternal Essence
-		16202, -- Lesser Eternal Essence
-		14344, -- Large Brilliant Shard
-		14343, -- Small Brilliant Shard
-		11178, -- Large Radiant Shard
-		11176, -- Dream Dust
-		11175, -- Greater Nether Essence
-		11174, -- Lesser Nether Essence
-		10943, -- Strange Dust
-		10939, -- Greater Magic Essence
-		10938, -- Lesser Magic Essence
-	},
+-- Criteria: Reagent for Cooking & stacks up to > 1
+items.Cooking = {
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:12;0:1:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        274777, -- Neutralized Venom Clot
+        274594, -- Polluted Puffer
+        274591, -- Coiled Stargorger
+        274590, -- Sulfurous Sludgefish
+        274589, -- Ula'tek Snakehead
+        253403, -- Thalassian Fillet
+        251285, -- Petrified Root
+        242647, -- Tavern Fixings
+        242646, -- Pouch of Spices
+        242645, -- Ripened Vegetable Assortment
+        242644, -- Mana-Wyrm Essence
+        242643, -- A Big Ol' Stick of Butter
+        242642, -- Thalassian Herbs
+        242641, -- Cooking Spirits
+        242640, -- Plant Protein
+        242639, -- Practically Pork
+        238384, -- Sunwell Fish
+        238383, -- Eversong Trout
+        238379, -- Warping Wise
+        238378, -- Shimmersiren
+        238377, -- Blood Hunter
+        238376, -- Lucky Loa
+        238374, -- Tender Lumifin
+        238373, -- Ominous Octopus
+        238372, -- Restored Songfish
+        238371, -- Arcane Wyrmfish
+        238369, -- Bloomtail Minnow
+        238368, -- Twisted Tetra
+        238367, -- Root Crab
+        238366, -- Lynxfish
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236778, -- Mana Lily
+        236776, -- Argentleaf
+        236774, -- Azeroot
+        236770, -- Sanguithorn
+        236761, -- Tranquility Bloom
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:11;0:1:0
+    [11] = { -- The War Within
+        259894, -- Perfect Preservatives
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251766, -- Shadowmoon Lumber
+        251763, -- Bamboo Lumber
+        248012, -- Dornic Fir Lumber
+        235845, -- Undermine Clam Meat
+        225912, -- Hot Honeycomb
+        225883, -- Prepared Ghoulfish
+        225876, -- Fine Egg Powder
+        224762, -- Delver's Waterskin
+        223977, -- Coagulated Yolk
+        223971, -- Azj-Kahet Special
+        223968, -- Spongey Scramble
+        222741, -- Fresh Fillet
+        222739, -- Spiced Meat Stock
+        222738, -- Portioned Steak
+        222737, -- Chopped Mycobloom
+        222731, -- Outsider's Provisions
+        222705, -- Roasted Mycobloom
+        222703, -- Simple Stew
+        222701, -- Clumped Flour
+        222700, -- Granulated Spices
+        222699, -- Khaz Algar Tomato
+        222697, -- Coreway Dust
+        222696, -- Crunchy Peppers
+        222695, -- Twined Herbs
+        221754, -- Ringing Deeps Ingot
+        220153, -- Awoken Coelacanth
+        220151, -- Queen's Lurefish
+        220150, -- Spiked Sea Raven
+        220149, -- Sanguine Dogfish
+        220147, -- Kaheti Slum Shark
+        220146, -- Regal Dottyback
+        220145, -- Arathor Hammerfish
+        220144, -- Roaring Anglerseeker
+        220142, -- Quiet River Bass
+        220138, -- Nibbling Minnow
+        220137, -- Bismuth Bitterling
+        220136, -- Crystalline Sturgeon
+        220135, -- Bloody Perch
+        220134, -- Dilly-Dally Dace
+        212508, -- Stunning Sapphire
+        210936, -- Ironclaw Ore
+        210933, -- Aqirite
+        210930, -- Bismuth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:10;0:1:0
+    [10] = { -- Dragonflight
+        204793, -- Suja's Sweet Salt
+        203400, -- Lackluster Spices
+        202710, -- Grilled Southfury Salmon
+        202709, -- Spicy Seared Talbuk Steak
+        202708, -- Curried Coconut Crab
+        202707, -- Un'goro Coconut
+        202706, -- Zandali Piri Piri
+        202031, -- Farahlon Fenugreek
+        202030, -- Ground Gorgrond Pepper
+        202029, -- Isle Lemon
+        202028, -- Southfury Salmon
+        202027, -- Fresh Talbuk Steak
+        202026, -- Durotar Coast Crab
+        202025, -- Keg of Ancestral Ale
+        200953, -- Wild Dragon Fruit
+        200061, -- Prismatic Leaper
+        199344, -- Magma Thresher
+        197790, -- Roast Duck Delight
+        197789, -- Riverside Picnic
+        197788, -- Braised Bruffalon Brisket
+        197787, -- Great Cerulean Sea
+        197786, -- Thousandbone Tongueslicer
+        197785, -- Revenge, Served Cold
+        197784, -- Sizzling Seafood Medley
+        197783, -- Aromatic Seafood Platter
+        197782, -- Feisty Fish Sticks
+        197776, -- Thrice-Spiced Mammoth Kabob
+        197774, -- Charred Hornswog Steaks
+        197770, -- Zesty Water
+        197768, -- Celebratory Cake
+        197767, -- Blubbery Muffin
+        197766, -- Snow in a Cone
+        197764, -- Salad on the Side
+        197757, -- Assorted Exotic Spices
+        197756, -- Pebbled Rock Salts
+        197755, -- Lava Beetle
+        197754, -- Salt Deposit
+        197753, -- Thaldraszian Cocoa Powder
+        197752, -- Conveniently Packaged Ingredients
+        197751, -- Pastry Packets
+        197750, -- Three-Cheese Blend
+        197749, -- Ohn'ahran Potato
+        197748, -- Burly Bear Haunch
+        197747, -- Mighty Mammoth Ribs
+        197746, -- Bruffalon Flank
+        197745, -- Basilisk Eggs
+        197744, -- Hornswog Hunk
+        197743, -- Waterfowl Filet
+        197742, -- Ribbed Mollusk Meat
+        197741, -- Maybe Meat
+        194970, -- Islefin Dorado
+        194969, -- Temporal Dragonhead
+        194968, -- Cerulean Spinefish
+        194967, -- Aileron Seamoth
+        194966, -- Thousandbite Piranha
+        194829, -- Fated Fortune Card
+        194730, -- Scalebelly Mackerel
+        194691, -- Artisanal Berry Juice
+        194683, -- Buttermilk
+        193368, -- Silken Gemdust
+        191464, -- Saxifrage
+        191460, -- Hochenblume
+        190395, -- Serevite Ore
+        190312, -- Khaz'gorite Ore
+        189143, -- Draconium Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:9;0:1:0
+    [9] = { -- Shadowlands
+        187812, -- Empty Kettle
+        182101, -- Oat Pie Crust
+        182100, -- Fresh Mushrooms
+        182099, -- Fresh Turnips
+        182098, -- Fresh Carrots
+        182096, -- Ember Chilis
+        182070, -- Fresh Beast Steak
+        182069, -- Seared Cutlets
+        182068, -- Ember Sauce
+        182046, -- Grave Dust
+        182045, -- Thick Spider Legs
+        182044, -- Thick Spider Meat
+        182024, -- Grazer Bones
+        182023, -- Grazer Bone Broth
+        182022, -- Diced Vegetables
+        181988, -- Sack of Arden Oats
+        181987, -- Fresh Arden Apples
+        181986, -- Sliced Arden Apples
+        179315, -- Shadowy Shank
+        179314, -- Creeping Crawler Meat
+        178786, -- Lusterwheat Flour
+        177061, -- Twilight Bark
+        173037, -- Elysian Thade
+        173036, -- Spinefin Piranha
+        173035, -- Pocked Bonefish
+        173034, -- Silvergill Pike
+        173033, -- Iridescent Amberjack
+        173032, -- Lost Sole
+        172092, -- Pallid Bone
+        172059, -- Rich Grazer Milk
+        172058, -- Smuggled Azerothian Produce
+        172057, -- Inconceivably Aged Vinegar
+        172056, -- Medley of Transplanar Spices
+        172055, -- Phantasmal Haunch
+        172054, -- Raw Seraphic Wing
+        172053, -- Tenebrous Ribs
+        172052, -- Aethereal Meat
+        172049, -- Iridescent Ravioli with Apple Sauce
+        171841, -- Shaded Stone
+        171840, -- Porous Stone
+        171829, -- Solenium Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:8;0:1:0
+    [8] = { -- Battle for Azeroth
+        174353, -- Questionable Meat
+        174328, -- Aberrant Voidfin
+        174327, -- Malformed Gnasher
+        169610, -- S.P.A.R.E. Crate
+        168646, -- Mauve Stinger
+        168645, -- Moist Fillet
+        168303, -- Rubbery Flank
+        168302, -- Viper Fish
+        167562, -- Ionized Minnow
+        166846, -- Spare Parts
+        163782, -- Cursed Haunch
+        162555, -- Zocalo Cheddar
+        162515, -- Midnight Salmon
+        162461, -- Sanguicell
+        160712, -- Powdered Sugar
+        160711, -- Aromatic Fish Oil
+        160710, -- Wild Berries
+        160709, -- Fresh Potato
+        160705, -- Major's Frothy Coffee
+        160400, -- Foosaka
+        160399, -- Wild Flour
+        160398, -- Choral Honey
+        154899, -- Thick Paleo Steak
+        154898, -- Meaty Haunch
+        154897, -- Stringy Loins
+        154886, -- Spiced Snapper
+        154885, -- Mon'Dazi
+        154881, -- Kul Tiramisu
+        152631, -- Briny Flesh
+        152579, -- Storm Silver Ore
+        152549, -- Redtail Loach
+        152548, -- Tiragarde Perch
+        152547, -- Great Sea Catfish
+        152546, -- Lane Snapper
+        152545, -- Frenzied Fangtooth
+        152544, -- Slimy Mackerel
+        152543, -- Sand Shifter
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:7;0:1:0
+    [7] = { -- Legion
+        142336, -- Falcosaur Egg
+        138979, -- Spicy Sharp Cheddar
+        133680, -- Slice of Bacon
+        133607, -- Silver Mackerel
+        133593, -- Royal Olive
+        133592, -- Stonedark Snail
+        133591, -- River Onion
+        133590, -- Muskenbutter
+        133589, -- Dalapeño Pepper
+        133588, -- Flaked Sea Salt
+        133569, -- Drogbar-Style Salmon
+        133568, -- Koi-Scented Stormray
+        133567, -- Barracuda Mrglgagh
+        133566, -- Suramar Surf and Turf
+        133565, -- Leybeque Ribs
+        133564, -- Spiced Rib Roast
+        133563, -- Faronaar Fizz
+        133562, -- Pickled Stormray
+        133561, -- Deep-Fried Mossgill
+        133557, -- Salt and Pepper Shank
+        129100, -- Gem Chip
+        128304, -- Yseralline Seed
+        124121, -- Wildfowl Egg
+        124120, -- Leyblood
+        124119, -- Big Gamy Ribs
+        124118, -- Fatty Bearsteak
+        124117, -- Lean Shank
+        124112, -- Black Barracuda
+        124111, -- Runescale Koi
+        124110, -- Stormray
+        124109, -- Highmountain Salmon
+        124108, -- Mossgill Perch
+        124107, -- Cursed Queenfish
+        124105, -- Starlight Rose
+        124104, -- Fjarnskaggl
+        124103, -- Foxflower
+        124102, -- Dreamleaf
+        124101, -- Aethril
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:6;0:1:0
+    [6] = { -- Warlords of Draenor
+        128500, -- Fel Ham
+        128499, -- Fel Egg
+        124669, -- Darkmoon Daggermaw
+        115352, -- Telmor-Aruuna Hard Cheese
+        111449, -- Blackrock Barbecue
+        111446, -- Skulker Chowder
+        111445, -- Fiery Calamari
+        111444, -- Fat Sleeper Cakes
+        111442, -- Sturgeon Stew
+        111441, -- Grilled Gulper
+        111439, -- Steamed Scorpion
+        111438, -- Clefthoof Sausages
+        111437, -- Rylak Crepes
+        111436, -- Braised Riverbeast
+        111434, -- Pan-Seared Talbuk
+        111433, -- Blackrock Ham
+        111431, -- Hearty Elekk Steak
+        109144, -- Blackwater Whiptail Flesh
+        109143, -- Abyssal Gulper Eel Flesh
+        109142, -- Sea Scorpion Segment
+        109141, -- Fire Ammonite Tentacle
+        109140, -- Blind Lake Sturgeon Flesh
+        109139, -- Fat Sleeper Flesh
+        109138, -- Jawless Skulker Flesh
+        109137, -- Crescent Saberfish Flesh
+        109136, -- Raw Boar Meat
+        109135, -- Raw Riverbeast Meat
+        109134, -- Raw Elekk Meat
+        109133, -- Rylak Egg
+        109132, -- Raw Talbuk Meat
+        109131, -- Raw Clefthoof Meat
+        109129, -- Talador Orchid
+        109128, -- Nagrand Arrowbloom
+        109127, -- Starflower
+        109126, -- Gorgrond Flytrap
+        109125, -- Fireweed
+        109124, -- Frostweed
+        109119, -- True Iron Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:5;0:1:0
+    [5] = { -- Mists of Pandaria
+        102543, -- Aged Mogu'shan Cheese
+        102542, -- Ancient Pandaren Spices
+        102541, -- Aged Balsamic Vinegar
+        102540, -- Fresh Mangos
+        102539, -- Fresh Strawberries
+        102538, -- Fresh Shao-Tien Rice
+        102537, -- Fresh Silkfeather Hawk Eggs
+        102536, -- Fresh Lushroom
+        85585, -- Red Beans
+        85584, -- Silkworm Pupa
+        85583, -- Needle Mushrooms
+        85506, -- Viseclaw Meat
+        79250, -- Fresh Pomfruit
+        79246, -- Delicate Blossom Petals
+        75038, -- Mad Brewer's Breakfast
+        75037, -- Jade Witch Brew
+        75026, -- Ginseng Tea
+        75014, -- Raw Crocolisk Belly
+        74866, -- Golden Carp
+        74865, -- Krasarang Paddlefish
+        74864, -- Reef Octopus
+        74863, -- Jewel Danio
+        74861, -- Tiger Gourami
+        74860, -- Redbelly Mandarin
+        74859, -- Emperor Salmon
+        74857, -- Giant Mantis Shrimp
+        74856, -- Jade Lungfish
+        74854, -- Instant Noodles
+        74853, -- 100 Year Soy Sauce
+        74852, -- Yak Milk
+        74851, -- Rice
+        74850, -- White Turnip
+        74849, -- Pink Turnip
+        74848, -- Striped Melon
+        74847, -- Jade Squash
+        74846, -- Witchberries
+        74845, -- Ginseng
+        74844, -- Red Blossom Leek
+        74843, -- Scallions
+        74842, -- Mogu Pumpkin
+        74841, -- Juicycrunch Carrot
+        74840, -- Green Cabbage
+        74839, -- Wildfowl Breast
+        74838, -- Raw Crab Meat
+        74837, -- Raw Turtle Meat
+        74834, -- Mushan Ribs
+        74833, -- Raw Tiger Steak
+        74832, -- Barley
+        74662, -- Rice Flour
+        74661, -- Black Pepper
+        74660, -- Pandaren Peach
+        74659, -- Farm Chicken
+        74656, -- Chun Tian Spring Rolls
+        74655, -- Twin Fish Platter
+        74654, -- Wildfowl Roast
+        74653, -- Steamed Crab Surprise
+        74652, -- Fire Spirit Salmon
+        74651, -- Shrimp Dumplings
+        74650, -- Mogu Fish Stew
+        74649, -- Braised Turtle
+        74648, -- Sea Mist Rice Noodles
+        74647, -- Valley Stir Fry
+        74646, -- Black Pepper Ribs and Shrimp
+        74645, -- Eternal Blossom Fish
+        74644, -- Swirling Mist Soup
+        74643, -- Sauteed Carrots
+        74642, -- Charbroiled Tiger Steak
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:4;0:1:0
+    [4] = { -- Cataclysm
+        67229, -- Stag Flank
+        62791, -- Blood Shrimp
+        62786, -- Cocoa Beans
+        62785, -- Delicate Wing
+        62784, -- Crocolisk Tail
+        62783, -- Basilisk "Liver"
+        62782, -- Dragon Flank
+        62781, -- Giant Turtle Tongue
+        62780, -- Snake Eye
+        62779, -- Monstrous Claw
+        62778, -- Toughened Flesh
+        60838, -- Mysterious Fortune Card
+        58278, -- Tropical Sunfruit
+        58265, -- Highland Pomegranate
+        53072, -- Deepsea Sagefish
+        53071, -- Algaefin Rockfish
+        53070, -- Fathom Eel
+        53069, -- Murglesnout
+        53068, -- Lavascale Catfish
+        53067, -- Striped Lurker
+        53066, -- Blackbelly Mudfish
+        53064, -- Highland Guppy
+        53063, -- Mountain Trout
+        53062, -- Sharptooth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:3;0:1:0
+    [3] = { -- Wrath of the Lich King
+        46797, -- Mulgore Sweet Potato
+        46796, -- Ripe Tirisfal Pumpkin
+        46793, -- Tangy Southfury Cranberries
+        46784, -- Ripe Elwynn Pumpkin
+        44855, -- Teldrassil Sweet Potato
+        44854, -- Tangy Wetland Cranberries
+        44853, -- Honey
+        44835, -- Autumnal Herbs
+        44834, -- Wild Turkey
+        43501, -- Northern Egg
+        43013, -- Chilled Meat
+        43012, -- Rhino Meat
+        43011, -- Worg Haunch
+        43010, -- Worm Meat
+        43009, -- Shoveltusk Flank
+        43007, -- Northern Spices
+        41813, -- Nettlefish
+        41812, -- Barrelhead Goby
+        41810, -- Fangtooth Herring
+        41809, -- Glacial Salmon
+        41808, -- Bonescale Snapper
+        41807, -- Dragonfin Angelfish
+        41806, -- Musselback Sculpin
+        41805, -- Borean Man O' War
+        41803, -- Rockfin Grouper
+        41802, -- Imperial Manta Ray
+        41801, -- Moonglow Cuttlefish
+        41800, -- Deep Sea Monsterbelly
+        36782, -- Succulent Clam Meat
+        35949, -- Tundra Berries
+        35948, -- Savory Snowplum
+        34736, -- Chunk o' Mammoth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:2;0:1:0
+    [2] = { -- Burning Crusade
+        35562, -- Bear Flank
+        34412, -- Sparkling Apple Cider
+        33824, -- Crescent-Tail Skullfish
+        33823, -- Bloodfin Catfish
+        31671, -- Serpent Flesh
+        31670, -- Raptor Ribs
+        30817, -- Simple Flour
+        30816, -- Spice Bread
+        27682, -- Talbuk Venison
+        27681, -- Warped Flesh
+        27678, -- Clefthoof Meat
+        27677, -- Chunk o' Basilisk
+        27674, -- Ravager Flesh
+        27671, -- Buzzard Meat
+        27669, -- Bat Flesh
+        27668, -- Lynx Meat
+        27516, -- Enormous Barbed Gill Trout
+        27515, -- Huge Spotted Feltail
+        27439, -- Furious Crawdad
+        27438, -- Golden Darter
+        27437, -- Icefin Bluefish
+        27435, -- Figluster's Mudfish
+        27429, -- Zangarian Sporefish
+        27425, -- Spotted Feltail
+        27422, -- Barbed Gill Trout
+        24477, -- Jaggal Clam Meat
+        23676, -- Moongraze Stag Tenderloin
+        22644, -- Crunchy Spider Leg
+        22577, -- Mote of Shadow
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;3:1:1;0:1:0
+    [1] = { -- Vanilla
+        21153, -- Raw Greater Sagefish
+        21071, -- Raw Sagefish
+        21024, -- Chimaerok Tenderloin
+        20424, -- Sandworm Meat
+        18255, -- Runn Tum Tuber
+        17202, -- Snowball
+        17196, -- Holiday Spirits
+        17194, -- Holiday Spices
+        13893, -- Large Raw Mightfish
+        13889, -- Raw Whitescale Salmon
+        13888, -- Darkclaw Lobster
+        13760, -- Raw Sunscale Salmon
+        13759, -- Raw Nightfin Snapper
+        13758, -- Raw Redgill
+        13757, -- Lightning Eel
+        13756, -- Raw Summer Bass
+        13755, -- Winter Squid
+        13754, -- Raw Glossy Mightfish
+        12808, -- Essence of Undeath
+        12223, -- Meaty Bat Wing
+        12208, -- Tender Wolf Meat
+        12207, -- Giant Egg
+        12206, -- Tender Crab Meat
+        12205, -- White Spider Meat
+        12204, -- Heavy Kodo Meat
+        12203, -- Red Wolf Meat
+        12202, -- Tiger Meat
+        12184, -- Raptor Flesh
+        12037, -- Mystery Meat
+        9260, -- Volatile Rum
+        9061, -- Goblin Rocket Fuel
+        8365, -- Raw Mithril Head Trout
+        8150, -- Deeprock Salt
+        7974, -- Zesty Clam Meat
+        6889, -- Small Egg
+        6522, -- Deviate Fish
+        6362, -- Raw Rockscale Cod
+        6361, -- Raw Rainbow Fin Albacore
+        6317, -- Raw Loch Frenzy
+        6308, -- Raw Bristle Whisker Catfish
+        6303, -- Raw Slitherskin Mackerel
+        6291, -- Raw Brilliant Smallfish
+        6289, -- Raw Longjaw Mud Snapper
+        5504, -- Tangy Clam Meat
+        5503, -- Clam Meat
+        5471, -- Stag Meat
+        5470, -- Thunder Lizard Tail
+        5469, -- Strider Meat
+        5468, -- Soft Frenzy Flesh
+        5467, -- Kodo Meat
+        5466, -- Scorpid Stinger
+        5465, -- Small Spider Leg
+        5051, -- Dig Rat
+        4655, -- Giant Clam Meat
+        4603, -- Raw Spotted Yellowtail
+        4537, -- Tel'Abim Banana
+        4402, -- Small Flame Sac
+        3927, -- Fine Aged Cheddar
+        3821, -- Goldthorn
+        3731, -- Lion Meat
+        3730, -- Big Bear Meat
+        3712, -- Turtle Meat
+        3685, -- Raptor Egg
+        3667, -- Tender Crocolisk Meat
+        3577, -- Gold Bar
+        3404, -- Buzzard Wing
+        3173, -- Bear Meat
+        2924, -- Crocolisk Meat
+        2886, -- Crag Boar Rib
+        2678, -- Mild Spices
+        2677, -- Boar Ribs
+        2675, -- Crawler Claw
+        2674, -- Crawler Meat
+        2673, -- Coyote Meat
+        2672, -- Stringy Wolf Meat
+        2596, -- Skin of Dwarven Stout
+        2595, -- Jug of Badlands Bourbon
+        2594, -- Flagon of Dwarven Mead
+        2593, -- Flask of Stormwind Tawny
+        2452, -- Swiftthistle
+        2447, -- Peacebloom
+        2251, -- Gooey Spider Leg
+        1468, -- Murloc Fin
+        1179, -- Ice Cold Milk
+        1080, -- Tough Condor Meat
+        1015, -- Lean Wolf Flank
+        785, -- Mageroyal
+        769, -- Chunk of Boar Meat
+        723, -- Goretusk Liver
+        159, -- Refreshing Spring Water
+    },
 }
 
-items.Herbalism = {
-	[10] = { -- Dragonflight
-		191460, -- Hochenblume
-		191461, -- Hochenblume
-		191462, -- Hochenblume
-		191464, -- Saxifrage
-		191465, -- Saxifrage
-		191466, -- Saxifrage
-		191467, -- Bubble Poppy
-		191468, -- Bubble Poppy
-		191469, -- Bubble Poppy
-		191470, -- Writhebark
-		191471, -- Writhebark
-		191472, -- Writhebark
-		194041, -- Driftbloom Sprout
-		194054, -- Dredged Seedling
-		194055, -- Primordial Soil
-		194061, -- Suffocating Spores
-		194080, -- Peculiar Bud
-		194081, -- Mutated Root
-		194704, -- Draconic Treatise on Herbalism
-		199115, -- Herbalism Field Notes
-		200506, -- Roused Seedling
-		200507, -- Decayed Roused Seedling
-		200508, -- Propagating Roused Seedling
-		200509, -- Agitated Roused Seedling
-		200677, -- Dreambloom Petal
-		200678, -- Dreambloom
-		201705, -- Notebook of Crafting Knowledge
-		201717, -- Notebook of Crafting Knowledge
-		202014, -- Infused Pollen
-	},
-	[9] = { -- Shadowland
-		187699, -- First Flower
-		170554, -- Vigil's Torch
-		171287, -- Ground Death Blossom
-		171288, -- Ground Vigil's Torch
-		171289, -- Ground Widowbloom
-		171290, -- Ground Marrowroot
-		171291, -- Ground Rising Glory
-		171292, -- Ground Nightshade
-	},
-	[8] = { -- BfA
-		168487, -- Zin'anthid
-		152505, -- Riverbud
-		152506, -- Star Moss
-		152507, -- Akunda's Bite
-		152508, -- Winter's Kiss
-		152509, -- Siren's Pollen
-		152510, -- Anchor Weed
-		152511, -- Sea Stalk
-	},
-	[7] = { 	-- Legion
-		151565, -- Astral Glory
-		129289, -- Felwort Seed
-		129288, -- Starlight Rose Seed
-		129287, -- Fjarnskaggl Seed
-		129286, -- Foxflower Seed
-		129285, -- Dreamleaf Seed
-		129284, -- Aethril Seed
-		128304, -- Yseralline Seed
-		124106, -- Felwort
-		124105, -- Starlight Rose
-		124104, -- Fjarnskaggl
-		124103, -- Foxflower
-		124102, -- Dreamleaf
-		124101, -- Aethril
-	},
-	[6] = { 	-- WoD
-		116053, -- Draenic Seeds
-		109629, -- Talador Orchid Petal
-		109628, -- Nagrand Arrowbloom Petal
-		109627, -- Starflower Petal
-		109626, -- Gorgrond Flytrap Ichor
-		109625, -- Broken Fireweed Stem
-		109624, -- Broken Frostweed Stem
-		109129, -- Talador Orchid
-		109128, -- Nagrand Arrowbloom
-		109127, -- Starflower
-		109126, -- Gorgrond Flytrap
-		109125, -- Fireweed
-		109124, -- Frostweed
-		108365, -- Whiptail Stem
-		108364, -- Twilight Jasmine Petal
-		108363, -- Heartblossom Petal
-		108362, -- Azshara's Veil Stem
-		108361, -- Stormvine Stalk
-		108360, -- Cinderbloom Petal
-		108359, -- Fire Leaf Bramble
-		108358, -- Deadnettle Bramble
-		108357, -- Talandra's Rose Petal
-		108356, -- Icethorn Bramble
-		108355, -- Lichbloom Stalk
-		108354, -- Tiger Lily Petal
-		108353, -- Adder's Tongue Stem
-		108352, -- Goldclover Leaf
-		108351, -- Mana Thistle Leaf
-		108350, -- Nightmare Vine Stem
-		108349, -- Netherbloom Leaf
-		108348, -- Ancient Lichen Petal
-		108347, -- Terocone Leaf
-		108346, -- Ragveil Cap
-		108345, -- Dreaming Glory Petal
-		108344, -- Felweed Stalk
-		108343, -- Icecap Petal
-		108342, -- Sorrowmoss Leaf
-		108341, -- Mountain Silversage Stalk
-		108340, -- Golden Sansam Leaf
-		108339, -- Dreamfoil Blade
-		108338, -- Gromsblood Leaf
-		108337, -- Ghost Mushroom Cap
-		108336, -- Blindweed Stem
-		108335, -- Sungrass Stalk
-		108334, -- Arthas' Tears Petal
-		108333, -- Purple Lotus Petal
-		108332, -- Firebloom Petal
-		108331, -- Goldthorn Bramble
-		108330, -- Stranglekelp Blade
-		108329, -- Dragon's Teeth Stem
-		108328, -- Fadeleaf Petal
-		108327, -- Grave Moss Leaf
-		108326, -- Khadgar's Whisker Stem
-		108325, -- Liferoot Stem
-		108324, -- Kingsblood Petal
-		108323, -- Wild Steelbloom Petal
-		108322, -- Bruiseweed Stem
-		108321, -- Swiftthistle Leaf
-		108320, -- Briarthorn Bramble
-		108319, -- Earthroot Stem
-		108318, -- Mageroyal Petal
-	},
-	[5] = { 	-- MoP
-		97624, -- Desecrated Herb Pod
-		97623, -- Fool's Cap Spores
-		97622, -- Snow Lily Petal
-		97621, -- Silkweed Stem
-		97620, -- Rain Poppy Petal
-		97619, -- Torn Green Tea Leaf
-		79011, -- Fool's Cap
-		79010, -- Snow Lily
-		72238, -- Golden Lotus
-		72237, -- Rain Poppy
-		72235, -- Silkweed
-		72234, -- Green Tea Leaf
-	},
-	[4] = { 	-- Cataclysm
-		52988, -- Whiptail
-		52987, -- Twilight Jasmine
-		52986, -- Heartblossom
-		52985, -- Azshara's Veil
-		52984, -- Stormvine
-		52983, -- Cinderbloom
-	},
-	[3] = { 	-- WolTK
-		39970, -- Fire Leaf
-		37921, -- Deadnettle
-		36908, -- Frost Lotus
-		36907, -- Talandra's Rose
-		36906, -- Icethorn
-		36905, -- Lichbloom
-		36904, -- Tiger Lily
-		36903, -- Adder's Tongue
-		36902, -- Constrictor Grass
-		36901, -- Goldclover
-	},
-	[2] = { 	-- BC
-		22797, -- Nightmare Seed
-		22794, -- Fel Lotus
-		22793, -- Mana Thistle
-		22792, -- Nightmare Vine
-		22791, -- Netherbloom
-		22790, -- Ancient Lichen
-		22789, -- Terocone
-		22788, -- Flame Cap
-		22787, -- Ragveil
-		22786, -- Dreaming Glory
-		22785, -- Felweed
-		22710, -- Bloodthistle
-	},
-	[1] = { 	-- Classic
-		19727, -- Blood Scythe
-		19726, -- Bloodvine
-		13468, -- Black Lotus
-		13467, -- Icecap
-		13466, -- Sorrowmoss
-		13465, -- Mountain Silversage
-		13464, -- Golden Sansam
-		13463, -- Dreamfoil
-		8846, -- Gromsblood
-		8845, -- Ghost Mushroom
-		8839, -- Blindweed
-		8838, -- Sungrass
-		8836, -- Arthas' Tears
-		8831, -- Purple Lotus
-		8153, -- Wildvine
-		4625, -- Firebloom
-		3821, -- Goldthorn
-		3820, -- Stranglekelp
-		3819, -- Dragon's Teeth
-		3818, -- Fadeleaf
-		3369, -- Grave Moss
-		3358, -- Khadgar's Whisker
-		3357, -- Liferoot
-		3356, -- Kingsblood
-		3355, -- Wild Steelbloom
-		2453, -- Bruiseweed
-		2452, -- Swiftthistle
-		2450, -- Briarthorn
-		2449, -- Earthroot
-		2447, -- Peacebloom
-		785, -- Mageroyal
-		765, -- Silverleaf
-	},
-}
-
-items.Engineering = {
-	[10] = { -- Dragonflight
-		190315, -- Rousing Earth
-		190316, -- Awakened Earth
-		190320, -- Rousing Fire
-		190321, -- Awakened Fire
-		190324, -- Awakened Order
-		190326, -- Rousing Air
-		190327, -- Awakened Air
-		190328, -- Rousing Frost
-		190330, -- Rousing Decay
-		190450, -- Awakened Ire
-		190453, -- Spark of Ingenuity
-		190454, -- Primal Chaos
-		190456, -- Artisan's Mettle
-		193053, -- Contoured Fowlfeather
-		193362, -- Fiery Soul
-		193919, -- Frosty Soul
-		193920, -- Earthen Soul
-		193921, -- Airy Soul
-		193922, -- Wildercloth
-		201832, -- Smudged Lens
-		198183, -- Handful of Serevite Bolts
-		198184, -- Handful of Serevite Bolts
-		198185, -- Handful of Serevite Bolts
-		198186, -- Shock-Spring Coil
-		198187, -- Shock-Spring Coil
-		198188, -- Shock-Spring Coil
-		198189, -- Everburning Blasting Powder
-		198190, -- Everburning Blasting Powder
-		198191, -- Everburning Blasting Powder
-		198192, -- Greased-Up Gears
-		198193, -- Greased-Up Gears
-		198194, -- Greased-Up Gears
-		198195, -- Arclight Capacitor
-		198196, -- Arclight Capacitor
-		198197, -- Arclight Capacitor
-		198198, -- Reinforced Machine Chassis
-		198199, -- Reinforced Machine Chassis
-		198200, -- Reinforced Machine Chassis
-		198201, -- Assorted Safety Fuses
-		198202, -- Assorted Safety Fuses
-		198203, -- Assorted Safety Fuses
-		193902, -- Eroded Titan Gizmo
-		193903, -- Watcher Power Core
-		198157, -- I.W.I.N. Button Mk10
-		198158, -- I.W.I.N. Button Mk10
-		198159, -- I.W.I.N. Button Mk10
-		198180, -- D.U.C.K.O.Y.
-		198181, -- D.U.C.K.O.Y.
-		198182, -- D.U.C.K.O.Y.
-		198228, -- Gravitational Displacer
-		198229, -- Gravitational Displacer
-		198230, -- Gravitational Displacer
-		198239, -- Creature Combustion Canister
-		198240, -- Creature Combustion Canister
-		198241, -- Creature Combustion Canister
-		198275, -- S.A.V.I.O.R.
-		198276, -- S.A.V.I.O.R.
-		198277, -- S.A.V.I.O.R.
-		198278, -- Primal Deconstruction Charge
-		198279, -- Primal Deconstruction Charge
-		198280, -- Primal Deconstruction Charge
-		198281, -- Sticky Warp Grenade
-		198282, -- Sticky Warp Grenade
-		198283, -- Sticky Warp Grenade
-		198292, -- Grease Grenade
-		198293, -- Grease Grenade
-		198294, -- Grease Grenade
-		198301, -- Tinker: Supercollide-O-Tron
-		198302, -- Tinker: Supercollide-O-Tron
-		198303, -- Tinker: Supercollide-O-Tron
-		198510, -- Draconic Treatise on Engineering
-		198611, -- Engineering Details
-		198789, -- Intact Coil Capacitor
-		198969, -- Keeper's Mark
-		198970, -- Infinitely Attachable Pair o' Docks
-		201014, -- Boomthyr Rocket
-		201710, -- Notebook of Crafting Knowledge
-	},
-	[9] = { -- Shadowland
-		183950,	 -- Distilled Death Extract
---		176448,	 -- [DNT] [REUSE ME]
-		172937,	 -- Wormfed Gear Assembly
-		172936,	 -- Mortal Coiled Spring
-		172935,	 -- Porous Polishing Abrasive
-		172934,	 -- Handful of Laestrite Bolts
-	},
-	[8] = { -- BfA
-		169470,	 -- Pressure Relief Valve
-		168483,	 -- Protocol Transference Device
-		163569,	 -- Insulated Wiring
-		161137,	 -- Blast-Fired Electric Servomotor
-		161136,	 -- Azerite Forged Protection Plating
-		161132,	 -- Crush Resistant Stabilizer
-		160502,	 -- Chemical Blasting Cap
-	},
-	[7] = { 	-- Legion
---		147619,	 -- [QA] Big Stack Test
-		144329,	 -- Hardened Felglass
-		140785,	 -- Hardened Circuitboard Plating
-		140781,	 -- X-87 Battle Circuit
-		136638,	 -- True Iron Barrel
-		136637,	 -- Oversized Blasting Cap
-		136636,	 -- Sniping Scope
-		136633,	 -- Loose Trigger
-	},
-	[6] = { 	-- WoD
-		119299,	 -- Secret of Draenor Engineering
-		114056,	 -- Didi's Delicate Assembly
-		111366,	 -- Gearspring Parts
-	},
-	[5] = { 	-- MoP
-		98717,	 -- Balanced Trillium Ingot
-		94113,	 -- Jard's Peculiar Energy Source
-		94111,	 -- Lightning Steel Ingot
-		90146,	 -- Tinker's Kit
-		77469,	 -- Salvaged Parts
-		77468,	 -- High-Explosive Gunpowder
-		77467,	 -- Ghost Iron Bolts
-	},
-	[4] = { 	-- Cataclysm
-		67749,	 -- Electrified Ether
-		61981,	 -- Inferno Ink
-		60224,	 -- Handful of Obsidium Bolts
-		52188,	 -- Jeweler's Setting
-	},
-	[3] = { 	-- WolTK
-		44501,	 -- Goblin-Machined Piston
-		44500,	 -- Elementium-Plated Exhaust Pipe
-		44499,	 -- Salvaged Iron Golem Parts
-		40533,	 -- Walnut Stock
-		39690,	 -- Volatile Blasting Trigger
-		39686,	 -- Neo-Dynamic Gear Assembly
-		39685,	 -- Indestructible Frame
-		39684,	 -- Hair Trigger
-		39683,	 -- Froststeel Tube
-		39682,	 -- Overcharged Capacitor
-		39681,	 -- Handful of Cobalt Bolts
-	},
-	[2] = { 	-- BC
-		32423,	 -- Icy Blasting Primers
-		23787,	 -- Felsteel Stabilizer
-		23786,	 -- Khorium Power Core
-		23785,	 -- Hardened Adamantite Tube
-		23784,	 -- Adamantite Frame
-		23783,	 -- Handful of Fel Iron Bolts
-		23782,	 -- Fel Iron Casing
-		23781,	 -- Elemental Blasting Powder
-	},
-	[1] = { 	-- Classic
-		18631,	 -- Truesilver Transformer
-		17056,	 -- Light Feather
-		16006,	 -- Delicate Arcanite Converter
-		16000,	 -- Thorium Tube
-		15994,	 -- Thorium Widget
-		15992,	 -- Dense Blasting Powder
-		10647,	 -- Engineer's Ink
-		10561,	 -- Mithril Casing
-		10560,	 -- Unstable Trigger
-		10559,	 -- Mithril Tube
-		10558,	 -- Gold Power Core
-		10505,	 -- Solid Blasting Powder
-		9061,	 -- Goblin Rocket Fuel
-		9060,	 -- Inlaid Mithril Cylinder
-		7191,	 -- Fused Wiring
-		7071,	 -- Iron Buckle
-		4611,	 -- Blue Pearl
-		4404,	 -- Silver Contact
-		4400,	 -- Heavy Stock
-		4399,	 -- Wooden Stock
-		4389,	 -- Gyrochronatom
-		4387,	 -- Iron Strut
-		4382,	 -- Bronze Framework
-		4377,	 -- Heavy Blasting Powder
-		4375,	 -- Whirring Bronze Gizmo
-		4371,	 -- Bronze Tube
-		4364,	 -- Coarse Blasting Powder
-		4359,	 -- Handful of Copper Bolts
-		4357,	 -- Rough Blasting Powder
-		814,	 -- Flask of Oil
-	},
-}
-
+-- Criteria: Reagent for Alchemy & stacks up to > 1
 items.Alchemy = {
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:12;0:1:0
     [12] = { -- Midnight
-        236761, -- Tranquility Bloom
-        236770, -- Sanguithorn
-        236774, -- Azeroot
-        236776, -- Argentleaf
-        236778, -- Mana Lily
-        236780, -- Nocturnal Lotus
-        236949, -- Mote of Light
-        236950, -- Mote of Primal Energy
-        236951, -- Mote of Wild Magic
-        236952, -- Mote of Pure Void
-        238365, -- Sin'dorei Swarmer
-        238369, -- Bloomtail Minnow
-        238383, -- Eversong Trout
-        238518, -- Void-Tempered Hide
-        238520, -- Void-Tempered Plating
-        238525, -- Fantastic Fur
-        240991, -- Sunglass Vial
-        241281, -- Composite Flora
-        241283, -- Wondrous Synergist
-        241305, -- Silvermoon Health Potion
-        241307, -- Refreshing Serum
-        242651, -- Stabilized Derivate
-        243599, -- Eversinging Dust
-        243602, -- Radiant Shard
-        247811, -- Oil of Heartwood
-        251283, -- Tormented Tantalum
-        251285, -- Petrified Root
-        274777, -- Neutralized Venom Clot
         274781, -- Cursebound Globe
+        274777, -- Neutralized Venom Clot
+        251285, -- Petrified Root
+        251283, -- Tormented Tantalum
+        247811, -- Oil of Heartwood
+        243602, -- Radiant Shard
+        243599, -- Eversinging Dust
+        242651, -- Stabilized Derivate
+        241307, -- Refreshing Serum
+        241305, -- Silvermoon Health Potion
+        241283, -- Wondrous Synergist
+        241281, -- Composite Flora
+        240991, -- Sunglass Vial
+        238525, -- Fantastic Fur
+        238520, -- Void-Tempered Plating
+        238518, -- Void-Tempered Hide
+        238383, -- Eversong Trout
+        238369, -- Bloomtail Minnow
+        238365, -- Sin'dorei Swarmer
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+        236780, -- Nocturnal Lotus
+        236778, -- Mana Lily
+        236776, -- Argentleaf
+        236774, -- Azeroot
+        236770, -- Sanguithorn
+        236761, -- Tranquility Bloom
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:11;0:1:0
     [11] = { -- The War Within
-        210796, -- Mycobloom
-        210799, -- Luredrop
-        210802, -- Orbinid
-        210805, -- Blessing Blossom
-        210808, -- Arathor's Spear
-        210814, -- Artisan's Acuity
-        210815, -- Coreway Catalyst
-        210828, -- Dilution Solution
-        211802, -- Ominous Transmutagen
-        211803, -- Mercurial Transmutagen
-        211804, -- Volatile Transmutagen
-        211805, -- Gleaming Transmutagen
-        211806, -- Gilded Vial
-        212245, -- Slumbering Soul Serum
-        212292, -- Vicious Flask of Honor
-        212563, -- Harmonious Horticulture
-        212754, -- Crystalforged Cauldron
-        213197, -- Null Lotus
-        213610, -- Crystalline Powder
-        213611, -- Writhing Sample
-        213612, -- Viridescent Spores
-        213613, -- Leyline Residue
-        213759, -- Inverted Prism
-        221756, -- Vial of Kaheti Oils
-        221758, -- Profaned Tinderbox
-        221763, -- Viridian Charmcap
-        226205, -- Distilled Algari Freshwater
-        242691, -- Olemba Lumber
-        245586, -- Ironwood Lumber
-        248012, -- Dornic Fir Lumber
-        251762, -- Coldwind Lumber
-        251763, -- Bamboo Lumber
-        251764, -- Ashwood Lumber
-        251766, -- Shadowmoon Lumber
-        251767, -- Fel-Touched Lumber
-        251768, -- Darkpine Lumber
-        251772, -- Arden Lumber
-        251773, -- Dragonpine Lumber
         256963, -- Thalassian Lumber
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251767, -- Fel-Touched Lumber
+        251766, -- Shadowmoon Lumber
+        251764, -- Ashwood Lumber
+        251763, -- Bamboo Lumber
+        251762, -- Coldwind Lumber
+        248012, -- Dornic Fir Lumber
+        245586, -- Ironwood Lumber
+        242691, -- Olemba Lumber
+        226205, -- Distilled Algari Freshwater
+        221763, -- Viridian Charmcap
+        221758, -- Profaned Tinderbox
+        221756, -- Vial of Kaheti Oils
+        213759, -- Inverted Prism
+        213613, -- Leyline Residue
+        213612, -- Viridescent Spores
+        213611, -- Writhing Sample
+        213610, -- Crystalline Powder
+        213197, -- Null Lotus
+        212754, -- Crystalforged Cauldron
+        212563, -- Harmonious Horticulture
+        212292, -- Vicious Flask of Honor
+        212245, -- Slumbering Soul Serum
+        211806, -- Gilded Vial
+        211805, -- Gleaming Transmutagen
+        211804, -- Volatile Transmutagen
+        211803, -- Mercurial Transmutagen
+        211802, -- Ominous Transmutagen
+        210828, -- Dilution Solution
+        210815, -- Coreway Catalyst
+        210814, -- Artisan's Acuity
+        210808, -- Arathor's Spear
+        210805, -- Blessing Blossom
+        210802, -- Orbinid
+        210799, -- Luredrop
+        210796, -- Mycobloom
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:10;0:1:0
     [10] = { -- Dragonflight
-        189143, -- Draconium Ore
-        190312, -- Khaz'gorite Ore
-        190316, -- Awakened Earth
-        190321, -- Awakened Fire
-        190324, -- Awakened Order
-        190326, -- Rousing Air
-        190327, -- Awakened Air
-        190328, -- Rousing Frost
-        190329, -- Awakened Frost
-        190330, -- Rousing Decay
-        190331, -- Awakened Decay
-        190456, -- Artisan's Mettle
-        191339, -- Phial of Tepid Versatility
-        191357, -- Phial of Elemental Chaos
-        191363, -- Potion of Frozen Focus
-        191369, -- Potion of Withering Vitality
-        191378, -- Refreshing Healing Potion
-        191384, -- Aerated Mana Potion
-        191387, -- Elemental Potion of Power
-        191460, -- Hochenblume
-        191464, -- Saxifrage
-        191467, -- Bubble Poppy
-        191470, -- Writhebark
-        191474, -- Draconic Vial
-        191493, -- Primal Convergent
-        191496, -- Omnium Draconis
-        191570, -- Dragon's Alchemical Solution
-        192883, -- Glossy Stone
-        193368, -- Silken Gemdust
-        194727, -- Fiery Spirit
-        201405, -- Tuft of Primal Wool
-        201406, -- Glowing Titan Orb
-        203398, -- Dampening Powder
-        204460, -- Zaralek Glowspores
         204463, -- Dracothyst
+        204460, -- Zaralek Glowspores
+        203398, -- Dampening Powder
+        201406, -- Glowing Titan Orb
+        201405, -- Tuft of Primal Wool
+        194727, -- Fiery Spirit
+        193368, -- Silken Gemdust
+        192883, -- Glossy Stone
+        191570, -- Dragon's Alchemical Solution
+        191496, -- Omnium Draconis
+        191493, -- Primal Convergent
+        191474, -- Draconic Vial
+        191470, -- Writhebark
+        191467, -- Bubble Poppy
+        191464, -- Saxifrage
+        191460, -- Hochenblume
+        191387, -- Elemental Potion of Power
+        191384, -- Aerated Mana Potion
+        191378, -- Refreshing Healing Potion
+        191369, -- Potion of Withering Vitality
+        191363, -- Potion of Frozen Focus
+        191357, -- Phial of Elemental Chaos
+        191339, -- Phial of Tepid Versatility
+        190456, -- Artisan's Mettle
+        190331, -- Awakened Decay
+        190330, -- Rousing Decay
+        190329, -- Awakened Frost
+        190328, -- Rousing Frost
+        190327, -- Awakened Air
+        190326, -- Rousing Air
+        190324, -- Awakened Order
+        190321, -- Awakened Fire
+        190316, -- Awakened Earth
+        190312, -- Khaz'gorite Ore
+        189143, -- Draconium Ore
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:9;0:1:0
     [9] = { -- Shadowland
-        170554, -- Vigil's Torch
-        171267, -- Spiritual Healing Potion
-        171268, -- Spiritual Mana Potion
-        171276, -- Spectral Flask of Power
-        171285, -- Shadowcore Oil
-        171286, -- Embalmer's Oil
-        171287, -- Ground Death Blossom
-        171288, -- Ground Vigil's Torch
-        171289, -- Ground Widowbloom
-        171290, -- Ground Marrowroot
-        171291, -- Ground Rising Glory
-        171292, -- Ground Nightshade
-        171840, -- Porous Stone
-        171841, -- Shaded Stone
-        173170, -- Essence of Rebirth
-        173202, -- Shrouded Cloth
-        177061, -- Twilight Bark
-        178787, -- Orboreal Shard
-        180457, -- Shadestone
-        180732, -- Rune Etched Vial
-        181983, -- Liquid Sleep
-        181984, -- Powdered Dreamroot
-        181985, -- Fresh Dreamroot Trimmings
-        182025, -- Distilled Resolve
-        182026, -- Pulverized Breezebloom
-        182027, -- Fresh Breezebloom Trimmings
-        182047, -- Brutal Oil
-        182048, -- Crushed Bones
-        182049, -- Bones of Defeated Enemies
-        182071, -- Refined Submission
-        182072, -- Bramblethorn Juice
-        182073, -- Fresh Bramblethorn Trimmings
-        183950, -- Distilled Death Extract
-        183953, -- Sealing Wax
-        187699, -- First Flower
         187707, -- Progenitor Essentia
+        187699, -- First Flower
+        183953, -- Sealing Wax
+        183950, -- Distilled Death Extract
+        182073, -- Fresh Bramblethorn Trimmings
+        182072, -- Bramblethorn Juice
+        182071, -- Refined Submission
+        182049, -- Bones of Defeated Enemies
+        182048, -- Crushed Bones
+        182047, -- Brutal Oil
+        182027, -- Fresh Breezebloom Trimmings
+        182026, -- Pulverized Breezebloom
+        182025, -- Distilled Resolve
+        181985, -- Fresh Dreamroot Trimmings
+        181984, -- Powdered Dreamroot
+        181983, -- Liquid Sleep
+        180732, -- Rune Etched Vial
+        180457, -- Shadestone
+        178787, -- Orboreal Shard
+        177061, -- Twilight Bark
+        173202, -- Shrouded Cloth
+        173170, -- Essence of Rebirth
+        171841, -- Shaded Stone
+        171840, -- Porous Stone
+        171292, -- Ground Nightshade
+        171291, -- Ground Rising Glory
+        171290, -- Ground Marrowroot
+        171289, -- Ground Widowbloom
+        171288, -- Ground Vigil's Torch
+        171287, -- Ground Death Blossom
+        171286, -- Embalmer's Oil
+        171285, -- Shadowcore Oil
+        171276, -- Spectral Flask of Power
+        171268, -- Spiritual Mana Potion
+        171267, -- Spiritual Healing Potion
+        170554, -- Vigil's Torch
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:8;0:1:0
     [8] = { -- BfA
-        152494, -- Coastal Healing Potion
-        152495, -- Coastal Mana Potion
-        152505, -- Riverbud
-        152506, -- Star Moss
-        152507, -- Akunda's Bite
-        152508, -- Winter's Kiss
-        152509, -- Siren's Pollen
-        152510, -- Anchor Weed
-        152511, -- Sea Stalk
-        152512, -- Monelite Ore
-        152543, -- Sand Shifter
-        152547, -- Great Sea Catfish
-        152576, -- Tidespray Linen
-        152577, -- Deep Sea Satin
-        152579, -- Storm Silver Ore
-        152638, -- Flask of the Currents
-        152639, -- Flask of Endless Fathoms
-        152640, -- Flask of the Vast Horizon
-        152641, -- Flask of the Undertow
-        152668, -- Expulsom
-        154164, -- Blood-Stained Bone
-        154897, -- Stringy Loins
-        154898, -- Meaty Haunch
-        158186, -- Distilled Water
-        162460, -- Hydrocore
-        162461, -- Sanguicell
-        162519, -- Mystical Cauldron
-        165703, -- Breath of Bwonsamdi
-        165948, -- Tidalcore
-        166371, -- Dried Star Moss Leaves
-        166372, -- Sand Shifter Scales
-        166373, -- Storm Silver Shards
-        166374, -- Test Vial
-        168487, -- Zin'anthid
-        168583, -- Widowbloom
-        168586, -- Rising Glory
-        168589, -- Marrowroot
-        168651, -- Greater Flask of the Currents
-        168652, -- Greater Flask of Endless Fathoms
-        168653, -- Greater Flask of the Vast Horizon
-        168654, -- Greater Flask of the Undertow
-        169701, -- Death Blossom
-        170553, -- Void Focus Splinter
         171315, -- Nightshade
+        170553, -- Void Focus Splinter
+        169701, -- Death Blossom
+        168654, -- Greater Flask of the Undertow
+        168653, -- Greater Flask of the Vast Horizon
+        168652, -- Greater Flask of Endless Fathoms
+        168651, -- Greater Flask of the Currents
+        168589, -- Marrowroot
+        168586, -- Rising Glory
+        168583, -- Widowbloom
+        168487, -- Zin'anthid
+        166374, -- Test Vial
+        166373, -- Storm Silver Shards
+        166372, -- Sand Shifter Scales
+        166371, -- Dried Star Moss Leaves
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        162519, -- Mystical Cauldron
+        162461, -- Sanguicell
+        162460, -- Hydrocore
+        158186, -- Distilled Water
+        154898, -- Meaty Haunch
+        154897, -- Stringy Loins
+        154164, -- Blood-Stained Bone
+        152668, -- Expulsom
+        152641, -- Flask of the Undertow
+        152640, -- Flask of the Vast Horizon
+        152639, -- Flask of Endless Fathoms
+        152638, -- Flask of the Currents
+        152579, -- Storm Silver Ore
+        152577, -- Deep Sea Satin
+        152576, -- Tidespray Linen
+        152547, -- Great Sea Catfish
+        152543, -- Sand Shifter
+        152512, -- Monelite Ore
+        152511, -- Sea Stalk
+        152510, -- Anchor Weed
+        152509, -- Siren's Pollen
+        152508, -- Winter's Kiss
+        152507, -- Akunda's Bite
+        152506, -- Star Moss
+        152505, -- Riverbud
+        152495, -- Coastal Mana Potion
+        152494, -- Coastal Healing Potion
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:7;0:1:0
     [7] = { -- Legion
-        123918, -- Leystone Ore
-        123919, -- Felslate
-        124101, -- Aethril
-        124102, -- Dreamleaf
-        124103, -- Foxflower
-        124104, -- Fjarnskaggl
-        124105, -- Starlight Rose
-        124106, -- Felwort
-        124107, -- Cursed Queenfish
-        124108, -- Mossgill Perch
-        124109, -- Highmountain Salmon
-        124110, -- Stormray
-        124111, -- Runescale Koi
-        124112, -- Black Barracuda
-        124113, -- Stonehide Leather
-        124115, -- Stormscale
-        124117, -- Lean Shank
-        124118, -- Fatty Bearsteak
-        124119, -- Big Gamy Ribs
-        124120, -- Leyblood
-        124121, -- Wildfowl Egg
-        124124, -- Blood of Sargeras
-        124437, -- Shal'dorei Silk
-        124438, -- Unbroken Claw
-        124439, -- Unbroken Tooth
-        124440, -- Arkhana
-        124444, -- Infernal Brimstone
-        124461, -- Demonsteel Bar
-        127834, -- Ancient Healing Potion
-        127835, -- Ancient Mana Potion
-        127836, -- Ancient Rejuvenation Potion
-        127838, -- Sylvan Elixir
-        127847, -- Flask of the Whispered Pact
-        127848, -- Flask of the Seventh Demon
-        127849, -- Flask of the Countless Armies
-        127850, -- Flask of Ten Thousand Scars
-        128304, -- Yseralline Seed
-        133607, -- Silver Mackerel
-        137595, -- Viscous Transmutagen
-        137596, -- Black Transmutagen
-        137597, -- Oily Transmutagen
-        151565, -- Astral Glory
-        151568, -- Primal Sargerite
         156930, -- Rich Illusion Dust
+        151568, -- Primal Sargerite
+        151565, -- Astral Glory
+        137597, -- Oily Transmutagen
+        137596, -- Black Transmutagen
+        137595, -- Viscous Transmutagen
+        133607, -- Silver Mackerel
+        128304, -- Yseralline Seed
+        127850, -- Flask of Ten Thousand Scars
+        127849, -- Flask of the Countless Armies
+        127848, -- Flask of the Seventh Demon
+        127847, -- Flask of the Whispered Pact
+        127838, -- Sylvan Elixir
+        127836, -- Ancient Rejuvenation Potion
+        127835, -- Ancient Mana Potion
+        127834, -- Ancient Healing Potion
+        124461, -- Demonsteel Bar
+        124444, -- Infernal Brimstone
+        124440, -- Arkhana
+        124439, -- Unbroken Tooth
+        124438, -- Unbroken Claw
+        124437, -- Shal'dorei Silk
+        124124, -- Blood of Sargeras
+        124121, -- Wildfowl Egg
+        124120, -- Leyblood
+        124119, -- Big Gamy Ribs
+        124118, -- Fatty Bearsteak
+        124117, -- Lean Shank
+        124115, -- Stormscale
+        124113, -- Stonehide Leather
+        124112, -- Black Barracuda
+        124111, -- Runescale Koi
+        124110, -- Stormray
+        124109, -- Highmountain Salmon
+        124108, -- Mossgill Perch
+        124107, -- Cursed Queenfish
+        124106, -- Felwort
+        124105, -- Starlight Rose
+        124104, -- Fjarnskaggl
+        124103, -- Foxflower
+        124102, -- Dreamleaf
+        124101, -- Aethril
+        123919, -- Felslate
+        123918, -- Leystone Ore
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:6;0:1:0
     [6] = { -- WoD
-        108996, -- Alchemical Catalyst
-        109118, -- Blackrock Ore
-        109119, -- True Iron Ore
-        109123, -- Crescent Oil
-        109124, -- Frostweed
-        109125, -- Fireweed
-        109126, -- Gorgrond Flytrap
-        109127, -- Starflower
-        109128, -- Nagrand Arrowbloom
-        109129, -- Talador Orchid
-        109137, -- Crescent Saberfish Flesh
-        109138, -- Jawless Skulker Flesh
-        109139, -- Fat Sleeper Flesh
-        109140, -- Blind Lake Sturgeon Flesh
-        109141, -- Fire Ammonite Tentacle
-        109142, -- Sea Scorpion Segment
-        109143, -- Abyssal Gulper Eel Flesh
-        109144, -- Blackwater Whiptail Flesh
-        109145, -- Draenic Agility Flask
-        109147, -- Draenic Intellect Flask
-        109148, -- Draenic Strength Flask
-        109152, -- Draenic Stamina Flask
-        109222, -- Draenic Mana Potion
-        109223, -- Healing Tonic
-        113261, -- Sorcerous Fire
-        113262, -- Sorcerous Water
-        113263, -- Sorcerous Earth
-        113264, -- Sorcerous Air
-        117454, -- Gorgrond Grapes
-        118472, -- Savage Blood
         127759, -- Felblight
+        118472, -- Savage Blood
+        117454, -- Gorgrond Grapes
+        113264, -- Sorcerous Air
+        113263, -- Sorcerous Earth
+        113262, -- Sorcerous Water
+        113261, -- Sorcerous Fire
+        109223, -- Healing Tonic
+        109222, -- Draenic Mana Potion
+        109152, -- Draenic Stamina Flask
+        109148, -- Draenic Strength Flask
+        109147, -- Draenic Intellect Flask
+        109145, -- Draenic Agility Flask
+        109144, -- Blackwater Whiptail Flesh
+        109143, -- Abyssal Gulper Eel Flesh
+        109142, -- Sea Scorpion Segment
+        109141, -- Fire Ammonite Tentacle
+        109140, -- Blind Lake Sturgeon Flesh
+        109139, -- Fat Sleeper Flesh
+        109138, -- Jawless Skulker Flesh
+        109137, -- Crescent Saberfish Flesh
+        109129, -- Talador Orchid
+        109128, -- Nagrand Arrowbloom
+        109127, -- Starflower
+        109126, -- Gorgrond Flytrap
+        109125, -- Fireweed
+        109124, -- Frostweed
+        109123, -- Crescent Oil
+        109119, -- True Iron Ore
+        109118, -- Blackrock Ore
+        108996, -- Alchemical Catalyst
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:5;0:1:0
     [5] = { -- MoP
-        72095, -- Trillium Bar
-        72096, -- Ghost Iron Bar
-        72234, -- Green Tea Leaf
-        72235, -- Silkweed
-        72237, -- Rain Poppy
-        72238, -- Golden Lotus
-        76061, -- Spirit of Harmony
-        76098, -- Master Mana Potion
-        76130, -- Tiger Opal
-        76133, -- Lapis Lazuli
-        76134, -- Sunstone
-        76135, -- Roguestone
-        76136, -- Pandarian Garnet
-        76137, -- Alexandrite
-        76139, -- Wild Jade
-        76140, -- Vermilion Onyx
-        76141, -- Imperial Amethyst
-        79010, -- Snow Lily
-        79011, -- Fool's Cap
-        83064, -- Spinefish
         87872, -- Desecrated Oil
+        83064, -- Spinefish
+        79011, -- Fool's Cap
+        79010, -- Snow Lily
+        76141, -- Imperial Amethyst
+        76140, -- Vermilion Onyx
+        76139, -- Wild Jade
+        76137, -- Alexandrite
+        76136, -- Pandarian Garnet
+        76135, -- Roguestone
+        76134, -- Sunstone
+        76133, -- Lapis Lazuli
+        76130, -- Tiger Opal
+        76098, -- Master Mana Potion
+        76061, -- Spirit of Harmony
+        72238, -- Golden Lotus
+        72237, -- Rain Poppy
+        72235, -- Silkweed
+        72234, -- Green Tea Leaf
+        72096, -- Ghost Iron Bar
+        72095, -- Trillium Bar
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:4;0:1:0
     [4] = { -- Cataclysm
-        51950, -- Pyrium Bar
-        52177, -- Carnelian
-        52178, -- Zephyrite
-        52179, -- Alicite
-        52180, -- Nightstone
-        52181, -- Hessonite
-        52182, -- Jasper
-        52186, -- Elementium Bar
-        52325, -- Volatile Fire
-        52326, -- Volatile Water
-        52327, -- Volatile Earth
-        52328, -- Volatile Air
-        52329, -- Volatile Life
-        52983, -- Cinderbloom
-        52984, -- Stormvine
-        52985, -- Azshara's Veil
-        52986, -- Heartblossom
-        52987, -- Twilight Jasmine
-        52988, -- Whiptail
-        53065, -- Albino Cavefish
-        54849, -- Obsidium Bar
-        56850, -- Deepstone Oil
-        58085, -- Flask of Steelskin
-        58086, -- Flask of the Draconic Mind
-        58087, -- Flask of the Winds
-        58088, -- Flask of Titanic Strength
-        58142, -- Deathblood Venom
-        58480, -- Truegold
-        65892, -- Pyrium-Laced Crystalline Vial
-        65893, -- Sands of Time
         69237, -- Living Ember
+        65893, -- Sands of Time
+        65892, -- Pyrium-Laced Crystalline Vial
+        58480, -- Truegold
+        58142, -- Deathblood Venom
+        58088, -- Flask of Titanic Strength
+        58087, -- Flask of the Winds
+        58086, -- Flask of the Draconic Mind
+        58085, -- Flask of Steelskin
+        56850, -- Deepstone Oil
+        54849, -- Obsidium Bar
+        53065, -- Albino Cavefish
+        52988, -- Whiptail
+        52987, -- Twilight Jasmine
+        52986, -- Heartblossom
+        52985, -- Azshara's Veil
+        52984, -- Stormvine
+        52983, -- Cinderbloom
+        52329, -- Volatile Life
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+        52186, -- Elementium Bar
+        52182, -- Jasper
+        52181, -- Hessonite
+        52180, -- Nightstone
+        52179, -- Alicite
+        52178, -- Zephyrite
+        52177, -- Carnelian
+        51950, -- Pyrium Bar
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:3;0:1:0
     [3] = { -- WolTK
-        33447, -- Runic Healing Potion
-        33448, -- Runic Mana Potion
-        35622, -- Eternal Water
-        35623, -- Eternal Air
-        35624, -- Eternal Earth
-        35625, -- Eternal Life
-        35627, -- Eternal Shadow
-        36860, -- Eternal Fire
-        36901, -- Goldclover
-        36903, -- Adder's Tongue
-        36904, -- Tiger Lily
-        36905, -- Lichbloom
-        36906, -- Icethorn
-        36907, -- Talandra's Rose
-        36908, -- Frost Lotus
-        36913, -- Saronite Bar
-        36917, -- Bloodstone
-        36918, -- Scarlet Ruby
-        36921, -- Autumn's Glow
-        36923, -- Chalcedony
-        36924, -- Sky Sapphire
-        36927, -- Twilight Opal
-        36929, -- Huge Citrine
-        36930, -- Monarch Topaz
-        36932, -- Dark Jade
-        36933, -- Forest Emerald
-        37701, -- Crystallized Earth
-        37702, -- Crystallized Fire
-        37703, -- Crystallized Shadow
-        37704, -- Crystallized Life
-        37705, -- Crystallized Water
-        37921, -- Deadnettle
-        40077, -- Crazy Alchemist's Potion
-        40195, -- Pygmy Oil
-        40199, -- Pygmy Suckerfish
-        41814, -- Glassfin Minnow
-        43102, -- Frozen Orb
         44958, -- Ethereal Oil
+        43102, -- Frozen Orb
+        41814, -- Glassfin Minnow
+        40199, -- Pygmy Suckerfish
+        40195, -- Pygmy Oil
+        40077, -- Crazy Alchemist's Potion
+        37921, -- Deadnettle
+        37705, -- Crystallized Water
+        37704, -- Crystallized Life
+        37703, -- Crystallized Shadow
+        37702, -- Crystallized Fire
+        37701, -- Crystallized Earth
+        36933, -- Forest Emerald
+        36932, -- Dark Jade
+        36930, -- Monarch Topaz
+        36929, -- Huge Citrine
+        36927, -- Twilight Opal
+        36924, -- Sky Sapphire
+        36923, -- Chalcedony
+        36921, -- Autumn's Glow
+        36918, -- Scarlet Ruby
+        36917, -- Bloodstone
+        36913, -- Saronite Bar
+        36908, -- Frost Lotus
+        36907, -- Talandra's Rose
+        36906, -- Icethorn
+        36905, -- Lichbloom
+        36904, -- Tiger Lily
+        36903, -- Adder's Tongue
+        36901, -- Goldclover
+        36860, -- Eternal Fire
+        35627, -- Eternal Shadow
+        35625, -- Eternal Life
+        35624, -- Eternal Earth
+        35623, -- Eternal Air
+        35622, -- Eternal Water
+        33448, -- Runic Mana Potion
+        33447, -- Runic Healing Potion
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:2;0:1:0
     [2] = { -- TBC
-        21840, -- Bolt of Netherweave
-        21884, -- Primal Fire
-        21885, -- Primal Water
-        21886, -- Primal Life
-        21929, -- Flame Spessarite
-        22451, -- Primal Air
-        22452, -- Primal Earth
-        22456, -- Primal Shadow
-        22457, -- Primal Mana
-        22573, -- Mote of Earth
-        22574, -- Mote of Fire
-        22578, -- Mote of Water
-        22785, -- Felweed
-        22786, -- Dreaming Glory
-        22787, -- Ragveil
-        22789, -- Terocone
-        22790, -- Ancient Lichen
-        22791, -- Netherbloom
-        22792, -- Nightmare Vine
-        22793, -- Mana Thistle
-        22794, -- Fel Lotus
-        22861, -- Flask of Blinding Light
-        23077, -- Blood Garnet
-        23079, -- Deep Peridot
-        23107, -- Shadow Draenite
-        23112, -- Golden Draenite
-        23117, -- Azure Moonstone
-        23449, -- Khorium Bar
-        23571, -- Primal Might
-        23573, -- Hardened Adamantite Bar
-        23782, -- Fel Iron Casing
-        25867, -- Earthstorm Diamond
-        25868, -- Skyfire Diamond
-        30183, -- Nether Vortex
         34440, -- Mad Alchemist's Potion
+        30183, -- Nether Vortex
+        25868, -- Skyfire Diamond
+        25867, -- Earthstorm Diamond
+        23782, -- Fel Iron Casing
+        23573, -- Hardened Adamantite Bar
+        23571, -- Primal Might
+        23449, -- Khorium Bar
+        23117, -- Azure Moonstone
+        23112, -- Golden Draenite
+        23107, -- Shadow Draenite
+        23079, -- Deep Peridot
+        23077, -- Blood Garnet
+        22861, -- Flask of Blinding Light
+        22794, -- Fel Lotus
+        22793, -- Mana Thistle
+        22792, -- Nightmare Vine
+        22791, -- Netherbloom
+        22790, -- Ancient Lichen
+        22789, -- Terocone
+        22787, -- Ragveil
+        22786, -- Dreaming Glory
+        22785, -- Felweed
+        22578, -- Mote of Water
+        22574, -- Mote of Fire
+        22573, -- Mote of Earth
+        22457, -- Primal Mana
+        22456, -- Primal Shadow
+        22452, -- Primal Earth
+        22451, -- Primal Air
+        21929, -- Flame Spessarite
+        21886, -- Primal Life
+        21885, -- Primal Water
+        21884, -- Primal Fire
+        21840, -- Bolt of Netherweave
     },
     -- https://www.wowhead.com/items?filter=87:194:166;1:1:1;0:1:0
     [1] = { -- Classic
-        118, -- Minor Healing Potion
-        765, -- Silverleaf
-        785, -- Mageroyal
-        1288, -- Large Venom Sac
-        1475, -- Small Venom Sac
-        2325, -- Black Dye
-        2447, -- Peacebloom
-        2449, -- Earthroot
-        2450, -- Briarthorn
-        2452, -- Swiftthistle
-        2453, -- Bruiseweed
-        3164, -- Discolored Worg Heart
-        3355, -- Wild Steelbloom
-        3356, -- Kingsblood
-        3357, -- Liferoot
-        3358, -- Khadgar's Whisker
-        3369, -- Grave Moss
-        3371, -- Crystal Vial
-        3575, -- Iron Bar
-        3818, -- Fadeleaf
-        3819, -- Dragon's Teeth
-        3820, -- Stranglekelp
-        3821, -- Goldthorn
-        3824, -- Shadow Oil
-        3858, -- Mithril Ore
-        3860, -- Mithril Bar
-        4342, -- Purple Dye
-        4402, -- Small Flame Sac
-        4625, -- Firebloom
-        5635, -- Sharp Claw
-        5637, -- Large Fang
-        6358, -- Oily Blackmouth
-        6359, -- Firefin Snapper
-        6370, -- Blackmouth Oil
-        6371, -- Fire Oil
-        6522, -- Deviate Fish
-        7067, -- Elemental Earth
-        7068, -- Elemental Fire
-        7070, -- Elemental Water
-        7076, -- Essence of Earth
-        7077, -- Heart of Fire
-        7078, -- Essence of Fire
-        7080, -- Essence of Water
-        7082, -- Essence of Air
-        7972, -- Ichor of Undeath
-        8153, -- Wildvine
-        8831, -- Purple Lotus
-        8838, -- Sungrass
-        8839, -- Blindweed
-        8845, -- Ghost Mushroom
-        8846, -- Gromsblood
-        9260, -- Volatile Rum
-        9262, -- Black Vitriol
-        10286, -- Heart of the Wild
-        10620, -- Thorium Ore
-        12359, -- Thorium Bar
-        12360, -- Arcanite Bar
-        12363, -- Arcane Crystal
-        12803, -- Living Essence
-        12804, -- Powerful Mojo
-        12808, -- Essence of Undeath
-        13422, -- Stonescale Eel
-        13423, -- Stonescale Oil
-        13463, -- Dreamfoil
-        13464, -- Golden Sansam
-        13465, -- Mountain Silversage
-        13466, -- Sorrowmoss
-        13467, -- Icecap
-        13468, -- Black Lotus
-        19441, -- Huge Venom Sac
-        19943, -- Massive Mojo
         20520, -- Dark Rune
+        19943, -- Massive Mojo
+        19441, -- Huge Venom Sac
+        13468, -- Black Lotus
+        13467, -- Icecap
+        13466, -- Sorrowmoss
+        13465, -- Mountain Silversage
+        13464, -- Golden Sansam
+        13463, -- Dreamfoil
+        13423, -- Stonescale Oil
+        13422, -- Stonescale Eel
+        12808, -- Essence of Undeath
+        12804, -- Powerful Mojo
+        12803, -- Living Essence
+        12363, -- Arcane Crystal
+        12360, -- Arcanite Bar
+        12359, -- Thorium Bar
+        10620, -- Thorium Ore
+        10286, -- Heart of the Wild
+        9262, -- Black Vitriol
+        9260, -- Volatile Rum
+        8846, -- Gromsblood
+        8845, -- Ghost Mushroom
+        8839, -- Blindweed
+        8838, -- Sungrass
+        8831, -- Purple Lotus
+        8153, -- Wildvine
+        7972, -- Ichor of Undeath
+        7082, -- Essence of Air
+        7080, -- Essence of Water
+        7078, -- Essence of Fire
+        7077, -- Heart of Fire
+        7076, -- Essence of Earth
+        7070, -- Elemental Water
+        7068, -- Elemental Fire
+        7067, -- Elemental Earth
+        6522, -- Deviate Fish
+        6371, -- Fire Oil
+        6370, -- Blackmouth Oil
+        6359, -- Firefin Snapper
+        6358, -- Oily Blackmouth
+        5637, -- Large Fang
+        5635, -- Sharp Claw
+        4625, -- Firebloom
+        4402, -- Small Flame Sac
+        4342, -- Purple Dye
+        3860, -- Mithril Bar
+        3858, -- Mithril Ore
+        3824, -- Shadow Oil
+        3821, -- Goldthorn
+        3820, -- Stranglekelp
+        3819, -- Dragon's Teeth
+        3818, -- Fadeleaf
+        3575, -- Iron Bar
+        3371, -- Crystal Vial
+        3369, -- Grave Moss
+        3358, -- Khadgar's Whisker
+        3357, -- Liferoot
+        3356, -- Kingsblood
+        3355, -- Wild Steelbloom
+        3164, -- Discolored Worg Heart
+        2453, -- Bruiseweed
+        2452, -- Swiftthistle
+        2450, -- Briarthorn
+        2449, -- Earthroot
+        2447, -- Peacebloom
+        2325, -- Black Dye
+        1475, -- Small Venom Sac
+        1288, -- Large Venom Sac
+        785, -- Mageroyal
+        765, -- Silverleaf
+        118, -- Minor Healing Potion
     },
 }
 
-items.potion = {
+-- Criteria: Reagent for Enchanting & stacks up to > 1
+items.Enchanting = {
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:12;0:1:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        274777, -- Neutralized Venom Clot
+        251665, -- Silverleaf Thread
+        251285, -- Petrified Root
+        251283, -- Tormented Tantalum
+        245882, -- Thalassian Songwater
+        245881, -- Lexicologist's Vellum
+        245805, -- Sienna Ink
+        245801, -- Munsell Ink
+        245345, -- Fused Vitality
+        244637, -- Silvermoon Weapon Wrap
+        243605, -- Dawn Crystal
+        243602, -- Radiant Shard
+        243599, -- Eversinging Dust
+        243060, -- Luminant Flux
+        242788, -- Dusk-Shrouded Stone
+        242787, -- Crystalline Glass
+        242612, -- Flawless Amani Lapis
+        242611, -- Flawless Tenebrous Amethyst
+        242610, -- Flawless Harandar Peridot
+        240991, -- Sunglass Vial
+        239201, -- Sunfire Silk Bolt
+        239198, -- Arcanoweave Bolt
+        238530, -- Majestic Fin
+        238529, -- Majestic Hide
+        238528, -- Majestic Claw
+        238525, -- Fantastic Fur
+        238523, -- Carving Canine
+        238522, -- Peerless Plumage
+        238383, -- Eversong Trout
+        238204, -- Sterling Alloy
+        238202, -- Gloaming Alloy
+        238197, -- Refulgent Copper Ingot
+        237366, -- Dazzling Thorium
+        237364, -- Brilliant Silver Ore
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+        236774, -- Azeroot
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:11;0:1:0
+    [11] = { -- The War Within
+        256963, -- Thalassian Lumber
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251767, -- Fel-Touched Lumber
+        251766, -- Shadowmoon Lumber
+        251764, -- Ashwood Lumber
+        251763, -- Bamboo Lumber
+        251762, -- Coldwind Lumber
+        249218, -- Manaforged Instrument
+        248012, -- Dornic Fir Lumber
+        245586, -- Ironwood Lumber
+        242691, -- Olemba Lumber
+        224108, -- Oil of Beledar's Grace
+        222555, -- Codified Greenwood
+        222417, -- Core Alloy
+        221859, -- Gyrating Gear
+        221763, -- Viridian Charmcap
+        221758, -- Profaned Tinderbox
+        221756, -- Vial of Kaheti Oils
+        221754, -- Ringing Deeps Ingot
+        220790, -- Nascent Runed Harbinger Crest
+        220789, -- Nascent Gilded Harbinger Crest
+        220788, -- Nascent Weathered Harbinger Crest
+        219952, -- Refulgent Crystal
+        219949, -- Gleaming Shard
+        219946, -- Storm Dust
+        218338, -- Bottled Storm
+        213613, -- Leyline Residue
+        213612, -- Viridescent Spores
+        213611, -- Writhing Sample
+        213610, -- Crystalline Powder
+        210939, -- Null Stone
+        210814, -- Artisan's Acuity
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:10;0:1:0
+    [10] = { -- Dragonflight
+        211523, -- Nascent Whelpling's Awakened Crest
+        211522, -- Nascent Aspect's Awakened Crest
+        211521, -- Nascent Wyrm's Awakened Crest
+        208395, -- Nascent Whelpling's Dreaming Crest
+        208394, -- Nascent Wyrm's Dreaming Crest
+        208393, -- Nascent Aspect's Dreaming Crest
+        208212, -- Dreaming Essence
+        205263, -- Empowered Flightstone
+        204464, -- Shadowflame Essence
+        204463, -- Dracothyst
+        204460, -- Zaralek Glowspores
+        204196, -- Wyrm's Shadowflame Crest
+        204194, -- Aspect's Shadowflame Crest
+        204193, -- Whelpling's Shadowflame Crest
+        203401, -- Dull Crystal
+        201584, -- Serevite Rod
+        201406, -- Glowing Titan Orb
+        201401, -- Iridescent Plume
+        200113, -- Resonant Crystal
+        194862, -- Runed Writhebark
+        194784, -- Glittering Parchment
+        194727, -- Fiery Spirit
+        194124, -- Vibrant Shard
+        194123, -- Chromatic Dust
+        193922, -- Wildercloth
+        192869, -- Illimited Diamond
+        191470, -- Writhebark
+        190456, -- Artisan's Mettle
+        190329, -- Awakened Frost
+        190328, -- Rousing Frost
+        190327, -- Awakened Air
+        190326, -- Rousing Air
+        190324, -- Awakened Order
+        190322, -- Rousing Order
+        190321, -- Awakened Fire
+        190320, -- Rousing Fire
+        190316, -- Awakened Earth
+        190315, -- Rousing Earth
+        190312, -- Khaz'gorite Ore
+        189541, -- Primal Molten Alloy
+        189143, -- Draconium Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:9;0:1:0
+    [9] = { -- Shadowlands
+        187703, -- Silken Protofiber
+        187700, -- Progenium Ore
+        183951, -- Immortal Shard
+        182066, -- Sanguine Crystal
+        182042, -- Necrotic Essence
+        182020, -- Transcendent Dust
+        181990, -- Twilight Dust
+        177061, -- Twilight Bark
+        173204, -- Lightless Silk
+        172232, -- Eternal Crystal
+        172231, -- Sacred Shard
+        172230, -- Soul Dust
+        172097, -- Heavy Callous Hide
+        171833, -- Elethium Ore
+        171832, -- Sinvyr Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:8;0:1:0
+    [8] = { -- Battle for Azeroth
+        168185, -- Osmenite Ore
+        168127, -- Lingering Drust Essence
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        162461, -- Sanguicell
+        162460, -- Hydrocore
+        158186, -- Distilled Water
+        154165, -- Calcified Bone
+        152877, -- Veiled Crystal
+        152876, -- Umbra Shard
+        152875, -- Gloom Dust
+        152812, -- Monel-Hardened Hoofplates
+        152668, -- Expulsom
+        152541, -- Coarse Leather
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:7;0:1:0
+    [7] = { -- Legion
+        156930, -- Rich Illusion Dust
+        127835, -- Ancient Mana Potion
+        124461, -- Demonsteel Bar
+        124444, -- Infernal Brimstone
+        124442, -- Chaos Crystal
+        124441, -- Leylight Shard
+        124440, -- Arkhana
+        124124, -- Blood of Sargeras
+        124116, -- Felhide
+        124106, -- Felwort
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:6;0:1:0
+    [6] = { -- Warlords of Draenor
+        120945, -- Primal Spirit
+        118472, -- Savage Blood
+        113588, -- Temporal Crystal
+        113264, -- Sorcerous Air
+        113263, -- Sorcerous Earth
+        113262, -- Sorcerous Water
+        113261, -- Sorcerous Fire
+        111557, -- Sumptuous Fur
+        111245, -- Luminous Shard
+        109693, -- Draenic Dust
+        109118, -- Blackrock Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:5;0:1:0
+    [5] = { -- Mists of Pandaria
+        94289, -- Haunting Spirit
+        76142, -- Sun's Radiance
+        76141, -- Imperial Amethyst
+        76140, -- Vermilion Onyx
+        76139, -- Wild Jade
+        76138, -- River's Heart
+        76131, -- Primordial Ruby
+        76061, -- Spirit of Harmony
+        74250, -- Mysterious Essence
+        74249, -- Spirit Dust
+        74248, -- Sha Crystal
+        74247, -- Ethereal Shard
+        72988, -- Windwool Cloth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:4;0:1:0
+    [4] = { -- Cataclysm
+        69237, -- Living Ember
+        58094, -- Elixir of Impossible Accuracy
+        53039, -- Hardened Elementium Bar
+        52722, -- Maelstrom Crystal
+        52721, -- Heavenly Shard
+        52719, -- Greater Celestial Essence
+        52718, -- Lesser Celestial Essence
+        52555, -- Hypnotic Dust
+        52329, -- Volatile Life
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:3;0:1:0
+    [3] = { -- Wrath of the Lich King
+        44958, -- Ethereal Oil
+        41510, -- Bolt of Frostweave
+        41163, -- Titanium Bar
+        39354, -- Light Parchment
+        38682, -- Enchanting Vellum
+        37705, -- Crystallized Water
+        37663, -- Titansteel Bar
+        36918, -- Scarlet Ruby
+        36860, -- Eternal Fire
+        35625, -- Eternal Life
+        35624, -- Eternal Earth
+        35623, -- Eternal Air
+        35622, -- Eternal Water
+        34057, -- Abyss Crystal
+        34056, -- Lesser Cosmic Essence
+        34055, -- Greater Cosmic Essence
+        34054, -- Infinite Dust
+        34052, -- Dream Shard
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:2;0:1:0
+    [2] = { -- Burning Crusade
+        23571, -- Primal Might
+        23427, -- Eternium Ore
+        22824, -- Elixir of Major Strength
+        22794, -- Fel Lotus
+        22792, -- Nightmare Vine
+        22791, -- Netherbloom
+        22457, -- Primal Mana
+        22456, -- Primal Shadow
+        22452, -- Primal Earth
+        22451, -- Primal Air
+        22450, -- Void Crystal
+        22449, -- Large Prismatic Shard
+        22448, -- Small Prismatic Shard
+        22447, -- Lesser Planar Essence
+        22446, -- Greater Planar Essence
+        22445, -- Arcane Dust
+        21886, -- Primal Life
+        21885, -- Primal Water
+        21884, -- Primal Fire
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;4:1:1;0:1:0
+    [1] = { -- Vanilla
+        20520, -- Dark Rune
+        20002, -- Greater Dreamless Sleep Potion
+        19931, -- Gurubashi Mojo Madness
+        17056, -- Light Feather
+        17010, -- Fiery Core
+        16204, -- Light Illusion Dust
+        16203, -- Greater Eternal Essence
+        16202, -- Lesser Eternal Essence
+        14344, -- Large Brilliant Shard
+        14343, -- Small Brilliant Shard
+        14256, -- Felcloth
+        13926, -- Golden Pearl
+        13467, -- Icecap
+        13446, -- Major Healing Potion
+        13444, -- Major Mana Potion
+        12811, -- Righteous Orb
+        12808, -- Essence of Undeath
+        12803, -- Living Essence
+        12800, -- Azerothian Diamond
+        12655, -- Enchanted Thorium Bar
+        12365, -- Dense Stone
+        12359, -- Thorium Bar
+        11291, -- Star Wood
+        10940, -- Strange Dust
+        10939, -- Greater Magic Essence
+        10938, -- Lesser Magic Essence
+        9224, -- Elixir of Demonslaying
+        8838, -- Sungrass
+        8831, -- Purple Lotus
+        8170, -- Rugged Leather
+        8153, -- Wildvine
+        7909, -- Aquamarine
+        7392, -- Green Whelp Scale
+        7082, -- Essence of Air
+        7080, -- Essence of Water
+        7078, -- Essence of Fire
+        7076, -- Essence of Earth
+        7067, -- Elemental Earth
+        6370, -- Blackmouth Oil
+        6037, -- Truesilver Bar
+        5637, -- Large Fang
+        4625, -- Firebloom
+        4470, -- Simple Wood
+        3857, -- Coal
+        3819, -- Dragon's Teeth
+        3371, -- Crystal Vial
+        3356, -- Kingsblood
+        2772, -- Iron Ore
+    },
+}
+
+-- Criteria: Reagent for Engineering & stacks up to > 1
+items.Engineering = {
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:12;0:1:0
+    [12] = { -- Midnight
+        274777, -- Neutralized Venom Clot
+        253303, -- Pile of Junk
+        253302, -- Malleable Wireframe
+        251283, -- Tormented Tantalum
+        245345, -- Fused Vitality
+        243581, -- Evercore
+        243578, -- Aetherlume
+        243576, -- Soul Sprocket
+        243574, -- Song Gear
+        239702, -- Imbued Bright Linen Bolt
+        238530, -- Majestic Fin
+        238529, -- Majestic Hide
+        238528, -- Majestic Claw
+        238520, -- Void-Tempered Plating
+        238518, -- Void-Tempered Hide
+        237366, -- Dazzling Thorium
+        237362, -- Umbral Tin Ore
+        237359, -- Refulgent Copper Ore
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:11;0:1:0
+    [11] = { -- The War Within
+        256963, -- Thalassian Lumber
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251767, -- Fel-Touched Lumber
+        251766, -- Shadowmoon Lumber
+        251764, -- Ashwood Lumber
+        251763, -- Bamboo Lumber
+        251762, -- Coldwind Lumber
+        248012, -- Dornic Fir Lumber
+        245586, -- Ironwood Lumber
+        242691, -- Olemba Lumber
+        228956, -- Junk Bucket
+        228414, -- Frayed Wiring
+        227774, -- Pummel Permit
+        227773, -- Pummel-Proof Plating
+        227772, -- Cataclysmic Converter
+        227771, -- Blinker Fluid
+        227770, -- Assorted Whirligigs
+        227769, -- Bountiful Bolts
+        222801, -- Dawnweave Bolt
+        222798, -- Duskweave Bolt
+        222420, -- Charged Alloy
+        222417, -- Core Alloy
+        221868, -- Entropy Enhancer
+        221865, -- Chaos Circuit
+        221862, -- Safety Switch
+        221859, -- Gyrating Gear
+        221856, -- Whimsical Wiring
+        221853, -- Handful of Bismuth Bolts
+        221756, -- Vial of Kaheti Oils
+        219892, -- Leyfused Hide
+        219889, -- Sporecoated Hide
+        219886, -- Writhing Hide
+        219883, -- Crystalfused Hide
+        219150, -- Pile of Rusted Scrap
+        213753, -- Decorative Lens
+        213613, -- Leyline Residue
+        213611, -- Writhing Sample
+        213610, -- Crystalline Powder
+        213399, -- Glittering Glass
+        212511, -- Ostentatious Onyx
+        212508, -- Stunning Sapphire
+        212505, -- Extravagant Emerald
+        212498, -- Ambivalent Amber
+        212495, -- Radiant Ruby
+        212266, -- Potion of the Reborn Cheetah
+        212263, -- Tempered Potion
+        212242, -- Cavedweller's Delight
+        211878, -- Algari Healing Potion
+        211806, -- Gilded Vial
+        210939, -- Null Stone
+        210936, -- Ironclaw Ore
+        210933, -- Aqirite
+        210930, -- Bismuth
+        210814, -- Artisan's Acuity
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:10;0:1:0
+    [10] = { -- Dragonflight
+        207702, -- Wartorn Scrap
+        205260, -- Fleeting Glowspores
+        205257, -- Temporal Vestigial
+        204464, -- Shadowflame Essence
+        204463, -- Dracothyst
+        203402, -- Broken Gnomish Voicebox
+        201832, -- Smudged Lens
+        201406, -- Glowing Titan Orb
+        198487, -- Iridescent Water
+        198278, -- Primal Deconstruction Charge
+        198228, -- Gravitational Displacer
+        198201, -- Assorted Safety Fuses
+        198198, -- Reinforced Machine Chassis
+        198195, -- Arclight Capacitor
+        198192, -- Greased-Up Gears
+        198189, -- Everburning Blasting Powder
+        198186, -- Shock-Spring Coil
+        198183, -- Handful of Serevite Bolts
+        197768, -- Celebratory Cake
+        194727, -- Fiery Spirit
+        193932, -- Infurious Wildercloth Bolt
+        193929, -- Vibrant Wildercloth Bolt
+        193922, -- Wildercloth
+        193921, -- Airy Soul
+        193920, -- Earthen Soul
+        193919, -- Frosty Soul
+        193362, -- Fiery Soul
+        193248, -- Infurious Scales
+        193245, -- Frostbite Scales
+        193236, -- Infurious Hide
+        193229, -- Mireslush Hide
+        193226, -- Stonecrust Hide
+        193222, -- Lustrous Scaled Hide
+        193216, -- Dense Hide
+        193213, -- Adamant Scales
+        193208, -- Resilient Leather
+        193053, -- Contoured Fowlfeather
+        192887, -- Elemental Harmony
+        192876, -- Frameless Lens
+        192862, -- Neltharite
+        192856, -- Malygite
+        192849, -- Eternity Amber
+        192846, -- Sundered Onyx
+        192843, -- Vibrant Emerald
+        192840, -- Mystic Sapphire
+        192837, -- Queen's Ruby
+        191496, -- Omnium Draconis
+        191474, -- Draconic Vial
+        191396, -- Potion of Gusts
+        191393, -- Potion of the Hushed Zephyr
+        191378, -- Refreshing Healing Potion
+        190536, -- Infurious Alloy
+        190533, -- Obsidian Seared Alloy
+        190530, -- Frostfire Alloy
+        190456, -- Artisan's Mettle
+        190450, -- Awakened Ire
+        190395, -- Serevite Ore
+        190330, -- Rousing Decay
+        190328, -- Rousing Frost
+        190327, -- Awakened Air
+        190326, -- Rousing Air
+        190324, -- Awakened Order
+        190321, -- Awakened Fire
+        190320, -- Rousing Fire
+        190316, -- Awakened Earth
+        190315, -- Rousing Earth
+        190312, -- Khaz'gorite Ore
+        189143, -- Draconium Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:9;0:1:0
+    [9] = { -- Shadowlands
+        187707, -- Progenitor Essentia
+        187703, -- Silken Protofiber
+        187700, -- Progenium Ore
+        183952, -- Machinist's Oil
+        183951, -- Immortal Shard
+        182064, -- Machined Sinvyr Bar
+        182063, -- Sinvyr Trigger Mechanism
+        182062, -- Sinvyr Barrel
+        182040, -- Machined Oxxein Bar
+        182039, -- Handful of Oxxein Bolts
+        182038, -- Bone Reinforced Oxxein Tubing
+        182018, -- Machined Solenium Bar
+        182017, -- Hardened Bolts
+        182016, -- Piston Assembly
+        181994, -- Machined Phaedrum Bar
+        181993, -- Energized Battery
+        181992, -- Electro Cable
+        180733, -- Luminous Flux
+        178787, -- Orboreal Shard
+        177062, -- Penumbra Thread
+        177061, -- Twilight Bark
+        173202, -- Shrouded Cloth
+        173173, -- Essence of Valor
+        173110, -- Umbryl
+        173109, -- Angerseye
+        173108, -- Oriblase
+        172937, -- Wormfed Gear Assembly
+        172936, -- Mortal Coiled Spring
+        172935, -- Porous Polishing Abrasive
+        172934, -- Handful of Laestrite Bolts
+        172903, -- Nutcracker Grenade
+        172231, -- Sacred Shard
+        172230, -- Soul Dust
+        172092, -- Pallid Bone
+        172089, -- Desolate Leather
+        171841, -- Shaded Stone
+        171840, -- Porous Stone
+        171833, -- Elethium Ore
+        171832, -- Sinvyr Ore
+        171831, -- Phaedrum Ore
+        171830, -- Oxxein Ore
+        171829, -- Solenium Ore
+        171828, -- Laestrite Ore
+        171441, -- Laestrite Skeleton Key
+        171428, -- Shadowghast Ingot
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:8;0:1:0
+    [8] = { -- Battle for Azeroth
+        170553, -- Void Focus Splinter
+        168185, -- Osmenite Ore
+        168152, -- Miniaturized Power Core
+        166970, -- Energy Cell
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        163569, -- Insulated Wiring
+        162461, -- Sanguicell
+        162460, -- Hydrocore
+        161137, -- Blast-Fired Electric Servomotor
+        161136, -- Azerite Forged Protection Plating
+        161132, -- Crush Resistant Stabilizer
+        160502, -- Chemical Blasting Cap
+        154124, -- Laribole
+        154123, -- Amberblaze
+        152668, -- Expulsom
+        152579, -- Storm Silver Ore
+        152513, -- Platinum Ore
+        152512, -- Monelite Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:7;0:1:0
+    [7] = { -- Legion
+        151568, -- Primal Sargerite
+        151564, -- Empyrium
+        144329, -- Hardened Felglass
+        140785, -- Hardened Circuitboard Plating
+        140781, -- X-87 Battle Circuit
+        137642, -- Mark of Honor
+        136638, -- True Iron Barrel
+        136637, -- Oversized Blasting Cap
+        136636, -- Sniping Scope
+        136633, -- Loose Trigger
+        132523, -- Reaves Battery
+        132515, -- Failure Detection Pylon
+        132514, -- Auto-Hammer
+        130183, -- Shadowruby
+        130178, -- Furystone
+        127004, -- Imbued Silkweave
+        124461, -- Demonsteel Bar
+        124444, -- Infernal Brimstone
+        124437, -- Shal'dorei Silk
+        124124, -- Blood of Sargeras
+        124121, -- Wildfowl Egg
+        124119, -- Big Gamy Ribs
+        124116, -- Felhide
+        124115, -- Stormscale
+        124113, -- Stonehide Leather
+        124112, -- Black Barracuda
+        124109, -- Highmountain Salmon
+        124106, -- Felwort
+        123919, -- Felslate
+        123918, -- Leystone Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:6;0:1:0
+    [6] = { -- Warlords of Draenor
+        127759, -- Felblight
+        120945, -- Primal Spirit
+        118472, -- Savage Blood
+        114931, -- Cerulean Pigment
+        113588, -- Temporal Crystal
+        113264, -- Sorcerous Air
+        111557, -- Sumptuous Fur
+        111366, -- Gearspring Parts
+        109128, -- Nagrand Arrowbloom
+        109119, -- True Iron Ore
+        109118, -- Blackrock Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:5;0:1:0
+    [5] = { -- Mists of Pandaria
+        94113, -- Jard's Peculiar Energy Source
+        90146, -- Tinker's Kit
+        87872, -- Desecrated Oil
+        83092, -- Orb of Mystery
+        77531, -- Mirror Scope
+        77529, -- Lord Blastington's Scope of Doom
+        77468, -- High-Explosive Gunpowder
+        77467, -- Ghost Iron Bolts
+        76142, -- Sun's Radiance
+        76140, -- Vermilion Onyx
+        76139, -- Wild Jade
+        76138, -- River's Heart
+        76133, -- Lapis Lazuli
+        76132, -- Primal Diamond
+        76131, -- Primordial Ruby
+        76061, -- Spirit of Harmony
+        72988, -- Windwool Cloth
+        72104, -- Living Steel
+        72096, -- Ghost Iron Bar
+        72095, -- Trillium Bar
+        72093, -- Kyparite
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:4;0:1:0
+    [4] = { -- Cataclysm
+        67749, -- Electrified Ether
+        62778, -- Toughened Flesh
+        62654, -- Lavascale Fillet
+        60224, -- Handful of Obsidium Bolts
+        58480, -- Truegold
+        54849, -- Obsidium Bar
+        53039, -- Hardened Elementium Bar
+        53010, -- Embersilk Cloth
+        52976, -- Savage Leather
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52325, -- Volatile Fire
+        52192, -- Dream Emerald
+        52191, -- Ocean Sapphire
+        52190, -- Inferno Ruby
+        52186, -- Elementium Bar
+        52182, -- Jasper
+        52181, -- Hessonite
+        52179, -- Alicite
+        52078, -- Chaos Orb
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:3;0:1:0
+    [3] = { -- Wrath of the Lich King
+        44501, -- Goblin-Machined Piston
+        44500, -- Elementium-Plated Exhaust Pipe
+        44499, -- Salvaged Iron Golem Parts
+        44128, -- Arctic Fur
+        43102, -- Frozen Orb
+        41163, -- Titanium Bar
+        41146, -- Sun Scope
+        40769, -- Scrapbot Construction Kit
+        40533, -- Walnut Stock
+        39690, -- Volatile Blasting Trigger
+        39684, -- Hair Trigger
+        39683, -- Froststeel Tube
+        39682, -- Overcharged Capacitor
+        39681, -- Handful of Cobalt Bolts
+        39354, -- Light Parchment
+        38425, -- Heavy Borean Leather
+        37705, -- Crystallized Water
+        37702, -- Crystallized Fire
+        37701, -- Crystallized Earth
+        37663, -- Titansteel Bar
+        36933, -- Forest Emerald
+        36930, -- Monarch Topaz
+        36927, -- Twilight Opal
+        36924, -- Sky Sapphire
+        36922, -- King's Amber
+        36921, -- Autumn's Glow
+        36920, -- Sun Crystal
+        36918, -- Scarlet Ruby
+        36916, -- Cobalt Bar
+        36913, -- Saronite Bar
+        36860, -- Eternal Fire
+        35627, -- Eternal Shadow
+        35625, -- Eternal Life
+        35624, -- Eternal Earth
+        35623, -- Eternal Air
+        35622, -- Eternal Water
+        34052, -- Dream Shard
+        33568, -- Borean Leather
+        33470, -- Frostweave Cloth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:2;0:1:0
+    [2] = { -- Burning Crusade
+        35128, -- Hardened Khorium
+        34113, -- Field Repair Bot 110G
+        32423, -- Icy Blasting Primers
+        24272, -- Shadowcloth
+        24271, -- Spellcloth
+        23826, -- The Bigger One
+        23793, -- Heavy Knothide Leather
+        23787, -- Felsteel Stabilizer
+        23786, -- Khorium Power Core
+        23785, -- Hardened Adamantite Tube
+        23784, -- Adamantite Frame
+        23783, -- Handful of Fel Iron Bolts
+        23782, -- Fel Iron Casing
+        23781, -- Elemental Blasting Powder
+        23573, -- Hardened Adamantite Bar
+        23572, -- Primal Nether
+        23571, -- Primal Might
+        23449, -- Khorium Bar
+        23448, -- Felsteel Bar
+        23446, -- Adamantite Bar
+        23445, -- Fel Iron Bar
+        23441, -- Nightseye
+        23440, -- Dawnstone
+        23439, -- Noble Topaz
+        23438, -- Star of Elune
+        23437, -- Talasite
+        23436, -- Living Ruby
+        23112, -- Golden Draenite
+        23079, -- Deep Peridot
+        23077, -- Blood Garnet
+        22832, -- Super Mana Potion
+        22829, -- Super Healing Potion
+        22574, -- Mote of Fire
+        22573, -- Mote of Earth
+        22457, -- Primal Mana
+        22456, -- Primal Shadow
+        22452, -- Primal Earth
+        22451, -- Primal Air
+        22449, -- Large Prismatic Shard
+        22448, -- Small Prismatic Shard
+        22445, -- Arcane Dust
+        21929, -- Flame Spessarite
+        21887, -- Knothide Leather
+        21886, -- Primal Life
+        21885, -- Primal Water
+        21884, -- Primal Fire
+        21877, -- Netherweave Cloth
+        21840, -- Bolt of Netherweave
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;5:1:1;0:1:0
+    [1] = { -- Vanilla
+        18631, -- Truesilver Transformer
+        18232, -- Field Repair Bot 74A
+        17202, -- Snowball
+        17011, -- Lava Core
+        17010, -- Fiery Core
+        16006, -- Delicate Arcanite Converter
+        16000, -- Thorium Tube
+        15994, -- Thorium Widget
+        15992, -- Dense Blasting Powder
+        15407, -- Cured Rugged Hide
+        14227, -- Ironweb Spider Silk
+        14048, -- Bolt of Runecloth
+        14047, -- Runecloth
+        13467, -- Icecap
+        12810, -- Enchanted Leather
+        12808, -- Essence of Undeath
+        12804, -- Powerful Mojo
+        12803, -- Living Essence
+        12800, -- Azerothian Diamond
+        12799, -- Large Opal
+        12655, -- Enchanted Thorium Bar
+        12365, -- Dense Stone
+        12364, -- Huge Emerald
+        12361, -- Blue Sapphire
+        12360, -- Arcanite Bar
+        12359, -- Thorium Bar
+        11371, -- Dark Iron Bar
+        11291, -- Star Wood
+        10647, -- Engineer's Ink
+        10592, -- Catseye Elixir
+        10586, -- The Big One
+        10561, -- Mithril Casing
+        10560, -- Unstable Trigger
+        10559, -- Mithril Tube
+        10558, -- Gold Power Core
+        10546, -- Deadly Scope
+        10507, -- Solid Dynamite
+        10505, -- Solid Blasting Powder
+        10286, -- Heart of the Wild
+        10285, -- Shadow Silk
+        9318, -- Red Firework
+        9313, -- Green Firework
+        9312, -- Blue Firework
+        9061, -- Goblin Rocket Fuel
+        9060, -- Inlaid Mithril Cylinder
+        8170, -- Rugged Leather
+        8153, -- Wildvine
+        8150, -- Deeprock Salt
+        7972, -- Ichor of Undeath
+        7912, -- Solid Stone
+        7910, -- Star Ruby
+        7909, -- Aquamarine
+        7191, -- Fused Wiring
+        7082, -- Essence of Air
+        7080, -- Essence of Water
+        7079, -- Globe of Water
+        7078, -- Essence of Fire
+        7077, -- Heart of Fire
+        7076, -- Essence of Earth
+        7075, -- Core of Earth
+        7069, -- Elemental Air
+        7068, -- Elemental Fire
+        7067, -- Elemental Earth
+        6530, -- Nightcrawlers
+        6037, -- Truesilver Bar
+        4611, -- Blue Pearl
+        4470, -- Simple Wood
+        4407, -- Accurate Scope
+        4406, -- Standard Scope
+        4404, -- Silver Contact
+        4402, -- Small Flame Sac
+        4400, -- Heavy Stock
+        4399, -- Wooden Stock
+        4394, -- Big Iron Bomb
+        4389, -- Gyrochronatom
+        4387, -- Iron Strut
+        4382, -- Bronze Framework
+        4377, -- Heavy Blasting Powder
+        4375, -- Whirring Bronze Gizmo
+        4371, -- Bronze Tube
+        4364, -- Coarse Blasting Powder
+        4359, -- Handful of Copper Bolts
+        4357, -- Rough Blasting Powder
+        4342, -- Purple Dye
+        4339, -- Bolt of Mageweave
+        4338, -- Mageweave Cloth
+        4337, -- Thick Spider's Silk
+        4306, -- Silk Cloth
+        4304, -- Thick Leather
+        4234, -- Heavy Leather
+        3864, -- Citrine
+        3860, -- Mithril Bar
+        3859, -- Steel Bar
+        3857, -- Coal
+        3829, -- Frost Oil
+        3577, -- Gold Bar
+        3575, -- Iron Bar
+        2842, -- Silver Bar
+        2841, -- Bronze Bar
+        2840, -- Copper Bar
+        2838, -- Heavy Stone
+        2836, -- Coarse Stone
+        2835, -- Rough Stone
+        2605, -- Green Dye
+        2592, -- Wool Cloth
+        2589, -- Linen Cloth
+        2319, -- Medium Leather
+        2318, -- Light Leather
+        1705, -- Lesser Moonstone
+        1529, -- Jade
+        1210, -- Shadowgem
+        1206, -- Moss Agate
+        818, -- Tigerseye
+        814, -- Flask of Oil
+        774, -- Malachite
+        159, -- Refreshing Spring Water
+    },
+}
+
+-- Criteria: Reagent for Blacksmithing & stacks up to > 1
+items.Blacksmithing = {
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:12;0:1:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        274777, -- Neutralized Venom Clot
+        251285, -- Petrified Root
+        251283, -- Tormented Tantalum
+        245345, -- Fused Vitality
+        244637, -- Silvermoon Weapon Wrap
+        244635, -- Sin'dorei Armor Banding
+        243060, -- Luminant Flux
+        242788, -- Dusk-Shrouded Stone
+        238530, -- Majestic Fin
+        238529, -- Majestic Hide
+        238528, -- Majestic Claw
+        238204, -- Sterling Alloy
+        238202, -- Gloaming Alloy
+        238197, -- Refulgent Copper Ingot
+        237366, -- Dazzling Thorium
+        237364, -- Brilliant Silver Ore
+        237362, -- Umbral Tin Ore
+        237359, -- Refulgent Copper Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:11;0:1:0
+    [11] = { -- The War Within
+        256963, -- Thalassian Lumber
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251767, -- Fel-Touched Lumber
+        251766, -- Shadowmoon Lumber
+        251764, -- Ashwood Lumber
+        251763, -- Bamboo Lumber
+        251762, -- Coldwind Lumber
+        248012, -- Dornic Fir Lumber
+        245586, -- Ironwood Lumber
+        242691, -- Olemba Lumber
+        226202, -- Echoing Flux
+        222523, -- Coreforged Skeleton Key
+        222426, -- Ironclaw Alloy
+        222423, -- Sanctified Alloy
+        222420, -- Charged Alloy
+        222417, -- Core Alloy
+        221856, -- Whimsical Wiring
+        221853, -- Handful of Bismuth Bolts
+        221758, -- Profaned Tinderbox
+        221757, -- Gloomfathom Hide
+        221756, -- Vial of Kaheti Oils
+        221754, -- Ringing Deeps Ingot
+        219901, -- Storm-Touched Weapon Wrap
+        219013, -- Superb Beast Fang
+        213610, -- Crystalline Powder
+        210939, -- Null Stone
+        210936, -- Ironclaw Ore
+        210933, -- Aqirite
+        210930, -- Bismuth
+        210814, -- Artisan's Acuity
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:10;0:1:0
+    [10] = { -- Dragonflight
+        207702, -- Wartorn Scrap
+        205413, -- Obsidian Cobraskin
+        205257, -- Temporal Vestigial
+        204995, -- Shadowed Alloy
+        204857, -- Ancient Elementium Fragment
+        204464, -- Shadowflame Essence
+        203865, -- Brilliant Wizard Oil
+        203862, -- Brilliant Mana Oil
+        203399, -- Damaged Trident
+        201406, -- Glowing Titan Orb
+        201403, -- Mastodon Tusk
+        201402, -- Large Sturdy Femur
+        201400, -- Aquatic Maw
+        201399, -- Primal Bear Spine
+        194727, -- Fiery Spirit
+        193922, -- Wildercloth
+        193920, -- Earthen Soul
+        193919, -- Frosty Soul
+        193368, -- Silken Gemdust
+        193362, -- Fiery Soul
+        193360, -- Centaur's Trophy Necklace
+        192883, -- Glossy Stone
+        192849, -- Eternity Amber
+        192846, -- Sundered Onyx
+        192843, -- Vibrant Emerald
+        192840, -- Mystic Sapphire
+        192837, -- Queen's Ruby
+        191363, -- Potion of Frozen Focus
+        190536, -- Infurious Alloy
+        190533, -- Obsidian Seared Alloy
+        190530, -- Frostfire Alloy
+        190456, -- Artisan's Mettle
+        190452, -- Primal Flux
+        190450, -- Awakened Ire
+        190395, -- Serevite Ore
+        190329, -- Awakened Frost
+        190324, -- Awakened Order
+        190321, -- Awakened Fire
+        190316, -- Awakened Earth
+        190312, -- Khaz'gorite Ore
+        189541, -- Primal Molten Alloy
+        189143, -- Draconium Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:9;0:1:0
+    [9] = { -- Shadowlands
+        187707, -- Progenitor Essentia
+        187700, -- Progenium Ore
+        186017, -- Korthite Crystal
+        182094, -- Borrowed Sinvyr Rod
+        182093, -- Soft Manacle Chains
+        182092, -- Tempered Manacle Chains
+        182091, -- Borrowed Sinvyr Bar
+        182090, -- Binding Cuffs
+        182089, -- Enchanted Rivets
+        182088, -- Borrowed Oxxein Ore
+        182087, -- Soft Heavy Razor
+        182086, -- Hardened Heavy Razor
+        181860, -- Borrowed Twilight Bark
+        181793, -- Shattered Kyrian Shield Fragment
+        181792, -- Tarnished Kyrian Shield
+        181790, -- Reforged Kyrian Shield
+        181789, -- Wooden Arrowhead Mold
+        181788, -- Unrefined Arrowheads
+        181787, -- Molten Phaedrum
+        181783, -- Borrowed Phaedrum Ore
+        180733, -- Luminous Flux
+        178787, -- Orboreal Shard
+        173204, -- Lightless Silk
+        173202, -- Shrouded Cloth
+        173173, -- Essence of Valor
+        173171, -- Essence of Torment
+        173109, -- Angerseye
+        173060, -- Aerated Water
+        172437, -- Enchanted Elethium Bar
+        171841, -- Shaded Stone
+        171840, -- Porous Stone
+        171833, -- Elethium Ore
+        171832, -- Sinvyr Ore
+        171831, -- Phaedrum Ore
+        171830, -- Oxxein Ore
+        171829, -- Solenium Ore
+        171828, -- Laestrite Ore
+        171428, -- Shadowghast Ingot
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:8;0:1:0
+    [8] = { -- Battle for Azeroth
+        170553, -- Void Focus Splinter
+        169445, -- Dredged Leather Bladder
+        168185, -- Osmenite Ore
+        168135, -- Titan's Blood
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        162461, -- Sanguicell
+        162460, -- Hydrocore
+        160298, -- Durable Flux
+        154898, -- Meaty Haunch
+        152812, -- Monel-Hardened Hoofplates
+        152668, -- Expulsom
+        152579, -- Storm Silver Ore
+        152513, -- Platinum Ore
+        152512, -- Monelite Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:7;0:1:0
+    [7] = { -- Legion
+        151923, -- Empyrial Rivet
+        151568, -- Primal Sargerite
+        151564, -- Empyrium
+        133591, -- River Onion
+        133589, -- Dalapeño Pepper
+        133588, -- Flaked Sea Salt
+        130179, -- Eye of Prophecy
+        128777, -- Heated Leystone Bar
+        124461, -- Demonsteel Bar
+        124454, -- Brimstone-Crusted Armguards
+        124453, -- Brimstone-Covered Armguards
+        124451, -- Felsmith's Infernal Brimstone
+        124450, -- Engraved Leystone Armguards
+        124449, -- Felsmith's Leystone Armguards
+        124444, -- Infernal Brimstone
+        124441, -- Leylight Shard
+        124440, -- Arkhana
+        124439, -- Unbroken Tooth
+        124438, -- Unbroken Claw
+        124437, -- Shal'dorei Silk
+        124436, -- Foxflower Flux
+        124435, -- Leystone Neckplate
+        124432, -- Leystone Dome
+        124431, -- Leystone Faceguard
+        124430, -- Leystone Soleplate
+        124429, -- Leystone Footguard
+        124428, -- Leystone Heelguard
+        124427, -- Leystone Shinplate
+        124425, -- Felsmith's Leystone Bar
+        124423, -- Heated Hard Leystone Ingot
+        124422, -- Hard Leystone Ingot
+        124421, -- Lump of Leystone Slag
+        124420, -- Leystone Shard
+        124418, -- Leystone Slag
+        124417, -- Shopkeeper's Leystone Ore
+        124407, -- Large Heated Metal Scrap
+        124406, -- Medium Heated Metal Scrap
+        124405, -- Small Heated Metal Scrap
+        124404, -- Large Metal Scrap
+        124403, -- Medium Metal Scrap
+        124402, -- Small Metal Scrap
+        124396, -- Dull Hard Leystone Armguards
+        124395, -- Heated Hard Leystone Bar
+        124394, -- Hard Leystone Bar
+        124393, -- Leystone Slag
+        124392, -- Shopkeeper's Leystone Ore
+        124124, -- Blood of Sargeras
+        124116, -- Felhide
+        124115, -- Stormscale
+        124113, -- Stonehide Leather
+        124109, -- Highmountain Salmon
+        124010, -- Leystone Fingerguard
+        124009, -- Leystone Cuffplate
+        124007, -- Leystone Bar
+        124005, -- Shopkeeper's Leystone Ore
+        123919, -- Felslate
+        123918, -- Leystone Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:6;0:1:0
+    [6] = { -- Warlords of Draenor
+        127759, -- Felblight
+        120945, -- Primal Spirit
+        118472, -- Savage Blood
+        113261, -- Sorcerous Fire
+        111557, -- Sumptuous Fur
+        110609, -- Raw Beast Hide
+        109119, -- True Iron Ore
+        109118, -- Blackrock Ore
+        108257, -- Truesteel Ingot
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:5;0:1:0
+    [5] = { -- Mists of Pandaria
+        102218, -- Spirit of War
+        98717, -- Balanced Trillium Ingot
+        94289, -- Haunting Spirit
+        94111, -- Lightning Steel Ingot
+        80433, -- Blood Spirit
+        77468, -- High-Explosive Gunpowder
+        77467, -- Ghost Iron Bolts
+        76061, -- Spirit of Harmony
+        72104, -- Living Steel
+        72096, -- Ghost Iron Bar
+        72095, -- Trillium Bar
+        72093, -- Kyparite
+        72092, -- Ghost Iron Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:4;0:1:0
+    [4] = { -- Cataclysm
+        71998, -- Essence of Destruction
+        69237, -- Living Ember
+        65365, -- Folded Obsidium
+        58480, -- Truegold
+        56516, -- Heavy Savage Leather
+        54849, -- Obsidium Bar
+        53039, -- Hardened Elementium Bar
+        53038, -- Obsidium Ore
+        52329, -- Volatile Life
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+        52193, -- Ember Topaz
+        52191, -- Ocean Sapphire
+        52190, -- Inferno Ruby
+        52186, -- Elementium Bar
+        52185, -- Elementium Ore
+        52182, -- Jasper
+        52178, -- Zephyrite
+        52078, -- Chaos Orb
+        51950, -- Pyrium Bar
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:3;0:1:0
+    [3] = { -- Wrath of the Lich King
+        49908, -- Primordial Saronite
+        47556, -- Crusader Orb
+        45087, -- Runed Orb
+        43102, -- Frozen Orb
+        41163, -- Titanium Bar
+        37705, -- Crystallized Water
+        37703, -- Crystallized Shadow
+        37702, -- Crystallized Fire
+        37701, -- Crystallized Earth
+        37700, -- Crystallized Air
+        37663, -- Titansteel Bar
+        36925, -- Majestic Zircon
+        36916, -- Cobalt Bar
+        36913, -- Saronite Bar
+        36912, -- Saronite Ore
+        36909, -- Cobalt Ore
+        36860, -- Eternal Fire
+        35627, -- Eternal Shadow
+        35625, -- Eternal Life
+        35624, -- Eternal Earth
+        35623, -- Eternal Air
+        35622, -- Eternal Water
+        34054, -- Infinite Dust
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:2;0:1:0
+    [2] = { -- Burning Crusade
+        35128, -- Hardened Khorium
+        34664, -- Sunmote
+        32428, -- Heart of Darkness
+        30183, -- Nether Vortex
+        27503, -- Scroll of Strength V
+        25868, -- Skyfire Diamond
+        23573, -- Hardened Adamantite Bar
+        23572, -- Primal Nether
+        23571, -- Primal Might
+        23449, -- Khorium Bar
+        23448, -- Felsteel Bar
+        23447, -- Eternium Bar
+        23446, -- Adamantite Bar
+        23445, -- Fel Iron Bar
+        23424, -- Fel Iron Ore
+        22831, -- Elixir of Major Agility
+        22824, -- Elixir of Major Strength
+        22573, -- Mote of Earth
+        22457, -- Primal Mana
+        22456, -- Primal Shadow
+        22452, -- Primal Earth
+        22451, -- Primal Air
+        22450, -- Void Crystal
+        22449, -- Large Prismatic Shard
+        22445, -- Arcane Dust
+        21887, -- Knothide Leather
+        21886, -- Primal Life
+        21885, -- Primal Water
+        21884, -- Primal Fire
+        21877, -- Netherweave Cloth
+        21845, -- Primal Mooncloth
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;2:1:1;0:1:0
+    [1] = { -- Vanilla
+        22682, -- Frozen Rune
+        22203, -- Large Obsidian Shard
+        22202, -- Small Obsidian Shard
+        20520, -- Dark Rune
+        20007, -- Mageblood Elixir
+        20004, -- Mighty Troll's Blood Elixir
+        19943, -- Massive Mojo
+        19931, -- Gurubashi Mojo Madness
+        19441, -- Huge Venom Sac
+        18567, -- Elemental Flux
+        18335, -- Pristine Black Diamond
+        17203, -- Sulfuron Ingot
+        17012, -- Core Leather
+        17011, -- Lava Core
+        17010, -- Fiery Core
+        15417, -- Devilsaur Leather
+        14344, -- Large Brilliant Shard
+        14256, -- Felcloth
+        14047, -- Runecloth
+        13926, -- Golden Pearl
+        13512, -- Flask of Supreme Power
+        13510, -- Flask of the Titans
+        12811, -- Righteous Orb
+        12810, -- Enchanted Leather
+        12809, -- Guardian Stone
+        12808, -- Essence of Undeath
+        12804, -- Powerful Mojo
+        12803, -- Living Essence
+        12800, -- Azerothian Diamond
+        12799, -- Large Opal
+        12662, -- Demonic Rune
+        12655, -- Enchanted Thorium Bar
+        12644, -- Dense Grinding Stone
+        12365, -- Dense Stone
+        12364, -- Huge Emerald
+        12361, -- Blue Sapphire
+        12360, -- Arcanite Bar
+        12359, -- Thorium Bar
+        11754, -- Black Diamond
+        11382, -- Blood of the Mountain
+        11371, -- Dark Iron Bar
+        10620, -- Thorium Ore
+        9210, -- Ghost Dye
+        8170, -- Rugged Leather
+        8153, -- Wildvine
+        7972, -- Ichor of Undeath
+        7971, -- Black Pearl
+        7966, -- Solid Grinding Stone
+        7912, -- Solid Stone
+        7910, -- Star Ruby
+        7909, -- Aquamarine
+        7081, -- Breath of Wind
+        7080, -- Essence of Water
+        7078, -- Essence of Fire
+        7077, -- Heart of Fire
+        7076, -- Essence of Earth
+        7075, -- Core of Earth
+        7070, -- Elemental Water
+        7069, -- Elemental Air
+        7068, -- Elemental Fire
+        7067, -- Elemental Earth
+        6041, -- Steel Weapon Chain
+        6037, -- Truesilver Bar
+        5637, -- Large Fang
+        5635, -- Sharp Claw
+        5500, -- Iridescent Pearl
+        5498, -- Small Lustrous Pearl
+        4338, -- Mageweave Cloth
+        4306, -- Silk Cloth
+        4304, -- Thick Leather
+        4234, -- Heavy Leather
+        3864, -- Citrine
+        3860, -- Mithril Bar
+        3859, -- Steel Bar
+        3858, -- Mithril Ore
+        3857, -- Coal
+        3829, -- Frost Oil
+        3824, -- Shadow Oil
+        3823, -- Lesser Invisibility Potion
+        3577, -- Gold Bar
+        3575, -- Iron Bar
+        3486, -- Heavy Grinding Stone
+        3478, -- Coarse Grinding Stone
+        3470, -- Rough Grinding Stone
+        3466, -- Strong Flux
+        3391, -- Elixir of Ogre's Strength
+        2880, -- Weak Flux
+        2842, -- Silver Bar
+        2841, -- Bronze Bar
+        2840, -- Copper Bar
+        2838, -- Heavy Stone
+        2836, -- Coarse Stone
+        2835, -- Rough Stone
+        2772, -- Iron Ore
+        2771, -- Tin Ore
+        2770, -- Copper Ore
+        2605, -- Green Dye
+        2604, -- Red Dye
+        2592, -- Wool Cloth
+        2589, -- Linen Cloth
+        2459, -- Swiftness Potion
+        2321, -- Fine Thread
+        2319, -- Medium Leather
+        2318, -- Light Leather
+        1705, -- Lesser Moonstone
+        1529, -- Jade
+        1210, -- Shadowgem
+        1206, -- Moss Agate
+        818, -- Tigerseye
+        774, -- Malachite
+    },
+}
+
+-- Criteria: Reagent for Jewelcrafting & stacks up to > 1
+items.Jewelcrafting = {
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:12;0:1:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        274777, -- Neutralized Venom Clot
+        253307, -- Infused Heliotrope
+        251665, -- Silverleaf Thread
+        251285, -- Petrified Root
+        251283, -- Tormented Tantalum
+        245345, -- Fused Vitality
+        244637, -- Silvermoon Weapon Wrap
+        244633, -- Infused Scalewoven Hide
+        243605, -- Dawn Crystal
+        242788, -- Dusk-Shrouded Stone
+        242787, -- Crystalline Glass
+        242620, -- Glimmering Gemdust
+        242613, -- Flawless Sanguine Garnet
+        242612, -- Flawless Amani Lapis
+        242611, -- Flawless Tenebrous Amethyst
+        242610, -- Flawless Harandar Peridot
+        242608, -- Eversong Diamond
+        242607, -- Harandar Peridot
+        242606, -- Tenebrous Amethyst
+        242554, -- Amani Lapis
+        242553, -- Sanguine Garnet
+        240974, -- Kaleidoscopic Prism
+        240972, -- Sin'dorei Lens
+        238529, -- Majestic Hide
+        238518, -- Void-Tempered Hide
+        237362, -- Umbral Tin Ore
+        237359, -- Refulgent Copper Ore
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:11;0:1:0
+    [11] = { -- The War Within
+        256963, -- Thalassian Lumber
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251767, -- Fel-Touched Lumber
+        251766, -- Shadowmoon Lumber
+        251764, -- Ashwood Lumber
+        251763, -- Bamboo Lumber
+        251762, -- Coldwind Lumber
+        248012, -- Dornic Fir Lumber
+        245586, -- Ironwood Lumber
+        242691, -- Olemba Lumber
+        239107, -- Black Blood Infused Bar
+        239106, -- Shadow-Infused Onyx
+        222417, -- Core Alloy
+        221754, -- Ringing Deeps Ingot
+        219949, -- Gleaming Shard
+        215236, -- Vicious Bloodstone
+        213759, -- Inverted Prism
+        213756, -- Marbled Stone
+        213753, -- Decorative Lens
+        213750, -- Engraved Gemcutter
+        213399, -- Glittering Glass
+        213398, -- Handful of Pebbles
+        213219, -- Crushed Gemstones
+        212514, -- Blasphemite
+        212511, -- Ostentatious Onyx
+        212508, -- Stunning Sapphire
+        212505, -- Extravagant Emerald
+        212498, -- Ambivalent Amber
+        212495, -- Radiant Ruby
+        210939, -- Null Stone
+        210936, -- Ironclaw Ore
+        210933, -- Aqirite
+        210930, -- Bismuth
+        210814, -- Artisan's Acuity
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:10;0:1:0
+    [10] = { -- Dragonflight
+        210456, -- Dreaming Antler Fragment
+        208212, -- Dreaming Essence
+        207702, -- Wartorn Scrap
+        205258, -- Everburning Shadowflame
+        205257, -- Temporal Vestigial
+        204463, -- Dracothyst
+        204215, -- Dormant Primordial Fragment
+        203404, -- Crystal Fork
+        201406, -- Glowing Titan Orb
+        201405, -- Tuft of Primal Wool
+        200867, -- Glimmering Neltharite Cluster
+        200866, -- Glimmering Malygite Cluster
+        200865, -- Glimmering Ysemerald Cluster
+        200864, -- Glimmering Alexstraszite Cluster
+        200863, -- Glimmering Nozdorite Cluster
+        200860, -- Draconic Stopper
+        200113, -- Resonant Crystal
+        194730, -- Scalebelly Mackerel
+        194727, -- Fiery Spirit
+        194124, -- Vibrant Shard
+        194123, -- Chromatic Dust
+        193929, -- Vibrant Wildercloth Bolt
+        193922, -- Wildercloth
+        193921, -- Airy Soul
+        193920, -- Earthen Soul
+        193919, -- Frosty Soul
+        193368, -- Silken Gemdust
+        193362, -- Fiery Soul
+        193053, -- Contoured Fowlfeather
+        193029, -- Projection Prism
+        192887, -- Elemental Harmony
+        192883, -- Glossy Stone
+        192880, -- Crumbled Stone
+        192876, -- Frameless Lens
+        192872, -- Fractured Glass
+        192869, -- Illimited Diamond
+        192866, -- Nozdorite
+        192862, -- Neltharite
+        192859, -- Ysemerald
+        192856, -- Malygite
+        192852, -- Alexstraszite
+        192849, -- Eternity Amber
+        192846, -- Sundered Onyx
+        192843, -- Vibrant Emerald
+        192840, -- Mystic Sapphire
+        192837, -- Queen's Ruby
+        192834, -- Shimmering Clasp
+        192833, -- Misshapen Filigree
+        191493, -- Primal Convergent
+        190456, -- Artisan's Mettle
+        190451, -- Rousing Ire
+        190450, -- Awakened Ire
+        190395, -- Serevite Ore
+        190329, -- Awakened Frost
+        190328, -- Rousing Frost
+        190327, -- Awakened Air
+        190326, -- Rousing Air
+        190324, -- Awakened Order
+        190321, -- Awakened Fire
+        190320, -- Rousing Fire
+        190316, -- Awakened Earth
+        190315, -- Rousing Earth
+        190312, -- Khaz'gorite Ore
+        189143, -- Draconium Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:9;0:1:0
+    [9] = { -- Shadowlands
+        187707, -- Progenitor Essentia
+        187700, -- Progenium Ore
+        186017, -- Korthite Crystal
+        183954, -- Malleable Wire
+        182308, -- Garnet Shard
+        182289, -- Handful of Glimmering Gemstones
+        182197, -- Borrowed Kyranite
+        182058, -- Polished Sinvyr Bar
+        182057, -- Fine Sinvyr Chain
+        182056, -- Brilliant Bauble
+        182034, -- Jagged Necrotic Crystal
+        182033, -- Faceted Crystal
+        182032, -- Hollowed Crystal
+        182012, -- Borrowed Solenium Nugget
+        182011, -- Solenium Wire
+        182010, -- Kyranite Dangle
+        182000, -- Polished Phedrum Rod
+        181999, -- Polished Gemstones
+        181998, -- Engraved Phaedrum Band
+        178787, -- Orboreal Shard
+        173173, -- Essence of Valor
+        173172, -- Essence of Servitude
+        173171, -- Essence of Torment
+        173170, -- Essence of Rebirth
+        173168, -- Laestrite Setting
+        173130, -- Masterful Jewel Cluster
+        173129, -- Versatile Jewel Cluster
+        173128, -- Quick Jewel Cluster
+        173127, -- Deadly Jewel Cluster
+        173124, -- Masterful Jewel Doublet
+        173123, -- Versatile Jewel Doublet
+        173122, -- Quick Jewel Doublet
+        173121, -- Deadly Jewel Doublet
+        173110, -- Umbryl
+        173109, -- Angerseye
+        173108, -- Oriblase
+        172232, -- Eternal Crystal
+        172230, -- Soul Dust
+        171841, -- Shaded Stone
+        171840, -- Porous Stone
+        171833, -- Elethium Ore
+        171832, -- Sinvyr Ore
+        171831, -- Phaedrum Ore
+        171830, -- Oxxein Ore
+        171829, -- Solenium Ore
+        171828, -- Laestrite Ore
+        171428, -- Shadowghast Ingot
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:8;0:1:0
+    [8] = { -- Battle for Azeroth
+        170553, -- Void Focus Splinter
+        168635, -- Leviathan's Eye
+        168193, -- Azsharine
+        168192, -- Sand Spinel
+        168191, -- Sea Currant
+        168190, -- Lava Lazuli
+        168189, -- Dark Opal
+        168188, -- Sage Agate
+        168185, -- Osmenite Ore
+        168134, -- Fine Azerite Powder
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        162461, -- Sanguicell
+        162460, -- Hydrocore
+        158187, -- Ultramarine Ink
+        154125, -- Royal Quartz
+        154124, -- Laribole
+        154123, -- Amberblaze
+        154122, -- Tidal Amethyst
+        154121, -- Scarlet Diamond
+        154120, -- Owlseye
+        153706, -- Kraken's Eye
+        153705, -- Kyanite
+        153704, -- Viridium
+        153703, -- Solstone
+        153702, -- Kubiline
+        153701, -- Rubellite
+        153700, -- Golden Beryl
+        152668, -- Expulsom
+        152579, -- Storm Silver Ore
+        152513, -- Platinum Ore
+        152512, -- Monelite Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:7;0:1:0
+    [7] = { -- Legion
+        151933, -- Empyrial Florid Malachite Setting
+        151932, -- Empyrial Hesselian Setting
+        151722, -- Florid Malachite
+        151721, -- Hesselian
+        151720, -- Chemirine
+        151719, -- Lightsphene
+        151718, -- Argulite
+        151579, -- Labradorite
+        151568, -- Primal Sargerite
+        151564, -- Empyrium
+        130245, -- Saber's Eye
+        130183, -- Shadowruby
+        130182, -- Maelstrom Sapphire
+        130181, -- Pandemonite
+        130180, -- Dawnlight
+        130179, -- Eye of Prophecy
+        130178, -- Furystone
+        130177, -- Queen's Opal
+        130176, -- Skystone
+        130175, -- Chaotic Spinel
+        130174, -- Azsunite
+        130173, -- Deep Amber
+        130172, -- Sangrite
+        129100, -- Gem Chip
+        127004, -- Imbued Silkweave
+        124461, -- Demonsteel Bar
+        124444, -- Infernal Brimstone
+        124124, -- Blood of Sargeras
+        124106, -- Felwort
+        123919, -- Felslate
+        123918, -- Leystone Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:6;0:1:0
+    [6] = { -- Warlords of Draenor
+        127759, -- Felblight
+        120945, -- Primal Spirit
+        115815, -- Greater Stamina Taladite
+        115814, -- Greater Versatility Taladite
+        115812, -- Greater Mastery Taladite
+        115811, -- Greater Haste Taladite
+        115809, -- Greater Critical Strike Taladite
+        115808, -- Stamina Taladite
+        115807, -- Versatility Taladite
+        115805, -- Mastery Taladite
+        115804, -- Haste Taladite
+        115803, -- Critical Strike Taladite
+        115524, -- Taladite Crystal
+        113264, -- Sorcerous Air
+        113263, -- Sorcerous Earth
+        113262, -- Sorcerous Water
+        113261, -- Sorcerous Fire
+        111557, -- Sumptuous Fur
+        109129, -- Talador Orchid
+        109127, -- Starflower
+        109126, -- Gorgrond Flytrap
+        109125, -- Fireweed
+        109124, -- Frostweed
+        109119, -- True Iron Ore
+        109118, -- Blackrock Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:5;0:1:0
+    [5] = { -- Mists of Pandaria
+        83092, -- Orb of Mystery
+        76734, -- Serpent's Eye
+        76142, -- Sun's Radiance
+        76141, -- Imperial Amethyst
+        76140, -- Vermilion Onyx
+        76139, -- Wild Jade
+        76138, -- River's Heart
+        76137, -- Alexandrite
+        76136, -- Pandarian Garnet
+        76135, -- Roguestone
+        76134, -- Sunstone
+        76133, -- Lapis Lazuli
+        76132, -- Primal Diamond
+        76131, -- Primordial Ruby
+        76130, -- Tiger Opal
+        76061, -- Spirit of Harmony
+        72104, -- Living Steel
+        72096, -- Ghost Iron Bar
+        72095, -- Trillium Bar
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:4;0:1:0
+    [4] = { -- Cataclysm
+        71810, -- Elven Peridot
+        71809, -- Shadow Spinel
+        71808, -- Lava Coral
+        71807, -- Deepholm Iolite
+        71806, -- Lightstone
+        71805, -- Queen's Garnet
+        58480, -- Truegold
+        54849, -- Obsidium Bar
+        53010, -- Embersilk Cloth
+        52555, -- Hypnotic Dust
+        52329, -- Volatile Life
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+        52303, -- Shadowspirit Diamond
+        52196, -- Chimera's Eye
+        52195, -- Amberjewel
+        52194, -- Demonseye
+        52193, -- Ember Topaz
+        52192, -- Dream Emerald
+        52191, -- Ocean Sapphire
+        52190, -- Inferno Ruby
+        52188, -- Jeweler's Setting
+        52186, -- Elementium Bar
+        52182, -- Jasper
+        52181, -- Hessonite
+        52180, -- Nightstone
+        52179, -- Alicite
+        52178, -- Zephyrite
+        52177, -- Carnelian
+        52078, -- Chaos Orb
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:3;0:1:0
+    [3] = { -- Wrath of the Lich King
+        43102, -- Frozen Orb
+        42225, -- Dragon's Eye
+        41334, -- Earthsiege Diamond
+        41266, -- Skyflare Diamond
+        41163, -- Titanium Bar
+        37701, -- Crystallized Earth
+        36934, -- Eye of Zul
+        36933, -- Forest Emerald
+        36932, -- Dark Jade
+        36931, -- Ametrine
+        36930, -- Monarch Topaz
+        36929, -- Huge Citrine
+        36928, -- Dreadstone
+        36927, -- Twilight Opal
+        36926, -- Shadow Crystal
+        36925, -- Majestic Zircon
+        36924, -- Sky Sapphire
+        36923, -- Chalcedony
+        36922, -- King's Amber
+        36921, -- Autumn's Glow
+        36920, -- Sun Crystal
+        36919, -- Cardinal Ruby
+        36918, -- Scarlet Ruby
+        36917, -- Bloodstone
+        36916, -- Cobalt Bar
+        36860, -- Eternal Fire
+        36784, -- Siren's Tear
+        36783, -- Northsea Pearl
+        35627, -- Eternal Shadow
+        35625, -- Eternal Life
+        35624, -- Eternal Earth
+        35623, -- Eternal Air
+        35622, -- Eternal Water
+        34054, -- Infinite Dust
+        34052, -- Dream Shard
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:2;0:1:0
+    [2] = { -- Burning Crusade
+        35128, -- Hardened Khorium
+        34664, -- Sunmote
+        32249, -- Seaspray Emerald
+        32231, -- Pyrestone
+        32230, -- Shadowsong Amethyst
+        32229, -- Lionseye
+        32228, -- Empyrean Sapphire
+        32227, -- Crimson Spinel
+        31079, -- Mercurial Adamantite
+        27860, -- Purified Draenic Water
+        25868, -- Skyfire Diamond
+        25867, -- Earthstorm Diamond
+        24479, -- Shadow Pearl
+        24478, -- Jaggal Pearl
+        24243, -- Adamantite Powder
+        23573, -- Hardened Adamantite Bar
+        23572, -- Primal Nether
+        23571, -- Primal Might
+        23449, -- Khorium Bar
+        23448, -- Felsteel Bar
+        23447, -- Eternium Bar
+        23446, -- Adamantite Bar
+        23445, -- Fel Iron Bar
+        23441, -- Nightseye
+        23440, -- Dawnstone
+        23439, -- Noble Topaz
+        23438, -- Star of Elune
+        23437, -- Talasite
+        23436, -- Living Ruby
+        23117, -- Azure Moonstone
+        23112, -- Golden Draenite
+        23107, -- Shadow Draenite
+        23079, -- Deep Peridot
+        23077, -- Blood Garnet
+        22578, -- Mote of Water
+        22457, -- Primal Mana
+        22456, -- Primal Shadow
+        22452, -- Primal Earth
+        22451, -- Primal Air
+        21929, -- Flame Spessarite
+        21886, -- Primal Life
+        21885, -- Primal Water
+        21884, -- Primal Fire
+        21752, -- Thorium Setting
+        20963, -- Mithril Filigree
+        20817, -- Bronze Setting
+        20816, -- Delicate Copper Wire
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;7:1:1;0:1:0
+    [1] = { -- Vanilla
+        22682, -- Frozen Rune
+        19943, -- Massive Mojo
+        18335, -- Pristine Black Diamond
+        17011, -- Lava Core
+        16204, -- Light Illusion Dust
+        14344, -- Large Brilliant Shard
+        12808, -- Essence of Undeath
+        12804, -- Powerful Mojo
+        12803, -- Living Essence
+        12800, -- Azerothian Diamond
+        12799, -- Large Opal
+        12662, -- Demonic Rune
+        12365, -- Dense Stone
+        12364, -- Huge Emerald
+        12363, -- Arcane Crystal
+        12361, -- Blue Sapphire
+        12360, -- Arcanite Bar
+        12359, -- Thorium Bar
+        11754, -- Black Diamond
+        11371, -- Dark Iron Bar
+        10286, -- Heart of the Wild
+        9210, -- Ghost Dye
+        7971, -- Black Pearl
+        7912, -- Solid Stone
+        7910, -- Star Ruby
+        7909, -- Aquamarine
+        7081, -- Breath of Wind
+        7079, -- Globe of Water
+        7078, -- Essence of Fire
+        7077, -- Heart of Fire
+        7076, -- Essence of Earth
+        7075, -- Core of Earth
+        7070, -- Elemental Water
+        7067, -- Elemental Earth
+        6149, -- Greater Mana Potion
+        6037, -- Truesilver Bar
+        5637, -- Large Fang
+        5498, -- Small Lustrous Pearl
+        3864, -- Citrine
+        3860, -- Mithril Bar
+        3827, -- Mana Potion
+        3824, -- Shadow Oil
+        3577, -- Gold Bar
+        3575, -- Iron Bar
+        3391, -- Elixir of Ogre's Strength
+        2842, -- Silver Bar
+        2841, -- Bronze Bar
+        2840, -- Copper Bar
+        2838, -- Heavy Stone
+        2836, -- Coarse Stone
+        2835, -- Rough Stone
+        1705, -- Lesser Moonstone
+        1529, -- Jade
+        1210, -- Shadowgem
+        1206, -- Moss Agate
+        818, -- Tigerseye
+        774, -- Malachite
+    },
+}
+
+-- Criteria: Reagent for Inscription & stacks up to > 1
+items.Inscription = {
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:12;0:1:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        274777, -- Neutralized Venom Clot
+        251923, -- Thalassian Essence of the Faire
+        251285, -- Petrified Root
+        251283, -- Tormented Tantalum
+        245882, -- Thalassian Songwater
+        245881, -- Lexicologist's Vellum
+        245879, -- Vantus Rune: Radiant
+        245867, -- Mana Lily Pigment
+        245865, -- Sanguithorn Pigment
+        245807, -- Powder Pigment
+        245805, -- Sienna Ink
+        245803, -- Argentleaf Pigment
+        245801, -- Munsell Ink
+        245766, -- Soul Cipher
+        245764, -- Codified Azeroot
+        245345, -- Fused Vitality
+        242788, -- Dusk-Shrouded Stone
+        238530, -- Majestic Fin
+        238529, -- Majestic Hide
+        238528, -- Majestic Claw
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+        236774, -- Azeroot
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:11;0:1:0
+    [11] = { -- The War Within
+        256963, -- Thalassian Lumber
+        251773, -- Dragonpine Lumber
+        251772, -- Arden Lumber
+        251768, -- Darkpine Lumber
+        251767, -- Fel-Touched Lumber
+        251766, -- Shadowmoon Lumber
+        251764, -- Ashwood Lumber
+        251763, -- Bamboo Lumber
+        251762, -- Coldwind Lumber
+        249218, -- Manaforged Instrument
+        248012, -- Dornic Fir Lumber
+        245586, -- Ironwood Lumber
+        242691, -- Olemba Lumber
+        226205, -- Distilled Algari Freshwater
+        226204, -- Fresh Parchment
+        224805, -- Blossom Pigment
+        224802, -- Orbinid Pigment
+        222618, -- Nacreous Pigment
+        222615, -- Apricate Ink
+        222612, -- Luredrop Pigment
+        222609, -- Shadow Ink
+        222558, -- Boundless Cipher
+        222555, -- Codified Greenwood
+        222523, -- Coreforged Skeleton Key
+        222417, -- Core Alloy
+        221754, -- Ringing Deeps Ingot
+        213613, -- Leyline Residue
+        213612, -- Viridescent Spores
+        213611, -- Writhing Sample
+        213610, -- Crystalline Powder
+        212664, -- Stormcharged Leather
+        212508, -- Stunning Sapphire
+        210814, -- Artisan's Acuity
+        210808, -- Arathor's Spear
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:10;0:1:0
+    [10] = { -- Dragonflight
+        204464, -- Shadowflame Essence
+        204460, -- Zaralek Glowspores
+        204092, -- Auric Fleece
+        203865, -- Brilliant Wizard Oil
+        203403, -- Hastily Scrawled Rune
+        198615, -- Pentagold Seal
+        198487, -- Iridescent Water
+        198421, -- Shimmering Pigment
+        198418, -- Blazing Pigment
+        198415, -- Flourishing Pigment
+        198412, -- Serene Pigment
+        197736, -- Finished Prototype Regal Barding
+        197735, -- Finished Prototype Explorer's Barding
+        194862, -- Runed Writhebark
+        194859, -- Chilled Rune
+        194856, -- Serene Ink
+        194850, -- Flourishing Ink
+        194784, -- Glittering Parchment
+        194760, -- Burnished Ink
+        194754, -- Cosmic Ink
+        194751, -- Blazing Ink
+        194727, -- Fiery Spirit
+        193922, -- Wildercloth
+        193259, -- Flawless Proto Dragon Scale
+        193254, -- Rockfang Leather
+        193053, -- Contoured Fowlfeather
+        192872, -- Fractured Glass
+        191474, -- Draconic Vial
+        191470, -- Writhebark
+        190456, -- Artisan's Mettle
+        190450, -- Awakened Ire
+        190395, -- Serevite Ore
+        190331, -- Awakened Decay
+        190329, -- Awakened Frost
+        190328, -- Rousing Frost
+        190327, -- Awakened Air
+        190326, -- Rousing Air
+        190324, -- Awakened Order
+        190321, -- Awakened Fire
+        190316, -- Awakened Earth
+        190315, -- Rousing Earth
+        190312, -- Khaz'gorite Ore
+        189143, -- Draconium Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:9;0:1:0
+    [9] = { -- Shadowlands
+        187701, -- Protogenic Pelt
+        187699, -- First Flower
+        183953, -- Sealing Wax
+        182309, -- Rigid Vellum
+        182297, -- Flayed Flesh
+        182286, -- Twilight Parchment
+        182202, -- Borrowed Parchment
+        182061, -- Prideful Pigment
+        182060, -- Prideful Ink
+        182059, -- Scroll of Castigation
+        182037, -- Necrotic Pigment
+        182036, -- Necrotic Ink
+        182035, -- Scroll of Unyielding Strength
+        182015, -- Opalescent Pigment
+        182014, -- Opalescent Ink
+        182013, -- Poem on Duty
+        181997, -- Ardenberry Pigment
+        181996, -- Ardenberry Ink
+        181995, -- Scroll of Calming Lyrics
+        180732, -- Rune Etched Vial
+        177843, -- Blank Card of Putrescence
+        177842, -- Blank Card of Repose
+        177841, -- Blank Card of Voracity
+        177840, -- Blank Card of the Indomitable
+        177061, -- Twilight Bark
+        175970, -- Tranquil Ink
+        175886, -- Dark Parchment
+        175788, -- Tranquil Pigment
+        173204, -- Lightless Silk
+        173202, -- Shrouded Cloth
+        173172, -- Essence of Servitude
+        173170, -- Essence of Rebirth
+        173126, -- Straddling Jewel Doublet
+        173110, -- Umbryl
+        173060, -- Aerated Water
+        173059, -- Luminous Ink
+        173058, -- Umbral Ink
+        173057, -- Luminous Pigment
+        173056, -- Umbral Pigment
+        172230, -- Soul Dust
+        172092, -- Pallid Bone
+        171832, -- Sinvyr Ore
+        171829, -- Solenium Ore
+        171828, -- Laestrite Ore
+        170554, -- Vigil's Torch
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:8;0:1:0
+    [8] = { -- Battle for Azeroth
+        171315, -- Nightshade
+        169701, -- Death Blossom
+        168663, -- Maroon Ink
+        168662, -- Maroon Pigment
+        168589, -- Marrowroot
+        168586, -- Rising Glory
+        168583, -- Widowbloom
+        168487, -- Zin'anthid
+        168142, -- Coagulated Miasma
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        162460, -- Hydrocore
+        160712, -- Powdered Sugar
+        160711, -- Aromatic Fish Oil
+        160398, -- Choral Honey
+        158205, -- Acacia Powder
+        158189, -- Viridescent Ink
+        158188, -- Crimson Ink
+        158187, -- Ultramarine Ink
+        158186, -- Distilled Water
+        153669, -- Viridescent Pigment
+        153636, -- Crimson Pigment
+        153635, -- Ultramarine Pigment
+        152668, -- Expulsom
+        152576, -- Tidespray Linen
+        152512, -- Monelite Ore
+        152511, -- Sea Stalk
+        152510, -- Anchor Weed
+        152509, -- Siren's Pollen
+        152508, -- Winter's Kiss
+        152507, -- Akunda's Bite
+        152506, -- Star Moss
+        152505, -- Riverbud
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:7;0:1:0
+    [7] = { -- Legion
+        151565, -- Astral Glory
+        129100, -- Gem Chip
+        129034, -- Sallow Pigment
+        129032, -- Roseate Pigment
+        128304, -- Yseralline Seed
+        127004, -- Imbued Silkweave
+        124461, -- Demonsteel Bar
+        124437, -- Shal'dorei Silk
+        124124, -- Blood of Sargeras
+        124106, -- Felwort
+        124105, -- Starlight Rose
+        124104, -- Fjarnskaggl
+        124103, -- Foxflower
+        124102, -- Dreamleaf
+        124101, -- Aethril
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:6;0:1:0
+    [6] = { -- Warlords of Draenor
+        127759, -- Felblight
+        120945, -- Primal Spirit
+        118472, -- Savage Blood
+        114931, -- Cerulean Pigment
+        113509, -- Conjured Mana Bun
+        113263, -- Sorcerous Earth
+        113261, -- Sorcerous Fire
+        113111, -- Warbinder's Ink
+        112377, -- War Paints
+        111557, -- Sumptuous Fur
+        109129, -- Talador Orchid
+        109128, -- Nagrand Arrowbloom
+        109127, -- Starflower
+        109126, -- Gorgrond Flytrap
+        109125, -- Fireweed
+        109124, -- Frostweed
+        109119, -- True Iron Ore
+        109118, -- Blackrock Ore
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:5;0:1:0
+    [5] = { -- Mists of Pandaria
+        87872, -- Desecrated Oil
+        82441, -- Bolt of Windwool Cloth
+        79731, -- Scroll of Wisdom
+        79255, -- Starlight Ink
+        79254, -- Ink of Dreams
+        79253, -- Misty Pigment
+        79251, -- Shadow Pigment
+        76061, -- Spirit of Harmony
+        72237, -- Rain Poppy
+        72104, -- Living Steel
+        72096, -- Ghost Iron Bar
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:4;0:1:0
+    [4] = { -- Cataclysm
+        67335, -- Silver Charm Bracelet
+        67319, -- Preserved Ogre Eye
+        62323, -- Deathwing Scale Fragment
+        61981, -- Inferno Ink
+        61980, -- Burning Embers
+        61979, -- Ashen Pigment
+        61978, -- Blackfallow Ink
+        56850, -- Deepstone Oil
+        55053, -- Obsidium Skeleton Key
+        54849, -- Obsidium Bar
+        52329, -- Volatile Life
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+        52186, -- Elementium Bar
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:3;0:1:0
+    [3] = { -- Wrath of the Lich King
+        43127, -- Snowfall Ink
+        43126, -- Ink of the Sea
+        43125, -- Darkflame Ink
+        43124, -- Ethereal Ink
+        43123, -- Ink of the Sky
+        43122, -- Shimmering Ink
+        43121, -- Fiery Ink
+        43120, -- Celestial Ink
+        43119, -- Royal Ink
+        43118, -- Jadefire Ink
+        43117, -- Dawnstar Ink
+        43116, -- Lion's Ink
+        43115, -- Hunter's Ink
+        43109, -- Icy Pigment
+        43108, -- Ebon Pigment
+        43107, -- Sapphire Pigment
+        43106, -- Ruby Pigment
+        43105, -- Indigo Pigment
+        43104, -- Burnt Pigment
+        43103, -- Verdant Pigment
+        43102, -- Frozen Orb
+        41163, -- Titanium Bar
+        39774, -- Midnight Ink
+        39469, -- Moonglow Ink
+        39354, -- Light Parchment
+        39343, -- Azure Pigment
+        39342, -- Nether Pigment
+        39341, -- Silvery Pigment
+        39340, -- Violet Pigment
+        39339, -- Emerald Pigment
+        39338, -- Golden Pigment
+        39334, -- Dusky Pigment
+        39151, -- Alabaster Pigment
+        37663, -- Titansteel Bar
+        36931, -- Ametrine
+        36916, -- Cobalt Bar
+        35627, -- Eternal Shadow
+        35625, -- Eternal Life
+        33458, -- Scroll of Intellect VI
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:2;0:1:0
+    [2] = { -- Burning Crusade
+        23793, -- Heavy Knothide Leather
+        23449, -- Khorium Bar
+        22457, -- Primal Mana
+        22452, -- Primal Earth
+        22446, -- Greater Planar Essence
+        21886, -- Primal Life
+        20963, -- Mithril Filigree
+    },
+    -- https://www.wowhead.com/items?filter=87:194:166;15:1:1;0:1:0
+    [1] = { -- Vanilla
+        22682, -- Frozen Rune
+        20520, -- Dark Rune
+        20002, -- Greater Dreamless Sleep Potion
+        19943, -- Massive Mojo
+        19931, -- Gurubashi Mojo Madness
+        19767, -- Primal Bat Leather
+        18335, -- Pristine Black Diamond
+        14344, -- Large Brilliant Shard
+        13512, -- Flask of Supreme Power
+        12811, -- Righteous Orb
+        12810, -- Enchanted Leather
+        12808, -- Essence of Undeath
+        12804, -- Powerful Mojo
+        12800, -- Azerothian Diamond
+        12799, -- Large Opal
+        12365, -- Dense Stone
+        12364, -- Huge Emerald
+        12361, -- Blue Sapphire
+        12360, -- Arcanite Bar
+        12359, -- Thorium Bar
+        10308, -- Scroll of Intellect IV
+        7076, -- Essence of Earth
+        6037, -- Truesilver Bar
+        4470, -- Simple Wood
+        3577, -- Gold Bar
+        3371, -- Crystal Vial
+        2841, -- Bronze Bar
+    },
+}
+
+-- Now, trading goods
+items.Elemental = {
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;12;0
+    [12] = { -- Midnight
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;11;0
+    [11] = { -- The War Within
+        231757, -- Fractured Spark of Starlight
+        230905, -- Fractured Spark of Fortunes
+        211297, -- Fractured Spark of Omens
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;10;0
+    [10] = { -- Dragonflight
+        211515, -- Splintered Spark of Awakening
+        208396, -- Splintered Spark of Dreams
+        205259, -- Order Soul
+        204717, -- Splintered Spark of Shadowflame
+        194729, -- Fiery Spirit
+        194728, -- Fiery Spirit
+        194727, -- Fiery Spirit
+        193921, -- Airy Soul
+        193920, -- Earthen Soul
+        193919, -- Frosty Soul
+        193379, -- Elemental Harmony
+        193378, -- Elemental Harmony
+        193362, -- Fiery Soul
+        192887, -- Elemental Harmony
+        191784, -- Dragon Shard of Knowledge
+        190451, -- Rousing Ire
+        190450, -- Awakened Ire
+        190331, -- Awakened Decay
+        190330, -- Rousing Decay
+        190329, -- Awakened Frost
+        190328, -- Rousing Frost
+        190327, -- Awakened Air
+        190326, -- Rousing Air
+        190324, -- Awakened Order
+        190322, -- Rousing Order
+        190321, -- Awakened Fire
+        190320, -- Rousing Fire
+        190319, -- Resourceful!
+        190318, -- Perception!
+        190316, -- Awakened Earth
+        190315, -- Rousing Earth
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;9;0
+    [9] = { -- Shadowlands
+        187707, -- Progenitor Essentia
+        186017, -- Korthite Crystal
+        178787, -- Orboreal Shard
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;8;0
+    [8] = { -- Battle for Azeroth
+        174097, -- [DNT] Corruptium
+        165948, -- Tidalcore
+        165703, -- Breath of Bwonsamdi
+        163203, -- Hypersensitive Azeritometer Sensor
+        162461, -- Sanguicell
+        162460, -- Hydrocore
+        152668, -- Expulsom
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;7;0
+    [7] = { -- Legion
+        151568, -- Primal Sargerite
+        141323, -- Wild Transmutation
+        124124, -- Blood of Sargeras
+        124123, -- Demonfire
+        124122, -- Leyfire
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;6;0
+    [6] = { -- Warlords of Draenor
+        120945, -- Primal Spirit
+        113264, -- Sorcerous Air
+        113263, -- Sorcerous Earth
+        113262, -- Sorcerous Water
+        113261, -- Sorcerous Fire
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;5;0
+    [5] = { -- Mists of Pandaria
+        89112, -- Mote of Harmony
+        76061, -- Spirit of Harmony
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;4;0
+    [4] = { -- Cataclysm
+        54464, -- Random Volatile Element
+        52329, -- Volatile Life
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;3;0
+    [3] = { -- Wrath of the Lich King
+        37705, -- Crystallized Water
+        37704, -- Crystallized Life
+        37703, -- Crystallized Shadow
+        37702, -- Crystallized Fire
+        37701, -- Crystallized Earth
+        37700, -- Crystallized Air
+        36860, -- Eternal Fire
+        35627, -- Eternal Shadow
+        35625, -- Eternal Life
+        35624, -- Eternal Earth
+        35623, -- Eternal Air
+        35622, -- Eternal Water
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;2;0
+    [2] = { -- Burning Crusade
+        30183, -- Nether Vortex
+        23572, -- Primal Nether
+        23571, -- Primal Might
+        22578, -- Mote of Water
+        22577, -- Mote of Shadow
+        22576, -- Mote of Mana
+        22575, -- Mote of Life
+        22574, -- Mote of Fire
+        22573, -- Mote of Earth
+        22572, -- Mote of Air
+        22457, -- Primal Mana
+        22456, -- Primal Shadow
+        22452, -- Primal Earth
+        22451, -- Primal Air
+        21886, -- Primal Life
+        21885, -- Primal Water
+        21884, -- Primal Fire
+    },
+    -- https://www.wowhead.com/items/trade-goods/elemental?filter=166;1;0
+    [1] = { -- Vanilla
+        12808, -- Essence of Undeath
+        12803, -- Living Essence
+        10286, -- Heart of the Wild
+        7972, -- Ichor of Undeath
+        7082, -- Essence of Air
+        7081, -- Breath of Wind
+        7080, -- Essence of Water
+        7079, -- Globe of Water
+        7078, -- Essence of Fire
+        7077, -- Heart of Fire
+        7076, -- Essence of Earth
+        7075, -- Core of Earth
+        7070, -- Elemental Water
+        7069, -- Elemental Air
+        7068, -- Elemental Fire
+        7067, -- Elemental Earth
+    },
+}
+
+-- For mining, below filters the gathered, crafted, and used by mining profession items.
+items.Mining = {
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:12;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:12:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:12;0:1:0:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        237366, -- Dazzling Thorium
+        237365, -- Brilliant Silver Ore
+        237364, -- Brilliant Silver Ore
+        237363, -- Umbral Tin Ore
+        237362, -- Umbral Tin Ore
+        237361, -- Refulgent Copper Ore
+        237359, -- Refulgent Copper Ore
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:11;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:11:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:11;0:1:0:0
+    [11] = { -- The War Within
+        240216, -- K'areshi Resonating Stone
+        238213, -- Desolate Talus
+        238212, -- Desolate Talus
+        238201, -- Desolate Talus
+        224828, -- Weavercloth
+        219150, -- Pile of Rusted Scrap
+        217707, -- Imperfect Null Stone
+        213611, -- Writhing Sample
+        213610, -- Crystalline Powder
+        210939, -- Null Stone
+        210938, -- Ironclaw Ore
+        210937, -- Ironclaw Ore
+        210936, -- Ironclaw Ore
+        210935, -- Aqirite
+        210934, -- Aqirite
+        210933, -- Aqirite
+        210932, -- Bismuth
+        210931, -- Bismuth
+        210930, -- Bismuth
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:10;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:10:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:10;0:1:0:0
+    [10] = { -- Dragonflight
+        204460, -- Zaralek Glowspores
+        197754, -- Salt Deposit
+        194727, -- Fiery Spirit
+        192871, -- Illimited Diamond
+        192870, -- Illimited Diamond
+        192869, -- Illimited Diamond
+        192868, -- Nozdorite
+        192867, -- Nozdorite
+        192866, -- Nozdorite
+        192865, -- Neltharite
+        192863, -- Neltharite
+        192862, -- Neltharite
+        192861, -- Ysemerald
+        192860, -- Ysemerald
+        192859, -- Ysemerald
+        192858, -- Malygite
+        192857, -- Malygite
+        192856, -- Malygite
+        192855, -- Alexstraszite
+        192853, -- Alexstraszite
+        192852, -- Alexstraszite
+        192851, -- Eternity Amber
+        192850, -- Eternity Amber
+        192849, -- Eternity Amber
+        192848, -- Sundered Onyx
+        192847, -- Sundered Onyx
+        192846, -- Sundered Onyx
+        192845, -- Vibrant Emerald
+        192844, -- Vibrant Emerald
+        192843, -- Vibrant Emerald
+        192842, -- Mystic Sapphire
+        192841, -- Mystic Sapphire
+        192840, -- Mystic Sapphire
+        192839, -- Queen's Ruby
+        192838, -- Queen's Ruby
+        192837, -- Queen's Ruby
+        190451, -- Rousing Ire
+        190396, -- Serevite Ore
+        190395, -- Serevite Ore
+        190394, -- Serevite Ore
+        190328, -- Rousing Frost
+        190326, -- Rousing Air
+        190322, -- Rousing Order
+        190320, -- Rousing Fire
+        190315, -- Rousing Earth
+        190314, -- Khaz'gorite Ore
+        190313, -- Khaz'gorite Ore
+        190312, -- Khaz'gorite Ore
+        190311, -- Draconium Ore
+        189143, -- Draconium Ore
+        188658, -- Draconium Ore
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:9;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:9:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:9;0:1:0:0
+    [9] = { -- Shadowlands
+        187707, -- Progenitor Essentia
+        187700, -- Progenium Ore
+        177061, -- Twilight Bark
+        171841, -- Shaded Stone
+        171840, -- Porous Stone
+        171833, -- Elethium Ore
+        171832, -- Sinvyr Ore
+        171831, -- Phaedrum Ore
+        171830, -- Oxxein Ore
+        171829, -- Solenium Ore
+        171828, -- Laestrite Ore
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:8;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:8:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:8;0:1:0:0
+    [8] = { -- Battle for Azeroth
+        168185, -- Osmenite Ore
+        163630, -- Ductile Platinum
+        163629, -- Dense Storm Silver
+        163628, -- Hardened Monelite
+        163627, -- Smooth Platinum
+        163626, -- Coarse Storm Silver
+        163625, -- Rough Monelite
+        163624, -- Burnished Platinum
+        163623, -- Gleaming Storm Silver
+        163609, -- Luminous Monelite
+        152579, -- Storm Silver Ore
+        152513, -- Platinum Ore
+        152512, -- Monelite Ore
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:7;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:7:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:7;0:1:0:0
+    [7] = { -- Legion
+        156930, -- Rich Illusion Dust
+        151720, -- Chemirine
+        151719, -- Lightsphene
+        151568, -- Primal Sargerite
+        151564, -- Empyrium
+        124444, -- Infernal Brimstone
+        124124, -- Blood of Sargeras
+        123919, -- Felslate
+        123918, -- Leystone Ore
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:6;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:6:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:6;0:1:0:0
+    [6] = { -- Warlords of Draenor
+        127759, -- Felblight
+        120945, -- Primal Spirit
+        115508, -- Draenic Stone
+        109992, -- Blackrock Fragment
+        109991, -- True Iron Nugget
+        109119, -- True Iron Ore
+        109118, -- Blackrock Ore
+        108391, -- Titanium Ore Nugget
+        108309, -- Pyrite Ore Nugget
+        108308, -- Elementium Ore Nugget
+        108307, -- Obsidium Ore Nugget
+        108306, -- Saronite Ore Nugget
+        108305, -- Cobalt Ore Nugget
+        108304, -- Khorium Ore Nugget
+        108302, -- Adamantite Ore Nugget
+        108301, -- Fel Iron Ore Nugget
+        108300, -- Mithril Ore Nugget
+        108299, -- Truesilver Ore Nugget
+        108298, -- Thorium Ore Nugget
+        108297, -- Iron Ore Nugget
+        108296, -- Gold Ore Nugget
+        108294, -- Silver Ore Nugget
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:5;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:5:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:5;0:1:0:0
+    [5] = { -- Mists of Pandaria
+        97546, -- Kyparite Fragment
+        97512, -- Ghost Iron Nugget
+        76142, -- Sun's Radiance
+        76141, -- Imperial Amethyst
+        76140, -- Vermilion Onyx
+        76139, -- Wild Jade
+        76138, -- River's Heart
+        76137, -- Alexandrite
+        76136, -- Pandarian Garnet
+        76135, -- Roguestone
+        76134, -- Sunstone
+        76133, -- Lapis Lazuli
+        76131, -- Primordial Ruby
+        76130, -- Tiger Opal
+        72103, -- White Trillium Ore
+        72096, -- Ghost Iron Bar
+        72095, -- Trillium Bar
+        72094, -- Black Trillium Ore
+        72093, -- Kyparite
+        72092, -- Ghost Iron Ore
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:4;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:4:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:4;0:1:0:0
+    [4] = { -- Cataclysm
+        54849, -- Obsidium Bar
+        53039, -- Hardened Elementium Bar
+        53038, -- Obsidium Ore
+        52328, -- Volatile Air
+        52327, -- Volatile Earth
+        52326, -- Volatile Water
+        52325, -- Volatile Fire
+        52195, -- Amberjewel
+        52194, -- Demonseye
+        52193, -- Ember Topaz
+        52192, -- Dream Emerald
+        52191, -- Ocean Sapphire
+        52190, -- Inferno Ruby
+        52186, -- Elementium Bar
+        52185, -- Elementium Ore
+        52183, -- Pyrite Ore
+        52182, -- Jasper
+        52181, -- Hessonite
+        52180, -- Nightstone
+        52179, -- Alicite
+        52178, -- Zephyrite
+        52177, -- Carnelian
+        51950, -- Pyrium Bar
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:3;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:3:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:3;0:1:0:0
+    [3] = { -- Wrath of the Lich King
+        41163, -- Titanium Bar
+        37705, -- Crystallized Water
+        37703, -- Crystallized Shadow
+        37702, -- Crystallized Fire
+        37701, -- Crystallized Earth
+        37700, -- Crystallized Air
+        37663, -- Titansteel Bar
+        36933, -- Forest Emerald
+        36932, -- Dark Jade
+        36930, -- Monarch Topaz
+        36929, -- Huge Citrine
+        36927, -- Twilight Opal
+        36926, -- Shadow Crystal
+        36924, -- Sky Sapphire
+        36923, -- Chalcedony
+        36921, -- Autumn's Glow
+        36920, -- Sun Crystal
+        36918, -- Scarlet Ruby
+        36917, -- Bloodstone
+        36916, -- Cobalt Bar
+        36913, -- Saronite Bar
+        36912, -- Saronite Ore
+        36910, -- Titanium Ore
+        36909, -- Cobalt Ore
+        36860, -- Eternal Fire
+        35627, -- Eternal Shadow
+        35624, -- Eternal Earth
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:2;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:2:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:2;0:1:0:0
+    [2] = { -- Burning Crusade
+        35128, -- Hardened Khorium
+        32249, -- Seaspray Emerald
+        32231, -- Pyrestone
+        32230, -- Shadowsong Amethyst
+        32229, -- Lionseye
+        32228, -- Empyrean Sapphire
+        32227, -- Crimson Spinel
+        23573, -- Hardened Adamantite Bar
+        23449, -- Khorium Bar
+        23448, -- Felsteel Bar
+        23447, -- Eternium Bar
+        23446, -- Adamantite Bar
+        23445, -- Fel Iron Bar
+        23441, -- Nightseye
+        23440, -- Dawnstone
+        23439, -- Noble Topaz
+        23438, -- Star of Elune
+        23437, -- Talasite
+        23436, -- Living Ruby
+        23427, -- Eternium Ore
+        23426, -- Khorium Ore
+        23425, -- Adamantite Ore
+        23424, -- Fel Iron Ore
+        23117, -- Azure Moonstone
+        23112, -- Golden Draenite
+        23107, -- Shadow Draenite
+        23079, -- Deep Peridot
+        23077, -- Blood Garnet
+        22574, -- Mote of Fire
+        22573, -- Mote of Earth
+        22452, -- Primal Earth
+        21929, -- Flame Spessarite
+        21884, -- Primal Fire
+    },
+    -- https://www.wowhead.com/items?filter=86:194:166;9:1:1;0:1:0
+    -- https://www.wowhead.com/items?filter=87:166:194;9:1:1;0:0:1
+    -- https://www.wowhead.com/items?filter=73:194:217:166;1:1:1:1;0:1:0:0
+    [1] = { -- Vanilla
+        22203, -- Large Obsidian Shard
+        22202, -- Small Obsidian Shard
+        18567, -- Elemental Flux
+        18562, -- Elementium Ingot
+        17771, -- Enchanted Elementium Bar
+        17056, -- Light Feather
+        17010, -- Fiery Core
+        12800, -- Azerothian Diamond
+        12799, -- Large Opal
+        12655, -- Enchanted Thorium Bar
+        12365, -- Dense Stone
+        12364, -- Huge Emerald
+        12363, -- Arcane Crystal
+        12361, -- Blue Sapphire
+        12360, -- Arcanite Bar
+        12359, -- Thorium Bar
+        11754, -- Black Diamond
+        11382, -- Blood of the Mountain
+        11371, -- Dark Iron Bar
+        11370, -- Dark Iron Ore
+        10620, -- Thorium Ore
+        9262, -- Black Vitriol
+        8150, -- Deeprock Salt
+        7912, -- Solid Stone
+        7911, -- Truesilver Ore
+        7910, -- Star Ruby
+        7909, -- Aquamarine
+        7076, -- Essence of Earth
+        6037, -- Truesilver Bar
+        5469, -- Strider Meat
+        5466, -- Scorpid Stinger
+        3864, -- Citrine
+        3860, -- Mithril Bar
+        3859, -- Steel Bar
+        3858, -- Mithril Ore
+        3857, -- Coal
+        3577, -- Gold Bar
+        3576, -- Tin Bar
+        3575, -- Iron Bar
+        2842, -- Silver Bar
+        2841, -- Bronze Bar
+        2840, -- Copper Bar
+        2838, -- Heavy Stone
+        2836, -- Coarse Stone
+        2835, -- Rough Stone
+        2776, -- Gold Ore
+        2775, -- Silver Ore
+        2772, -- Iron Ore
+        2771, -- Tin Ore
+        2770, -- Copper Ore
+        1705, -- Lesser Moonstone
+        1529, -- Jade
+        1468, -- Murloc Fin
+        1210, -- Shadowgem
+        1206, -- Moss Agate
+        818, -- Tigerseye
+        774, -- Malachite
+    },
+}
+-- For Herbalism, below collected only those gathered via the profession
+items.Herbalism = {
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:12;0:1:0:0
+    [12] = { -- Midnight
+        274781, -- Cursebound Globe
+        242640, -- Plant Protein
+        236952, -- Mote of Pure Void
+        236951, -- Mote of Wild Magic
+        236950, -- Mote of Primal Energy
+        236949, -- Mote of Light
+        236780, -- Nocturnal Lotus
+        236779, -- Mana Lily
+        236778, -- Mana Lily
+        236777, -- Argentleaf
+        236776, -- Argentleaf
+        236775, -- Azeroot
+        236774, -- Azeroot
+        236771, -- Sanguithorn
+        236770, -- Sanguithorn
+        236767, -- Tranquility Bloom
+        236761, -- Tranquility Bloom
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:11;0:1:0:0
+    [11] = { -- The War Within
+        240194, -- K'areshi Lotus
+        239692, -- Phantom Bloom
+        239691, -- Phantom Bloom
+        239690, -- Phantom Bloom
+        213613, -- Leyline Residue
+        213612, -- Viridescent Spores
+        213611, -- Writhing Sample
+        213610, -- Crystalline Powder
+        213197, -- Null Lotus
+        210810, -- Arathor's Spear
+        210809, -- Arathor's Spear
+        210808, -- Arathor's Spear
+        210807, -- Blessing Blossom
+        210806, -- Blessing Blossom
+        210805, -- Blessing Blossom
+        210804, -- Orbinid
+        210803, -- Orbinid
+        210802, -- Orbinid
+        210801, -- Luredrop
+        210800, -- Luredrop
+        210799, -- Luredrop
+        210798, -- Mycobloom
+        210797, -- Mycobloom
+        210796, -- Mycobloom
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:10;0:1:0:0
+    [10] = { -- Dragonflight
+        204460, -- Zaralek Glowspores
+        197755, -- Lava Beetle
+        191472, -- Writhebark
+        191471, -- Writhebark
+        191470, -- Writhebark
+        191469, -- Bubble Poppy
+        191468, -- Bubble Poppy
+        191467, -- Bubble Poppy
+        191466, -- Saxifrage
+        191465, -- Saxifrage
+        191464, -- Saxifrage
+        191462, -- Hochenblume
+        191461, -- Hochenblume
+        191460, -- Hochenblume
+        190451, -- Rousing Ire
+        190330, -- Rousing Decay
+        190328, -- Rousing Frost
+        190326, -- Rousing Air
+        190322, -- Rousing Order
+        190315, -- Rousing Earth
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:9;0:1:0:0
+    [9] = { -- Shadowlands
+        187707, -- Progenitor Essentia
+        187699, -- First Flower
+        170554, -- Vigil's Torch
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:8;0:1:0:0
+    [8] = { -- Battle for Azeroth
+        171315, -- Nightshade
+        169701, -- Death Blossom
+        169697, -- Nightshade Petal
+        168589, -- Marrowroot
+        168586, -- Rising Glory
+        168583, -- Widowbloom
+        168487, -- Zin'anthid
+        163601, -- Overgrown Anchor Weed
+        163595, -- Flourishing Riverbud
+        163588, -- Flourishing Sea Stalk
+        152511, -- Sea Stalk
+        152510, -- Anchor Weed
+        152509, -- Siren's Pollen
+        152508, -- Winter's Kiss
+        152507, -- Akunda's Bite
+        152506, -- Star Moss
+        152505, -- Riverbud
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:7;0:1:0:0
+    [7] = { -- Legion
+        151568, -- Primal Sargerite
+        151565, -- Astral Glory
+        135500, -- Singed Fjarnskaggl
+        129289, -- Felwort Seed
+        129288, -- Starlight Rose Seed
+        129287, -- Fjarnskaggl Seed
+        129286, -- Foxflower Seed
+        129285, -- Dreamleaf Seed
+        129284, -- Aethril Seed
+        128304, -- Yseralline Seed
+        124124, -- Blood of Sargeras
+        124106, -- Felwort
+        124105, -- Starlight Rose
+        124104, -- Fjarnskaggl
+        124103, -- Foxflower
+        124102, -- Dreamleaf
+        124101, -- Aethril
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:6;0:1:0:0
+    [6] = { -- Warlords of Draenor
+        127759, -- Felblight
+        120945, -- Primal Spirit
+        116053, -- Draenic Seeds
+        109629, -- Talador Orchid Petal
+        109628, -- Nagrand Arrowbloom Petal
+        109627, -- Starflower Petal
+        109626, -- Gorgrond Flytrap Ichor
+        109625, -- Broken Fireweed Stem
+        109624, -- Broken Frostweed Stem
+        109129, -- Talador Orchid
+        109128, -- Nagrand Arrowbloom
+        109127, -- Starflower
+        109126, -- Gorgrond Flytrap
+        109125, -- Fireweed
+        109124, -- Frostweed
+        108365, -- Whiptail Stem
+        108363, -- Heartblossom Petal
+        108361, -- Stormvine Stalk
+        108360, -- Cinderbloom Petal
+        108359, -- Fire Leaf Bramble
+        108357, -- Talandra's Rose Petal
+        108356, -- Icethorn Bramble
+        108355, -- Lichbloom Stalk
+        108354, -- Tiger Lily Petal
+        108353, -- Adder's Tongue Stem
+        108352, -- Goldclover Leaf
+        108351, -- Mana Thistle Leaf
+        108350, -- Nightmare Vine Stem
+        108349, -- Netherbloom Leaf
+        108348, -- Ancient Lichen Petal
+        108347, -- Terocone Leaf
+        108346, -- Ragveil Cap
+        108345, -- Dreaming Glory Petal
+        108344, -- Felweed Stalk
+        108343, -- Icecap Petal
+        108342, -- Sorrowmoss Leaf
+        108341, -- Mountain Silversage Stalk
+        108340, -- Golden Sansam Leaf
+        108339, -- Dreamfoil Blade
+        108338, -- Gromsblood Leaf
+        108337, -- Ghost Mushroom Cap
+        108336, -- Blindweed Stem
+        108335, -- Sungrass Stalk
+        108333, -- Purple Lotus Petal
+        108332, -- Firebloom Petal
+        108331, -- Goldthorn Bramble
+        108330, -- Stranglekelp Blade
+        108329, -- Dragon's Teeth Stem
+        108328, -- Fadeleaf Petal
+        108327, -- Grave Moss Leaf
+        108326, -- Khadgar's Whisker Stem
+        108325, -- Liferoot Stem
+        108324, -- Kingsblood Petal
+        108323, -- Wild Steelbloom Petal
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:5;0:1:0:0
+    [5] = { -- Mists of Pandaria
+        97624, -- Desecrated Herb Pod
+        97623, -- Fool's Cap Spores
+        97622, -- Snow Lily Petal
+        97621, -- Silkweed Stem
+        97620, -- Rain Poppy Petal
+        97619, -- Torn Green Tea Leaf
+        89639, -- Desecrated Herb
+        79011, -- Fool's Cap
+        79010, -- Snow Lily
+        72238, -- Golden Lotus
+        72237, -- Rain Poppy
+        72235, -- Silkweed
+        72234, -- Green Tea Leaf
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:4;0:1:0:0
+    [4] = { -- Cataclysm
+        52988, -- Whiptail
+        52987, -- Twilight Jasmine
+        52986, -- Heartblossom
+        52985, -- Azshara's Veil
+        52984, -- Stormvine
+        52983, -- Cinderbloom
+        52329, -- Volatile Life
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:3;0:1:0:0
+    [3] = { -- Wrath of the Lich King
+        39970, -- Fire Leaf
+        37921, -- Deadnettle
+        37704, -- Crystallized Life
+        36908, -- Frost Lotus
+        36907, -- Talandra's Rose
+        36906, -- Icethorn
+        36905, -- Lichbloom
+        36904, -- Tiger Lily
+        36903, -- Adder's Tongue
+        36901, -- Goldclover
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:2;0:1:0:0
+    [2] = { -- Burning Crusade
+        22794, -- Fel Lotus
+        22793, -- Mana Thistle
+        22792, -- Nightmare Vine
+        22791, -- Netherbloom
+        22790, -- Ancient Lichen
+        22789, -- Terocone
+        22787, -- Ragveil
+        22786, -- Dreaming Glory
+        22785, -- Felweed
+        22576, -- Mote of Mana
+        22575, -- Mote of Life
+    },
+    -- https://www.wowhead.com/items?filter=70:194:217:166;1:1:1:1;0:1:0:0
+    [1] = { -- Vanilla
+        13468, -- Black Lotus
+        13467, -- Icecap
+        13466, -- Sorrowmoss
+        13465, -- Mountain Silversage
+        13464, -- Golden Sansam
+        13463, -- Dreamfoil
+        8846, -- Gromsblood
+        8845, -- Ghost Mushroom
+        8839, -- Blindweed
+        8838, -- Sungrass
+        8831, -- Purple Lotus
+        8153, -- Wildvine
+        4625, -- Firebloom
+        3821, -- Goldthorn
+        3820, -- Stranglekelp
+        3819, -- Dragon's Teeth
+        3818, -- Fadeleaf
+        3369, -- Grave Moss
+        3358, -- Khadgar's Whisker
+        3357, -- Liferoot
+        3356, -- Kingsblood
+        3355, -- Wild Steelbloom
+        2453, -- Bruiseweed
+        2452, -- Swiftthistle
+        2450, -- Briarthorn
+        2449, -- Earthroot
+        2447, -- Peacebloom
+        818, -- Tigerseye
+        785, -- Mageroyal
+        774, -- Malachite
+        765, -- Silverleaf
+    },
+}
+
+--[[ Although I have collected the potions via the profession, this list may not be exhaustive 
+items.Potion = {
     -- https://www.wowhead.com/items/consumables/potions?filter=166;12;0
     [12] = { -- Midnight
         241286, -- Light's Preservation
@@ -1902,245 +5207,245 @@ items.potion = {
         176443, -- Fleeting Frenzy Potion
         176811, -- Potion of Sacrificial Anima
         177278, -- Phial of Serenity
-        179000, -- [PH] Potency Conduit - Death Knight - Blood - Potency Trait 1
-        179027, -- [PH] Potency Conduit - Death Knight - Blood - Potency Trait 2
-        179028, -- [PH] Flex Conduit - Death Knight - Blood - Flex Trait 1
-        179029, -- [PH] Flex Conduit - Death Knight - Blood - Flex Trait 2
-        179030, -- [PH] Potency Conduit - Death Knight - All - Potency Trait - Covenant
-        179031, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 1
-        179032, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 2
-        179033, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 3
-        179034, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 1
-        179035, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 2
-        179036, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 3
-        179037, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 4
-        179038, -- [PH] Potency Conduit - Death Knight - Frost - Potency Trait 1
-        179039, -- [PH] Potency Conduit - Death Knight - Frost - Potency Trait 2
-        179040, -- [PH] Flex Conduit - Death Knight - Frost - Flex Trait 1
-        179041, -- [PH] Flex Conduit - Death Knight - Frost - Flex Trait 2
-        179042, -- [PH] Potency Conduit - Death Knight - Unholy - Potency Trait 1
-        179043, -- [PH] Potency Conduit - Death Knight - Unholy - Potency Trait 2
-        179044, -- [PH] Flex Conduit - Death Knight - Unholy - Flex Trait 1
-        179045, -- [PH] Flex Conduit - Death Knight - Unholy - Flex Trait 2
-        179046, -- [PH] Potency Conduit - Demon Hunter - Vengeance - Potency Trait 1
-        179047, -- [PH] Potency Conduit - Demon Hunter - Vengeance - Potency Trait 2
-        179048, -- [PH] Flex Conduit - Demon Hunter - Vengeance - Flex Trait 1
-        179049, -- [PH] Flex Conduit - Demon Hunter - Vengeance - Flex Trait 2
-        179050, -- [PH] Potency Conduit - Demon Hunter - All - Potency Trait - Covenant
-        179051, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 1
-        179052, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 2
-        179053, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 3
-        179054, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 1
-        179055, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 2
-        179056, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 3
-        179057, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 4
-        179058, -- [PH] Potency Conduit - Demon Hunter - Havoc - Potency Trait 1
-        179059, -- [PH] Potency Conduit - Demon Hunter - Havoc - Potency Trait 2
-        179060, -- [PH] Flex Conduit - Demon Hunter - Havoc - Flex Trait 1
-        179061, -- [PH] Flex Conduit - Demon Hunter - Havoc - Flex Trait 2
-        179062, -- [PH] Potency Conduit - Druid - Balance - Potency Trait 1
-        179063, -- [PH] Potency Conduit - Druid - Balance - Potency Trait 2
-        179064, -- [PH] Flex Conduit - Druid - Balance - Flex Trait 1
-        179065, -- [PH] Flex Conduit - Druid - Balance - Flex Trait 2
-        179066, -- [PH] Potency Conduit - Druid - All - Potency Trait - Covenant
-        179067, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 1
-        179068, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 2
-        179069, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 3
-        179070, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 1
-        179071, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 2
-        179072, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 3
-        179073, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 4
-        179074, -- [PH] Potency Conduit - Druid - Feral - Potency Trait 1
-        179075, -- [PH] Potency Conduit - Druid - Feral - Potency Trait 2
-        179076, -- [PH] Flex Conduit - Druid - Feral - Flex Trait 1
-        179077, -- [PH] Flex Conduit - Druid - Feral - Flex Trait 2
-        179078, -- [PH] Potency Conduit - Druid - Guardian - Potency Trait 1
-        179079, -- [PH] Potency Conduit - Druid - Guardian - Potency Trait 2
-        179080, -- [PH] Flex Conduit - Druid - Guardian - Flex Trait 1
-        179081, -- [PH] Flex Conduit - Druid - Guardian - Flex Trait 2
-        179082, -- [PH] Potency Conduit - Druid - Restoration - Potency Trait 1
-        179083, -- [PH] Potency Conduit - Druid - Restoration - Potency Trait 2
-        179084, -- [PH] Flex Conduit - Druid - Restoration - Flex Trait 1
-        179085, -- [PH] Flex Conduit - Druid - Restoration - Flex Trait 2
-        179086, -- [PH] Potency Conduit - Hunter - Beast Mastery - Potency Trait 1
-        179087, -- [PH] Potency Conduit - Hunter - Beast Mastery - Potency Trait 2
-        179088, -- [PH] Flex Conduit - Hunter - Beast Mastery - Flex Trait 1
-        179089, -- [PH] Flex Conduit - Hunter - Beast Mastery - Flex Trait 2
-        179090, -- [PH] Potency Conduit - Hunter - All - Potency Trait - Covenant
-        179091, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 1
-        179092, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 2
-        179093, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 3
-        179094, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 1
-        179095, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 2
-        179096, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 3
-        179097, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 4
-        179098, -- [PH] Potency Conduit - Hunter - Marksmanship - Potency Trait 1
-        179099, -- [PH] Potency Conduit - Hunter - Marksmanship - Potency Trait 2
-        179100, -- [PH] Flex Conduit - Hunter - Marksmanship - Flex Trait 1
-        179101, -- [PH] Flex Conduit - Hunter - Marksmanship - Flex Trait 2
-        179102, -- [PH] Potency Conduit - Hunter - Survival - Potency Trait 1
-        179103, -- [PH] Potency Conduit - Hunter - Survival - Potency Trait 2
-        179104, -- [PH] Flex Conduit - Hunter - Survival - Flex Trait 1
-        179105, -- [PH] Flex Conduit - Hunter - Survival - Flex Trait 2
-        179106, -- [PH] Potency Conduit - Mage - Arcane - Potency Trait 1
-        179107, -- [PH] Potency Conduit - Mage - Arcane - Potency Trait 2
-        179108, -- [PH] Flex Conduit - Mage - Arcane - Flex Trait 1
-        179109, -- [PH] Flex Conduit - Mage - Arcane - Flex Trait 2
-        179110, -- [PH] Potency Conduit - Mage - All - Potency Trait - Covenant
-        179111, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 1
-        179112, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 2
-        179113, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 3
-        179114, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 1
-        179115, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 2
-        179116, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 3
-        179117, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 4
-        179118, -- [PH] Potency Conduit - Mage - Fire - Potency Trait 1
-        179119, -- [PH] Potency Conduit - Mage - Fire - Potency Trait 2
-        179120, -- [PH] Flex Conduit - Mage - Fire - Flex Trait 1
-        179121, -- [PH] Flex Conduit - Mage - Fire - Flex Trait 2
-        179122, -- [PH] Potency Conduit - Mage - Frost - Potency Trait 1
-        179123, -- [PH] Potency Conduit - Mage - Frost - Potency Trait 2
-        179124, -- [PH] Flex Conduit - Mage - Frost - Flex Trait 1
-        179125, -- [PH] Flex Conduit - Mage - Frost - Flex Trait 2
-        179126, -- [PH] Potency Conduit - Monk - Brewmaster - Potency Trait 1
-        179127, -- [PH] Potency Conduit - Monk - Brewmaster - Potency Trait 2
-        179128, -- [PH] Flex Conduit - Monk - Brewmaster - Flex Trait 1
-        179129, -- [PH] Flex Conduit - Monk - Brewmaster - Flex Trait 2
-        179130, -- [PH] Potency Conduit - Monk - All - Potency Trait - Covenant
-        179131, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 1
-        179132, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 2
-        179133, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 3
-        179134, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 1
-        179135, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 2
-        179136, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 3
-        179137, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 4
-        179138, -- [PH] Potency Conduit - Monk - Mistweaver - Potency Trait 1
-        179139, -- [PH] Potency Conduit - Monk - Mistweaver - Potency Trait 2
-        179140, -- [PH] Flex Conduit - Monk - Mistweaver - Flex Trait 1
-        179141, -- [PH] Flex Conduit - Monk - Mistweaver - Flex Trait 2
-        179142, -- [PH] Potency Conduit - Monk - Windwalker - Potency Trait 1
-        179143, -- [PH] Potency Conduit - Monk - Windwalker - Potency Trait 2
-        179144, -- [PH] Flex Conduit - Monk - Windwalker - Flex Trait 1
-        179145, -- [PH] Flex Conduit - Monk - Windwalker - Flex Trait 2
-        179146, -- [PH] Potency Conduit - Paladin - Holy - Potency Trait 1
-        179147, -- [PH] Potency Conduit - Paladin - Holy - Potency Trait 2
-        179148, -- [PH] Flex Conduit - Paladin - Holy - Flex Trait 1
-        179149, -- [PH] Flex Conduit - Paladin - Holy - Flex Trait 2
-        179150, -- [PH] Potency Conduit - Paladin - All - Potency Trait - Covenant
-        179151, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 1
-        179152, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 2
-        179153, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 3
-        179154, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 1
-        179155, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 2
-        179156, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 3
-        179157, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 4
-        179158, -- [PH] Potency Conduit - Paladin - Protection - Potency Trait 1
-        179159, -- [PH] Potency Conduit - Paladin - Protection - Potency Trait 2
-        179160, -- [PH] Flex Conduit - Paladin - Protection - Flex Trait 1
-        179161, -- [PH] Flex Conduit - Paladin - Protection - Flex Trait 2
-        179162, -- [PH] Potency Conduit - Paladin - Retribution - Potency Trait 1
-        179163, -- [PH] Potency Conduit - Paladin - Retribution - Potency Trait 2
-        179164, -- [PH] Flex Conduit - Paladin - Retribution - Flex Trait 1
-        179165, -- [PH] Flex Conduit - Paladin - Retribution - Flex Trait 2
-        179167, -- [PH] Potency Conduit - Priest - Discipline - Potency Trait 1
-        179168, -- [PH] Potency Conduit - Priest - Discipline - Potency Trait 2
-        179169, -- [PH] Flex Conduit - Priest - Discipline - Flex Trait 1
-        179170, -- [PH] Flex Conduit - Priest - Discipline - Flex Trait 2
-        179171, -- [PH] Potency Conduit - Priest - All - Potency Trait - Covenant
-        179172, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 1
-        179173, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 2
-        179174, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 3
-        179175, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 1
-        179176, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 2
-        179177, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 3
-        179178, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 4
-        179179, -- [PH] Potency Conduit - Priest - Holy - Potency Trait 1
-        179180, -- [PH] Potency Conduit - Priest - Holy - Potency Trait 2
-        179181, -- [PH] Flex Conduit - Priest - Holy - Flex Trait 1
-        179182, -- [PH] Flex Conduit - Priest - Holy - Flex Trait 2
-        179183, -- [PH] Potency Conduit - Priest - Shadow - Potency Trait 1
-        179184, -- [PH] Potency Conduit - Priest - Shadow - Potency Trait 2
-        179185, -- [PH] Flex Conduit - Priest - Shadow - Flex Trait 1
-        179186, -- [PH] Flex Conduit - Priest - Shadow - Flex Trait 2
-        179187, -- [PH] Potency Conduit - Rogue - Assassination - Potency Trait 1
-        179188, -- [PH] Potency Conduit - Rogue - Assassination - Potency Trait 2
-        179189, -- [PH] Flex Conduit - Rogue - Assassination - Flex Trait 1
-        179190, -- [PH] Flex Conduit - Rogue - Assassination - Flex Trait 2
-        179191, -- [PH] Potency Conduit - Rogue - All - Potency Trait - Covenant
-        179192, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 1
-        179193, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 2
-        179194, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 3
-        179195, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 1
-        179196, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 2
-        179197, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 3
-        179198, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 4
-        179199, -- [PH] Potency Conduit - Rogue - Outlaw - Potency Trait 1
-        179200, -- [PH] Potency Conduit - Rogue - Outlaw - Potency Trait 2
-        179202, -- [PH] Flex Conduit - Rogue - Outlaw - Flex Trait 2
-        179203, -- [PH] Potency Conduit - Rogue - Subtlety - Potency Trait 1
-        179204, -- [PH] Potency Conduit - Rogue - Subtlety - Potency Trait 2
-        179205, -- [PH] Flex Conduit - Rogue - Subtlety - Flex Trait 1
-        179206, -- [PH] Flex Conduit - Rogue - Subtlety - Flex Trait 2
-        179207, -- [PH] Potency Conduit - Shaman - Elemental - Potency Trait 1
-        179208, -- [PH] Potency Conduit - Shaman - Elemental - Potency Trait 2
-        179209, -- [PH] Flex Conduit - Shaman - Elemental - Flex Trait 1
-        179210, -- [PH] Flex Conduit - Shaman - Elemental - Flex Trait 2
-        179211, -- [PH] Potency Conduit - Shaman - All - Potency Trait - Covenant
-        179212, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 1
-        179213, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 2
-        179214, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 3
-        179215, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 1
-        179216, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 2
-        179217, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 3
-        179218, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 4
-        179219, -- [PH] Potency Conduit - Shaman - Enhancement - Potency Trait 1
-        179220, -- [PH] Potency Conduit - Shaman - Enhancement - Potency Trait 2
-        179221, -- [PH] Flex Conduit - Shaman - Enhancement - Flex Trait 1
-        179222, -- [PH] Flex Conduit - Shaman - Enhancement - Flex Trait 2
-        179223, -- [PH] Potency Conduit - Shaman - Restoration - Potency Trait 1
-        179224, -- [PH] Potency Conduit - Shaman - Restoration - Potency Trait 2
-        179225, -- [PH] Flex Conduit - Shaman - Restoration - Flex Trait 1
-        179226, -- [PH] Flex Conduit - Shaman - Restoration - Flex Trait 2
-        179227, -- [PH] Potency Conduit - Warrior - Arms - Potency Trait 1
-        179228, -- [PH] Potency Conduit - Warrior - Arms - Potency Trait 2
-        179229, -- [PH] Flex Conduit - Warrior - Arms - Flex Trait 1
-        179230, -- [PH] Flex Conduit - Warrior - Arms - Flex Trait 2
-        179231, -- [PH] Potency Conduit - Warrior - All - Potency Trait - Covenant
-        179232, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 1
-        179233, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 2
-        179234, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 3
-        179235, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 1
-        179236, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 2
-        179237, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 3
-        179238, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 4
-        179239, -- [PH] Potency Conduit - Warrior - Fury - Potency Trait 1
-        179240, -- [PH] Potency Conduit - Warrior - Fury - Potency Trait 2
-        179241, -- [PH] Flex Conduit - Warrior - Fury - Flex Trait 1
-        179242, -- [PH] Flex Conduit - Warrior - Fury - Flex Trait 2
-        179243, -- [PH] Potency Conduit - Warrior - Protection - Potency Trait 1
-        179244, -- [PH] Potency Conduit - Warrior - Protection - Potency Trait 2
-        179245, -- [PH] Flex Conduit - Warrior - Protection - Flex Trait 1
-        179246, -- [PH] Flex Conduit - Warrior - Protection - Flex Trait 2
-        179247, -- [PH] Potency Conduit - Warlock - Affliction - Potency Trait 1
-        179248, -- [PH] Potency Conduit - Warlock - Affliction - Potency Trait 2
-        179249, -- [PH] Flex Conduit - Warlock - Affliction - Flex Trait 1
-        179250, -- [PH] Flex Conduit - Warlock - Affliction - Flex Trait 2
-        179251, -- [PH] Potency Conduit - Warlock - All - Potency Trait - Covenant
-        179252, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 1
-        179253, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 2
-        179254, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 3
-        179255, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 1
-        179256, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 2
-        179257, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 3
-        179258, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 4
-        179259, -- [PH] Potency Conduit - Warlock - Demonology - Potency Trait 1
-        179260, -- [PH] Potency Conduit - Warlock - Demonology - Potency Trait 2
-        179261, -- [PH] Flex Conduit - Warlock - Demonology - Flex Trait 1
-        179262, -- [PH] Flex Conduit - Warlock - Demonology - Flex Trait 2
-        179263, -- [PH] Potency Conduit - Warlock - Destruction - Potency Trait 1
-        179264, -- [PH] Potency Conduit - Warlock - Destruction - Potency Trait 2
-        179265, -- [PH] Flex Conduit - Warlock - Destruction - Flex Trait 1
-        179266, -- [PH] Flex Conduit - Warlock - Destruction - Flex Trait 2
+--        179000, -- [PH] Potency Conduit - Death Knight - Blood - Potency Trait 1
+--        179027, -- [PH] Potency Conduit - Death Knight - Blood - Potency Trait 2
+--        179028, -- [PH] Flex Conduit - Death Knight - Blood - Flex Trait 1
+--        179029, -- [PH] Flex Conduit - Death Knight - Blood - Flex Trait 2
+--        179030, -- [PH] Potency Conduit - Death Knight - All - Potency Trait - Covenant
+--        179031, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 1
+--        179032, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 2
+--        179033, -- [PH] Endurance Conduit - Death Knight - All - Endurance Trait 3
+--        179034, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 1
+--        179035, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 2
+--        179036, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 3
+--        179037, -- [PH] Finesse Conduit - Death Knight - All - Finesse Trait 4
+--        179038, -- [PH] Potency Conduit - Death Knight - Frost - Potency Trait 1
+--        179039, -- [PH] Potency Conduit - Death Knight - Frost - Potency Trait 2
+--        179040, -- [PH] Flex Conduit - Death Knight - Frost - Flex Trait 1
+--        179041, -- [PH] Flex Conduit - Death Knight - Frost - Flex Trait 2
+--        179042, -- [PH] Potency Conduit - Death Knight - Unholy - Potency Trait 1
+--        179043, -- [PH] Potency Conduit - Death Knight - Unholy - Potency Trait 2
+--        179044, -- [PH] Flex Conduit - Death Knight - Unholy - Flex Trait 1
+--        179045, -- [PH] Flex Conduit - Death Knight - Unholy - Flex Trait 2
+--        179046, -- [PH] Potency Conduit - Demon Hunter - Vengeance - Potency Trait 1
+--        179047, -- [PH] Potency Conduit - Demon Hunter - Vengeance - Potency Trait 2
+--        179048, -- [PH] Flex Conduit - Demon Hunter - Vengeance - Flex Trait 1
+--        179049, -- [PH] Flex Conduit - Demon Hunter - Vengeance - Flex Trait 2
+--        179050, -- [PH] Potency Conduit - Demon Hunter - All - Potency Trait - Covenant
+--        179051, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 1
+--        179052, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 2
+--        179053, -- [PH] Endurance Conduit - Demon Hunter - All - Endurance Trait 3
+--        179054, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 1
+--        179055, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 2
+--        179056, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 3
+--        179057, -- [PH] Finesse Conduit - Demon Hunter - All - Finesse Trait 4
+--        179058, -- [PH] Potency Conduit - Demon Hunter - Havoc - Potency Trait 1
+--        179059, -- [PH] Potency Conduit - Demon Hunter - Havoc - Potency Trait 2
+--        179060, -- [PH] Flex Conduit - Demon Hunter - Havoc - Flex Trait 1
+--        179061, -- [PH] Flex Conduit - Demon Hunter - Havoc - Flex Trait 2
+--        179062, -- [PH] Potency Conduit - Druid - Balance - Potency Trait 1
+--        179063, -- [PH] Potency Conduit - Druid - Balance - Potency Trait 2
+--        179064, -- [PH] Flex Conduit - Druid - Balance - Flex Trait 1
+--        179065, -- [PH] Flex Conduit - Druid - Balance - Flex Trait 2
+--        179066, -- [PH] Potency Conduit - Druid - All - Potency Trait - Covenant
+--        179067, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 1
+--        179068, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 2
+--        179069, -- [PH] Endurance Conduit - Druid - All - Endurance Trait 3
+--        179070, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 1
+--        179071, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 2
+--        179072, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 3
+--        179073, -- [PH] Finesse Conduit - Druid - All - Finesse Trait 4
+--        179074, -- [PH] Potency Conduit - Druid - Feral - Potency Trait 1
+--        179075, -- [PH] Potency Conduit - Druid - Feral - Potency Trait 2
+--        179076, -- [PH] Flex Conduit - Druid - Feral - Flex Trait 1
+--        179077, -- [PH] Flex Conduit - Druid - Feral - Flex Trait 2
+--        179078, -- [PH] Potency Conduit - Druid - Guardian - Potency Trait 1
+--        179079, -- [PH] Potency Conduit - Druid - Guardian - Potency Trait 2
+--        179080, -- [PH] Flex Conduit - Druid - Guardian - Flex Trait 1
+--        179081, -- [PH] Flex Conduit - Druid - Guardian - Flex Trait 2
+--        179082, -- [PH] Potency Conduit - Druid - Restoration - Potency Trait 1
+--        179083, -- [PH] Potency Conduit - Druid - Restoration - Potency Trait 2
+--        179084, -- [PH] Flex Conduit - Druid - Restoration - Flex Trait 1
+--        179085, -- [PH] Flex Conduit - Druid - Restoration - Flex Trait 2
+--        179086, -- [PH] Potency Conduit - Hunter - Beast Mastery - Potency Trait 1
+--        179087, -- [PH] Potency Conduit - Hunter - Beast Mastery - Potency Trait 2
+--        179088, -- [PH] Flex Conduit - Hunter - Beast Mastery - Flex Trait 1
+--        179089, -- [PH] Flex Conduit - Hunter - Beast Mastery - Flex Trait 2
+--        179090, -- [PH] Potency Conduit - Hunter - All - Potency Trait - Covenant
+--        179091, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 1
+--        179092, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 2
+--        179093, -- [PH] Endurance Conduit - Hunter - All - Endurance Trait 3
+--        179094, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 1
+--        179095, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 2
+--        179096, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 3
+--        179097, -- [PH] Finesse Conduit - Hunter - All - Finesse Trait 4
+--        179098, -- [PH] Potency Conduit - Hunter - Marksmanship - Potency Trait 1
+--        179099, -- [PH] Potency Conduit - Hunter - Marksmanship - Potency Trait 2
+--        179100, -- [PH] Flex Conduit - Hunter - Marksmanship - Flex Trait 1
+--        179101, -- [PH] Flex Conduit - Hunter - Marksmanship - Flex Trait 2
+--        179102, -- [PH] Potency Conduit - Hunter - Survival - Potency Trait 1
+--        179103, -- [PH] Potency Conduit - Hunter - Survival - Potency Trait 2
+--        179104, -- [PH] Flex Conduit - Hunter - Survival - Flex Trait 1
+--        179105, -- [PH] Flex Conduit - Hunter - Survival - Flex Trait 2
+--        179106, -- [PH] Potency Conduit - Mage - Arcane - Potency Trait 1
+--        179107, -- [PH] Potency Conduit - Mage - Arcane - Potency Trait 2
+--        179108, -- [PH] Flex Conduit - Mage - Arcane - Flex Trait 1
+--        179109, -- [PH] Flex Conduit - Mage - Arcane - Flex Trait 2
+--        179110, -- [PH] Potency Conduit - Mage - All - Potency Trait - Covenant
+--        179111, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 1
+--        179112, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 2
+--        179113, -- [PH] Endurance Conduit - Mage - All - Endurance Trait 3
+--        179114, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 1
+--        179115, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 2
+--        179116, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 3
+--        179117, -- [PH] Finesse Conduit - Mage - All - Finesse Trait 4
+--        179118, -- [PH] Potency Conduit - Mage - Fire - Potency Trait 1
+--        179119, -- [PH] Potency Conduit - Mage - Fire - Potency Trait 2
+--        179120, -- [PH] Flex Conduit - Mage - Fire - Flex Trait 1
+--        179121, -- [PH] Flex Conduit - Mage - Fire - Flex Trait 2
+--        179122, -- [PH] Potency Conduit - Mage - Frost - Potency Trait 1
+--        179123, -- [PH] Potency Conduit - Mage - Frost - Potency Trait 2
+--        179124, -- [PH] Flex Conduit - Mage - Frost - Flex Trait 1
+--        179125, -- [PH] Flex Conduit - Mage - Frost - Flex Trait 2
+--        179126, -- [PH] Potency Conduit - Monk - Brewmaster - Potency Trait 1
+--        179127, -- [PH] Potency Conduit - Monk - Brewmaster - Potency Trait 2
+--        179128, -- [PH] Flex Conduit - Monk - Brewmaster - Flex Trait 1
+--        179129, -- [PH] Flex Conduit - Monk - Brewmaster - Flex Trait 2
+--        179130, -- [PH] Potency Conduit - Monk - All - Potency Trait - Covenant
+--        179131, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 1
+--        179132, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 2
+--        179133, -- [PH] Endurance Conduit - Monk - All - Endurance Trait 3
+--        179134, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 1
+--        179135, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 2
+--        179136, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 3
+--        179137, -- [PH] Finesse Conduit - Monk - All - Finesse Trait 4
+--        179138, -- [PH] Potency Conduit - Monk - Mistweaver - Potency Trait 1
+--        179139, -- [PH] Potency Conduit - Monk - Mistweaver - Potency Trait 2
+--        179140, -- [PH] Flex Conduit - Monk - Mistweaver - Flex Trait 1
+--        179141, -- [PH] Flex Conduit - Monk - Mistweaver - Flex Trait 2
+--        179142, -- [PH] Potency Conduit - Monk - Windwalker - Potency Trait 1
+--        179143, -- [PH] Potency Conduit - Monk - Windwalker - Potency Trait 2
+--        179144, -- [PH] Flex Conduit - Monk - Windwalker - Flex Trait 1
+--        179145, -- [PH] Flex Conduit - Monk - Windwalker - Flex Trait 2
+--        179146, -- [PH] Potency Conduit - Paladin - Holy - Potency Trait 1
+--        179147, -- [PH] Potency Conduit - Paladin - Holy - Potency Trait 2
+--        179148, -- [PH] Flex Conduit - Paladin - Holy - Flex Trait 1
+--        179149, -- [PH] Flex Conduit - Paladin - Holy - Flex Trait 2
+--        179150, -- [PH] Potency Conduit - Paladin - All - Potency Trait - Covenant
+--        179151, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 1
+--        179152, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 2
+--        179153, -- [PH] Endurance Conduit - Paladin - All - Endurance Trait 3
+--        179154, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 1
+--        179155, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 2
+--        179156, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 3
+--        179157, -- [PH] Finesse Conduit - Paladin - All - Finesse Trait 4
+--        179158, -- [PH] Potency Conduit - Paladin - Protection - Potency Trait 1
+--        179159, -- [PH] Potency Conduit - Paladin - Protection - Potency Trait 2
+--        179160, -- [PH] Flex Conduit - Paladin - Protection - Flex Trait 1
+--        179161, -- [PH] Flex Conduit - Paladin - Protection - Flex Trait 2
+--        179162, -- [PH] Potency Conduit - Paladin - Retribution - Potency Trait 1
+--        179163, -- [PH] Potency Conduit - Paladin - Retribution - Potency Trait 2
+--        179164, -- [PH] Flex Conduit - Paladin - Retribution - Flex Trait 1
+--        179165, -- [PH] Flex Conduit - Paladin - Retribution - Flex Trait 2
+--        179167, -- [PH] Potency Conduit - Priest - Discipline - Potency Trait 1
+--        179168, -- [PH] Potency Conduit - Priest - Discipline - Potency Trait 2
+--        179169, -- [PH] Flex Conduit - Priest - Discipline - Flex Trait 1
+--        179170, -- [PH] Flex Conduit - Priest - Discipline - Flex Trait 2
+--        179171, -- [PH] Potency Conduit - Priest - All - Potency Trait - Covenant
+--        179172, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 1
+--        179173, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 2
+--        179174, -- [PH] Endurance Conduit - Priest - All - Endurance Trait 3
+--        179175, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 1
+--        179176, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 2
+--        179177, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 3
+--        179178, -- [PH] Finesse Conduit - Priest - All - Finesse Trait 4
+--        179179, -- [PH] Potency Conduit - Priest - Holy - Potency Trait 1
+--        179180, -- [PH] Potency Conduit - Priest - Holy - Potency Trait 2
+--        179181, -- [PH] Flex Conduit - Priest - Holy - Flex Trait 1
+--        179182, -- [PH] Flex Conduit - Priest - Holy - Flex Trait 2
+--        179183, -- [PH] Potency Conduit - Priest - Shadow - Potency Trait 1
+--        179184, -- [PH] Potency Conduit - Priest - Shadow - Potency Trait 2
+--        179185, -- [PH] Flex Conduit - Priest - Shadow - Flex Trait 1
+--        179186, -- [PH] Flex Conduit - Priest - Shadow - Flex Trait 2
+--        179187, -- [PH] Potency Conduit - Rogue - Assassination - Potency Trait 1
+--        179188, -- [PH] Potency Conduit - Rogue - Assassination - Potency Trait 2
+--        179189, -- [PH] Flex Conduit - Rogue - Assassination - Flex Trait 1
+--        179190, -- [PH] Flex Conduit - Rogue - Assassination - Flex Trait 2
+--        179191, -- [PH] Potency Conduit - Rogue - All - Potency Trait - Covenant
+--        179192, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 1
+--        179193, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 2
+--        179194, -- [PH] Endurance Conduit - Rogue - All - Endurance Trait 3
+--        179195, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 1
+--        179196, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 2
+--        179197, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 3
+--        179198, -- [PH] Finesse Conduit - Rogue - All - Finesse Trait 4
+--        179199, -- [PH] Potency Conduit - Rogue - Outlaw - Potency Trait 1
+--        179200, -- [PH] Potency Conduit - Rogue - Outlaw - Potency Trait 2
+--        179202, -- [PH] Flex Conduit - Rogue - Outlaw - Flex Trait 2
+--        179203, -- [PH] Potency Conduit - Rogue - Subtlety - Potency Trait 1
+--        179204, -- [PH] Potency Conduit - Rogue - Subtlety - Potency Trait 2
+--        179205, -- [PH] Flex Conduit - Rogue - Subtlety - Flex Trait 1
+--        179206, -- [PH] Flex Conduit - Rogue - Subtlety - Flex Trait 2
+--        179207, -- [PH] Potency Conduit - Shaman - Elemental - Potency Trait 1
+--        179208, -- [PH] Potency Conduit - Shaman - Elemental - Potency Trait 2
+--        179209, -- [PH] Flex Conduit - Shaman - Elemental - Flex Trait 1
+--        179210, -- [PH] Flex Conduit - Shaman - Elemental - Flex Trait 2
+--        179211, -- [PH] Potency Conduit - Shaman - All - Potency Trait - Covenant
+--        179212, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 1
+--        179213, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 2
+--        179214, -- [PH] Endurance Conduit - Shaman - All - Endurance Trait 3
+--        179215, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 1
+--        179216, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 2
+--        179217, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 3
+--        179218, -- [PH] Finesse Conduit - Shaman - All - Finesse Trait 4
+--        179219, -- [PH] Potency Conduit - Shaman - Enhancement - Potency Trait 1
+--        179220, -- [PH] Potency Conduit - Shaman - Enhancement - Potency Trait 2
+--        179221, -- [PH] Flex Conduit - Shaman - Enhancement - Flex Trait 1
+--        179222, -- [PH] Flex Conduit - Shaman - Enhancement - Flex Trait 2
+--        179223, -- [PH] Potency Conduit - Shaman - Restoration - Potency Trait 1
+--        179224, -- [PH] Potency Conduit - Shaman - Restoration - Potency Trait 2
+--        179225, -- [PH] Flex Conduit - Shaman - Restoration - Flex Trait 1
+--        179226, -- [PH] Flex Conduit - Shaman - Restoration - Flex Trait 2
+--        179227, -- [PH] Potency Conduit - Warrior - Arms - Potency Trait 1
+--        179228, -- [PH] Potency Conduit - Warrior - Arms - Potency Trait 2
+--        179229, -- [PH] Flex Conduit - Warrior - Arms - Flex Trait 1
+--        179230, -- [PH] Flex Conduit - Warrior - Arms - Flex Trait 2
+--        179231, -- [PH] Potency Conduit - Warrior - All - Potency Trait - Covenant
+--        179232, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 1
+--        179233, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 2
+--        179234, -- [PH] Endurance Conduit - Warrior - All - Endurance Trait 3
+--        179235, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 1
+--        179236, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 2
+--        179237, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 3
+--        179238, -- [PH] Finesse Conduit - Warrior - All - Finesse Trait 4
+--        179239, -- [PH] Potency Conduit - Warrior - Fury - Potency Trait 1
+--        179240, -- [PH] Potency Conduit - Warrior - Fury - Potency Trait 2
+--        179241, -- [PH] Flex Conduit - Warrior - Fury - Flex Trait 1
+--        179242, -- [PH] Flex Conduit - Warrior - Fury - Flex Trait 2
+--        179243, -- [PH] Potency Conduit - Warrior - Protection - Potency Trait 1
+--        179244, -- [PH] Potency Conduit - Warrior - Protection - Potency Trait 2
+--        179245, -- [PH] Flex Conduit - Warrior - Protection - Flex Trait 1
+--        179246, -- [PH] Flex Conduit - Warrior - Protection - Flex Trait 2
+--        179247, -- [PH] Potency Conduit - Warlock - Affliction - Potency Trait 1
+--        179248, -- [PH] Potency Conduit - Warlock - Affliction - Potency Trait 2
+--        179249, -- [PH] Flex Conduit - Warlock - Affliction - Flex Trait 1
+--        179250, -- [PH] Flex Conduit - Warlock - Affliction - Flex Trait 2
+--        179251, -- [PH] Potency Conduit - Warlock - All - Potency Trait - Covenant
+--        179252, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 1
+--        179253, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 2
+--        179254, -- [PH] Endurance Conduit - Warlock - All - Endurance Trait 3
+--        179255, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 1
+--        179256, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 2
+--        179257, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 3
+--        179258, -- [PH] Finesse Conduit - Warlock - All - Finesse Trait 4
+--        179259, -- [PH] Potency Conduit - Warlock - Demonology - Potency Trait 1
+--        179260, -- [PH] Potency Conduit - Warlock - Demonology - Potency Trait 2
+--        179261, -- [PH] Flex Conduit - Warlock - Demonology - Flex Trait 1
+--        179262, -- [PH] Flex Conduit - Warlock - Demonology - Flex Trait 2
+--        179263, -- [PH] Potency Conduit - Warlock - Destruction - Potency Trait 1
+--        179264, -- [PH] Potency Conduit - Warlock - Destruction - Potency Trait 2
+--        179265, -- [PH] Flex Conduit - Warlock - Destruction - Flex Trait 1
+--        179266, -- [PH] Flex Conduit - Warlock - Destruction - Flex Trait 2
         180317, -- Soulful Healing Potion
         180318, -- Soulful Mana Potion
         180404, -- Embertone Lotion
@@ -2476,208 +5781,9 @@ items.potion = {
         20008, -- Living Action Potion
     },
 }
+]]
 
-
-items.Blacksmithing = {
-	[10] = { -- Dragonflight
-		190316, -- Awakened Earth
-		190321, -- Awakened Fire
-		190324, -- Awakened Order
-		190329, -- Awakened Frost
-		190450, -- Awakened Ire
-		190452, -- Primal Flux
-		190453, -- Spark of Ingenuity
-		190454, -- Primal Chaos
-		190456, -- Artisan's Mettle
-		193360, -- Centaur's Trophy Necklace
-		193362, -- Fiery Soul
-		193919, -- Frosty Soul
-		193920, -- Earthen Soul
-		201399, -- Primal Bear Spine
-		201400, -- Aquatic Maw
-		201402, -- Large Sturdy Femur
-		201403, -- Mastodon Tusk
-		201406, -- Glowing Titan Orb
-		191256, -- Serevite Skeleton Key
-		191260, -- Serevite Repair Hammer
-		--191261, -- zzOldDraconium Repair Hammer
-		--191884, -- zzOldDraconium Repair Hammer
-		--191885, -- zzOldDraconium Repair Hammer
-		192131, -- Valdrakken Weapon Chain
-		192132, -- Draconium Blade Sharpener
-		194494, -- Reinforced Plating
-		198454, -- Draconic Treatise on Blacksmithing
-		198606, -- Blacksmith's Writ
-		198791, -- Glimmer of Blacksmithing Wisdom
-		198965, -- Primeval Earth Fragment
-		198966, -- Molten Globule
-		201004, -- Ancient Spear Shards
-		201005, -- Curious Ingots
-		201006, -- Draconic Flux
-		201007, -- Ancient Monument
-		201008, -- Molten Ingot
-		201009, -- Falconer Gauntlet Drawings
-		201010, -- Qalashi Weapon Diagram
-		201011, -- Spelltouched Tongs
-		201708, -- Notebook of Crafting Knowledge
-	},
-	[9] = { -- Shadowland
-		187784,	 -- Vestige of the Eternal
-		187742,	 -- Crafter's Mark of the First Ones
-		187741,	 -- Crafter's Mark IV
-		185960,	 -- Vestige of Origins
-		183942,	 -- Novice Crafter's Mark
-		182093,	 -- Soft Manacle Chains
-		182092,	 -- Tempered Manacle Chains
-		182090,	 -- Binding Cuffs
-		182087,	 -- Soft Heavy Razor
-		182086,	 -- Hardened Heavy Razor
-		181792,	 -- Tarnished Kyrian Shield
-		181791,	 -- Polished Kyrian Shield
-		181790,	 -- Reforged Kyrian Shield
-		181788,	 -- Unrefined Arrowheads
-		181787,	 -- Molten Phaedrum
-		181784,	 -- Bundle of Stalker Arrowheads
-		180060,	 -- Relic of the Past V
-		180059,	 -- Relic of the Past IV
-		180058,	 -- Relic of the Past III
-		180057,	 -- Relic of the Past II
-		180055,	 -- Relic of the Past I
-		173384,	 -- Crafter's Mark of the Chained Isle
-		173383,	 -- Crafter's Mark III
-		173382,	 -- Crafter's Mark II
-		173381,	 -- Crafter's Mark I
-		171441,	 -- Laestrite Skeleton Key
-		171439,	 -- Shaded Weightstone
-		171438,	 -- Porous Weightstone
-		171437,	 -- Shaded Sharpening Stone
-		171436,	 -- Porous Sharpening Stone
-		171428,	 -- Shadowghast Ingot
-	},
-	[8] = { -- BfA
-		168417,	 -- Inflatable Mount Shoes
-		162461,	 -- Sanguicell
-		162460,	 -- Hydrocore
-		159826,	 -- Monelite Skeleton Key
-		152813,	 -- Monel-Hardened Stirrups
-		152812,	 -- Monel-Hardened Hoofplates
-	},
-	[7] = { 	-- Legion
-		151923,	 -- Empyrial Rivet
-		136708,	 -- Demonsteel Stirrups
-		128777,	 -- Heated Leystone Bar
-		124461,	 -- Demonsteel Bar
-		124455,	 -- Masterwork Leystone Armguards
-		124454,	 -- Brimstone-Crusted Armguards
-		124453,	 -- Brimstone-Covered Armguards
-		124450,	 -- Engraved Leystone Armguards
-		124435,	 -- Leystone Neckplate
-		124434,	 -- Handmade Leystone Helm
-		124433,	 -- Handmade Leystone Boots
-		124432,	 -- Leystone Dome
-		124431,	 -- Leystone Faceguard
-		124430,	 -- Leystone Soleplate
-		124429,	 -- Leystone Footguard
-		124428,	 -- Leystone Heelguard
-		124427,	 -- Leystone Shinplate
-		124424,	 -- Hard Leystone Nail
-		124423,	 -- Heated Hard Leystone Ingot
-		124422,	 -- Hard Leystone Ingot
-		124421,	 -- Lump of Leystone Slag
-		124420,	 -- Leystone Shard
-		124419,	 -- Hard Leystone Bar
-		124418,	 -- Leystone Slag
-		124411,	 -- Scrapmetal Cuffplate
-		124410,	 -- Scrapmetal Handguard
-		124409,	 -- Scrapmetal Palmplate
-		124408,	 -- Scrapmetal Fingerplates
-		124407,	 -- Large Heated Metal Scrap
-		124406,	 -- Medium Heated Metal Scrap
-		124405,	 -- Small Heated Metal Scrap
-		124397,	 -- Hard Leystone Armguards
-		124396,	 -- Dull Hard Leystone Armguards
-		124395,	 -- Heated Hard Leystone Bar
-		124394,	 -- Hard Leystone Bar
-		124393,	 -- Leystone Slag
-		124049,	 -- Handcrafted Leystone Gauntlets
-		124010,	 -- Leystone Fingerguard
-		124009,	 -- Leystone Cuffplate
-		124007,	 -- Leystone Bar
-		123956,	 -- Leystone Hoofplates
-	},
-	[6] = { 	-- WoD
-		118720,	 -- Secret of Draenor Blacksmithing
-		116654,	 -- Truesteel Grinder
-		116428,	 -- Truesteel Reshaper
-		108257,	 -- Truesteel Ingot
-	},
-	[5] = { 	-- MoP
-		98717,	 -- Balanced Trillium Ingot
-		94111,	 -- Lightning Steel Ingot
-		90046,	 -- Living Steel Belt Buckle
-		86599,	 -- Ghost Iron Shield Spike
-		86597,	 -- Living Steel Weapon Chain
-		82960,	 -- Ghostly Skeleton Key
-	},
-	[4] = { 	-- Cataclysm
-		65365,	 -- Folded Obsidium
-		55057,	 -- Pyrium Weapon Chain
-		55056,	 -- Pyrium Shield Spike
-		55055,	 -- Elementium Shield Spike
-		55054,	 -- Ebonsteel Belt Buckle
-		55053,	 -- Obsidium Skeleton Key
-	},
-	[3] = { 	-- WolTK
-		44936,	 -- Titanium Plating
-		43854,	 -- Cobalt Skeleton Key
-		43853,	 -- Titanium Skeleton Key
-		42500,	 -- Titanium Shield Spike
-		41976,	 -- Titanium Weapon Chain
-		41611,	 -- Eternal Belt Buckle
-	},
-	[2] = { 	-- BC
-		33185,	 -- Adamantite Weapon Chain
-		28421,	 -- Adamantite Weightstone
-		28420,	 -- Fel Weightstone
-		25521,	 -- Greater Rune of Warding
-		23576,	 -- Greater Ward of Shielding
-		23575,	 -- Lesser Ward of Shielding
-		23559,	 -- Lesser Rune of Warding
-		23530,	 -- Felsteel Shield Spike
-		23529,	 -- Adamantite Sharpening Stone
-		23528,	 -- Fel Sharpening Stone
-	},
-	[1] = { 	-- Classic
-		18262,	 -- Elemental Sharpening Stone
-		15872,	 -- Arcanite Skeleton Key
-		15871,	 -- Truesilver Skeleton Key
-		15870,	 -- Golden Skeleton Key
-		15869,	 -- Silver Skeleton Key
-		12645,	 -- Thorium Shield Spike
-		12644,	 -- Dense Grinding Stone
-		12643,	 -- Dense Weightstone
-		12404,	 -- Dense Sharpening Stone
-		9060,	 -- Inlaid Mithril Cylinder
-		7967,	 -- Mithril Shield Spike
-		7966,	 -- Solid Grinding Stone
-		7965,	 -- Solid Weightstone
-		7964,	 -- Solid Sharpening Stone
-		7071,	 -- Iron Buckle
-		6043,	 -- Iron Counterweight
-		6042,	 -- Iron Shield Spike
-		6041,	 -- Steel Weapon Chain
-		3486,	 -- Heavy Grinding Stone
-		3478,	 -- Coarse Grinding Stone
-		3470,	 -- Rough Grinding Stone
-		3241,	 -- Heavy Weightstone
-		3240,	 -- Coarse Weightstone
-		3239,	 -- Rough Weightstone
-		2871,	 -- Heavy Sharpening Stone
-		2863,	 -- Coarse Sharpening Stone
-		2862,	 -- Rough Sharpening Stone
-	},
-}
-
+--[[ Do we really need the items gathered via the Fishing profession? 
 items.Fishing = {
 	[10] = { -- Dragonflight
 		199340, -- Gold Coin of the Isles
@@ -3440,461 +6546,9 @@ items.Fishing = {
 		117,	 -- Tough Jerky
 	},
 }
-
-items.Cooking = {
-	-- https://www.wowhead.com/items?filter=87:194:166;3:1:10;0:1:0
-	[10] = { -- Dragonflight
-		194683, -- Buttermilk
-		194691, -- Artisanal Berry Juice
-		194730, -- Scalebelly Mackerel
-		194966, -- Thousandbite Piranha
-		194967, -- Aileron Seamoth
-		194968, -- Cerulean Spinefish
-		194969, -- Temporal Dragonhead
-		194970, -- Islefin Dorado
-		197741, -- Maybe Meat
-		197742, -- Ribbed Mollusk Meat
-		197743, -- Waterfowl Filet
-		197744, -- Hornswog Hunk
-		197745, -- Basilisk Eggs
-		197746, -- Bruffalon Flank
-		197747, -- Mighty Mammoth Ribs
-		197748, -- Burly Bear Haunch
-		197749, -- Ohn'ahran Potato
-		197750, -- Three-Cheese Blend
-		197751, -- Pastry Packets
-		197752, -- Conveniently Packaged Ingredients
-		197753, -- Thaldraszian Cocoa Powder
-		197754, -- Salt Deposit
-		197755, -- Lava Beetle
-		197756, -- Pebbled Rock Salts
-		197757, -- Assorted Exotic Spices
-		197766, -- Snow in a Cone
-		197767, -- Blubbery Muffin
-		197768, -- Celebratory Cake
-		197770, -- Zesty Water
-		197782, -- Feisty Fish Sticks
-		197783, -- Aromatic Seafood Platter
-		197784, -- Sizzling Seafood Medley
-		197785, -- Revenge, Served Cold
-		197786, -- Thousandbone Tongueslicer
-		197787, -- Great Cerulean Sea
-		197788, -- Braised Bruffalon Brisket
-		197789, -- Riverside Picnic
-		197790, -- Roast Duck Delight
-		199344, -- Magma Thresher
-		200061, -- Prismatic Leaper
-	},
-	[9] = { -- Shadowland
-		187648,	 -- Empty Kettle of Stone Soup
-		186726,	 -- Porous Rock Candy
-		186725,	 -- Bonemeal Bread
-		186704,	 -- Twilight Tea
-		184690,	 -- Extra Fancy Darkmoon Feast
-		184682,	 -- Extra Lemony Herb Filet
-		184624,	 -- Extra Sugary Fish Feast
-		182101,	 -- Oat Pie Crust
-		182069,	 -- Seared Cutlets
-		182068,	 -- Ember Sauce
-		182044,	 -- Thick Spider Meat
-		182023,	 -- Grazer Bone Broth
-		182022,	 -- Diced Vegetables
-		181986,	 -- Sliced Arden Apples
-		181947,	 -- Skewered Meats
-		181946,	 -- Spider Jerky
-		181945,	 -- Steward Stew
-		181381,	 -- Arden Apple Pie
-		172069,	 -- Banana Beef Pudding
-		172068,	 -- Pickled Meat Smoothie
-		172063,	 -- Fried Bonefish
-		172062,	 -- Smothered Shank
-		172061,	 -- Seraph Tenders
-		172051,	 -- Steak a la Mode
-		172050,	 -- Sweet Silvergill Sausages
-		172049,	 -- Iridescent Ravioli with Apple Sauce
-		172048,	 -- Meaty Apple Dumplings
-		172047,	 -- Candied Amberjack Cakes
-		172046,	 -- Biscuits and Caviar
-		172045,	 -- Tenebrous Crown Roast Aspic
-		172044,	 -- Cinnamon Bonefish Stew
-		172043,	 -- Feast of Gluttonous Hedonism
-		172042,	 -- Surprisingly Palatable Feast
-		172041,	 -- Spinefin Souffle and Fries
-		172040,	 -- Butterscotch Marinated Ribs
-	},
-	[8] = { -- BfA
-		174352,	 -- Baked Voidfin
-		174351,	 -- K'Bab
-		174350,	 -- Dubious Delight
-		174349,	 -- Ghastly Goulash
-		174348,	 -- Grilled Gnasher
-		169449,	 -- Mecha-Bytes
-		169280,	 -- Unagi Skewer
-		168315,	 -- Famine Evaluator And Snack Table
-		168314,	 -- Bil'Tong
-		168313,	 -- Baked Port Tato
-		168312,	 -- Fragrant Kakavia
-		168311,	 -- Abyssal-Fried Rissole
-		168310,	 -- Mech-Dowel's "Big Mech"
-		166804,	 -- Boralus Blood Sausage
-		166344,	 -- Seasoned Steak and Potatoes
-		166343,	 -- Wild Berry Bread
-		166240,	 -- Sanguinated Feast
-		165755,	 -- Honey Potpie
-		163781,	 -- Heartsbane Hexwurst
-		156526,	 -- Bountiful Captain's Feast
-		156525,	 -- Galley Banquet
-		154891,	 -- Seasoned Loins
-		154889,	 -- Grilled Catfish
-		154888,	 -- Sailor's Pie
-		154887,	 -- Loa Loaf
-		154886,	 -- Spiced Snapper
-		154885,	 -- Mon'Dazi
-		154884,	 -- Swamp Fish 'n Chips
-		154883,	 -- Ravenberry Tarts
-		154882,	 -- Honey-Glazed Haunches
-		154881,	 -- Kul Tiramisu
-	},
-	[7] = { 	-- Legion
-		152564,	 -- Feast of the Fishes
-		142334,	 -- Spiced Falcosaur Omelet
-		133681,	 -- Crispy Bacon
-		133579,	 -- Lavish Suramar Feast
-		133578,	 -- Hearty Feast
-		133577,	 -- Fighter Chow
-		133576,	 -- Bear Tartare
-		133575,	 -- Dried Mackerel Strips
-		133574,	 -- Fishbrul Special
-		133573,	 -- Seed-Battered Fish Plate
-		133572,	 -- Nightborne Delicacy Platter
-		133571,	 -- Azshari Salad
-		133570,	 -- The Hungry Magister
-		133569,	 -- Drogbar-Style Salmon
-		133568,	 -- Koi-Scented Stormray
-		133567,	 -- Barracuda Mrglgagh
-		133566,	 -- Suramar Surf and Turf
-		133565,	 -- Leybeque Ribs
-		133564,	 -- Spiced Rib Roast
-		133563,	 -- Faronaar Fizz
-		133562,	 -- Pickled Stormray
-		133561,	 -- Deep-Fried Mossgill
-		133557,	 -- Salt & Pepper Shank
-	},
-	[6] = { 	-- WoD
-		128498,	 -- Fel Eggs and Ham
-		126936,	 -- Sugar-Crusted Fish Feast
-		126935,	 -- Fancy Darkmoon Feast
-		126934,	 -- Lemon Herb Filet
-		122348,	 -- Buttered Sturgeon
-		122347,	 -- Whiptail Fillet
-		122346,	 -- Jumbo Sea Dog
-		122345,	 -- Pickled Eel
-		122344,	 -- Salty Squid Roll
-		122343,	 -- Sleeper Sushi
-		111458,	 -- Feast of the Waters
-		111457,	 -- Feast of Blood
-		111456,	 -- Grilled Saberfish
-		111455,	 -- Saberfish Broth
-		111454,	 -- Gorgrond Chowder
-		111453,	 -- Calamari Crepes
-		111452,	 -- Sleeper Surprise
-		111450,	 -- Frosty Stew
-		111449,	 -- Blackrock Barbecue
-		111447,	 -- Talador Surf and Turf
-		111446,	 -- Skulker Chowder
-		111445,	 -- Fiery Calamari
-		111444,	 -- Fat Sleeper Cakes
-		111442,	 -- Sturgeon Stew
-		111441,	 -- Grilled Gulper
-		111439,	 -- Steamed Scorpion
-		111438,	 -- Clefthoof Sausages
-		111437,	 -- Rylak Crepes
-		111436,	 -- Braised Riverbeast
-		111434,	 -- Pan-Seared Talbuk
-		111433,	 -- Blackrock Ham
-		111431,	 -- Hearty Elekk Steak
-	},
-	[5] = { 	-- MoP
-		101750,	 -- Fluffy Silkfeather Omelet
-		101749,	 -- Stuffed Lushrooms
-		101748,	 -- Spiced Blossom Soup
-		101747,	 -- Farmer's Delight
-		101746,	 -- Seasoned Pomfruit Slices
-		101745,	 -- Mango Ice
-		101662,	 -- Pandaren Treasure Noodle Cart Kit
-		101661,	 -- Deluxe Noodle Cart Kit
-		101630,	 -- Noodle Cart Kit
-		87264,	 -- Four Senses Brew
-		87248,	 -- Great Banquet of the Brew
-		87246,	 -- Banquet of the Brew
-		87244,	 -- Great Banquet of the Oven
-		87242,	 -- Banquet of the Oven
-		87240,	 -- Great Banquet of the Steamer
-		87238,	 -- Banquet of the Steamer
-		87236,	 -- Great Banquet of the Pot
-		87234,	 -- Banquet of the Pot
-		87232,	 -- Great Banquet of the Wok
-		87230,	 -- Banquet of the Wok
-		87228,	 -- Great Banquet of the Grill
-		87226,	 -- Banquet of the Grill
-		86432,	 -- Banana Infused Rum
-		86074,	 -- Spicy Vegetable Chips
-		86073,	 -- Spicy Salmon
-		86070,	 -- Wildfowl Ginseng Soup
-		86069,	 -- Rice Pudding
-		86057,	 -- Sliced Peaches
-		86026,	 -- Perfectly Cooked Instant Noodles
-		85504,	 -- Krasarang Fritters
-		85501,	 -- Viseclaw Soup
-		81414,	 -- Pearl Milk Tea
-		81413,	 -- Skewered Peanut Chicken
-		81412,	 -- Blanched Needle Mushrooms
-		81411,	 -- Peach Pie
-		81410,	 -- Green Curry Fish
-		81409,	 -- Tangy Yogurt
-		81408,	 -- Red Bean Bun
-		81406,	 -- Roasted Barley Tea
-		81405,	 -- Boiled Silkworm Pupa
-		81404,	 -- Dried Needle Mushrooms
-		81403,	 -- Dried Peaches
-		81402,	 -- Toasted Fish Jerky
-		81401,	 -- Yak Cheese Curds
-		81400,	 -- Pounded Rice Cake
-		75038,	 -- Mad Brewer's Breakfast
-		75037,	 -- Jade Witch Brew
-		75026,	 -- Ginseng Tea
-		75016,	 -- Great Pandaren Banquet
-		74919,	 -- Pandaren Banquet
-		74656,	 -- Chun Tian Spring Rolls
-		74655,	 -- Twin Fish Platter
-		74654,	 -- Wildfowl Roast
-		74653,	 -- Steamed Crab Surprise
-		74652,	 -- Fire Spirit Salmon
-		74651,	 -- Shrimp Dumplings
-		74650,	 -- Mogu Fish Stew
-		74649,	 -- Braised Turtle
-		74648,	 -- Sea Mist Rice Noodles
-		74647,	 -- Valley Stir Fry
-		74646,	 -- Black Pepper Ribs and Shrimp
-		74645,	 -- Eternal Blossom Fish
-		74644,	 -- Swirling Mist Soup
-		74643,	 -- Sauteed Carrots
-		74642,	 -- Charbroiled Tiger Steak
-		74641,	 -- Fish Cake
-		74636,	 -- Golden Carp Consomme
-	},
-	[4] = { 	-- Cataclysm
-		68687,	 -- Scalding Murglesnout
-		67230,	 -- Venison Jerky
-		62790,	 -- Darkbrew Lager
-		62680,	 -- Chocolate Cookie
-		62677,	 -- Fish Fry
-		62676,	 -- Blackened Surprise
-		62675,	 -- Starfire Espresso
-		62674,	 -- Highland Spirits
-		62673,	 -- Feathered Lure
-		62672,	 -- South Island Iced Tea
-		62671,	 -- Severed Sagefish Head
-		62670,	 -- Beer-Basted Crocolisk
-		62669,	 -- Skewered Eel
-		62668,	 -- Blackbelly Sushi
-		62667,	 -- Mushroom Sauce Mudfish
-		62666,	 -- Delicious Sagefish Tail
-		62665,	 -- Basilisk Liverdog
-		62664,	 -- Crocolisk Au Gratin
-		62663,	 -- Lavascale Minestrone
-		62662,	 -- Grilled Dragon
-		62661,	 -- Baked Rockfish
-		62660,	 -- Pickled Guppy
-		62659,	 -- Hearty Seafood Soup
-		62658,	 -- Tender Baked Turtle
-		62657,	 -- Lurker Lunch
-		62656,	 -- Whitecrest Gumbo
-		62655,	 -- Broiled Mountain Trout
-		62654,	 -- Lavascale Fillet
-		62653,	 -- Salted Eye
-		62652,	 -- Seasoned Crab
-		62651,	 -- Lightly Fried Lurker
-		62649,	 -- Fortune Cookie
-		62290,	 -- Seafood Magnifique Feast
-		62289,	 -- Broiled Dragon Feast
-	},
-	[3] = { 	-- WolTK
-		46691,	 -- Bread of the Dead
-		45932,	 -- Black Jelly
-		44953,	 -- Worg Tartare
-		44840,	 -- Cranberry Chutney
-		44839,	 -- Candied Sweet Potato
-		44838,	 -- Slow-Roasted Turkey
-		44837,	 -- Spice Bread Stuffing
-		44836,	 -- Pumpkin Pie
-		43492,	 -- Haunted Herring
-		43491,	 -- Bad Clams
-		43490,	 -- Tasty Cupcake
-		43488,	 -- Last Week's Mammoth
-		43480,	 -- Small Feast
-		43478,	 -- Gigantic Feast
-		43268,	 -- Dalaran Clam Chowder
-		43015,	 -- Fish Feast
-		43005,	 -- Spiced Mammoth Treats
-		43004,	 -- Critter Bites
-		43001,	 -- Tracker Snacks
-		43000,	 -- Dragonfin Filet
-		42999,	 -- Blackened Dragonfin
-		42998,	 -- Cuttlesteak
-		42997,	 -- Blackened Worg Steak
-		42996,	 -- Snapper Extreme
-		42995,	 -- Hearty Rhino
-		42994,	 -- Rhinolicious Wormsteak
-		42993,	 -- Spicy Fried Herring
-		42942,	 -- Baked Manta Ray
-		39520,	 -- Kungaloosh
-		34769,	 -- Imperial Manta Steak
-		34768,	 -- Spicy Blue Nettlefish
-		34767,	 -- Firecracker Salmon
-		34766,	 -- Poached Northern Sculpin
-		34765,	 -- Pickled Fangtooth
-		34764,	 -- Poached Nettlefish
-		34763,	 -- Smoked Salmon
-		34762,	 -- Grilled Sculpin
-		34761,	 -- Sauteed Goby
-		34760,	 -- Grilled Bonescale
-		34759,	 -- Smoked Rockfin
-		34758,	 -- Mighty Rhino Dogs
-		34757,	 -- Very Burnt Worg
-		34756,	 -- Spiced Worm Burger
-		34755,	 -- Tender Shoveltusk Steak
-		34754,	 -- Mega Mammoth Meal
-		34753,	 -- Great Feast
-		34752,	 -- Rhino Dogs
-		34751,	 -- Roasted Worg
-		34750,	 -- Worm Delight
-		34749,	 -- Shoveltusk Steak
-		34748,	 -- Mammoth Meal
-		34747,	 -- Northern Stew
-		33004,	 -- Clamlette Magnifique
-	},
-	[2] = { 	-- BC
-		35565,	 -- Juicy Bear Burger
-		35563,	 -- Charred Bear Kabobs
-		34832,	 -- Captain Rumsey's Lager
-		34411,	 -- Hot Apple Cider
-		33874,	 -- Kibler's Bits
-		33872,	 -- Spicy Hot Talbuk
-		33867,	 -- Broiled Bloodfin
-		33866,	 -- Stormchops
-		33825,	 -- Skullfish Soup
-		33053,	 -- Hot Buttered Trout
-		33052,	 -- Fisherman's Feast
-		33048,	 -- Stewed Trout
-		31673,	 -- Crunchy Serpent
-		31672,	 -- Mok'Nathal Shortribs
-		30816,	 -- Spice Bread
-		30155,	 -- Clam Bar
-		27667,	 -- Spicy Crawdad
-		27666,	 -- Golden Fish Sticks
-		27665,	 -- Poached Bluefish
-		27664,	 -- Grilled Mudfish
-		27663,	 -- Blackened Sporefish
-		27662,	 -- Feltail Delight
-		27661,	 -- Blackened Trout
-		27660,	 -- Talbuk Steak
-		27659,	 -- Warp Burger
-		27658,	 -- Roasted Clefthoof
-		27657,	 -- Blackened Basilisk
-		27655,	 -- Ravager Dog
-		27651,	 -- Buzzard Bites
-		27636,	 -- Bat Bites
-		27635,	 -- Lynx Steak
-		24105,	 -- Roasted Moongraze Tenderloin
-		22645,	 -- Crunchy Spider Surprise
-	},
-	[1] = { 	-- Classic
-		21217,	 -- Sagefish Delight
-		21072,	 -- Smoked Sagefish
-		21023,	 -- Dirge's Kickin' Chimaerok Chops
-		20452,	 -- Smoked Desert Dumplings
-		20074,	 -- Heavy Crocolisk Stew
-		18254,	 -- Runn Tum Tuber Surprise
-		18045,	 -- Tender Wolf Steak
-		17222,	 -- Spider Sausage
-		17198,	 -- Winter Veil Egg Nog
-		17197,	 -- Gingerbread Cookie
-		16766,	 -- Undermine Clam Chowder
-		13935,	 -- Baked Salmon
-		13934,	 -- Mightfish Steak
-		13933,	 -- Lobster Stew
-		13932,	 -- Poached Sunscale Salmon
-		13931,	 -- Nightfin Soup
-		13930,	 -- Filet of Redgill
-		13929,	 -- Hot Smoked Bass
-		13928,	 -- Grilled Squid
-		13927,	 -- Cooked Glossy Mightfish
-		13851,	 -- Hot Wolf Ribs
-		12224,	 -- Crispy Bat Wing
-		12218,	 -- Monster Omelet
-		12217,	 -- Dragonbreath Chili
-		12216,	 -- Spiced Chili Crab
-		12215,	 -- Heavy Kodo Stew
-		12214,	 -- Mystery Stew
-		12213,	 -- Carrion Surprise
-		12212,	 -- Jungle Stew
-		12210,	 -- Roast Raptor
-		12209,	 -- Lean Wolf Steak
-		10841,	 -- Goldthorn Tea
-		8364,	 -- Mithril Head Trout
-		7676,	 -- Thistle Tea
-		6890,	 -- Smoked Bear Meat
-		6888,	 -- Herb Baked Egg
-		6887,	 -- Spotted Yellowtail
-		6657,	 -- Savory Deviate Delight
-		6316,	 -- Loch Frenzy Delight
-		6290,	 -- Brilliant Smallfish
-		6038,	 -- Giant Clam Scorcho
-		5527,	 -- Goblin Deviled Clams
-		5526,	 -- Clam Chowder
-		5525,	 -- Boiled Clams
-		5480,	 -- Lean Venison
-		5479,	 -- Crispy Lizard Tail
-		5478,	 -- Dig Rat Stew
-		5477,	 -- Strider Stew
-		5476,	 -- Fillet of Frenzy
-		5474,	 -- Roasted Kodo Meat
-		5473,	 -- Scorpid Surprise
-		5472,	 -- Kaldorei Spider Kabob
-		5095,	 -- Rainbow Fin Albacore
-		4594,	 -- Rockscale Cod
-		4593,	 -- Bristle Whisker Catfish
-		4592,	 -- Longjaw Mud Snapper
-		4457,	 -- Barbecued Buzzard Wing
-		3729,	 -- Soothing Turtle Bisque
-		3728,	 -- Tasty Lion Steak
-		3727,	 -- Hot Lion Chops
-		3726,	 -- Big Bear Steak
-		3666,	 -- Gooey Spider Cake
-		3665,	 -- Curiously Tasty Omelet
-		3664,	 -- Crocolisk Gumbo
-		3663,	 -- Murloc Fin Soup
-		3662,	 -- Crocolisk Steak
-		3220,	 -- Blood Sausage
-		2888,	 -- Beer Basted Boar Ribs
-		2687,	 -- Dry Pork Ribs
-		2685,	 -- Succulent Pork Ribs
-		2684,	 -- Coyote Steak
-		2683,	 -- Crab Cake
-		2682,	 -- Cooked Crab Claw
-		2681,	 -- Roasted Boar Meat
-		2680,	 -- Spiced Wolf Meat
-		2679,	 -- Charred Wolf Meat
-		1082,	 -- Redridge Goulash
-		1017,	 -- Seasoned Wolf Kabob
-		787,	 -- Slitherskin Mackerel
-		733,	 -- Westfall Stew
-		724,	 -- Goretusk Liver Pie
-	},
-}
-
-items.relics = {
+]]
+--[[
+items.Relics = {
 	[10] = { -- Dragonflight
 	},
 	[9] = { -- Shadowland
@@ -3975,7 +6629,6 @@ items.relics = {
 		5273,	 -- Mathystra Relic
 	},
 }
-
 items.others = {
 	[10] = { -- Dragonflight
 		187617, -- Tempered Djaradin Steel
@@ -5420,129 +8073,9 @@ items.pvp = {
 		20560, -- Alterac Valley Mark of Honor
 	},
 }
+]]
 
-items.elemental = {
-	[10] = { -- Dragonflight
-		190315, -- Rousing Earth
-		190316, -- Awakened Earth
-		190318, -- Perception!
-		190319, -- Resourceful!
-		190320, -- Rousing Fire
-		190321, -- Awakened Fire
-		190322, -- Rousing Order
-		190324, -- Awakened Order
-		190326, -- Rousing Air
-		190327, -- Awakened Air
-		190328, -- Rousing Frost
-		190329, -- Awakened Frost
-		190330, -- Rousing Decay
-		190331, -- Awakened Decay
-		190332, -- Sparking Catalyst
-		190450, -- Awakened Ire
-		190451, -- Rousing Ire
-		191784, -- Dragon Shard of Knowledge
-		192887, -- Elemental Harmony
-		193362, -- Fiery Soul
-		193378, -- Elemental Harmony
-		193379, -- Elemental Harmony
-		193919, -- Frosty Soul
-		193920, -- Earthen Soul
-		193921, -- Airy Soul
-		194727, -- Fiery Spirit
-		194728, -- Fiery Spirit
-		194729, -- Fiery Spirit
-	},
-	[9] = { -- Shadowland
-		187707, -- Progenitor Essentia
-		186017, -- Korthite Crystal
-		178787, -- Orboreal Shard
-	},
-	[8] = { -- BfA
-		165703, -- Breath of Bwonsamdi
-		165948, -- Tidalcore
-		162461, -- Sanguicell
-		162460, -- Hydrocore
-		163203, -- Hypersensitive Azeritometer Sensor
-		152668, -- Expulsom
-	},
-	[7] = { 	-- Legion
-		151568, -- Primal Sargerite, added in patch 7.3.0.24484
-		124124, -- Blood of Sargeras
-		124123, -- Demonfire
-		124112, -- Leyfire
-	},
-	[6] = { 	-- WoD
-		113261, -- Sorcerous Fire
-		113262, -- Sorcerous Water
-		113263, -- Sorcerous Earth
-		113264, -- Sorcerous Air
-		120945, -- Primal Spirit
-	},
-	[5] = { 	-- MoP
-		89112, -- Mote of Harmony
-		76061, -- Spirit of Harmony
-	},
-	[4] = { 	-- Cataclysm
-		54464, -- Random Volatile Element
-		52329, -- Volatile Life
-		52328, -- Volatile Air
-		52327, -- Volatile Earth
-		52326, -- Volatile Water
-		52325, -- Volatile Fire
-	},
-	[3] = { 	-- WolTK
-		37705, -- Crystallized Water
-		37704, -- Crystallized Life
-		37703, -- Crystallized Shadow
-		37702, -- Crystallized Fire
-		37701, -- Crystallized Earth
-		37700, -- Crystallized Air
-		36860, -- Eternal Fire
-		35627, -- Eternal Shadow
-		35625, -- Eternal Life
-		35624, -- Eternal Earth
-		35623, -- Eternal Air
-		35622, -- Eternal Water
-	},
-	[2] = { 	-- BC
-		30183, -- Nether Vortex
-		23572, -- Primal Nether
-		23571, -- Primal Might
-		22578, -- Mote of Water
-		22577, -- Mote of Shadow
-		22576, -- Mote of Mana
-		22575, -- Mote of Life
-		22574, -- Mote of Fire
-		22573, -- Mote of Earth
-		22572, -- Mote of Air
-		22457, -- Primal Mana
-		22456, -- Primal Shadow
-		22452, -- Primal Earth
-		22451, -- Primal Air
-		21886, -- Primal Life
-		21885, -- Primal Water
-		21884, -- Primal Fire
-	},
-	[1] = { 	-- Classic
-		12808, -- Essence of Undeath
-		12803, -- Living Essence
-		10286, -- Heart of the Wild
-		7972, -- Ichor of Undeath
-		7082, -- Essence of Air
-		7081, -- Breath of Wind
-		7080, -- Essence of Water
-		7079, -- Globe of Water
-		7078, -- Essence of Fire
-		7077, -- Heart of Fire
-		7076, -- Essence of Earth
-		7075, -- Core of Earth
-		7070, -- Elemental Water
-		7069, -- Elemental Air
-		7068, -- Elemental Fire
-		7067, -- Elemental Earth
-	},
-}
-
+--[[ Do we really need items for meat? I think most were covered by cooking.
 items.meat = {
 	[10] = { -- Dragonflight
 		194730, -- Scalebelly Mackerel
@@ -5959,757 +8492,7 @@ items.meat = {
 		723, --  Goretusk Liver
 	},
 }
-if (isRetail or isProgressionClassic) then
-	items.Jewelcrafting = {
-		[10] = { -- Dragonflight
-			190315, -- Rousing Earth
-			190316, -- Awakened Earth
-			190320, -- Rousing Fire
-			190321, -- Awakened Fire
-			190324, -- Awakened Order
-			190326, -- Rousing Air
-			190327, -- Awakened Air
-			190328, -- Rousing Frost
-			190329, -- Awakened Frost
-			190450, -- Awakened Ire
-			190451, -- Rousing Ire
-			190453, -- Spark of Ingenuity
-			190454, -- Primal Chaos
-			190456, -- Artisan's Mettle
-			192833, -- Misshapen Filigree
-			192872, -- Fractured Glass
-			192880, -- Crumbled Stone
-			193053, -- Contoured Fowlfeather
-			193362, -- Fiery Soul
-			193919, -- Frosty Soul
-			193920, -- Earthen Soul
-			193921, -- Airy Soul
-			193922, -- Wildercloth
-			194123, -- Chromatic Dust
-			194124, -- Vibrant Shard
-			194730, -- Scalebelly Mackerel
-			200113, -- Resonant Crystal
-			200860, -- Draconic Stopper
-			200863, -- Glimmering Nozdorite Cluster
-			200864, -- Glimmering Alexstraszite Cluster
-			200865, -- Glimmering Ysemerald Cluster
-			200866, -- Glimmering Malygite Cluster
-			200867, -- Glimmering Neltharite Cluster
-			201405, -- Tuft of Primal Wool
-			201406, -- Glowing Titan Orb
-			192833, -- Misshapen Filigree
-			192834, -- Shimmering Clasp
-			192835, -- Shimmering Clasp
-			192836, -- Shimmering Clasp
-			192837, -- Queen's Ruby
-			192838, -- Queen's Ruby
-			192839, -- Queen's Ruby
-			192840, -- Mystic Sapphire
-			192841, -- Mystic Sapphire
-			192842, -- Mystic Sapphire
-			192843, -- Vibrant Emerald
-			192844, -- Vibrant Emerald
-			192845, -- Vibrant Emerald
-			192846, -- Sundered Onyx
-			192847, -- Sundered Onyx
-			192848, -- Sundered Onyx
-			192849, -- Eternity Amber
-			192850, -- Eternity Amber
-			192851, -- Eternity Amber
-			192852, -- Alexstraszite
-			192853, -- Alexstraszite
-			192855, -- Alexstraszite
-			192856, -- Malygite
-			192857, -- Malygite
-			192858, -- Malygite
-			192859, -- Ysemerald
-			192860, -- Ysemerald
-			192861, -- Ysemerald
-			192862, -- Neltharite
-			192863, -- Neltharite
-			192865, -- Neltharite
-			192866, -- Nozdorite
-			192867, -- Nozdorite
-			192868, -- Nozdorite
-			192869, -- Illimited Diamond
-			192870, -- Illimited Diamond
-			192871, -- Illimited Diamond
-			192872, -- Fractured Glass
-			192876, -- Frameless Lens
-			192877, -- Frameless Lens
-			192878, -- Frameless Lens
-			192880, -- Crumbled Stone
-			192883, -- Glossy Stone
-			192884, -- Glossy Stone
-			192885, -- Glossy Stone
-			193029, -- Projection Prism
-			193030, -- Projection Prism
-			193031, -- Projection Prism
-			193368, -- Silken Gemdust
-			193369, -- Silken Gemdust
-			193370, -- Silken Gemdust
-			198397, -- Rainbow Pearl
-			200860, -- Draconic Stopper
-			200863, -- Glimmering Nozdorite Cluster
-			200864, -- Glimmering Alexstraszite Cluster
-			200865, -- Glimmering Ysemerald Cluster
-			200866, -- Glimmering Malygite Cluster
-			200867, -- Glimmering Neltharite Cluster
-			188658, -- Draconium Ore
-			190311, -- Draconium Ore
-			193907, -- Chipped Tyrstone
-			193909, -- Ancient Gem Fragments
-			194703, -- Draconic Treatise on Jewelcrafting
-			198612, -- Jeweler's Cuts
-			198656, -- Painter's Pretty Jewel
-			198660, -- Fragmented Key
-			198664, -- Crystalline Overgrowth
-			198670, -- Lofty Malygite
-			198682, -- Alexstraszite Cluster
-			198687, -- Closely Guarded Shiny
-			198973, -- Incandescent Curio
-			198974, -- Elegantly Engraved Embellishment
-			201016, -- Harmonic Crystal Harmonizer
-			201017, -- Igneous Gem
-			201712, -- Notebook of Crafting Knowledge
-		},
-		[9] = { -- Shadowland
-			173173,	 -- Essence of Valor
-			173172,	 -- Essence of Servitude
-			173171,	 -- Essence of Torment
-			173170,	 -- Essence of Rebirth
-			173168,	 -- Laestrite Setting
-	--		173117,	 -- 9.x Raw Blue
-	--		173116,	 -- 9.x Raw Red
-	--		173115,	 -- 9.x Raw Yellow
-	--		173111,	 -- 9.x Raw Rare
-			173110,	 -- Umbryl
-			173109,	 -- Angerseye
-			173108,	 -- Oriblase
-		},
-		[8] = { -- BfA
-			168635,	 -- Leviathan's Eye
-			168193,	 -- Azsharine
-			168192,	 -- Sand Spinel
-			168191,	 -- Sea Currant
-			168190,	 -- Lava Lazuli
-			168189,	 -- Dark Opal
-			168188,	 -- Sage Agate
-			154125,	 -- Royal Quartz
-			154124,	 -- Laribole
-			154123,	 -- Amberblaze
-			154122,	 -- Tidal Amethyst
-			154121,	 -- Scarlet Diamond
-			154120,	 -- Owlseye
-			153706,	 -- Kraken's Eye
-			153705,	 -- Kyanite
-			153704,	 -- Viridium
-			153703,	 -- Solstone
-			153702,	 -- Kubiline
-			153701,	 -- Rubellite
-			153700,	 -- Golden Beryl
-		},
-		[7] = { 	-- Legion
-			151722,	 -- Florid Malachite
-			151721,	 -- Hesselian
-			151720,	 -- Chemirine
-			151719,	 -- Lightsphene
-			151718,	 -- Argulite
-			151579,	 -- Labradorite
-			130245,	 -- Saber's Eye
-			130183,	 -- Shadowruby
-			130182,	 -- Maelstrom Sapphire
-			130181,	 -- Pandemonite
-			130180,	 -- Dawnlight
-			130179,	 -- Eye of Prophecy
-			130178,	 -- Furystone
-			130177,	 -- Queen's Opal
-			130176,	 -- Skystone
-			130175,	 -- Chaotic Spinel
-			130174,	 -- Azsunite
-			130173,	 -- Deep Amber
-			130172,	 -- Sangrite
-			129100,	 -- Gem Chip
-		},
-		[6] = { 	-- WoD
-			-- n/a
-		},
-		[5] = { 	-- MoP
-			76734,	 -- Serpent's Eye
-			76142,	 -- Sun's Radiance
-			76141,	 -- Imperial Amethyst
-			76140,	 -- Vermilion Onyx
-			76139,	 -- Wild Jade
-			76138,	 -- River's Heart
-			76137,	 -- Alexandrite
-			76136,	 -- Pandarian Garnet
-			76135,	 -- Roguestone
-			76134,	 -- Sunstone
-			76133,	 -- Lapis Lazuli
-			76132,	 -- Primal Diamond
-			76131,	 -- Primordial Ruby
-			76130,	 -- Tiger Opal
-		},
-		[4] = { 	-- Cataclysm
-			77952,	 -- Elementium Gem Cluster
-			77951,	 -- Shadowy Gem
-			71810,	 -- Elven Peridot
-			71809,	 -- Shadow Spinel
-			71808,	 -- Lava Coral
-			71807,	 -- Deepholm Iolite
-			71806,	 -- Lightstone
-			71805,	 -- Queen's Garnet
-			52339,	 -- Flawless Pearl
-			52338,	 -- Darkfathom Pearl
-			52303,	 -- Shadowspirit Diamond
-			52196,	 -- Chimera's Eye
-			52195,	 -- Amberjewel
-			52194,	 -- Demonseye
-			52193,	 -- Ember Topaz
-			52192,	 -- Dream Emerald
-			52191,	 -- Ocean Sapphire
-			52190,	 -- Inferno Ruby
-			52182,	 -- Jasper
-			52181,	 -- Hessonite
-			52180,	 -- Nightstone
-			52179,	 -- Alicite
-			52178,	 -- Zephyrite
-			52177,	 -- Carnelian
-		},
-		[3] = { 	-- WolTK
-			46849,	 -- Titanium Powder
-			45054,	 -- Prismatic Black Diamond
-			42225,	 -- Dragon's Eye
-			41334,	 -- Earthsiege Diamond
-			41266,	 -- Skyflare Diamond
-			36934,	 -- Eye of Zul
-			36933,	 -- Forest Emerald
-			36932,	 -- Dark Jade
-			36931,	 -- Ametrine
-			36930,	 -- Monarch Topaz
-			36929,	 -- Huge Citrine
-			36928,	 -- Dreadstone
-			36927,	 -- Twilight Opal
-			36926,	 -- Shadow Crystal
-			36925,	 -- Majestic Zircon
-			36924,	 -- Sky Sapphire
-			36923,	 -- Chalcedony
-			36922,	 -- King's Amber
-			36921,	 -- Autumn's Glow
-			36920,	 -- Sun Crystal
-			36919,	 -- Cardinal Ruby
-			36918,	 -- Scarlet Ruby
-			36917,	 -- Bloodstone
-			36784,	 -- Siren's Tear
-			36783,	 -- Northsea Pearl
-		},
-		[2] = { 	-- BC
-			32249,	 -- Seaspray Emerald
-			32231,	 -- Pyrestone
-			32230,	 -- Shadowsong Amethyst
-			32229,	 -- Lionseye
-			32228,	 -- Empyrean Sapphire
-			32227,	 -- Crimson Spinel
-			31079,	 -- Mercurial Adamantite
-			25868,	 -- Skyfire Diamond
-			25867,	 -- Earthstorm Diamond
-			24479,	 -- Shadow Pearl
-			24478,	 -- Jaggal Pearl
-			24243,	 -- Adamantite Powder
-			23441,	 -- Nightseye
-			23440,	 -- Dawnstone
-			23439,	 -- Noble Topaz
-			23438,	 -- Star of Elune
-			23437,	 -- Talasite
-			23436,	 -- Living Ruby
-			23117,	 -- Azure Moonstone
-			23112,	 -- Golden Draenite
-			23107,	 -- Shadow Draenite
-			23079,	 -- Deep Peridot
-			23077,	 -- Blood Garnet
-			21929,	 -- Flame Spessarite
-			21752,	 -- Thorium Setting
-			20963,	 -- Mithril Filigree
-			20817,	 -- Bronze Setting
-			20816,	 -- Delicate Copper Wire
-		},
-		[1] = { 	-- Classic
-	--		19774,	 -- Souldarite
-			13926,	 -- Golden Pearl
-			12800,	 -- Azerothian Diamond
-			12799,	 -- Large Opal
-			12364,	 -- Huge Emerald
-			12363,	 -- Arcane Crystal
-			12361,	 -- Blue Sapphire
-			11382,	 -- Blood of the Mountain
-			7971,	 -- Black Pearl
-			7910,	 -- Star Ruby
-			7909,	 -- Aquamarine
-			5500,	 -- Iridescent Pearl
-			5498,	 -- Small Lustrous Pearl
-			3864,	 -- Citrine
-			1705,	 -- Lesser Moonstone
-			1529,	 -- Jade
-			1210,	 -- Shadowgem
-			1206,	 -- Moss Agate
-			818,	 -- Tigerseye
-			774,	 -- Malachite
-		},
-	}
-	
-	items.Inscription = {
-		[10] = { -- Dragonflight
-			190315, -- Rousing Earth
-			190316, -- Awakened Earth
-			190321, -- Awakened Fire
-			190324, -- Awakened Order
-			190326, -- Rousing Air
-			190327, -- Awakened Air
-			190328, -- Rousing Frost
-			190329, -- Awakened Frost
-			190331, -- Awakened Decay
-			190450, -- Awakened Ire
-			190453, -- Spark of Ingenuity
-			190454, -- Primal Chaos
-			190456, -- Artisan's Mettle
-			193053, -- Contoured Fowlfeather
-			193254, -- Rockfang Leather
-			193259, -- Flawless Proto Dragon Scale
-			193922, -- Wildercloth
-			194784, -- Glittering Parchment
-			197735, -- Finished Prototype Explorer's Barding
-			197736, -- Finished Prototype Regal Barding
-			198487, -- Iridescent Water
-			198615, -- Pentagold Seal
-			194751, -- Blazing Ink
-			194752, -- Blazing Ink
-			194754, -- Cosmic Ink
-			194755, -- Cosmic Ink
-			194756, -- Cosmic Ink
-			194758, -- Flourishing Ink
-			194760, -- Burnished Ink
-			194761, -- Burnished Ink
-			194767, -- Chilled Rune
-			194768, -- Chilled Rune
-			194784, -- Glittering Parchment
-			194785, -- Ace of Fire
-			194786, -- Two of Fire
-			194787, -- Three of Fire
-			194788, -- Four of Fire
-			194789, -- Five of Fire
-			194790, -- Six of Fire
-			194791, -- Seven of Frost
-			194792, -- Eight of Fire
-			194793, -- Ace of Frost
-			194794, -- Two of Frost
-			194795, -- Three of Frost
-			194796, -- Four of Frost
-			194797, -- Five of Frost
-			194798, -- Six of Frost
-			194799, -- Seven of Fire
-			194800, -- Eight of Frost
-			194801, -- Ace of Air
-			194802, -- Two of Air
-			194803, -- Three of Air
-			194804, -- Four of Air
-			194805, -- Five of Air
-			194806, -- Six of Air
-			194807, -- Seven of Air
-			194808, -- Eight of Air
-			194809, -- Ace of Earth
-			194810, -- Two of Earth
-			194811, -- Three of Earth
-			194812, -- Four of Earth
-			194813, -- Five of Earth
-			194814, -- Six of Earth
-			194815, -- Seven of Earth
-			194816, -- Eight of Earth
-			194846, -- Blazing Ink
-			194850, -- Flourishing Ink
-			194852, -- Flourishing Ink
-			194855, -- Burnished Ink
-			194856, -- Serene Ink
-			194857, -- Serene Ink
-			194858, -- Serene Ink
-			194859, -- Chilled Rune
-			194862, -- Runed Writhebark
-			194863, -- Runed Writhebark
-			194864, -- Runed Writhebark
-			198412, -- Serene Pigment
-			198413, -- Serene Pigment
-			198414, -- Serene Pigment
-			198415, -- Flourishing Pigment
-			198416, -- Flourishing Pigment
-			198417, -- Flourishing Pigment
-			198418, -- Blazing Pigment
-			198419, -- Blazing Pigment
-			198420, -- Blazing Pigment
-			198421, -- Shimmering Pigment
-			198422, -- Shimmering Pigment
-			198423, -- Shimmering Pigment
-			198487, -- Iridescent Water
-			198615, -- Pentagold Seal
-			193904, -- Phoenix Feather Quill
-			193905, -- Iskaaran Trading Ledger
-			194699, -- Draconic Treatise on Inscription
-			198607, -- Scribe's Glyphs
-			198659, -- Forgetful Apprentice's Tome
-			198669, -- How to Train Your Whelpling
-			198686, -- Frosted Parchment
-			198693, -- Dusty Darkmoon Card
-			198703, -- Sign Language Reference Sheet
-			198704, -- Pulsing Earth Rune
-			198971, -- Curious Djaradin Rune
-			198972, -- Draconic Glamour
-			201015, -- Counterfeit Darkmoon Deck
-			201711, -- Notebook of Crafting Knowledge
-		},
-		[9] = { -- Shadowland
-			173056, -- Umbral Pigment
-			173057, -- Luminous Pigment
-			173058, -- Umbral Ink
-			173059, -- Luminous Ink
-			173070, -- Ace of Putrescence
-			173071, -- Two of Putrescence
-			173072, -- Three of Putrescence
-			173073, -- Four of Putrescence
-			173074, -- Five of Putrescence
-			173075, -- Six of Putrescence
-			173076, -- Seven of Putrescence
-			173077, -- Eight of Putrescence
-			173079, -- Ace of Repose
-			173080, -- Two of Repose
-			173081, -- Three of Repose
-			173082, -- Four of Repose
-			173083, -- Five of Repose
-			173084, -- Six of Repose
-			173085, -- Seven of Repose
-			173086, -- Eight of Repose
-			173088, -- Ace of Voracity
-			173089, -- Two of Voracity
-			173090, -- Three of Voracity
-			173091, -- Four of Voracity
-			173092, -- Five of Voracity
-			173093, -- Six of Voracity
-			173094, -- Seven of Voracity
-			173095, -- Eight of Voracity
-			173097, -- Ace of the Indomitable
-			173098, -- Two of the Indomitable
-			173099, -- Three of the Indomitable
-			173100, -- Four of the Indomitable
-			173101, -- Five of the Indomitable
-			173102, -- Six of the Indomitable
-			173103, -- Seven of the Indomitable
-			173104, -- Eight of the Indomitable
-			175788, -- Tranquil Pigment
-			175970, -- Tranquil Ink
-			173065, -- Writ of Grave Robbing
-			180742, -- Scribe's Journal
-		},
-		[8] = { -- BfA
-			153603, -- Ace of the Tides
-			153604, -- Ace of Squalls
-			153605, -- Ace of Fathoms
-			153606, -- Ace of Blockades
-			153607, -- Two of the Tides
-			153608, -- Three of the Tides
-			153609, -- Four of the Tides
-			153610, -- Five of the Tides
-			153611, -- Six of the Tides
-			153612, -- Seven of the Tides
-			153613, -- Eight of the Tides
-			153614, -- Two of Squalls
-			153615, -- Three of Squalls
-			153616, -- Four of Squalls
-			153617, -- Five of Squalls
-			153618, -- Six of Squalls
-			153619, -- Seven of Squalls
-			153620, -- Eight of Squalls
-			153621, -- Two of Fathoms
-			153622, -- Three of Fathoms
-			153623, -- Four of Fathoms
-			153624, -- Five of Fathoms
-			153625, -- Six of Fathoms
-			153626, -- Seven of Fathoms
-			153627, -- Eight of Fathoms
-			153628, -- Two of Blockades
-			153629, -- Three of Blockades
-			153630, -- Four of Blockades
-			153631, -- Five of Blockades
-			153632, -- Six of Blockades
-			153633, -- Seven of Blockades
-			153634, -- Eight of Blockades
-			153635, -- Ultramarine Pigment
-			153636, -- Crimson Pigment
-			153669, -- Viridescent Pigment
-			158187, -- Ultramarine Ink
-			158188, -- Crimson Ink
-			158189, -- Viridescent Ink
-			167540, -- Ink Sac
-			168662, -- Maroon Pigment
-			168663, -- Maroon Ink
-			159825, -- Scroll of Unlocking
-		},
-		[7] = { 	-- Legion
-			128713, -- Eight of Immortality
-			128714, -- Seven of Immortality
-			128715, -- Six of Immortality
-			128716, -- Four of Immortality
-			128717, -- Five of Immortality
-			128718, -- Three of Immortality
-			128719, -- Two of Immortality
-			128720, -- Ace of Immortality
-			128721, -- Eight of Promises
-			128722, -- Seven of Promises
-			128723, -- Six of Promises
-			128724, -- Five of Promises
-			128725, -- Four of Promises
-			128726, -- Three of Promises
-			128727, -- Two of Promises
-			128728, -- Ace of Promises
-			128729, -- Eight of Dominion
-			128730, -- Seven of Dominion
-			128731, -- Six of Dominion
-			128732, -- Five of Dominion
-			128733, -- Four of Dominion
-			128734, -- Three of Dominion
-			128735, -- Two of Dominion
-			128736, -- Ace of Dominion
-			128737, -- Eight of Hellfire
-			128738, -- Seven of Hellfire
-			128739, -- Six of Hellfire
-			128740, -- Five of Hellfire
-			128741, -- Four of Hellfire
-			128742, -- Three of Hellfire
-			128743, -- Two of Hellfire
-			128744, -- Ace of Hellfire
-			129032, -- Roseate Pigment
-			129034, -- Sallow Pigment
-			136926, -- Nightmare Pod
-		},
-		[6] = { 	-- WoD
-			112271, -- Eight of Iron
-			112272, -- Seven of Iron
-			112273, -- Six of Iron
-			112274, -- Four of Iron
-			112275, -- Five of Iron
-			112276, -- Three of Iron
-			112277, -- Two of Iron
-			112278, -- Ace of Iron
-			112279, -- Eight of Visions
-			112280, -- Seven of Visions
-			112281, -- Six of Visions
-			112282, -- Five of Visions
-			112283, -- Four of Visions
-			112284, -- Three of Visions
-			112285, -- Two of Visions
-			112286, -- Ace of Visions
-			112287, -- Eight of War
-			112288, -- Seven of War
-			112289, -- Six of War
-			112290, -- Five of War
-			112291, -- Four of War
-			112292, -- Three of War
-			112293, -- Two of War
-			112294, -- Ace of War
-			112295, -- Eight of the Moon
-			112296, -- Seven of the Moon
-			112297, -- Six of the Moon
-			112298, -- Five of the Moon
-			112299, -- Four of the Moon
-			112300, -- Three of the Moon
-			112301, -- Two of the Moon
-			112302, -- Ace of the Moon
-			113111, -- Warbinder's Ink
-			113289, -- Volatile Crystal
-			114931, -- Cerulean Pigment
-			113361, -- Tattered Scroll
-			113365, -- Ruined Painting
-			113367, -- Waterlogged Book
-			113371, -- Torn Card
-			113376, -- Faintly Magical Vellum
-			113992, -- Scribe's Research Notes
-		},
-		[5] = { 	-- MoP
-			79251, -- Shadow Pigment
-			79253, -- Misty Pigment
-			79254, -- Ink of Dreams
-			79255, -- Starlight Ink
-			79283, -- Ace of Tigers
-			79284, -- Two of Tigers
-			79285, -- Three of Tigers
-			79286, -- Four of Tigers
-			79287, -- Five of Tigers
-			79288, -- Six of Tigers
-			79289, -- Seven of Tigers
-			79290, -- Eight of Tigers
-			79291, -- Ace of Oxen
-			79292, -- Two of Oxen
-			79293, -- Three of Oxen
-			79294, -- Four of Oxen
-			79295, -- Five of Oxen
-			79296, -- Six of Oxen
-			79297, -- Seven of Oxen
-			79298, -- Eight of Oxen
-			79299, -- Ace of Cranes
-			79300, -- Two of Cranes
-			79301, -- Three of Cranes
-			79302, -- Four of Cranes
-			79303, -- Five of Cranes
-			79304, -- Six of Cranes
-			79305, -- Seven of Cranes
-			79306, -- Eight of Cranes
-			79307, -- Ace of Serpents
-			79308, -- Two of Serpents
-			79309, -- Three of Serpents
-			79310, -- Four of Serpents
-			79311, -- Five of Serpents
-			79312, -- Six of Serpents
-			79313, -- Seven of Serpents
-			79314, -- Eight of Serpents
-			79731, -- Scroll of Wisdom
-			87581, -- Secret Ox Horn Inscription
-			87582, -- Secret Crane Wing Inscription
-			87584, -- Secret Tiger Claw Inscription
-			87585, -- Secret Tiger Fang Inscription
-			87821, -- Coagulated Tiger's Blood
-		},
-		[4] = { 	-- Cataclysm
-			61978, -- Blackfallow Ink
-			61979, -- Ashen Pigment
-			61980, -- Burning Embers
-			61988, -- Ace of Embers
-			61989, -- Two of Embers
-			61990, -- Three of Embers
-			61991, -- Four of Embers
-			61992, -- Five of Embers
-			61993, -- Six of Embers
-			61994, -- Seven of Embers
-			61995, -- Eight of Embers
-			61996, -- Ace of Stones
-			61997, -- Two of Stones
-			61998, -- Three of Stones
-			61999, -- Four of Stones
-			62000, -- Five of Stones
-			62001, -- Six of Stones
-			62002, -- Seven of Stones
-			62003, -- Eight of Stones
-			62004, -- Ace of the Winds
-			62005, -- Two of the Winds
-			62006, -- Three of the Winds
-			62007, -- Four of the Winds
-			62008, -- Five of the Winds
-			62009, -- Six of the Winds
-			62010, -- Seven of the Winds
-			62011, -- Eight of the Winds
-			62012, -- Ace of Waves
-			62013, -- Two of Waves
-			62014, -- Three of Waves
-			62015, -- Four of Waves
-			62016, -- Five of Waves
-			62017, -- Six of Waves
-			62018, -- Seven of Waves
-			62019, -- Eight of Waves
-			62322, -- Polished Horn
-			62323, -- Deathwing Scale Fragment
-			67319, -- Preserved Ogre Eye
-			67335, -- Silver Charm Bracelet
-			67348, -- Bleached Jawbone
-			68047, -- Scavenged Dragon Horn
-		},
-		[3] = { 	-- WolTK
-			37140, -- Ace of Rogues
-			37143, -- Two of Rogues
-			37145, -- Ace of Swords
-			37147, -- Two of Swords
-			37156, -- Three of Rogues
-			37159, -- Three of Swords
-			37160, -- Four of Swords
-			39151, -- Alabaster Pigment
-			39334, -- Dusky Pigment
-			39338, -- Golden Pigment
-			39339, -- Emerald Pigment
-			39340, -- Violet Pigment
-			39341, -- Silvery Pigment
-			39342, -- Nether Pigment
-			39343, -- Azure Pigment
-			39469, -- Moonglow Ink
-			39774, -- Midnight Ink
-			43103, -- Verdant Pigment
-			43104, -- Burnt Pigment
-			43105, -- Indigo Pigment
-			43106, -- Ruby Pigment
-			43107, -- Sapphire Pigment
-			43108, -- Ebon Pigment
-			43109, -- Icy Pigment
-			43115, -- Hunter's Ink
-			43116, -- Lion's Ink
-			43117, -- Dawnstar Ink
-			43118, -- Jadefire Ink
-			43119, -- Royal Ink
-			43120, -- Celestial Ink
-			43121, -- Fiery Ink
-			43122, -- Shimmering Ink
-			43123, -- Ink of the Sky
-			43124, -- Ethereal Ink
-			43125, -- Darkflame Ink
-			43126, -- Ink of the Sea
-			43127, -- Snowfall Ink
-			44143, -- Ace of Demons
-			44144, -- Two of Mages
-			44145, -- Three of Mages
-			44146, -- Four of Mages
-			44147, -- Five of Mages
-			44154, -- Two of Demons
-			44155, -- Three of Demons
-			44156, -- Four of Demons
-			44157, -- Five of Demons
-			44165, -- Ace of Mages
-			44260, -- Ace of Prisms
-			44261, -- Two of Prisms
-			44262, -- Three of Prisms
-			44263, -- Four of Prisms
-			44264, -- Five of Prisms
-			44265, -- Six of Prisms
-			44266, -- Seven of Prisms
-			44267, -- Eight of Prisms
-			44268, -- Ace of Nobles
-			44269, -- Two of Nobles
-			44270, -- Three of Nobles
-			44271, -- Four of Nobles
-			44272, -- Five of Nobles
-			44273, -- Six of Nobles
-			44274, -- Seven of Nobles
-			44275, -- Eight of Nobles
-			44277, -- Ace of Chaos
-			44278, -- Two of Chaos
-			44279, -- Three of Chaos
-			44280, -- Four of Chaos
-			44281, -- Five of Chaos
-			44282, -- Six of Chaos
-			44284, -- Seven of Chaos
-			44285, -- Eight of Chaos
-			44286, -- Ace of Undeath
-			44287, -- Two of Undeath
-			44288, -- Three of Undeath
-			44289, -- Four of Undeath
-			44290, -- Five of Undeath
-			44291, -- Six of Undeath
-			44292, -- Seven of Undeath
-			44293, -- Eight of Undeath
-			37118, -- Scroll of Recall
-			39969, -- Fire Seed
-			44314, -- Scroll of Recall II
-			44315, -- Scroll of Recall III
-			45912, -- Book of Glyph Mastery
-		},
-		[2] = { 	-- BC
-		},
-		[1] = { 	-- Classic
-		},
-	}
-end
-
+]]
 
 --[[
 items.quest = { -- quest item which is stable

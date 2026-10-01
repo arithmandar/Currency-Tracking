@@ -1,0 +1,6 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Enchanting" becomes items.Enchanting
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Enchanting | 1  | Vanilla                | https://www.wowhead.com/classic/items?filter=87:194;4:1;0:1

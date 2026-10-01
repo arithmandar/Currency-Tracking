@@ -1,0 +1,17 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Alchemy" becomes items.Alchemy
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Alchemy | 12 | Midnight | https://www.wowhead.com/items?filter=87:194:166;1:1:12;0:1:0
+Alchemy | 11 | The War Within | https://www.wowhead.com/items?filter=87:194:166;1:1:11;0:1:0
+Alchemy | 10 | Dragonflight | https://www.wowhead.com/items?filter=87:194:166;1:1:10;0:1:0
+Alchemy | 9 | Shadowland | https://www.wowhead.com/items?filter=87:194:166;1:1:9;0:1:0
+Alchemy | 8 | BfA | https://www.wowhead.com/items?filter=87:194:166;1:1:8;0:1:0
+Alchemy | 7 | Legion | https://www.wowhead.com/items?filter=87:194:166;1:1:7;0:1:0
+Alchemy | 6 | WoD | https://www.wowhead.com/items?filter=87:194:166;1:1:6;0:1:0
+Alchemy | 5 | MoP | https://www.wowhead.com/items?filter=87:194:166;1:1:5;0:1:0
+Alchemy | 4 | Cataclysm | https://www.wowhead.com/items?filter=87:194:166;1:1:4;0:1:0
+Alchemy | 3 | WolTK | https://www.wowhead.com/items?filter=87:194:166;1:1:3;0:1:0
+Alchemy | 2 | TBC | https://www.wowhead.com/items?filter=87:194:166;1:1:2;0:1:0
+Alchemy | 1 | Classic | https://www.wowhead.com/items?filter=87:194:166;1:1:1;0:1:0

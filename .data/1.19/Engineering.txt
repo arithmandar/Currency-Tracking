@@ -1,0 +1,6 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Engineering" becomes items.Engineering
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Engineering | 1  | Vanilla                | https://www.wowhead.com/classic/items?filter=87:194;5:1;0:1

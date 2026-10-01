@@ -42,3 +42,5 @@ move-folders:
 
 ignore:
     - Libs-dev
+    - .data
+    - .util

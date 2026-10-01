@@ -1,0 +1,7 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Alchemy" becomes items.Alchemy
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Leatherworking | 2  | Burning Crusade        | https://www.wowhead.com/tbc/items?filter=87:194:166;8:1:2;0:1:0
+Leatherworking | 1  | Vanilla                | https://www.wowhead.com/tbc/items?filter=87:194:166;8:1:1;0:1:0

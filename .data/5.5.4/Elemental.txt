@@ -1,0 +1,10 @@
+# TableName | ExpansionNumber | ExpansionName | WowheadURL
+# - TableName: "Elemental" becomes items.Elemental
+# - Lines with the same TableName are merged into one Lua table
+# - Paste the URL as plain text, exactly as copied from the browser address bar
+
+Elemental | 5  | Mists of Pandaria      | https://www.wowhead.com/mop-classic/items/trade-goods/elemental?filter=166:194;5:1;0:1
+Elemental | 4  | Cataclysm              | https://www.wowhead.com/mop-classic/items/trade-goods/elemental?filter=166:194;4:1;0:1
+Elemental | 3  | Wrath of the Lich King | https://www.wowhead.com/mop-classic/items/trade-goods/elemental?filter=166:194;3:1;0:1
+Elemental | 2  | Burning Crusade        | https://www.wowhead.com/mop-classic/items/trade-goods/elemental?filter=166:194;2:1;0:1
+Elemental | 1  | Vanilla                | https://www.wowhead.com/mop-classic/items/trade-goods/elemental?filter=166:194;1:1;0:1
