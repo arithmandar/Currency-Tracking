@@ -21,17 +21,6 @@
 ## Notes-zhCN: 追踪获得的货币，并在游戏画面顶部显示选定的货币。
 ## Title-zhTW: 貨幣追蹤
 ## Notes-zhTW: 追蹤獲得的貨幣，並在遊戲畫面頂端顯示選定的貨幣。
-## Author: arith
-## Version: @project-version@
-## OptionalDeps: Blizzard_TokenUI, LibStub, CallbackHandler-1.0, Ace3, LibCurrencyInfo
-## DefaultState: Enabled
-## SavedVariables: CurrencyTrackingDB
-## X-Date: @project-date-iso@
-## X-Website: http://mods.curse.com/addons/wow/currency-tracking
-## X-License: GPLv2
-## X-Category: Information
-## X-Localizations: enUS, zhTW, deDE, zhCN, koKR, ruRU
-## IconTexture: Interface\Icons\timelesscoin
 ## Category: Inventory
 ## Category-deDE: Inventar
 ## Category-esES: Inventario
@@ -43,6 +32,19 @@
 ## Category-ruRU: Инвентарь
 ## Category-zhCN: 物品栏
 ## Category-zhTW: 物品欄
+## IconTexture: Interface\Icons\timelesscoin
+## Author: arith
+## Version: @project-version@
+## OptionalDeps: Blizzard_TokenUI, LibStub, CallbackHandler-1.0, Ace3, LibCurrencyInfo
+## DefaultState: Enabled
+## SavedVariables: CurrencyTrackingDB
+## X-Date: @project-date-iso@
+## X-Website: https://www.curseforge.com/wow/addons/currency-tracking
+## X-License: GPLv2
+## X-Category: Information
+## X-Localizations: enUS, deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW
+## X-Curse-Project-ID: 100194
+## X-WoWI-ID: 23948
 
 Libs\Libs.xml
 
