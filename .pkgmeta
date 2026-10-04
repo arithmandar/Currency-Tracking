@@ -8,6 +8,10 @@ license-output: Docs/LICENSE.txt
     
 enable-nolib-creation: no
 
+# configs for WowInterface
+wowi-archive-previous: yes
+wowi-create-changelog: no
+
 externals:
 # SVN
     Libs-release/LibStub: 
@@ -36,7 +40,6 @@ externals:
 
 
 move-folders:
-#    CurrencyTracking/Libs/LibCurrencyInfo: CurrencyTracking/Libs-release/LibCurrencyInfo
     CurrencyTracking/Libs: CurrencyTracking/Libs-dev
     CurrencyTracking/Libs-release: CurrencyTracking/Libs
 

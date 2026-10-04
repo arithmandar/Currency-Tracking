@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v8.01 (Oct. 05, 2026)
+-----------------------
+- TOC update to add CurseForge and WoWInterface project ID for auto-packaging
+
 * v8.00 (Oct. 01, 2026)
 -----------------------
 - Update to support WoW 1.15.9, 1.60.1, 2.5.6, 5.5.4, 12.1.0
