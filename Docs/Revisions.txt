@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v8.02 (Oct. 06, 2026)
+-----------------------
+- Fixed path to the LibCurrencyInfo library
+
 * v8.01 (Oct. 05, 2026)
 -----------------------
 - TOC update to add CurseForge and WoWInterface project ID for auto-packaging
