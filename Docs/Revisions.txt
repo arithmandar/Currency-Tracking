@@ -6,6 +6,7 @@ Revision History:
 * v8.03 (Oct. 06, 2026)
 -----------------------
 - Fixed to update LibCurrencyInfo library
+- Removed SVN keyword as not functioning
 
 * v8.02 (Oct. 06, 2026)
 -----------------------
