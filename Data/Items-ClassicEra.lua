@@ -1,4 +1,3 @@
--- $Id$
 local _G = getfenv(0)
 local _, private = ...
 

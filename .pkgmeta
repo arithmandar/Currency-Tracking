@@ -40,10 +40,10 @@ externals:
 
 
 move-folders:
-    CurrencyTracking/Libs: CurrencyTracking/Libs-dev
+    CurrencyTracking/Libs: CurrencyTracking/.Libs-dev
     CurrencyTracking/Libs-release: CurrencyTracking/Libs
 
 ignore:
-    - Libs-dev
+    - .Libs-dev
     - .data
     - .util
