@@ -3,6 +3,10 @@
 Revision History:
 =================
 
+* v8.03 (Oct. 06, 2026)
+-----------------------
+- Fixed to update LibCurrencyInfo library
+
 * v8.02 (Oct. 06, 2026)
 -----------------------
 - Fixed path to the LibCurrencyInfo library
