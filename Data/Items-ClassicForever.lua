@@ -11,10 +11,11 @@ local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
 local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
+local PROJECT_FOREVER = WOW_PROJECT_CAMELOT
 
 -- Beta-only fallback:
 -- Replace these bounds with values verified from the actual Forever client.
-local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
+local isForeverBeta = projectID == PROJECT_FOREVER and interfaceVersion >= 10000 and interfaceVersion < 20000
 
 local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
 local isClassicEra = projectID == PROJECT_CLASSIC
@@ -22,7 +23,7 @@ local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
 local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
 local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
 local isProgressionClassic = isCataclysmClassic or isMistsClassic
-local isClassicForever = isForeverBeta
+local isClassicForever = isForeverBeta or projectID == PROJECT_FOREVER
 
 if not isClassicForever then return end
 
