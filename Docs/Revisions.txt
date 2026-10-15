@@ -1,7 +1,10 @@
-﻿$Id$
-
-Revision History:
+﻿Revision History:
 =================
+
+* v8.05 (Oct. 15, 2026)
+-----------------------
+- ToC update to support WoW 12.1.5
+- Centralized WoW game version's detection
 
 * v8.04 (Oct. 06, 2026)
 -----------------------

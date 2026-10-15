@@ -1,4 +1,4 @@
-## Interface: 11509, 16001, 20506, 50504, 120100
+## Interface: 11509, 16001, 20506, 50504, 120105
 ## Title: Currency Tracking
 ## Notes: Tracks currencies you earn and displays selected currencies at the top of the game screen.
 ## Title-deDE: Währungsverfolgung
@@ -32,7 +32,7 @@
 ## Category-ruRU: Инвентарь
 ## Category-zhCN: 物品栏
 ## Category-zhTW: 物品欄
-## IconTexture: Interface\Icons\timelesscoin
+## IconTexture: Interface\Icons\Inv_misc_token_scarletcrusade
 ## Author: arith
 ## Version: @project-version@
 ## OptionalDeps: Blizzard_TokenUI, LibStub, CallbackHandler-1.0, Ace3, LibCurrencyInfo

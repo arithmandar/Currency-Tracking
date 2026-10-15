@@ -1,7 +1,8 @@
 -----------------------------------------------------------------------
 -- Upvalued Lua API.
 -----------------------------------------------------------------------
--- Functions
+local FOLDER_NAME, private = ...
+
 local _G = getfenv(0)
 local pairs, ipairs, unpack, type = _G.pairs, _G.ipairs, _G.unpack, _G.type
 local string, tonumber = _G.string, _G.tonumber
@@ -21,41 +22,15 @@ local C_CurrencyInfo = _G.C_CurrencyInfo
 local BlizzardGetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
 local GetMoney = _G.GetMoney
 
-local GetBuildInfo = _G.GetBuildInfo
--- Determine WoW client family
-local _, _, _, interfaceVersion = GetBuildInfo()
-local projectID = WOW_PROJECT_ID
 
-local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
-local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
-local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
-local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
-local PROJECT_FOREVER = WOW_PROJECT_CAMELOT
+local Client = private.Client
 
-
--- Beta-only fallback:
--- Replace these bounds with values verified from the actual Forever client.
-local isForeverBeta = projectID == PROJECT_FOREVER and interfaceVersion >= 10000 and interfaceVersion < 20000
-
-local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
-local isClassicEra = projectID == PROJECT_CLASSIC
-local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
-local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
-local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
-local isProgressionClassic = isCataclysmClassic or isMistsClassic
-local isClassicForever = isForeverBeta or projectID == PROJECT_FOREVER
--- For API calls, Classic Forever is using same APIs with the mainline client.
--- So for functional wise (API calls), we consider Forever is not part of AnyClassic
-local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic
-
-if (isRetail or isClassicForever) then
+if (Client.isRetail or Client.isForever) then
 	BlizzardGetCurrencyListSize, BlizzardGetCurrencyListInfo = C_CurrencyInfo.GetCurrencyListSize, C_CurrencyInfo.GetCurrencyListInfo
 end
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
 
 local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
@@ -67,6 +42,21 @@ local LDB_CurrencyTracking = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObje
 	label = L["CT_TITLE"],
 })
 
+---@class CurrencyTrackingAddon : AceAddon
+---@field constants table
+---@field items table
+---@field Name string
+---@field LocName string
+---@field Notes string
+---@field Version string
+---@field UpdateDate string
+---@field Author string
+---@field Templates table
+---@field Query QueryModule
+---@field OpenOptions fun(self: CurrencyTrackingAddon)
+---@field Refresh fun(self: CurrencyTrackingAddon)
+---@field InvalidateItemOptions fun(self: CurrencyTrackingAddon)
+---@field InvalidateCurrencyOptions fun(self: CurrencyTrackingAddon)
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceEvent-3.0")
 addon.constants = private.constants
 addon.items = private.items
@@ -170,7 +160,7 @@ end
 
 -- local function to handle the currency list information between different versions of the game
 local function getCurrencyListInfo(index)
-	if (isAnyClassic) then
+	if (Client.isAnyClassic) then
 		local name, isHeader, _, isUnused, _, count, icon = BlizzardGetCurrencyListInfo(index)
 		if not name then return nil end
 		return {
