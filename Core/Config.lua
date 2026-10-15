@@ -1,40 +1,14 @@
 -----------------------------------------------------------------------
 -- Upvalued Lua API.
 -----------------------------------------------------------------------
--- Functions
+local _, private = ...
 local _G = getfenv(0)
 local pairs, ipairs, type = _G.pairs, _G.ipairs, _G.type
 local table = _G.table
 local tsort = table.sort
 local string = _G.string
--- Libraries
 local format = string.format
 
--- Determine WoW client family
-local _, _, _, interfaceVersion = GetBuildInfo()
-local projectID = WOW_PROJECT_ID
-
-local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
-local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
-local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
-local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
-local PROJECT_FOREVER = WOW_PROJECT_CAMELOT
-
--- Beta-only fallback:
--- Replace these bounds with values verified from the actual Forever client.
-local isForeverBeta = projectID == PROJECT_FOREVER and interfaceVersion >= 10000 and interfaceVersion < 20000
-
-local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
-local isClassicEra = projectID == PROJECT_CLASSIC
-local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
-local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
-local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
-local isProgressionClassic = isCataclysmClassic or isMistsClassic
-local isClassicForever = isForeverBeta or projectID == PROJECT_FOREVER
-local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic or isClassicForever
-
--- WoW
 local C_Item = _G.C_Item
 local GetItemInfo, GetItemCount = C_Item.GetItemInfo, C_Item.GetItemCount
 local GetLocale = _G.GetLocale
@@ -42,8 +16,9 @@ local GetLocale = _G.GetLocale
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local _, private = ...
 local LibStub = _G.LibStub
+
+---@type CurrencyTrackingAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local LibCurrencyInfo = LibStub:GetLibrary("LibCurrencyInfo")
@@ -55,6 +30,7 @@ local AceDBOptions = LibStub("AceDBOptions-3.0")
 
 local profile
 --local item_list
+local cTexture = "Interface\\Icons\\Inv_misc_token_scarletcrusade"
 
 
 local function orderednext(t, n)
@@ -370,6 +346,7 @@ local function currencyButton_ToggleTrack(id)
 	addon:Refresh()
 end
 
+
 local function getCurrenciesOptions()
 	if not profile then profile = addon.db.profile end
 	local lang = GetLocale()
@@ -677,7 +654,7 @@ function addon:SetupOptions()
 	self.optionsFrameRefs.General = generalFrame
 	self:RegisterModuleOptions("Options", getOptions, L["Options"])
 	--addTokenOptionFrame()
-	self:RegisterModuleOptions("Currencies", getCurrenciesOptions, L["Tracked Currencies"])
+	self:RegisterModuleOptions("Currencies", getCurrenciesOptions, format("|T%s:0:0|t %s", cTexture, L["Tracked Currencies"]))
 	--self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
 	local firstItemCategory
 	for categoryName in pairs(addon.constants.itemCategories) do

@@ -14,9 +14,13 @@ local GetItemInfo = C_Item.GetItemInfo
 local _, private = ...
 
 local LibStub = _G.LibStub
+---@class CurrencyTrackingAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local LibCurrencyInfo = LibStub:GetLibrary("LibCurrencyInfo")
 
+---@class QueryModule : AceAddon
+---@field RefreshCurrency fun(self: QueryModule, currencyID: number): boolean
+---@field RefreshItem fun(self: QueryModule, item: table): boolean
 local Query = addon:NewModule("Query", "AceEvent-3.0")
 addon.Query = Query
 
@@ -260,5 +264,4 @@ function Query:ScanCurrencies()
 
     return changed
 end
-
 

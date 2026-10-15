@@ -4,7 +4,7 @@
 -- Lua replacement for the frame templates previously defined in
 -- Templates.xml.
 -----------------------------------------------------------------------
-
+local _, private = ...
 local _G = getfenv(0)
 
 local CreateFrame = _G.CreateFrame
@@ -14,39 +14,15 @@ local IsModifiedClick = _G.IsModifiedClick
 local HandleModifiedItemClick = _G.HandleModifiedItemClick
 local BlizzardGetCurrencyLink = _G.GetCurrencyLink
 local C_CurrencyInfo = _G.C_CurrencyInfo
-local GetBuildInfo = _G.GetBuildInfo
--- Determine WoW client family
-local _, _, _, interfaceVersion = GetBuildInfo()
-local projectID = WOW_PROJECT_ID
 
-local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
-local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
-local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
-local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
+local Client = private.Client
 
--- Beta-only fallback:
--- Replace these bounds with values verified from the actual Forever client.
-local isForeverBeta = projectID == PROJECT_MAINLINE and interfaceVersion >= 10000 and interfaceVersion < 20000
-
-local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
-local isClassicEra = projectID == PROJECT_CLASSIC
-local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
-local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
-local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
-local isProgressionClassic = isCataclysmClassic or isMistsClassic
-local isClassicForever = isForeverBeta
--- For API calls, Classic Forever is using same APIs with the mainline client.
--- So for functional wise (API calls), we consider Forever is not part of AnyClassic
-local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic
-
-if isRetail or isClassicForever then
+if Client.isRetail or Client.isForever then
     BlizzardGetCurrencyLink = C_CurrencyInfo.GetCurrencyLink
 end
 
-local _, private = ...
-
 local LibStub = _G.LibStub
+---@class CurrencyTrackingAddon
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 
 local Templates = {}

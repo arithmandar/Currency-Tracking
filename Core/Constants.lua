@@ -2,46 +2,34 @@
 -- Upvalued Lua API.
 -----------------------------------------------------------------------
 -- Functions
+local _, private = ...
 local _G = getfenv(0)
 local string = _G.string
--- Libraries
 local format = string.format
--- WoW
-local GetBuildInfo = _G.GetBuildInfo
-local C_Item, C_Spell = _G.C_Item, _G.C_Spell
-local GetSpellInfo  =  C_Spell.GetSpellInfo
-local GetItemInfoInstant, GetItemCount, GetItemInfo, GetItemIcon = C_Item.GetItemInfoInstant, C_Item.GetItemCount, C_Item.GetItemInfo, C_Item.GetItemIcon
+local C_Spell = _G.C_Spell
+local GetSpellInfo = C_Spell.GetSpellInfo
 
--- Determine WoW client family
-local _, _, _, interfaceVersion = GetBuildInfo()
 local projectID = WOW_PROJECT_ID
 
-local PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
-local PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
-local PROJECT_TBC = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-local PROJECT_CATA = WOW_PROJECT_CATACLYSM_CLASSIC
-local PROJECT_MISTS = WOW_PROJECT_MISTS_CLASSIC
-local PROJECT_FOREVER = WOW_PROJECT_CAMELOT
+local function IsProject(id)
+    return id ~= nil and projectID == id
+end
+local Client = {
+    projectID = projectID,
 
+    isRetail = IsProject(WOW_PROJECT_MAINLINE),
+    isClassicEra = IsProject(WOW_PROJECT_CLASSIC),
+    isTBCClassic = IsProject(WOW_PROJECT_BURNING_CRUSADE_CLASSIC),
+    isCataclysmClassic = IsProject(WOW_PROJECT_CATACLYSM_CLASSIC),
+    isMistsClassic = IsProject(WOW_PROJECT_MISTS_CLASSIC),
+    isForever = IsProject(WOW_PROJECT_CAMELOT),
+}
 
--- Beta-only fallback:
--- Replace these bounds with values verified from the actual Forever client.
-local isForeverBeta = projectID == PROJECT_FOREVER and interfaceVersion >= 10000 and interfaceVersion < 20000
+Client.isProgressionClassic = Client.isCataclysmClassic or Client.isMistsClassic
+Client.isAnyClassic = Client.isClassicEra or Client.isTBCClassic or Client.isProgressionClassic
+Client.isKnownProject = Client.isRetail or Client.isAnyClassic or Client.isForever
+private.Client = Client
 
-local isRetail = projectID == PROJECT_MAINLINE and not isForeverBeta
-local isClassicEra = projectID == PROJECT_CLASSIC
-local isAnniversaryTBC = PROJECT_TBC ~= nil and projectID == PROJECT_TBC
-local isCataclysmClassic = PROJECT_CATA ~= nil and projectID == PROJECT_CATA
-local isMistsClassic = PROJECT_MISTS ~= nil and projectID == PROJECT_MISTS
-local isProgressionClassic = isCataclysmClassic or isMistsClassic
-local isClassicForever = isForeverBeta or projectID == PROJECT_FOREVER
--- For API calls, Classic Forever is using same APIs with the mainline client.
-local isAnyClassic = isClassicEra or isAnniversaryTBC or isProgressionClassic
-
--- ----------------------------------------------------------------------------
--- AddOn namespace.
--- ----------------------------------------------------------------------------
-local _, private = ...
 private.addon_name = "CurrencyTracking"
 
 local LibStub = _G.LibStub
@@ -50,11 +38,11 @@ local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local constants = {}
 private.constants = constants
 
-if (isRetail or isProgressionClassic) then
+if (Client.isRetail or Client.isProgressionClassic) then
 	constants.ldb_icon = "Interface\\Icons\\wow-token01"
 	--constants.ldb_icon = "Interface\\Icons\\timelesscoin"
 else
-	constants.ldb_icon = "Interface\\Icons\\wow-token01"
+	constants.ldb_icon = "Interface\\Icons\\Inv_misc_token_scarletcrusade"
 	--constants.ldb_icon = 237547
 end
 
@@ -133,7 +121,7 @@ constants.itemCategories = {
 	["Relics"] = 		getItemText(INVTYPE_RELIC, 134459),
 }
 
-if (isRetail or isProgressionClassic) then
+if (Client.isRetail or Client.isProgressionClassic) then
 	constants.itemCategories["Jewelcrafting"] = getProfessionText(25229)
 	constants.itemCategories["Inscription"] = 	getProfessionText(45357)
 end
@@ -142,7 +130,7 @@ end
 local currencyCategories = {}
 local expansions = {}
 local events = {}
-if (isClassicEra) then
+if (Client.isClassicEra) then
 	currencyCategories = {
 		-- Classic Era doesn't have any currency supported
 	}
@@ -166,7 +154,7 @@ if (isClassicEra) then
 		"TRIAL_STATUS_UPDATE",
 		"CHAT_MSG_MONEY",
 	}
-elseif(isAnniversaryTBC) then
+elseif(Client.isTBCClassic) then
 	currencyCategories = {
 		247, -- Player vs. Player
 	}
@@ -191,7 +179,7 @@ elseif(isAnniversaryTBC) then
 		"TRIAL_STATUS_UPDATE",
 		"CHAT_MSG_MONEY",
 	}
-elseif(isProgressionClassic) then
+elseif(Client.isProgressionClassic) then
 	currencyCategories = {
 		133, -- Mists of Pandaria
 		81, -- Cataclysm
@@ -230,7 +218,7 @@ elseif(isProgressionClassic) then
 		"TRIAL_STATUS_UPDATE",
 		"CHAT_MSG_MONEY",
 	}
-elseif (isClassicForever) then
+elseif (Client.isForever) then
 	currencyCategories = {
 		273, -- Professions & Tradeskills
 		22, -- Dungeon and Raid
