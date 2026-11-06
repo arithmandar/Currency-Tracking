@@ -62,7 +62,7 @@ L["Tracked Items"] = "Отслеживать предметы"
 L["Profile Options"] = "Параметры профиля"
 -- Click to track
 L["Click to track"] = "Отслеживание по щелчку"
-L["Use this combination on an item in your bags, bank, guild bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it."] = "Используйте это сочетание на предмете в сумках, банке, банке гильдии или ссылке в чате, чтобы начать или прекратить его отслеживание. На предмете панели отслеживания — прекращает отслеживание."
+L["Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."] = "Используйте это сочетание на предмете в сумках, банке или ссылке в чате, чтобы начать или прекратить его отслеживание. На предмете панели отслеживания — прекращает отслеживание. Недоступно в банке гильдии."
 L["Modifier key"] = "Клавиша-модификатор"
 L["Mouse button"] = "Кнопка мыши"
 L["Disabled"] = "Отключено"

@@ -178,12 +178,38 @@ function addon:RemoveCustomItem(itemID)
 end
 
 -- ---------------------------------------------------------------------
--- Hook: bag / bank / guild bank / loot / merchant / chat item clicks
+-- Guild bank exclusion
+-- ---------------------------------------------------------------------
+-- Right-clicking a guild bank slot withdraws the item (also with a modifier
+-- held), so click-to-track is disabled there to avoid accidental withdrawals.
+local function isInGuildBank(frame)
+	local guildBank = _G.GuildBankFrame -- load-on-demand (Blizzard_GuildBankUI)
+	if not guildBank or not frame then return false end
+	local depth = 0
+	while frame and depth < 15 do
+		if frame == guildBank then return true end
+		frame = frame.GetParent and frame:GetParent()
+		depth = depth + 1
+	end
+	return false
+end
+
+local function getMouseFocus()
+	if _G.GetMouseFoci then
+		local foci = _G.GetMouseFoci()
+		return foci and foci[1]
+	end
+	return _G.GetMouseFocus and _G.GetMouseFocus()
+end
+
+-- ---------------------------------------------------------------------
+-- Hook: bag / bank / loot / merchant / chat item clicks
 -- ---------------------------------------------------------------------
 -- Post-hook only, so Blizzard's own handling is never blocked or tainted.
 hooksecurefunc("HandleModifiedItemClick", function(link)
 	if not link or not addon.db then return end
 	if not addon:IsClickTrackCombo() then return end
+	if isInGuildBank(getMouseFocus()) then return end
 	-- Only items; currencies / battle pets etc. are ignored
 	if type(link) ~= "string" or not match(link, "|Hitem:") and not match(link, "^item:") then return end
 	local itemID = GetItemInfoInstant(link)
@@ -199,6 +225,7 @@ local function addHint(tooltip, itemID)
 	if not itemID or not addon.db then return end
 	local profile = addon.db.profile
 	if not profile.show_clickTrackHint or not addon:IsClickTrackEnabled() then return end
+	if isInGuildBank(tooltip.GetOwner and tooltip:GetOwner()) then return end
 	local combo = addon:GetClickTrackComboText()
 	if not combo then return end
 	local text = profile.items[itemID] and L["%s: stop tracking"] or L["%s: start tracking"]

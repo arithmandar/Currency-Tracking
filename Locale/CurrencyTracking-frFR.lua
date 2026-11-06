@@ -62,7 +62,7 @@ L["Tracked Items"] = "Objets suivis"
 L["Profile Options"] = "Options du profil"
 -- Click to track
 L["Click to track"] = "Suivre par clic"
-L["Use this combination on an item in your bags, bank, guild bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it."] = "Utilisez cette combinaison sur un objet de vos sacs, de la banque, de la banque de guilde ou d’un lien de discussion pour commencer ou arrêter son suivi. Sur un objet de la barre de suivi, elle arrête le suivi."
+L["Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."] = "Utilisez cette combinaison sur un objet de vos sacs, de la banque ou d’un lien de discussion pour commencer ou arrêter son suivi. Sur un objet de la barre de suivi, elle arrête le suivi. Indisponible dans la banque de guilde."
 L["Modifier key"] = "Touche de modification"
 L["Mouse button"] = "Bouton de la souris"
 L["Disabled"] = "Désactivé"

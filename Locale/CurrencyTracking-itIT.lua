@@ -62,7 +62,7 @@ L["Tracked Items"] = "Oggetti monitorati"
 L["Profile Options"] = "Opzioni del profilo"
 -- Click to track
 L["Click to track"] = "Traccia con clic"
-L["Use this combination on an item in your bags, bank, guild bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it."] = "Usa questa combinazione su un oggetto nelle borse, nella banca, nella banca di gilda o in un link della chat per iniziare o interrompere il monitoraggio. Su un oggetto della barra di monitoraggio lo interrompe."
+L["Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."] = "Usa questa combinazione su un oggetto nelle borse, nella banca o in un link della chat per iniziare o interrompere il monitoraggio. Su un oggetto della barra di monitoraggio lo interrompe. Non disponibile nella banca di gilda."
 L["Modifier key"] = "Tasto modificatore"
 L["Mouse button"] = "Pulsante del mouse"
 L["Disabled"] = "Disattivato"

@@ -62,7 +62,7 @@ L["Tracked Items"] = "추적 중인 아이템"
 L["Profile Options"] = "프로필 설정"
 -- Click to track
 L["Click to track"] = "클릭으로 추적"
-L["Use this combination on an item in your bags, bank, guild bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it."] = "가방, 은행, 길드 은행 또는 대화 링크의 아이템에 이 조합을 사용하면 추적을 시작하거나 중지합니다. 추적 바의 아이템에 사용하면 추적을 중지합니다."
+L["Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."] = "가방, 은행 또는 대화 링크의 아이템에 이 조합을 사용하면 추적을 시작하거나 중지합니다. 추적 바의 아이템에 사용하면 추적을 중지합니다. 길드 은행에서는 사용할 수 없습니다."
 L["Modifier key"] = "보조 키"
 L["Mouse button"] = "마우스 버튼"
 L["Disabled"] = "사용 안 함"

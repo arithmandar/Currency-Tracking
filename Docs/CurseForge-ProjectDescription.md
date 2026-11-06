@@ -9,7 +9,7 @@ Hover over the on-screen tracker to view a tooltip containing your available cur
 ## Features
 
 *   Track selected **currencies** directly on your screen
-*   Track selected **stackable items**, including crafting materials and consumables
+*   Track selected **stackable items**, including crafting materials and consumables. On Retail, item counts include your bags, character bank and Warband bank
 *   Move the tracking frame anywhere on the screen
 *   Show or hide item and currency amounts
 *   Optionally show your total gold, silver, and copper
@@ -18,7 +18,7 @@ Hover over the on-screen tracker to view a tooltip containing your available cur
 *   Set a maximum number of tracked entries per row
 *   Automatically hide the tracking frame during combat, pet battles, or battlegrounds
 *   View your currency information in a tooltip
-*   **Click to track:** Alt+Right-click an item in your bags, bank, guild bank, loot window, merchant window or a chat link to start or stop tracking it
+*   **Click to track:** Alt+Right-click an item in your bags, bank, loot window, merchant window or a chat link to start or stop tracking it
 *   Track any item, not only those in the predefined lists, through the **Custom Items** list
 *   Right-click the tracker to open the addon options
 
@@ -35,9 +35,11 @@ You can track as many currencies and items as your screen layout allows.
 Hold **Alt** and **right-click** an item to start or stop tracking it. This works on items in your:
 
 *   Bags
-*   Bank and guild bank
+*   Character bank and Warband bank
 *   Loot and merchant windows
 *   Chat item links
+
+Click to track is not available in the guild bank, because right-clicking a guild bank slot withdraws the item.
 
 Use the same combination on an item in the on-screen tracker to stop tracking it. When enabled, the item tooltip shows a short hint with the current combination.
 

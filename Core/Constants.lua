@@ -30,6 +30,20 @@ Client.isAnyClassic = Client.isClassicEra or Client.isTBCClassic or Client.isPro
 Client.isKnownProject = Client.isRetail or Client.isAnyClassic or Client.isForever
 private.Client = Client
 
+-- Total item count including the character bank. On retail, also include the
+-- reagent bank and the Warband (account) bank, which C_Item.GetItemCount only
+-- counts when its 4th / 5th arguments are true.
+local C_Item = _G.C_Item
+if Client.isRetail then
+	function private.GetItemCount(itemID)
+		return C_Item.GetItemCount(itemID, true, false, true, true) or 0
+	end
+else
+	function private.GetItemCount(itemID)
+		return C_Item.GetItemCount(itemID, true) or 0
+	end
+end
+
 private.addon_name = "CurrencyTracking"
 
 local LibStub = _G.LibStub

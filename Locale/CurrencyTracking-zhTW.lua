@@ -62,7 +62,7 @@ L["Tracked Items"] = "追蹤的物品"
 L["Profile Options"] = "設定檔選項"
 -- Click to track
 L["Click to track"] = "點擊追蹤"
-L["Use this combination on an item in your bags, bank, guild bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it."] = "在背包、銀行、公會銀行或聊天連結中的物品上使用此組合，即可開始或停止追蹤該物品。在追蹤列的物品上使用則會停止追蹤。"
+L["Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."] = "在背包、銀行或聊天連結中的物品上使用此組合，即可開始或停止追蹤該物品。在追蹤列的物品上使用則會停止追蹤。公會銀行不適用。"
 L["Modifier key"] = "修飾鍵"
 L["Mouse button"] = "滑鼠按鍵"
 L["Disabled"] = "停用"

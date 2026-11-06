@@ -328,7 +328,7 @@ local function getOptions()
 						clickTrack_desc = {
 							order = 41,
 							type = "description",
-							name = L["Use this combination on an item in your bags, bank, guild bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it."],
+							name = L["Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."],
 							width = "full",
 						},
 						clickTrackModifier = {
@@ -534,7 +534,7 @@ local function retrieveItems(optionTable, itemID, order)
 		end
 	end
 
-	local count = GetItemCount(itemID, true)
+	local count = private.GetItemCount(itemID)
 
 	if not itemName or not icon then
 		return optionTable, order

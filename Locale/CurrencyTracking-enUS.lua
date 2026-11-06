@@ -61,7 +61,7 @@ L["Tracked Items"] = "Tracked Items"
 L["Profile Options"] = "Profile Options"
 -- Click to track
 L["Click to track"] = "Click to track"
-L["Use this combination on an item in your bags, bank, guild bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it."] = "Use this combination on an item in your bags, bank, guild bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it."
+L["Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."] = "Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."
 L["Modifier key"] = "Modifier key"
 L["Mouse button"] = "Mouse button"
 L["Disabled"] = "Disabled"

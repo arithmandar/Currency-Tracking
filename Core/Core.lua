@@ -319,7 +319,7 @@ local function handleTrackedButtons(button, currencyID, itemID)
 				})
 			end
 		end
-		count = GetItemCount(itemID, true)
+		count = private.GetItemCount(itemID)
 	end
 
 	if (currencyID or itemID) then
@@ -437,7 +437,7 @@ local function currencyButton_Update()
 	-- tracked items
 	for itemID, v in pairs(profile["items"]) do
 		if (itemID and profile["items"][itemID] == true) then
-			local count = GetItemCount(itemID, true)
+			local count = private.GetItemCount(itemID)
 			if (profile.hide_zero and count == 0) then
 				-- do nothing
 			else
@@ -530,7 +530,7 @@ local function currencyString_Update()
 	-- tracked items
 	for itemID, v in pairs(profile["items"]) do
 		if (itemID and profile["items"][itemID] == true) then
-			local count = GetItemCount(itemID, true)
+			local count = private.GetItemCount(itemID)
 			--local icon = select(10, GetItemInfo(itemID))
 			local icon = GetItemIconByID(itemID)
 
