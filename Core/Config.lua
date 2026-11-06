@@ -319,6 +319,50 @@ local function getOptions()
 						},
 					},
 				},
+				group4 = { -- Click to track
+					order = 40,
+					type = "group",
+					name = L["Click to track"],
+					inline = true,
+					args = {
+						clickTrack_desc = {
+							order = 41,
+							type = "description",
+							name = L["Use this combination on an item in your bags, bank or a chat link to start or stop tracking it. Use it on an item of the tracking bar to stop tracking it. Not available in the guild bank."],
+							width = "full",
+						},
+						clickTrackModifier = {
+							order = 42,
+							type = "select",
+							name = L["Modifier key"],
+							values = {
+								ALT = ALT_KEY_TEXT or "Alt",
+								CTRL = CTRL_KEY_TEXT or "Ctrl",
+								ALTCTRL = format("%s+%s", ALT_KEY_TEXT or "Alt", CTRL_KEY_TEXT or "Ctrl"),
+								NONE = L["Disabled"],
+							},
+							sorting = { "ALT", "CTRL", "ALTCTRL", "NONE" },
+						},
+						clickTrackButton = {
+							order = 43,
+							type = "select",
+							name = L["Mouse button"],
+							values = {
+								RightButton = L["Right-click"],
+								LeftButton = L["Left-click"],
+							},
+							sorting = { "RightButton", "LeftButton" },
+							disabled = function() return addon.db.profile.clickTrackModifier == "NONE" end,
+						},
+						show_clickTrackHint = {
+							order = 44,
+							type = "toggle",
+							name = L["Show hint in item tooltip"],
+							width = "full",
+							disabled = function() return addon.db.profile.clickTrackModifier == "NONE" end,
+						},
+					},
+				},
 			},
 		}
 	end
@@ -445,9 +489,14 @@ end
 -- /////////////////////////////////////////////////////////
 local itemOptions = nil
 local itemCategoryOptions = {}
+local customItemOptions = nil
+local rebuildCustomItemList -- forward declaration
 function addon:InvalidateItemOptions()
     itemOptions = nil
 	itemCategoryOptions = {}
+	-- The custom list is referenced by the already-built root options table,
+	-- so it is rebuilt in place instead of being discarded.
+	if customItemOptions then rebuildCustomItemList() end
     AceConfigReg:NotifyChange(addon.LocName)
 end
 local function itemButton_ToggleTrack(itemID)
@@ -485,7 +534,7 @@ local function retrieveItems(optionTable, itemID, order)
 		end
 	end
 
-	local count = GetItemCount(itemID, true)
+	local count = private.GetItemCount(itemID)
 
 	if not itemName or not icon then
 		return optionTable, order
@@ -613,6 +662,99 @@ local function getItemCategoryOptions(categoryName)
 	return categoryOptions
 end
 
+-- Custom Items: items added by click / ID which are not in the predefined lists
+function rebuildCustomItemList()
+	if not profile then profile = addon.db.profile end
+	local args = customItemOptions.args.list.args
+	for k in pairs(args) do args[k] = nil end
+
+	local ids = addon:GetCustomItemIDs()
+	if #ids == 0 then
+		args.empty = {
+			order = 1,
+			type = "description",
+			name = GRAY_FONT_COLOR_CODE .. L["No custom items yet."] .. "|r",
+			width = "full",
+		}
+		return
+	end
+
+	for i, itemID in ipairs(ids) do
+		local order = i * 2
+		retrieveItems(args, itemID, order)
+		local key = "item" .. order
+		if not args[key] then
+			-- item not in the client cache yet
+			if C_Item.RequestLoadItemDataByID then C_Item.RequestLoadItemDataByID(itemID) end
+			args[key] = {
+				order = order,
+				type = "toggle",
+				name = GRAY_FONT_COLOR_CODE .. "item:" .. itemID .. "|r",
+				get = function() return profile.items and profile.items[itemID] or false end,
+				set = function() itemButton_ToggleTrack(itemID) end,
+			}
+		end
+		args[key].width = "double"
+		args["remove" .. order] = {
+			order = order + 1,
+			type = "execute",
+			name = REMOVE or L["Remove"],
+			width = "half",
+			func = function() addon:RemoveCustomItem(itemID) end,
+		}
+	end
+end
+
+local function getCustomItemOptions()
+	if not profile then profile = addon.db.profile end
+	if not customItemOptions then
+		customItemOptions = {
+			type = "group",
+			name = L["Custom Items"],
+			args = {
+				desc = {
+					order = 1,
+					type = "description",
+					name = function()
+						local combo = addon.GetClickTrackComboText and addon:GetClickTrackComboText()
+						local text = L["Items you added by clicking or by item ID, which are not in the predefined lists."]
+						if combo then
+							text = text .. "\n" .. format(L["%s on an item in your bags to add it here."], combo)
+						end
+						return text .. "\n "
+					end,
+					width = "full",
+				},
+				add = {
+					order = 2,
+					type = "input",
+					name = L["Add item"],
+					desc = L["Enter an item ID or paste an item link."],
+					width = "double",
+					get = function() return "" end,
+					set = function(_, value)
+						local itemID = addon:ParseItemID(value)
+						if itemID then addon:SetItemTracked(itemID, true) end
+					end,
+					validate = function(_, value)
+						if addon:ParseItemID(value) then return true end
+						return L["Enter an item ID or paste an item link."]
+					end,
+				},
+				list = {
+					order = 10,
+					type = "group",
+					name = L["Tracked Items"],
+					inline = true,
+					args = { },
+				},
+			},
+		}
+		rebuildCustomItemList()
+	end
+	return customItemOptions
+end
+
 local function openOptions(openItems)
     local categoryIDs = addon.optionsFrames or {}
     local legacyFrames = addon.optionsFrameRefs or {}
@@ -656,6 +798,7 @@ function addon:SetupOptions()
 	--addTokenOptionFrame()
 	self:RegisterModuleOptions("Currencies", getCurrenciesOptions, format("|T%s:0:0|t %s", cTexture, L["Tracked Currencies"]))
 	--self:RegisterModuleOptions("Items", getItemOptions, L["Tracked Items"])
+	self:RegisterModuleOptions("Items_Custom", getCustomItemOptions, format("|T%d:16:16:2:0|t |cffffffff%s|r", 134400, L["Custom Items"]))
 	local firstItemCategory
 	for categoryName in pairs(addon.constants.itemCategories) do
 		local categoryItems = addon.items[categoryName]

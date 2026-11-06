@@ -233,6 +233,15 @@ function Query:ScanItems()
         end
     end
 
+    -- Custom items (added by click / ID)
+    if addon.GetCustomItemIDs and addon.db then
+        for _, itemID in ipairs(addon:GetCustomItemIDs()) do
+            if not Query:GetCachedItem(itemID) then
+                changed = QueryItem(itemID) or changed
+            end
+        end
+    end
+
     if changed and addon.InvalidateItemOptions then
         addon:InvalidateItemOptions()
     end

@@ -1,0 +1,635 @@
+# Currency Tracking
+
+## Revision History:
+
+
+### v8.06 (Nov. 06, 2026)
+
+- Added click-to-track for items: Alt+Right-click (configurable) an item in your bags, bank, loot window, merchant window or a chat link to start or stop tracking it
+  - Not available in the guild bank, as right-clicking a guild bank slot withdraws the item
+- Using the same combination on an item in the on-screen tracker stops tracking it
+- Added a "Click to track" options group: modifier key (Alt, Ctrl, Alt+Ctrl or disabled), mouse button, and an optional hint in item tooltips
+- Added a "Custom Items" category for tracked items that are not in the predefined lists
+  - Add items by item ID, item link or Wowhead URL
+  - Unchecked items stay in the list until removed with the Remove button
+- Retail: item counts now include the Warband bank (and reagent bank)
+- Custom items are now pre-cached together with the predefined items
+- Localized the new strings for all supported locales
+
+### v8.05 (Oct. 15, 2026)
+
+- ToC update to support WoW 12.1.5
+- Centralized WoW game version's detection
+
+### v8.04 (Oct. 06, 2026)
+
+- Forever client now has its own WOW_PROJECT_ID which is WOW_PROJECT_CAMELOT
+
+### v8.03 (Oct. 06, 2026)
+
+- Fixed to update LibCurrencyInfo library
+- Removed SVN keyword as not functioning
+
+### v8.02 (Oct. 06, 2026)
+
+- Fixed path to the LibCurrencyInfo library
+
+### v8.01 (Oct. 05, 2026)
+
+- TOC update to add CurseForge and WoWInterface project ID for auto-packaging
+
+### v8.00 (Oct. 01, 2026)
+
+- Update to support WoW 1.15.9, 1.60.1, 2.5.6, 5.5.4, 12.1.0
+- Deprecated GetItemIcon in favor of GetItemIconByID
+- Migrate Templates.xml to Templates.lua
+- Fixing right-click on item to option panel's issue
+- Items / currencies from all expansions have been added
+- Added currency's cache mechanism
+- Improved option panel's performance by moving each of the item categories to individual option items. <br> 
+A single option item which is too large, can cause performance issues when leaving this option item.
+
+### v7.16 (Jan. 21, 2024)
+
+- Fixed items' expansion order
+- Added items:
+  - Ward of Fyrakk, Ward of Igira, Everburning Key, Echoed Ephemera, Rumble Foil, Rumble Coin,
+  - Fragment of Emberscar, Mysterious Ageless Seeds, Gold Rumble Foil
+- Added more potions
+- Added more reagents for tailoring
+
+### v7.15 (Jan. 21, 2024)
+
+- Toc update to support WoW 10.2.5 / 3.4.3 / 1.15.0
+
+### v7.14 (Jul. 29, 2023)
+
+- Added more Alchemy items
+
+### v7.13 (Jul. 29, 2023)
+
+- Toc update to support WoW 10.1.5 / 3.4.2
+
+### v7.12 (Mar. 20, 2023)
+
+- Toc update to support WoW 10.0.7
+
+### v7.11 (Feb. 05, 2023)
+
+- Toc update to support WoW 3.4.1
+- Added Champion's Seal to WolTKC
+- Fixed icon was missing in LDB while in WolTKC
+
+### v7.10 (Feb. 04, 2023)
+
+- Toc update to support WoW 10.0.5
+- Added new currencies
+
+### v7.09 (Dec. 18, 2022)
+
+- Enhanced UI position's treatment to prevent from UIParent's object being stored to database
+- Enhanced item's caching storage
+
+### v7.08 (Dec. 15, 2022)
+
+- Added PvP item: Trophy of Strife
+
+### v7.07 (Nov. 29, 2022)
+
+- WOLTKC issue fixed
+
+### v7.06 (Nov. 20, 2022)
+
+- Fixed issue that option panel can't be opened
+
+### v7.05 (Nov. 19, 2022)
+
+- Added more Dragonflight items
+
+### v7.04 (Nov. 19, 2022)
+
+- Toc update to support WoW 10.0.2
+- Added Primeval Essence under World Event
+- Added Inscription
+
+### v7.03 (Nov. 05, 2022)
+
+- Dragonflight implementation
+- Toc update to support WoW 10.0.0
+
+### v7.02 (Aug. 21, 2022)
+
+- Fixed error while in ClassicEra, by removing Jewelcrafting since it's only availabe after TBC
+- Added currency items from WOLTKC
+
+### v7.01 (Aug. 17, 2022)
+
+- Retail ToC update to support WoW 9.2.7
+
+### v7.00 (Jul. 23, 2022)
+
+- Re-structur items into per expansion
+- Remove quest items as there are too many of them
+- Added support for Classic WOLTK
+- BCC ToC update to support WoW 2.5.4
+
+### v6.42 (Jul. 18, 2022)
+
+- Development Enhancement:
+  - Separate items into individual file
+- Added lots of stackable items
+
+### v6.41 (Jul. 17, 2022)
+
+- Classic ToC update to support WoW 1.14.3
+
+### v6.40 (Jul. 17, 2022)
+
+- Retail ToC update to support WoW 9.2.5
+- Added items:
+  - Tailoring - Cloth: Silken Protofiber
+  - Herbalism: First Flower
+  - Leatherworking: Protogenic Pelt
+  - Elemental: Progenitor Essentia
+  - Meats added after 9.0.1
+
+### v6.39 (Mar. 1, 2022)
+
+- Lib update: LibCurrency
+
+### v6.38 (Mar. 1, 2022)
+
+- Updated LibCurrency to add the following currencies: 
+  | ItemID | Item Name |
+  |--------|-----------|
+	| 1979 | Cyphers of the First Ones |
+	| 1980 | Torghast - Scoreboard - Run Layer |
+	| 1981 | Torghast - Scoreboard - Run ID |
+	| 1982 | The Enlightened |
+	| 1997 | Archivists' Codex |
+	| 2000 | Motes of Fate |
+	| 2009 | Cosmic Flux |
+	| 2010 | [DNT] Byron Test Currency |
+
+### v6.37 (Feb. 23, 2022)
+
+- Toc update to support WoW 9.2.0
+
+### v6.36 (Feb. 9, 2022)
+
+- Support multiple ToC
+- BCC ToC update to support WoW 2.5.3
+- Classic ToC update to support WoW 1.14.2
+
+### v6.35 (Feb. 3, 2022)
+
+- Lib update: LibCurrency
+  - Added: Archivists' Codex, Torghast - Scoreboard - Run Layer, Torghast - Scoreboard - Run ID
+
+### v6.34 (Jan. 26, 2022)
+
+- TOC update to support WoW 9.1.5
+- Fixed GameToolTip's backdrop setting issue
+
+### v6.33 (Jun. 29, 2021)
+
+- Removed Runed Norgal Rod again (it was missed in previous release)
+
+### v6.32 (Jun. 29, 2021)
+
+- Added items:
+  - Tailoring: Enchanted Lightless Silk
+  - Mining: Luminous Flux, Shadowghast Ingot, Laestrite Ore, Solenium Ore, Oxxein Ore, Phaedrum Ore, Sinvyr Ore, Elethium Ore, Laestrite Nugget, Solenium Nugget, Oxxein Nugget, Phaedrum Nugget, Sinvyr Nugget, Elethium Nugget, Porous Stone, Shaded Stone
+  - Enchanting: Sacred Shard, Soul Dust, Eternal Crystal
+  - Herbalism: Vigil's Torch, Ground Death Blossom, Ground Vigil's Torch, Ground Widowbloom, Ground Marrowroot, Ground Rising Glory, Ground Nightshade
+  - Jewelcrafting: Oriblase, Angerseye, Umbryl, Laestrite Setting, Essence of Rebirth, Essence of Torment, Essence of Servitude, Essence of Valor, Soulfire Chisel
+  - Engineering: Handful of Laestrite Bolts, Porous Polishing Abrasive, Mortal Coiled Spring, Wormfed Gear Assembly, Distilled Death Extract
+  - Elemental: Korthite Crystal, Orboreal Shard
+  - Alchemy: Abyssal Healing Potion, Potion of Wild Mending, Potion of Unbridled Fury, Greater Mystical Cauldron, Greater Flask of the Undertow, Greater Flask of the Vast Horizon, Greater Flask of Endless Fathoms, Greater Flask of the Currents, Potion of Empowered Proximity, Potion of Focused Resolve, Superior Battle Potion of Strength, Superior Battle Potion of Stamina, Superior Battle Potion of Intellect, Superior Battle Potion of Agility, Sanguicell, Hydrocore, Potion of Soul Purity, Potion of Shaded Sight, Potion of the Hidden Spirit, Spiritual Healing Potion, Spiritual Mana Potion, Spiritual Rejuvenation Potion, Potion of Spectral Agility, Potion of Spiritual Clarity, Potion of Spectral Intellect, Potion of Spectral Stamina, Potion of Spectral Strength, Spectral Flask of Power, Spectral Flask of Stamina, Eternal Cauldron, Shadowcore Oil, Embalmer's Oil, Ground Death Blossom, Ground Vigil's Torch, Ground Widowbloom, Ground Marrowroot, Ground Rising Glory, Ground Nightshade, Spiritual Anti-Venom, Potion of Phantom Fire, Potion of Divine Awakening, Potion of Deathly Fixation, Potion of Empowered Exorcisms, Potion of Specter Swiftness, Shadowghast Ingot, Crafter's Mark I, Crafter's Mark II, Crafter's Mark III, Crafter's Mark of the Chained Isle, Potion of Sacrificial Anima, Shadestone, Potion of Hibernal Rest, Elixir of Humility, Draught of Grotesque Strength, Flask of Measured Discipline, Liquid Sleep, Powdered Dreamroot, Distilled Resolve, Pulverized Breezebloom, Brutal Oil, Crushed Bones, Refined Submission, Bramblethorn Juice, Potion of Unhindered Passing, Novice Crafter's Mark, Potion of the Psychopomp's Speed
+  - Blacksmithing: Shadowghast Ingot, Porous Sharpening Stone, Shaded Sharpening Stone, Porous Weightstone, Shaded Weightstone, Laestrite Skeleton Key, Crafter's Mark I, Crafter's Mark II, Crafter's Mark III, Crafter's Mark of the Chained Isle, Relic of the Past I, Relic of the Past II, Relic of the Past III, Relic of the Past IV, Relic of the Past V, Bundle of Stalker Arrowheads, Molten Phaedrum, Unrefined Arrowheads, Reforged Kyrian Shield, Polished Kyrian Shield, Tarnished Kyrian Shield, Hardened Heavy Razor, Soft Heavy Razor, Binding Cuffs, Tempered Manacle Chains, Soft Manacle Chains, Novice Crafter's Mark, Vestige of Origins, Hydrocore, Sanguicell, Inflatable Mount Shoes
+  - Cooking: Extra Sugary Fish Feast, Extra Lemony Herb Filet, Extra Fancy Darkmoon Feast, Twilight Tea, Bonemeal Bread, Porous Rock Candy, Baked Voidfin, K'Bab, Dubious Delight, Ghastly Goulash, Grilled Gnasher, Mecha-Bytes, Unagi Skewer, Famine Evaluator And Snack Table, Bil'Tong, Baked Port Tato, Fragrant Kakavia, Abyssal-Fried Rissole, Mech-Dowel's "Big Mech", Boralus Blood Sausage
+  - Fishing: Laestrite Skeleton Key, Lost Sole, Iridescent Amberjack, Elysian Thade, Shrouded Cloth Bandage, Partially Eaten Fish, Lost Earring, Rusty Chain, Speckled Flametail, Voidwarped Relic Fragment, Sentry Fish, Ionized Minnow, Empty Energy Cell, Energy Cell, Spare Parts, Silver Dawning Salvage, Severed Azurefin Head, Severed Crimsonscale Head, U'taka, Rasboralus, Midnight Salmon, Spirit Ichor, Iridescent Speck, Springy Eyeball, Sea Stalk, Star Moss, Riverbud,
+- Removed items: Heavy Sorrowscale, Runed Norgal Rod
+
+### v6.31 (Jun. 28, 2021)
+
+- ToC Update to support WoW 9.1.0
+- Lib update: LibCurrency
+
+### v6.30 (May 19, 2021)
+
+- Lib update: LibCurrency
+
+### v6.29 (May 19, 2021)
+
+- Lib update: LibCurrency
+
+### v6.28 (May 19, 2021)
+
+- ToC Update to support WoW 9.0.5
+
+### v6.27 (Dec. 14, 2020)
+
+- Lib update: LibCurrency
+
+### v6.26 (Nov. 22, 2020)
+
+- Disable no-lib release as the new CurseForge seems to bring-in more torubles for users to download addon
+
+### v6.25 (Nov. 22, 2020)
+
+- ToC Update to support WoW 9.0.2
+- Library update - LibCurrency
+
+### v6.24 (Nov. 15, 2020)
+
+- Added Shadowlands pre-launch items: Pitch Black Scourgestone, Darkened Scourgestone
+
+### v6.23 (Oct. 21, 2020)
+
+- Added Shadowlands currencies
+
+### v6.22 (Oct. 18, 2020)
+
+- ToC update to support WoW 9.0.1
+- Classic WoW's quest and stackable items are now trackable
+- WoW 9.0.1 supports
+
+### v6.21 (Jul. 07, 2020)
+
+- Fixed issue with non-cached item being added to tracked button
+- Added item Vessel of Horrific Visions
+- Added Shadowlands tailing items
+- Added more missing meat
+- Added fishing
+- Added more leatherworking items
+
+### v6.20 (Jun. 28, 2020)
+
+- WoW Classic support
+
+### v6.19 (Jun. 28, 2020)
+
+- Added Locked Assault Caches' Relic items
+- Implemented new feature to cache item info
+- Library update - LibCurrency
+
+### v6.18 (Jan. 20, 2020)
+
+- Library update - LibCurrency
+
+### v6.17 (Jan. 17, 2020)
+
+- ToC update to support WoW 8.3.0
+- Library update - LibCurrency
+
+### v6.16 (Jan. 07, 2020)
+
+- Library update - LibCurrency
+
+### v6.15 (Jan. 07, 2020)
+
+- ToC update to support WoW 8.2.5
+- Library update - LibCurrency
+
+### v6.14 (Sep. 02, 2019)
+
+- Added tracked items:
+  - Elemental: Breath of Bwonsamdi,
+  - Meat: Rubbery Flank, Viper Fish, Mauve Stinger, Moist Fillet,
+  - Cloth: Gilded Seaweave, Synchronous Thread,
+  - Mining: Osmenite Ore
+  - Leatherworking: Dredged Leather, Cragscale, Mallet of Thunderous Skins
+  - Enchanting: Iwen's Enchanting Rod
+  - Herbalism: Zin'anthid
+  - Jewelcrafting: Lava Lazuli, Sage Agate, Azsharine, Leviathan's Eye, Sea Currant, Dark Opal, Sand Spinel
+  - Engineering: Pressure Relief Valve, Hundred-Fathom Lure, 500S-Cybergenic Powercore, Protocol Transference Device, Pascal-K1N6's Proprietary, Gizmo-matic
+
+### v6.13 (Sep. 02, 2019)
+
+- ToC update to support WoW 8.2.0
+- Library update - LibCurrency
+
+### v6.12 (Dec. 17, 2018)
+
+- Library update - LibCurrency
+  - Added BfA currencies: 7th Legion Service Medal, Honorbound Service Medal, Titan Residuum
+
+### v6.11 (Dec. 16, 2018)
+
+- ToC update to support WoW 8.1.0
+
+### v6.10 (Nov. 13, 2018)
+
+- Updated option panel
+- Added tons of items and crafted items made by professional skills
+- Fixed the error while Shift-Click on tracked-currency's icon to paste the item link to chat frame
+- Added to support to paste the tracked item's link to chat frame by Shift-Click on item icon
+- Added item's description to tooltip
+- Translation update:
+  - Korean (next96)
+  - Traditional / Simplified Chinese
+
+### v6.09 (Nov. 05, 2018)
+
+- Sorted currency config's categories. Shows by expansions and then others.
+
+### v6.08 (Nov. 04, 2018)
+
+- Added Polished Pet Charm
+- Added fishing and cooking items from BfA (thanks to Vyger)
+
+### v6.07 (Sep. 18, 2018)
+
+- Moved Embroidered Deep Sea Satin, Deep Sea Satin and Tidespray Linen from leatherworking to tailoring (thanks to Vyger)
+
+### v6.06 (Sep. 05, 2018)
+
+- Library update - LibCurrency
+  - Fixed the issue that Wakening Essence was missing in Legion category
+
+### v6.05 (Aug. 12, 2018)
+
+- Fixed the issues that all libraries were not added to the package
+
+### v6.04 (Aug. 11, 2018)
+
+- Library update - LibCurrency
+- Arranged a development lib env
+
+### v6.03 (Aug. 07, 2018)
+
+- Libraries update: Ace3
+
+### v6.02 (Jul. 25, 2018)
+
+- ToC update to support WoW 8.0.1
+- Libraries update
+- Added professional items:
+  - Mining:
+    - Storm Silver Ore, Monelite Ore, Platinum Ore
+  - Herbalism:
+    - Sea Stalk, Siren's Pollen, Winter's Kiss, Akunda's Bite, Star Moss, Riverbud, Anchor Weed
+  - Leatherworking:
+    - Blood-Stained Bone, Shimmerscale, Tidespray Linen, Coarse Leather, Tempest Hide, Calcified Bone, Mistscale, Deep Sea Satin, Embroidered Deep Sea Satin, Hardened Tempest Hide
+  - Enchanting:
+    - Veiled Crystal, Umbra Shard, Gloom Dust
+- Added items:
+  - Sanguicell
+
+### v6.01 (Apr. 26, 2018)
+
+- Fixed conversion error
+
+### v6.00 (Apr. 25, 2018)
+
+- Enhanced currency's icon's tolltip to also support customized scale and transparency
+- Rewrote the tracked items' scanning method to slightly improve the performance
+- Rewrote the tracked currencies' scanning method to slightly improve the performance
+- Convert the tracked currencies' tracking format from name to currencyID
+- Added more events' handling and use the event to trigger the currency update instead of triggered from frame update
+- Fixed the issue that money won't be showing on the floating frame
+- Added feature to toggle whether to show lower denominations of money or not.
+- Lib update: LibCurrencyInfo
+- Migrate to fully use currency info from LibCurrencyInfo
+
+### v5.11 (Mar. 31, 2018)
+
+- Added Spirit Shard and Primal Sargerite
+- Fixed the settings for number of items / currencies per line cannot be set to 0 (means maximum to be displayed)
+
+### v5.10 (Mar. 30, 2018)
+
+- Added items introduced in 7.3.0:
+  - Mining: Empyrium
+  - Herb Gathering: Astral Glory
+  - Leatherworking: Fiendish Leather
+  - Tailoring: Lightweave Cloth
+
+### v5.09 (Mar. 28, 2018)
+
+- Translation update:
+  - Korean (next96)
+
+### v5.08 (Mar. 04, 2018)
+
+- Lib Update:
+  - AceConfig
+
+### v5.07 (Jan. 23, 2018)
+
+- Added Purified Titan Essence which was introduced in 7.3.5.25807
+
+### v5.06 (Jan. 22, 2018)
+
+- Added Wakening Essence which was introduced in 7.3.2.25326
+- Translation update:
+  - Korean (next96)
+  - Russian (Hubbotu)
+
+### v5.05 (Nov. 14, 2017)
+
+- Translation update:
+  - Korean (next96)
+- Added to support in toggling auto-hide while in combat or in battleground
+
+### v5.04 (Nov. 09, 2017)
+
+- Added to support in toggling auto-hide while in pet battle
+- Translation update:
+  - Korean (yuk6196)
+  - Russian (BLizzatron)
+
+### v5.03 (Sep. 04, 2017)
+
+- Fixed performance issue
+- # Development
+  - Remove externals
+
+### v5.02 (Sep. 04, 2017)
+
+- Added option to toggle whether or not to auto-hide currencies / items which amount becomes zero.
+
+### v5.01 (Aug. 31, 2017)
+
+- Added currencies: Writhing Essence, Argus Waystone, Veiled Argunite
+- Set frame not to clamp to screen
+- Translation update:
+  - Korean (next96)
+
+### v5.00 (Aug. 30, 2017)
+
+- ToC update to support WoW 7.3.0
+- Added option to toggle tooltip's displaying
+- Added options to configure maximum items to be displayed per row. With this configuration get adjusted, you can display tracked items in multiple rows.
+- Added options to toggle tracked items to be display with icon only or with amount info.
+- Library update: Aces
+- Translation update:
+  - Russian (BLizzatron)
+
+### v4.03 (Jul. 31, 2017)
+
+- Fixed tracked currencies' display issue on LDB supported action bar like Titan Panel.
+
+### v4.02 (Jul. 30, 2017)
+
+- Fixed issue that only item(s) were tracked on LDB and got error
+
+### v4.01 (Jul. 27, 2017)
+
+- Right-click on tracked items will now open the item's config page instead of currencies page
+- Sorted items per expansion
+- Added archaeology fragements
+- Introduced LibCurrencyInfo to handle currency's description and tooltip
+- Reorganized currency tracking's config panel
+- Added WoD Garrison Barn's caged items; also added Highmaul Relic and Hearty Soup Bone
+- Translation update:
+  - Russian (DogmatX)
+
+### v4.00 (Jul. 20, 2017)
+
+- Added to support items' tracking
+- Lib Update: AceConfigDialog-3.0, AceGUI-3.0
+- Translation update:
+  - Korean (next96)
+
+### v3.02 (Jun. 16, 2017)
+
+- Option's opening will open the tracked currencies panel by default
+- Re-organized option panel's layout
+- Fixed missing library links
+- Fixed no-lib version's lib setting. LibDataBroker-1.1 should be embedded anyway.
+- Removed redundant declaration to LibSharedMedia-3.0
+
+### v3.01 (Jun. 16, 2017)
+
+- Fixed currency amount won't update when the on-screen frame was set to hidden
+
+### v3.00 (Jun. 15, 2017)
+
+- Removed LibAboutPanel.
+- Migrated option toggling to Ace library.
+  - User can now use one single profile for all characters, use class-specific profile, use individual profile for each character, copy profile from other character, etc.
+- Rework on currency frame. Now you can view each currency's tooltip by mouse hovering to the currency icon.
+- Now if you have ever temporary disable CurrencyTracking, it will restore the on-screen frame's position when the next time you enable it.
+- Background adjusting is currently not supported.
+- Translation update:
+  - Russian (BLizzatron)
+  - Korean (next96)
+
+### v2.08 (Apr. 05, 2017)
+
+- Added option to always lock the info frame
+- Added option to show currency icon prior to its amount (same applies to money when configured)
+- Translation update:
+  - German (pas06)
+
+### v2.07 (Mar. 27, 2017)
+
+- Toc update to support WoW 7.2
+
+### v2.06 (Mar. 21, 2017)
+
+- added to support in showing money info
+
+### v2.05 (Mar. 01, 2017)
+
+- math function correction
+
+### v2.04 (Feb. 12, 2017)
+
+- Fixed the issue the LDB text won't show or update properly when on-screen button is disabled.
+- Translation update:
+  - Korean (next96)
+
+### v2.03 (Feb. 07, 2017)
+
+- Now supports to show currencies which have zero amount
+- Now supports to adjust currencies info's scale, transparency, and background transparency
+- Translation update:
+  - Russian (DogmatX)
+
+### v2.02 (Jan. 06, 2017)
+
+- Added option to toggle the numbers' displaying format
+
+### v2.01 (Jan. 04, 2017)
+
+- Added more space between currencies
+- Codes cleaned-up
+- Translation update:
+  - Korean (next96)
+
+### v2.00 (Dec. 26, 2016)
+
+- Added missing koKR localization file
+- Supports to track on whatever you would like to track. Tracking's configuration is now managed in addon's option panel. User will need to do a fresh config since this version.
+
+### v1.12 (Oct. 27, 2016)
+
+- Toc update to support WoW 7.1.0
+- Translation update:
+  - Korean (yuk6196)
+
+### v1.11 (Sep. 12, 2016)
+
+- Fixed the slider error in option panel
+- Translation update:
+  - Korean (next96)
+
+### v1.10 (Aug. 21, 2016)
+
+- Minor update to change the default frame coordinates
+
+### v1.09 (Jul. 21, 2016)
+
+- Reduce the on-screen money frame's settext frequency
+
+### v1.08 (Jul. 19, 2016)
+
+- Toc update to support WoW 7.0.3
+- Change the defaule floating frame's position
+
+### v1.07 (Jun. 28, 2016)
+
+- Fixed the issue that GameTooltip scale was also applied to other item's GameTooltip
+- Translation update:
+  - German (pas06)
+
+### v1.06 (Jun. 17, 2016)
+
+- TOC update
+- Fixed missing lib link
+
+### v1.05 (Jun. 15, 2016)
+
+- TOC update
+
+### v1.04 (Jun. 15, 2016)
+
+- Change LDB type to data source and revise the displaying text to be currencies
+- Bug fixed for better supporting LDB so now currency info will properly display
+- Disabling the floating currency frame now won't impact to LDB's currency update
+- Right-click on the floating currency frame now will open Character -\> Currency frame
+
+### v1.03 (May 29, 2016)
+
+- Hide tooltip while draging or in combat
+- Update LDB's button right-click function call, now it should lead to option panel
+- Update LDB button's GameToolTip to also support scale / alpha tuning
+
+### v1.02 (May 25, 2016)
+
+- Added options to customize tooltip's scale and alpha
+- Added German translation, thanks fo pas06
+- Added dummy lcoalization files for all the other language, they will get loaded in the new release once translation is available on CurseForge
+
+### v1.01 (May 24, 2016)
+
+- Enhanced to prevent the money frame to be draged when in combat
+
+### v1.00 (May 23, 2016)
+
+- Initial version which support WoW 6.2.4
+- Shows tracked currencies on the screen
+- Shows all gained currencies when hover over

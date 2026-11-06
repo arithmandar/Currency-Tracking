@@ -214,6 +214,12 @@ local function getTooltipText()
 end
 
 local function button_OnMouseDown(self, buttonName)
+	-- Click-to-track combo on a tracked item: stop tracking it
+	if (self.isItem and self.itemID and addon.IsClickTrackCombo and addon:IsClickTrackCombo(buttonName)) then
+		GameTooltip_Hide()
+		addon:SetItemTracked(self.itemID, false)
+		return
+	end
 	-- Prevent activation when in combat or when lock is set to true
 	if (isInLockdown or profile.always_lock) then
 		return
@@ -313,7 +319,7 @@ local function handleTrackedButtons(button, currencyID, itemID)
 				})
 			end
 		end
-		count = GetItemCount(itemID, true)
+		count = private.GetItemCount(itemID)
 	end
 
 	if (currencyID or itemID) then
@@ -431,7 +437,7 @@ local function currencyButton_Update()
 	-- tracked items
 	for itemID, v in pairs(profile["items"]) do
 		if (itemID and profile["items"][itemID] == true) then
-			local count = GetItemCount(itemID, true)
+			local count = private.GetItemCount(itemID)
 			if (profile.hide_zero and count == 0) then
 				-- do nothing
 			else
@@ -524,7 +530,7 @@ local function currencyString_Update()
 	-- tracked items
 	for itemID, v in pairs(profile["items"]) do
 		if (itemID and profile["items"][itemID] == true) then
-			local count = GetItemCount(itemID, true)
+			local count = private.GetItemCount(itemID)
 			--local icon = select(10, GetItemInfo(itemID))
 			local icon = GetItemIconByID(itemID)
 

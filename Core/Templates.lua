@@ -77,6 +77,11 @@ local function LinkButton_OnLeave(self)
 end
 
 local function LinkButton_OnMouseDown(self, button)
+    local parent = self:GetParent()
+    if parent.isItem and parent.itemID and addon.IsClickTrackCombo and addon:IsClickTrackCombo(button) then
+        -- handled in OnClick; do not start dragging the frame
+        return
+    end
     if button == "LeftButton" then
         local parent = self:GetParent()
         local handler = parent:GetScript("OnMouseDown")
@@ -98,6 +103,13 @@ end
 
 local function LinkButton_OnClick(self, button)
     local parent = self:GetParent()
+
+    -- Click-to-track combo on a tracked item: stop tracking it
+    if parent.isItem and parent.itemID and addon.IsClickTrackCombo and addon:IsClickTrackCombo(button) then
+        GameTooltip_Hide()
+        addon:SetItemTracked(parent.itemID, false)
+        return
+    end
 
     if button == "RightButton" then
         addon:OpenOptions(parent.isItem)
