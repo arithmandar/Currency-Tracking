@@ -1,8 +1,8 @@
 package-as: CurrencyTracking
 
 manual-changelog:
-    filename: Docs/Revisions.txt
-    markup-type: plain
+    filename: Docs/Revisions.md
+    markup-type: markdown
 
 license-output: Docs/LICENSE.txt
     
@@ -42,3 +42,4 @@ externals:
 ignore:
     - .data
     - .util
+    - Docs/CurseForge-ProjectDescription.md
