@@ -18,6 +18,8 @@ Hover over the on-screen tracker to view a tooltip containing your available cur
 *   Set a maximum number of tracked entries per row
 *   Automatically hide the tracking frame during combat, pet battles, or battlegrounds
 *   View your currency information in a tooltip
+*   **Click to track:** Alt+Right-click an item in your bags, bank, guild bank, loot window, merchant window or a chat link to start or stop tracking it
+*   Track any item, not only those in the predefined lists, through the **Custom Items** list
 *   Right-click the tracker to open the addon options
 
 ## How to use
@@ -27,6 +29,27 @@ Manage tracked **currencies** and **items** from the addon's options window.
 When the on-screen tracker is visible, right-click a tracked currency or item to open the options directly. From there, you can choose what to track and customize display settings such as icon order, visibility, scale, transparency, and frame position.
 
 You can track as many currencies and items as your screen layout allows.
+
+### Click to track
+
+Hold **Alt** and **right-click** an item to start or stop tracking it. This works on items in your:
+
+*   Bags
+*   Bank and guild bank
+*   Loot and merchant windows
+*   Chat item links
+
+Use the same combination on an item in the on-screen tracker to stop tracking it. When enabled, the item tooltip shows a short hint with the current combination.
+
+You can change the modifier key (**Alt**, **Ctrl** or **Alt+Ctrl**) and the mouse button, or turn the feature off, under **Options → Click to track**. Shift is never used, so chat linking and stack splitting keep working as usual.
+
+### Custom Items
+
+Items that you add by clicking, but that are not part of the predefined item lists, appear in the **Custom Items** category of the options. There you can:
+
+*   Check or uncheck items to show or hide them on the tracker
+*   Add an item by entering its item ID, pasting an item link, or pasting a Wowhead item URL
+*   Remove an item from the list with the **Remove** button
 
 ## Compatibility
 

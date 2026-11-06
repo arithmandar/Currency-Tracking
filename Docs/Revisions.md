@@ -3,6 +3,17 @@
 ## Revision History:
 
 
+### v8.06 (Nov. 06, 2026)
+
+- Added click-to-track for items: Alt+Right-click (configurable) an item in your bags, bank, guild bank, loot window, merchant window or a chat link to start or stop tracking it
+- Using the same combination on an item in the on-screen tracker stops tracking it
+- Added a "Click to track" options group: modifier key (Alt, Ctrl, Alt+Ctrl or disabled), mouse button, and an optional hint in item tooltips
+- Added a "Custom Items" category for tracked items that are not in the predefined lists
+  - Add items by item ID, item link or Wowhead URL
+  - Unchecked items stay in the list until removed with the Remove button
+- Custom items are now pre-cached together with the predefined items
+- Localized the new strings for all supported locales
+
 ### v8.05 (Oct. 15, 2026)
 
 - ToC update to support WoW 12.1.5
