@@ -56,5 +56,6 @@ Core\Core.lua
 Core\Query.lua
 Core\Templates.lua
 Core\Config.lua
+Core\ClickTrack.lua
 #Core\TokenOptions.xml
 

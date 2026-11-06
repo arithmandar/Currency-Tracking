@@ -214,6 +214,12 @@ local function getTooltipText()
 end
 
 local function button_OnMouseDown(self, buttonName)
+	-- Click-to-track combo on a tracked item: stop tracking it
+	if (self.isItem and self.itemID and addon.IsClickTrackCombo and addon:IsClickTrackCombo(buttonName)) then
+		GameTooltip_Hide()
+		addon:SetItemTracked(self.itemID, false)
+		return
+	end
 	-- Prevent activation when in combat or when lock is set to true
 	if (isInLockdown or profile.always_lock) then
 		return
